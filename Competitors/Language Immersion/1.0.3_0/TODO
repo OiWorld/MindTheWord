@@ -1,0 +1,2 @@
+* Rewrite/cleanup speech playback code in background.js (working now, but not robust)
+* Fix japanese translations (temporarily removed)

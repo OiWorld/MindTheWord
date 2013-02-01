@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+ * Copyright (c) 2011 Bruno Woltzenlogel Paleo. All rights reserved.
+-->
+<html>
+  <head>
+    <title>MindTheWord Background</title>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script>
+
+function sourceLanguage() {return 'auto';}
+
+function targetLanguage() {
+  var tL = localStorage["targetLanguage"];
+  if (tL) return tL;
+  else return "en";
+}
+
+function translationProbability() {
+  var tP = localStorage["translationProbability"];
+  if (tP) return tP;
+  else return 10;
+}
+
+function translateWords(words, callback) {
+  var tMap = {};
+  var concatWords = "";
+  for (word in words) {
+    concatWords += word + ". "  ; 
+  }
+  var url = 'http://translate.google.com/translate_a/t?client=f&otf=1&pc=0';
+  url += '&text=' + concatWords;
+  url += '&hl=en';
+  if(sourceLanguage() != 'auto') {
+    url += '&sl=' + sourceLanguage();
+  }
+  url += '&tl=' + targetLanguage();
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+      var r = JSON.parse(xhr.responseText);
+      for (index in r.sentences) {
+	      var orig = r.sentences[index].orig;
+        var origT = orig.substring(0,orig.length - 1);
+	      var trans = r.sentences[index].trans;
+	      if (trans.substr(trans.length - 2) == ". " ) { 
+          var transT = trans.substring(0,trans.length - 2);
+        }
+	      else if (trans.substr(trans.length - 1) == "." ) { 
+          var transT = trans.substring(0,trans.length - 1);
+        }
+        else {
+          transT = trans;
+        }
+        tMap[origT] = transT;
+      }    
+      callback(tMap);
+    }
+  }
+  xhr.send();       
+}  	
+	
+function length(associativeArray) {
+  var l = 0;
+  for (e in associativeArray) { l++; }
+  return l;      	
+}
+	
+function onRequest(request, sender, sendResponse) {
+  if (request.wordsToBeTranslated) {
+    translateWords(request.wordsToBeTranslated, function(tMap) {
+      sendResponse({translationMap : tMap});
+    });
+  } else if (request.wordToBeTranslated) {
+    translateWord(request.wordToBeTranslated, function(translation) {
+      sendResponse({translatedWord : translation});
+    });
+  } else if (request.translationProbability) {
+    sendResponse({translationProbability : translationProbability()})
+  }  
+};
+
+// Listen for the content script to send a message to the background page.
+chrome.extension.onRequest.addListener(onRequest);
+
+function browserActionClicked() {
+  chrome.tabs.create({url:chrome.extension.getURL("options.html")});
+}
+
+chrome.browserAction.onClicked.addListener(browserActionClicked);
+
+
+    </script>
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1471148-13']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+</html>

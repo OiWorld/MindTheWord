@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Options :: Auto-translate plugin for Google Chrome</title>
+    <!--<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script>
+        //google.load("ext-core", "3.0.0");
+        google.load("language", "1");
+    </script>-->
+    <script type="text/javascript">
+        var defaults;
+        var storage = null;
+        var lastTab = null;
+        var keys = ['Ctrl', 'Alt', 'Shift', 'Meta'];
+
+        function $(id) {
+            return document.getElementById(id);
+        }
+        
+        function clone(obj) {
+            var ret = {};
+            for (p in obj) {
+                ret[p] = (typeof obj[p] == 'object') ? clone(obj[p]) : obj[p];
+            }
+            return ret;
+        }
+
+        function count(obj) {
+            var c = 0;
+            for(var o in obj) {
+                c++;
+            }
+            return c;
+        }
+
+        function error(message) {
+            $('error').firstChild.innerHTML = message;
+            $('error-wrapper').style.display = '';
+            $('error-bg').style.display = '';
+        }
+        
+        function hide() {
+            $('error-wrapper').style.display = 'none';
+            $('error-bg').style.display = 'none';
+        }
+
+        function read() {
+            storage = eval('storage = ' + localStorage['options'] + ';');
+            //storage = JSON.parse(localStorage['options']);
+            defaults = JSON.parse(localStorage['defaults']);
+
+            var t = null;
+            for(var h in storage.hotkeys) {
+                if(t == null) {
+                    t = h;
+                }
+                add(h);
+            }
+
+            for(var id in storage) {
+                if(id == 'options' || id == 'defaults') {
+                    continue;
+                }
+                l(id, storage[id]);
+            }
+
+            tab(t);
+
+            $('theme').value = storage.theme;
+
+            $('options').style.display = '';
+            $('loading').style.display = 'none';
+        }
+
+        function commit() {
+            for(var id in storage) {
+                if(id == 'hotkeys' || id == 'defaults') {
+                    continue;
+                }
+                s(id, storage[id]);
+            }
+            
+            var lt = save(lastTab);
+            if(!lt) {
+                return;
+            }
+            lastTab = lt;
+
+            storage.theme = $('theme').value;
+
+            localStorage['options'] = JSON.stringify(storage);
+
+            error('<h2>Options saved!</h2>');
+        }
+
+        function l(id, o) {
+            switch(o.type) {
+                case 'lang':
+                    // load allowed languages
+                    if($(id).options.length == 1) {
+                        var langs = '';
+                        if(id == 'from') {
+                            langs += '<option value="auto">Auto-detect language</option>';
+                            langs += '<option value="latest">Latest language</option>';
+                            langs += '<option value="-" disabled="disabled">-</option>';
+                        }
+                        for(var lng in o.values) {
+                            var name = lng.substring(0, 1) + lng.substring(1).toLowerCase().replace('_', ' ');
+                            langs += '<option value="' + o.values[lng] + '">' + name + '</option>'
+                        }
+                        $(id).innerHTML = langs;
+                    }
+                case 'select':
+                    $(id).value = o.value;
+                    break;
+                case 'checkbox':
+                    $(id).checked = o.value;
+                    break;
+
+            }
+        }
+
+        function s(id, o) {
+            switch(o.type) {
+                case 'lang':
+                case 'select':
+                    o.value = $(id).value;
+                    break;
+                case 'checkbox':
+                    o.value = $(id).checked;
+                    break;
+            }
+        }
+
+        function load(id) {
+            for(var i in storage.hotkeys[id]) {
+                l(i, storage.hotkeys[id][i]);
+            }
+            var hkeys = id.split('+');
+            for(var k in hkeys) {
+                if(hkeys[k] != 'Selection') {
+                    $(hkeys[k]).checked = 'checked';
+                }
+            }
+        }
+
+        function save(id) {
+            var hkeys = [];
+            for(var k in keys) {
+                if($(keys[k]).checked) {
+                    hkeys.push(keys[k]);
+                }
+            }
+            hkeys.push('Selection')
+            hkeys = hkeys.join('+');
+            if(id != hkeys) {
+                if(storage.hotkeys[hkeys]) {
+                    // error
+                    error('Selected hotkeys<br /><b>(' + hkeys + ')</b><br />are already used!<br />Please select another hotkeys.');
+                    return false;
+                } else {
+                    storage.hotkeys[hkeys] = storage.hotkeys[id];
+                    delete storage.hotkeys[id];
+                    $(id).firstChild.nodeValue = hkeys;
+                    $(id).id = hkeys;
+                    $('sup-' + id).id = 'sup-' + hkeys;
+                    id = hkeys;
+                }
+            }
+            for(var i in storage.hotkeys[id]) {
+                s(i, storage.hotkeys[id][i]);
+            }
+            return id;
+        }
+
+        function tab(id, skipSave) {
+            skipSave = skipSave || false;
+            if(lastTab && !skipSave) {
+                lt = save(lastTab);
+                if(!lt) {
+                    return;
+                }
+                lastTab = lt;
+                $(lastTab).className = 'tab';
+            }
+            lastTab = id;
+            $(id).className = 'tab selected';
+            $('Ctrl').checked = ''; $('Alt').checked = ''; $('Shift').checked = ''; $('Meta').checked = '';
+            load(id);
+        }
+
+        function close(id) {
+            $(id).parentNode.removeChild($(id));
+            delete storage.hotkeys[id];
+            if(count(storage.hotkeys) == 1) {
+                $('sup-' + lastTab).style.display = 'none';
+            }
+        }
+
+        function add(id) {
+            id = id || 'new';
+            if(id == 'new' && $(id)) {
+                lt = save(id);
+                if(!lt) {
+                    return;
+                }
+                lastTab = lt;
+            }
+            if(id == 'new' && count(storage.hotkeys) == 1) {
+                $('sup-' + lastTab).style.display = '';
+            }
+            if(!$(id)) {
+                var span = document.createElement('span');
+                span.id = id;
+                var display = ((count(storage.hotkeys) == 0) ? ' style="display:none;"' : '');
+                span.innerHTML = id + ' <sup class="close" id="sup-' + id + '"' + display + '>x</sup>';
+                span.className = 'tab';
+                span.onclick = function(e) {
+                    if(e.srcElement.tagName == 'SUP') {
+                        if(count(storage.hotkeys) == 1) {
+                            return false;
+                        }
+                        id = e.srcElement.id.substring(4);
+                        if($(id).previousSibling) {
+                            tab($(id).previousSibling.id, true);
+                        } else {
+                            tab($(id).nextSibling.id, true);
+                        }
+                        close(id);
+                    } else {
+                        tab(this.id);
+                    }
+                };
+                $('tabs').insertBefore(span, $('add'));
+                if(id == 'new') {
+                    storage.hotkeys[id] = clone(defaults);
+                }
+            }
+            tab(id);
+        }
+
+    </script>
+    <style type="text/css">
+        html, body { height: 100%; }
+        body {
+            text-align: center;
+            color: #363636;
+            margin: 0; padding: 0;
+        }
+        label {
+            font-weight: bold;
+        }
+        div#loading {
+            background: #AA2222;
+            margin-top: 2px;
+            font-weight: bold;
+            float: right;
+            margin-right: 20px;
+            padding: 2px 5px;
+            color: #FAFAFA;
+        }
+        div.tab-wrapper {
+            min-width: 70%;
+            display: inline-block;
+            margin: 10px auto 0;
+            z-index: 10;
+            text-align: left;
+        }
+        div.tab-list {
+            z-index: 10;
+            position: relative;
+        }
+        span.tab {
+            z-index: 10;
+            background: #D1D6DE;
+            border: 1px solid #B8CBDE;
+            border-bottom: 0;
+            -webkit-border-top-left-radius: 10px;
+            -webkit-border-top-right-radius: 10px;
+            padding: 3px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        span.tab.selected {
+            padding-bottom: 4px;
+            background: #E1E6EE;
+        }
+        span.tab:hover {
+            color: #000000;
+            background: #E1E6EE;
+        }
+        span.add {
+            font-weight: bold;
+            cursor: pointer;
+            color: #696969;
+        }
+        span.add:hover {
+            color: #000000;
+        }
+        div.tab-content {
+            margin-top: 3px;
+            padding: 3px;
+            background: #E1E6EE;
+            border: 1px solid #B8CBDE;
+            min-height: 200px;
+            z-index: 5;
+        }
+        sup.close {
+            font-weight: bold;
+            margin-right: 2px;
+            color: #696969;
+        }
+        sup.close:hover {
+            color: #000000;
+        }
+        div#error-bg {
+            z-index: 50;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            opacity: 0.7;
+            text-align: center;
+        }
+        div#error-wrapper{
+            width: 100%;
+            position: absolute;
+            z-index: 90;
+        }
+        div#error {
+            z-index: 100;
+            margin: 100px auto 0;
+            background: #E1E6EE;
+            border: 1px solid #B8CBDE;
+            -webkit-border-radius: 20px;
+            max-width: 400px;
+            padding: 10px;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+        }
+        div#error: hover {
+            color: #000000;
+        }
+        div#error i {
+            font-size: 12px;
+        }
+        div.save {
+            display: inline-block;
+            clear: both;
+            margin: 10px auto;
+            background: #E1E6EE;
+            border: 1px solid #B8CBDE;
+            -webkit-border-radius: 15px;
+            font-weight: bold;
+            font-size: 24px;
+            padding: 6px;
+            cursor: pointer;
+        }
+        div.save:hover {
+            color: #000000;
+        }
+        div.additional-options {
+            min-width: 70%;
+            display: inline-block;
+            margin: 10px auto 0;
+            text-align: left;
+            margin-top: 3px;
+            padding: 3px;
+            background: #E1E6EE;
+            border: 1px solid #B8CBDE;
+            -webkit-box-sizing: border-box;
+        }
+    </style>
+</head>
+<body onload="read()">
+  <div id="loading">Loading...</div>
+  <div id="options" style="display:none;">
+    <div id="error-wrapper" style="display:none;">
+        <div id="error" onclick="hide();"><p>error message</p><i>(click to hide)</i></div>
+    </div>
+    <div id="error-bg" style="display:none;"></div>
+    <div class="tab-wrapper">
+        <div id="tabs" class="tab-list"><span id="add" class="add" onclick="add();">+ (add profile)</span></div>
+        <div class="tab-content">
+            <h2>Hotkeys</h2>
+            <p>
+                <input type="checkbox" id="Ctrl" /><label for="Ctrl">Ctrl</label> +
+                <input type="checkbox" id="Alt" /><label for="Alt">Alt</label> +
+                <input type="checkbox" id="Shift" /><label for="Shift">Shift</label> +
+                <input type="checkbox" id="Meta" /><label for="Meta">Meta</label> +
+                <label for="selection">Selection</label>
+            </p>
+            <h2>Languages configuration</h2>
+            <p>
+                <label for="from">From</label>
+                <select id="from">
+                    <option>Auto-detect language</option>
+                </select>
+                <i>translate text from selected language</i>
+            </p>
+            <p>
+                <label for="first">First</label>
+                <select id="first">
+                    <option>Auto-detect language</option>
+                </select>
+                <i>translate text to selected language</i>
+            </p>
+            <p>
+                <label for="second">Second</label>
+                <select id="second">
+                    <option>Auto-detect language</option>
+                </select>
+                <i>translate text to selected language (if text language = first)</i>
+            </p>
+            <h2>Additional configuration</h2>
+            <p>
+                <input type="checkbox" id="detection" />
+                <label for="detection">Detection</label>
+                <i>use additional language detection</i>
+            </p>
+            <p>
+                <input type="checkbox" id="lowercase" />
+                <label for="lowercase">Lower Case</label>
+                <i>convert words to lower case before translation</i>
+            </p>
+        </div>
+    </div>
+    <div class="additional-options">
+        Theme:
+        <select id="theme">
+            <option value="black">Black</option>
+            <option value="white">White</option>
+        </select>
+    </div>
+    <div></div>
+    <div class="save" onclick="commit();">Save</div>
+  </div>
+</body>
+</html>

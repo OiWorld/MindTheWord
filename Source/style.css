@@ -1,0 +1,119 @@
+@font-face {
+    font-family: 'OpenSansLight';
+    src: url('fonts/OpenSans-Light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OpenSansLightItalic';
+    src: url('fonts/OpenSans-LightItalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('fonts/OpenSans-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OpenSansItalic';
+    src: url('fonts/OpenSans-Italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OpenSansSemibold';
+    src: url('fonts/OpenSans-Semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OpenSansSemiboldItalic';
+    src: url('fonts/OpenSans-SemiboldItalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OpenSansBold';
+    src: url('fonts/OpenSans-Bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OpenSansBoldItalic';
+    src: url('fonts/OpenSans-BoldItalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OpenSansExtrabold';
+    src: url('fonts/OpenSans-ExtraBold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'OpenSansExtraboldItalic';
+    src: url('fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+body {
+  font: 12px/18px 'OpenSansLight', Arial, sans-serif;
+  text-align: center;
+}
+        
+
+h1 {
+  font: 18px/27px 'OpenSansLight', Arial, sans-serif;
+  padding: 0; margin: 0;
+  color: #F60;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+p {
+  font: 12px/18px 'OpenSansLight', Arial, sans-serif;
+}
+
+.footnotesize {
+  font-size: 8px;
+  line-height: 11px;
+}
+
+a:link {color:#F2984C; text-decoration:underline; }
+a:visited {color:#F2984C; text-decoration:underline; }
+a:hover {color:#F2984C; text-decoration:underline; }
+a:active {color:#F2984C; text-decoration:underline;}
+
+
+#columns {
+  width: 600px;
+}
+
+#columns .column {
+  position: relative;
+  width: 46%;
+  padding: 1%;
+  border: solid 1px #000;
+}
+
+#columns .left {
+  float: left;
+}
+
+#columns .right {
+  float: right;
+}

@@ -1,0 +1,44 @@
+{
+  "name": "MindTheWord",
+  "version": "0.9",
+  "description": "MindTheWord helps you to effortlessly learn vocabulary of a new language while browsing pages in your native language. In every webpage visited, it randomly translates a few words into the language that you would like to learn. Since only a few words are translated, it is easy to infer their meaning from the context.",
+  "background_page" : "background.html",
+  "options_page": "options.html",
+  "page_action" :
+  {
+    "default_icon" : "icon-32.png",
+    "default_title" : "There's a 'Bruno' in this page!",
+    "popup" : "popup.html"
+  },
+  "content_scripts" : [
+    {
+      "matches" : [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js" : ["contentscript.js"],
+      "run_at" : "document_idle",
+      "all_frames" : false
+    },
+    {
+      "matches" : [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js" : ["ads.js"],
+      "run_at" : "document_end",
+      "all_frames" : false
+    }
+  ],
+  "permissions": [
+    "http://api.flickr.com/",
+    "http://ajax.googleapis.com/*", 
+    "http://*.google.com/*", 
+    "http://google.com/*"
+  ],
+  "icons" : {
+    "32" : "icon-32.png",
+    "48" : "icon-48.png",
+    "64" : "icon-64.png"
+  }
+}

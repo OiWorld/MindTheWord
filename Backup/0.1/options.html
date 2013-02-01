@@ -1,0 +1,301 @@
+<html>
+<head>
+  <title>MindTheWord Options</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen" /> 
+  <meta name="description" content="Mind the Word helps people to learn new languages effortlessly by partially translating the pages they visit." />
+  <meta name="keywords" content="Translation, Languages, Learning, Education, Dictionary, Communication, Study Abroad"/>
+  <meta name="author" content="Bruno Woltzenlogel Paleo" />
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("language", "1");</script>
+<script type="text/javascript">
+
+  //Sets Languages
+  function set_languages(){
+    var languages = google.language.Languages
+    var targetLanguageOptions = " "
+    for(var language in languages) {
+      var name = language.substring(0, 1) + language.substring(1).toLowerCase().replace('_', ' - ');
+      targetLanguageOptions += '<option value="' + languages[language] + '">' + name + '</option>'
+    }
+    document.getElementById("targetLanguageSelect").innerHTML = targetLanguageOptions;
+  }
+
+  // Saves options to localStorage.
+  function save_options() {
+    var selectTL = document.getElementById("targetLanguageSelect");
+    var targetLanguage = selectTL.children[selectTL.selectedIndex].value;
+    var selectProb = document.getElementById("translationProbabilitySelect");
+    var translationProbability = selectProb.children[selectProb.selectedIndex].value;
+    localStorage["targetLanguage"] = targetLanguage;
+    localStorage["translationProbability"] = translationProbability;
+
+    // Update status to let user know options were saved.
+    var status = document.getElementById("status");
+    status.innerHTML = "Options Saved.";
+    setTimeout(function() {
+      status.innerHTML = "";
+    }, 750);
+  }
+
+  // Restores select box state to saved value from localStorage.
+  function restore_options() {
+    var targetLanguage = localStorage["targetLanguage"];
+    if (!targetLanguage) {
+      return;
+    }
+    var select = document.getElementById("targetLanguageSelect");
+    for (var i = 0; i < select.children.length; i++) {
+      var child = select.children[i];
+      if (child.value == targetLanguage) {
+        child.selected = "true";
+        break;
+      }
+    }
+    var translationProbability = localStorage["translationProbability"];
+    if (!translationProbability) {
+      return;
+    }
+    var select = document.getElementById("translationProbabilitySelect");
+    for (var i = 0; i < select.children.length; i++) {
+      var child = select.children[i];
+      if (child.value == translationProbability) {
+        child.selected = "true";
+        break;
+      }
+    }
+  }
+
+  function init(){
+    set_languages();
+    restore_options();
+  }
+  
+</script>
+
+
+</head>
+<body>
+
+
+<h1>Mind the Word</h1> 
+
+<br />
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-6672379263773124";
+/* MindTheWordOptionsSmall */
+google_ad_slot = "3315544759";
+google_ad_width = 468;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<p>
+  <b>Learn vocabulary while browsing the web.</b>
+</p> 
+
+<p>
+Select the language you would like to learn: <br />
+<select ID = "targetLanguageSelect">
+<!--  
+  <option value="af">Afrikaans</option>
+  <option value="sq">Albanian</option>
+  <option value="ar">Arabic</option>
+  <option value="be">Belarusian</option>
+  <option value="bg">Bulgarian</option>
+  <option value="ca">Catalan</option>
+  <option value="zh-CN">Chinese [simplified]</option>
+  <option value="zh-TW">Chinese [traditional]</option>  
+  <option value="hr">Croatian</option>
+  <option value="cs">Czech</option>
+  <option value="da">Danish</option>
+  <option value="nl">Dutch</option>
+  <option value="en">English</option>
+  <option value="et">Estonian</option>
+  <option value="tl">Filipino</option>
+  <option value="fi">Finnish</option>
+  <option value="fr">French</option>
+  <option value="gl">Galician</option>
+  <option value="de">German</option>
+  <option value="el">Greek</option>
+  <option value="iw">Hebrew</option>
+  <option value="hi">Hindi</option>
+  <option value="hu">Hungarian</option>
+  <option value="is">Icelandic</option>
+  <option value="id">Indonesian</option>
+  <option value="ga">Irish</option>
+  <option value="it">Italian</option>
+  <option value="ja">Japanese</option>
+  <option value="ko">Korean</option>
+  <option value="lv">Latvian</option>
+  <option value="lt">Lithuanian</option>
+  <option value="mk">Macedonian</option>
+  <option value="ms">Malay</option>
+  <option value="mt">Maltese</option>
+  <option value="no">Norwegian</option>
+  <option value="fa">Persian</option>
+  <option value="pl">Polish</option>
+  <option value="pt">Portuguese</option>
+  <option value="ro">Romanian</option>
+  <option value="ru">Russian</option>
+  <option value="sr">Serbian</option>
+  <option value="sk">Slovak</option>
+  <option value="sl">Slovenian</option>
+  <option value="es">Spanish</option>
+  <option value="sw">Swahili</option>
+  <option value="sv">Swedish</option>
+  <option value="th">Thai</option>
+  <option value="tr">Turkish</option>
+  <option value="uk">Ukrainian</option>
+  <option value="vi">Vietnamese</option>
+  <option value="cy">Welsh</option>
+  <option value="yi">Yiddish</option>
+-->
+</select>
+
+<br />
+
+Select the probability for a word occurring in the webpage to be translated: <br /> 
+<select ID = "translationProbabilitySelect">
+ <option value="1">1%</option>
+ <option value="2">2%</option>
+ <option value="3">3%</option>
+ <option value="4">4%</option>
+ <option value="5">5%</option>
+ <option value="6">6%</option>
+ <option value="7">7%</option>
+ <option value="8">8%</option>
+ <option value="9">9%</option>
+ <option value="10">10%</option>
+ <option value="11">11%</option>
+ <option value="12">12%</option>
+ <option value="13">13%</option>
+ <option value="14">14%</option>
+ <option value="15">15%</option>
+ <option value="16">16%</option>
+ <option value="17">17%</option>
+ <option value="18">18%</option>
+ <option value="19">19%</option>
+ <option value="20">20%</option>
+ <!--<option value="21">21</option>
+ <option value="22">22</option>
+ <option value="23">23</option>
+ <option value="24">24</option>
+ <option value="25">25</option>
+ <option value="26">26</option>
+ <option value="27">27</option>
+ <option value="28">28</option>
+ <option value="29">29</option>
+ <option value="30">30</option>
+ <option value="31">31</option>
+ <option value="32">32</option>
+ <option value="33">33</option>
+ <option value="34">34</option>
+ <option value="35">35</option>
+ <option value="36">36</option>
+ <option value="37">37</option>
+ <option value="38">38</option>
+ <option value="39">39</option>
+ <option value="30">30</option>
+ <option value="41">41</option>
+ <option value="42">42</option>
+ <option value="43">43</option>
+ <option value="44">44</option>
+ <option value="45">45</option>
+ <option value="46">46</option>
+ <option value="47">47</option>
+ <option value="48">48</option>
+ <option value="49">49</option>
+ <option value="50">50</option>
+ <option value="51">51</option>
+ <option value="52">52</option>
+ <option value="53">53</option>
+ <option value="54">54</option>
+ <option value="55">55</option>
+ <option value="56">56</option>
+ <option value="57">57</option>
+ <option value="58">58</option>
+ <option value="59">59</option>
+ <option value="60">60</option>
+ <option value="61">61</option>
+ <option value="62">62</option>
+ <option value="63">63</option>
+ <option value="64">64</option>
+ <option value="65">65</option>
+ <option value="66">66</option>
+ <option value="67">67</option>
+ <option value="68">68</option>
+ <option value="69">69</option>
+ <option value="70">70</option>
+ <option value="71">71</option>
+ <option value="72">72</option>
+ <option value="73">73</option>
+ <option value="74">74</option>
+ <option value="75">75</option>
+ <option value="76">76</option>
+ <option value="77">77</option>
+ <option value="78">78</option>
+ <option value="79">79</option>
+ <option value="80">80</option>
+ <option value="81">81</option>
+ <option value="82">82</option>
+ <option value="83">83</option>
+ <option value="84">84</option>
+ <option value="85">85</option>
+ <option value="86">86</option>
+ <option value="87">87</option>
+ <option value="88">88</option>
+ <option value="89">89</option>
+ <option value="90">90</option>
+ <option value="91">91</option>
+ <option value="92">92</option>
+ <option value="93">93</option>
+ <option value="94">94</option>
+ <option value="95">95</option>
+ <option value="96">96</option>
+ <option value="97">97</option>
+ <option value="98">98</option>
+ <option value="99">99</option>
+ <option value="100">100</option>-->
+</select>
+<br />
+<span class="footnotesize">(the higher, the more is translated)</span>
+</p>
+
+<button onclick="save_options()">Save</button>
+<div id="status" class="footnotesize"></div> 
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-6672379263773124";
+/* MindTheWordOptions */
+google_ad_slot = "8851579575";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<p class="footnotesize">
+  This is a beta version. Please send bug reports or feature requests to <a href="mailto:MindTheWord@gmail.com">MindTheWord@gmail.com</a>
+</p>
+
+<script>
+  init();
+</script>
+
+</body>
+</html>

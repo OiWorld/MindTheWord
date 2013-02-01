@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+ * Copyright (c) 2010 The Chromium Authors. All rights reserved.  Use of this
+ * source code is governed by a BSD-style license that can be found in the
+ * LICENSE file.
+-->
+<html>
+  <head>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script>
+
+
+        function _translate(text, from, to, callback) {
+            var url = 'http://translate.google.com/translate_a/t?client=f&otf=1&pc=0';
+            url += '&text=' + text;
+            url += '&hl=en';
+            if(from != 'auto') {
+                url += '&sl=' + from;
+            }
+            url += '&tl=' + to;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    var r = JSON.parse(xhr.responseText)
+                    callback(r);
+                }
+            }
+            xhr.send();
+
+        }
+
+
+function targetLanguage() {
+  var tL = localStorage["targetLanguage"]
+  if (tL) return tL
+  else return "en"
+}
+
+function translationProbability() {
+  var tP = localStorage["translationProbability"]
+  if (tP) return tP
+  else return 10
+}
+
+
+      function translateWord(word, callback) {
+        _translate(word, "auto", targetLanguage(), function(result) {callback(result.sentences[0].trans)})
+      }
+	
+      function onRequest(request, sender, sendResponse) {
+        // Show the page action for the tab that the sender (content script)
+        // was on.
+        chrome.pageAction.show(sender.tab.id);
+        if (request.wordToBeTranslated) {
+          translateWord(request.wordToBeTranslated, function(translation) {
+            sendResponse({translatedWord : translation});
+          });
+        } else if (request.translationProbability) {
+          sendResponse({translationProbability : translationProbability()})
+        }  
+      };
+
+      // Listen for the content script to send a message to the background page.
+      chrome.extension.onRequest.addListener(onRequest);
+    </script>
+  </head>
+</html>
