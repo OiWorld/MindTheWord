@@ -1,6 +1,4 @@
-/*
- * Copyright (c) 2011 Bruno Woltzenlogel Paleo. All rights reserved.
- */
+// Copyright (c) 2011-2013 Bruno Woltzenlogel Paleo. All rights reserved.
 
 
 function insertCSS(cssStyle) {
@@ -141,5 +139,3 @@ function main() {
 
 chrome.extension.sendRequest({getTranslationTimeout : "Tell me how much time I should wait before starting to translate"},
                              function(response) {setTimeout('main();', response.translationTimeout);} );
- 
-//alert("Mind The Word end")
