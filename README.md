@@ -1,4 +1,4 @@
-== MindTheWord ==
+## MindTheWord
 
 
 An extension for Google Chrome that helps people learn new languages while they browse the web.
@@ -12,3 +12,4 @@ while browsing pages in his native language. In every webpage visited, it
 randomly translates a few words into the language he would like to learn.
 Since only a few words are translated, it is easy to infer their meaning from
 the context.
+

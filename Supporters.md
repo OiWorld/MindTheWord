@@ -1,4 +1,4 @@
-== MindTheWord Supporters ==
+## MindTheWord Supporters
 
 The developers of Mind the Word wish to express their gratitude
 to the following donors for their financial support.
