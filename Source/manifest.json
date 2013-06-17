@@ -6,7 +6,7 @@
   "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://www.google.com https://ssl.google-analytics.com;",
   "background" : 
   {
-    "scripts" : ["google-analytics.js", "background.js"]
+    "scripts" : ["assets/js/google-analytics.js", "background.js"]
   },
   "options_page": "options.html",
   "browser_action" :
