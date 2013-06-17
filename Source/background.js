@@ -8,6 +8,7 @@ function initializeLocalStorage() {
     localStorage["translatedWordStyle"] = "color : #FE642E ;\nfont-style : normal ;";
     localStorage["userDefinedTranslations"] = '{"the":"the", "a":"a"}';
     localStorage["translationTimeout"] = 50;	
+    localStorage["blacklist"] = "(stackoverflow.com|github.com|code.google.com)";
   } 
 }
 initializeLocalStorage();
@@ -83,9 +84,9 @@ function onRequest(request, sender, sendResponse) {
                   minimumSourceWordLength : S("minimumSourceWordLength"),
                   translatedWordStyle : S("translatedWordStyle"),
                   userDefinedTranslations : S("userDefinedTranslations"),
-                  activation : S("activation")});
-  } else if (request.getTranslationTimeout) {
-    sendResponse({translationTimeout : S("translationTimeout")});
+                  activation : S("activation"),
+                  blacklist : S("blacklist"),
+                  translationTimeout : S("translationTimeout")});
   }
 };
 
@@ -97,6 +98,4 @@ function browserActionClicked() {
 
 chrome.browserAction.onClicked.addListener(browserActionClicked);
 
-google_analytics('UA-1471148-13')
-
-//alert("background end")
+google_analytics('UA-1471148-13');

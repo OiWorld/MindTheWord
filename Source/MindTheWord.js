@@ -61,12 +61,10 @@ function replaceAll(text, translationMap) {
 
 function invertMap(map) {
   var iMap = {};
-  alert(JSON.stringify(map))
-  alert("invertmap")
+  //alert(JSON.stringify(map))
   for (e in map) { iMap[map[e]] = '<span title="'+ e +'" class="translatedWord">' + map[e] + '</span>'; }
   //for (e in map) { iMap[map[e]] = '<span title="'+ e +'" class="translatedWord" style="' + translatedWordStyle + '">' + map[e] + '</span>'; }
-  alert("invert hi")
-  alert(JSON.stringify(iMap))
+  //alert(JSON.stringify(iMap))
   return iMap;
 }
 
@@ -79,9 +77,8 @@ function processTranslations(translationMap, userDefinedTMap) {
       filteredTMap[w] = translationMap[w];
     }
   }
-  alert(userDefinedTMap)
+  //alert(userDefinedTMap)
   for (w in userDefinedTMap) {
-	alert(w)
     if (w != userDefinedTMap[w]) {
       filteredTMap[w] = userDefinedTMap[w];
     }
@@ -114,7 +111,7 @@ function filterSourceWords(countedWords, translationProbability, minimumSourceWo
 
 
 
-function main() {
+function main(translationProbability, minimumSourceWordLength, userDefinedTranslations) {
   var words = document.body.innerText.split(/\s|,|[.()]|\d/g);
   var countedWords = {}
   for (index in words) {
@@ -125,17 +122,15 @@ function main() {
       countedWords[words[index]] = 1;
     }
   }
-
-  chrome.extension.sendRequest({getOptions : "Give me the options chosen by the user..." }, function(r) {
-      if (r.activation == "true") {
-        insertCSS(r.translatedWordStyle);
-        requestTranslations(filterSourceWords(countedWords, r.translationProbability, r.minimumSourceWordLength),
-			    function(tMap) {processTranslations(tMap, JSON.parse(r.userDefinedTranslations));});
-      }
-  });
-
-   
+  requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength),
+          function(tMap) {processTranslations(tMap, JSON.parse(userDefinedTranslations));}); 
 }
 
-chrome.extension.sendRequest({getTranslationTimeout : "Tell me how much time I should wait before starting to translate"},
-                             function(response) {setTimeout('main();', response.translationTimeout);} );
+chrome.extension.sendRequest({getOptions : "Give me the options chosen by the user..." }, function(r) {
+  var blacklist = new RegExp(r.blacklist);
+  if (r.activation == "true" && !blacklist.test(document.URL)) {
+    insertCSS(r.translatedWordStyle);
+    var f = "main(" + r.translationProbability + "," + r.minimumSourceWordLength + ",'" + r.userDefinedTranslations + "');"
+    setTimeout(f, r.translationTimeout);
+  }
+});
