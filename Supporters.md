@@ -5,6 +5,6 @@ to the following donors for their financial support.
 
 | Donor                      | Date          | Amount |
 | ---------------------------|:-------------:| ------:|
-| Erdinc Dortgoz             | 15/09/2012    |     €5 |
-| Bryan Lee Zi-En            | 16/03/2012    |     €2 |
-| Максим Королёв             | 23/01/2012    |     €5 |
+| Anonymous             | 15/09/2012    |     €5 |
+| Anonymous            | 16/03/2012    |     €2 |
+| Anonymous             | 23/01/2012    |     €5 |
