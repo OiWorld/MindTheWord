@@ -31,21 +31,22 @@ function googleTranslateURL() {
 function translateOneRequestPerFewWords(words, callback) {
   console.debug("words: " + JSON.stringify(words));
   var concatWords = "";
-  var trueLength = 0
+  var length = 0
+  var maxLength = 800;
   var concatWordsArray = {};
   var cWALength = 1;
-  var maxLength = 800;
+
   for (word in words) {
     console.debug("word: " + word);
     concatWords += word + ". "  ;
     console.debug("concatWords: " + concatWords);
     concatWordsArray[cWALength] = concatWords;
-    trueLength += encodeURIComponent(word + ". ").length;
+    length += encodeURIComponent(word + ". ").length;
 
-    if (trueLength > maxLength) {
+    if (length > maxLength) {
       cWALength++;
       concatWords = "";
-      trueLength = 0;
+      length = 0;
     }
      
   }
@@ -54,8 +55,9 @@ function translateOneRequestPerFewWords(words, callback) {
 }
 
 function translateORPFWRec(concatWordsArray, index, length, tMap,callback) {
+  console.log("translateORPFWRec");
   console.debug("concatWordsArray: " + JSON.stringify(concatWordsArray));
-  console.debug("tORPFWRec: " + index +  " " + length);
+  console.debug("index: " + index +  "; length: " + length);
   if (index > length) callback(tMap)
   else { 
     var url = googleTranslateURL() + concatWordsArray[index];
