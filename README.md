@@ -13,3 +13,4 @@ randomly translates a few words into the language he would like to learn.
 Since only a few words are translated, it is easy to infer their meaning from
 the context.
 
+[![License](http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
