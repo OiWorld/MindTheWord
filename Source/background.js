@@ -29,28 +29,33 @@ function googleTranslateURL() {
 
 
 function translateOneRequestPerFewWords(words, callback) {
+  console.debug("words: " + JSON.stringify(words));
   var concatWords = "";
   var trueLength = 0
   var concatWordsArray = {};
-  var cWALength = 0;
+  var cWALength = 1;
   var maxLength = 800;
   for (word in words) {
-    var wordTrueLength = encodeURIComponent(word + ". ").length;
-    if (trueLength + wordTrueLength > maxLength) {
+    console.debug("word: " + word);
+    concatWords += word + ". "  ;
+    console.debug("concatWords: " + concatWords);
+    concatWordsArray[cWALength] = concatWords;
+    trueLength += encodeURIComponent(word + ". ").length;
+
+    if (trueLength > maxLength) {
       cWALength++;
-//    alert(concatWords + " " + cWALength);
-      concatWordsArray[cWALength] = concatWords;
       concatWords = "";
       trueLength = 0;
     }
-    concatWords += word + ". "  ;
-    trueLength += wordTrueLength; 
+     
   }
   var tMap = {};
   translateORPFWRec(concatWordsArray,1,cWALength,tMap,callback);
 }
 
 function translateORPFWRec(concatWordsArray, index, length, tMap,callback) {
+  console.debug("concatWordsArray: " + JSON.stringify(concatWordsArray));
+  console.debug("tORPFWRec: " + index +  " " + length);
   if (index > length) callback(tMap)
   else { 
     var url = googleTranslateURL() + concatWordsArray[index];
@@ -76,7 +81,9 @@ function translateORPFWRec(concatWordsArray, index, length, tMap,callback) {
 	
 function onRequest(request, sender, sendResponse) {
   if (request.wordsToBeTranslated) {
+    console.log("words to be translated: " + JSON.stringify(request.wordsToBeTranslated));
     translateOneRequestPerFewWords(request.wordsToBeTranslated, function(tMap) {
+      console.log("translations: " + JSON.stringify(tMap));
       sendResponse({translationMap : tMap});
     });
   } else if (request.getOptions) {
