@@ -41,14 +41,14 @@
 
         <!-- Basic -->
         <div class="row-fluid tab-pane active" id="tBasic">
-          <div class="span2 text-center">
+          <div class="span3 text-center">
             Turn translations: <br />
             <b>ON</b> 
             <input type="radio" name="activation" value="on" id="activationOn"/>
             <input type="radio" name="activation" value="off" id="activationOff"/>
-            <b>OFF</b>
+            <b>OFF</b> <br><br>
           </div>
-          <div class="span10">
+          <div class="span9">
             Translate approximately
             <select ID = "translationProbability" style="width:5em">
              <option value="10">10%</option>
@@ -57,7 +57,7 @@
              <option value="25">25%</option>
              <option value="30">30%</option>
             </select>
-            of all words
+            of all words <br>
             from 
             <select ID = "sourceLanguage" style="width:10em">
               <option value="en">English</option>
@@ -182,9 +182,9 @@
         <div class="row-fluid tab-pane" id="tAdvanced">
           <div class="span4 text-center">
             <p>
-              Translate no word shorter than 
+              Do not translate words shorter than <br> 
               <input size="1" type="text" id="minimumSourceWordLength" style="width:1em"/>
-              chars.
+              characters.
             </p>
 
             <p>
@@ -204,9 +204,9 @@
           </div>
           <div class="span4 text-center">
             <p>
-              Wait 
+              Before translating, wait <br>
               <input size="3" type="text" id="translationTimeout" style="width:2em"/>
-              milliseconds before translating.
+              milliseconds.
             </p>
 
             <p>
@@ -271,10 +271,10 @@
       <hr>
 
       <div class="row-fluid">
-        <div class="span2">
+        <div class="span3">
           <button id="save-button" class="btn btn-primary">Save Options</button>
         </div>
-        <div class="span3">
+        <div class="span9">
           <div id="status" class="alert alert-success" style="visibility:hidden">Options Saved.</div>
         </div>
       </div>
