@@ -45,3 +45,13 @@ body {
 a.share_button:hover {
   text-decoration: none;
 }
+
+/* Custom alert styles */
+.alert-nothing{
+  color: black;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.deletePattern{
+  margin-top: -5px;
+}

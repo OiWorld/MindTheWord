@@ -5,11 +5,13 @@ function initializeLocalStorage() {
     localStorage["targetLanguage"] = "ru";
     localStorage["translationProbability"] = 15;
     localStorage["minimumSourceWordLength"] = 3;
+    localStorage["savedPatterns"] = JSON.stringify([[["en","English"],["ru","Russian"],"15",true], 
+                                                    [["da","Danish"],["en","English"],"15",false]]);
     localStorage["translatedWordStyle"] = "color : #FE642E ;\nfont-style : normal ;";
     localStorage["userDefinedTranslations"] = '{"the":"the", "a":"a"}';
     localStorage["translationTimeout"] = 50;	
     localStorage["blacklist"] = "(stackoverflow.com|github.com|code.google.com)";
-  } 
+  }
 }
 initializeLocalStorage();
 
