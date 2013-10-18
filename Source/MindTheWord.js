@@ -39,24 +39,30 @@ function deepHTMLReplacement(node, tMap, iTMap){
   }
 }
 
+// http://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
 
 // ToDo: This should be improved. The use of spaces is an ugly hack. 
 function replaceAll(text, translationMap) {
-  var rExp = ""; 
-  for (sourceWord in translationMap) {
-    rExp += "(\\s" + sourceWord + "\\s)|";
+  var rExp = "";
+  for (var sourceWord in translationMap) {
+    rExp += "(\\s" + escapeRegExp(sourceWord) + "\\s)|";
   }
   rExp = rExp.substring(0,rExp.length - 1);
   var regExp = new RegExp(rExp,"gm");
-  var newText = text.replace(regExp, function(m){
-    if (translationMap[m.substring(1,m.length - 1)] != null) {
+  var newText = text.replace(regExp, function (m) {
+    
+    if (translationMap[m.substring(1, m.length - 1)] !== null) {
       return " " + translationMap[m.substring(1,m.length - 1)] + " ";
-    } 
+    }
     else {
       return " " + m + " ";
     }
-  })
-  return newText; 
+  });
+
+  return newText;
 }
 
 function invertMap(map) {
