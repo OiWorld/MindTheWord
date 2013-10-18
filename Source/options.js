@@ -156,15 +156,20 @@ function options() {
     for(var i=0; i<delPattern.length; i++){ delPattern[i].addEventListener("click", deletePattern); }
   }
 
-  function deletePattern(){
+  function deletePattern(e){
+    e.stopPropagation();
     var _id = this.parentNode.getElementsByTagName("input")[0].value,
-        pttrns = JSON.parse(localStorage["savedPatterns"]);
-
-    pttrns.splice(_id,1);
-    pttrns[0][3] = true;
-    localStorage["savedPatterns"] = JSON.stringify(pttrns);
-    restorePttrns();
-    callStatus("Pattern deleted", 1500, 100); 
+        pttrns = JSON.parse(localStorage["savedPatterns"]),
+        moveTrue = false; // Are you deleting active one?
+    
+    if(pttrns.length > 1){
+      if(pttrns[_id][3]){ moveTrue = true; }
+      pttrns.splice(_id,1);
+      if(moveTrue){ pttrns[0][3] = true; }
+      localStorage["savedPatterns"] = JSON.stringify(pttrns);
+      restorePttrns();
+      callStatus("Pattern deleted", 1500, 100); 
+    }
   }
 
   function restore(id) {
