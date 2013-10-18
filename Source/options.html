@@ -194,41 +194,55 @@
 
         <!-- Advanced -->
         <div class="row-fluid tab-pane" id="tAdvanced">
-          <div class="span4 text-center">
-            <p>
-              Do not translate words shorter than <br> 
-              <input size="1" type="text" id="minimumSourceWordLength" style="width:1em"/>
-              characters.
-            </p>
-
-            <p>
-              Do not translate the following websites:  
-              <br><br>
-              <textarea rows="4" id="blacklist" style="width:10em"></textarea>
-            </p>
-
+          <div class="span12">
+            <h3>Adjustments</h3>
+            <div class="span5 optionsSpan5">
+              <p>
+                Do not translate words shorter than 
+                <input size="1" type="text" id="minimumSourceWordLength" style="width:1em"/>
+                characters.
+              </p>
+               <p>
+                Before translating, wait 
+                <input size="3" type="text" id="translationTimeout" style="width:2em"/>
+                milliseconds.
+              </p>
+            </div>
+            <div class="span7">
+              <p>
+                Format the translated words according to the following <a href="http://lesliefranke.com/files/reference/csscheatsheet.html">CSS</a>
+                property-value pairs:
+                <br><br>
+                <textarea class="span12" rows="6" id="translatedWordStyle"></textarea>
+              </p>
+            </div>
           </div>
-          <div class="span4 text-center">
-            <p>
-              Format the translated words according to the following <a href="http://lesliefranke.com/files/reference/csscheatsheet.html">CSS</a>
-              property-value pairs:
-              <br><br>
-              <textarea rows="6" id="translatedWordStyle" style="width:10em"></textarea>
-            </p>
+          <div class="span12 optionsSpan12">
+            <hr>
+            <h3>Blacklisting</h3>
+            <div class="span4 optionsSpan4">
+              <p>
+                Do not translate the following websites:  
+                <br><br>
+                <textarea class="span12" rows="4" id="blacklist"></textarea>
+              </p>
+            </div>
+            <div class="span4">
+              <p>
+                Use the following user-defined translations:
+                <br><br>
+                <textarea class="span12" rows="4" id="userDefinedTranslations"></textarea>
+              </p>
+            </div>
+            <div class="span4">
+              <p>
+                Do not translate the following:
+                <br><br>
+                <textarea class="span12" rows="4" id="userBlacklistedWords"></textarea>
+              </p>
+            </div>
           </div>
-          <div class="span4 text-center">
-            <p>
-              Before translating, wait <br>
-              <input size="3" type="text" id="translationTimeout" style="width:2em"/>
-              milliseconds.
-            </p>
-
-            <p>
-              Use the following user-defined translations:
-              <br><br>
-              <textarea rows="4" id="userDefinedTranslations" style="width:10em"></textarea>
-            </p>
-          </div>
+          
         </div>
 
 

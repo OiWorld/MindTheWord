@@ -94,10 +94,11 @@ function length(associativeArray) {
   return l;     	
 }
 
-function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength) {
-  var sourceWords = {};
+function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
+  var sourceWords = {},
+      userBlacklistedWords = new RegExp(userBlacklistedWords);
   for (word in countedWords) {
-    if (word != "" && !/\d/.test(word) && word.length >= minimumSourceWordLength) {
+    if (word != "" && !/\d/.test(word) && word.length >= minimumSourceWordLength && !userBlacklistedWords.test(word.toLowerCase())) { // userBlacklistedWords.indexOf(word.toLowerCase()) == -1
       var randomNumber = Math.floor(Math.random()*100)
       // Ugly hack: translation probability is multiplied by a factor,
       // in order to compensate a reduction in translation due to how punctuation is dealt with.
@@ -111,7 +112,7 @@ function filterSourceWords(countedWords, translationProbability, minimumSourceWo
 
 
 
-function main(translationProbability, minimumSourceWordLength, userDefinedTranslations) {
+function main(translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords) {
   var words = document.body.innerText.split(/\s|,|[.()]|\d/g);
   var countedWords = {}
   for (index in words) {
@@ -122,15 +123,15 @@ function main(translationProbability, minimumSourceWordLength, userDefinedTransl
       countedWords[words[index]] = 1;
     }
   }
-  requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength),
-          function(tMap) {processTranslations(tMap, JSON.parse(userDefinedTranslations));}); 
+  requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords),
+          function(tMap) {processTranslations(tMap, userDefinedTranslations);}); 
 }
 
 chrome.extension.sendRequest({getOptions : "Give me the options chosen by the user..." }, function(r) {
   var blacklist = new RegExp(r.blacklist);
   if (r.activation == "true" && !blacklist.test(document.URL)) {
     insertCSS(r.translatedWordStyle);
-    var f = "main(" + r.translationProbability + "," + r.minimumSourceWordLength + ",'" + r.userDefinedTranslations + "');"
+    var f = "main(" + r.translationProbability + "," + r.minimumSourceWordLength + ",'" + r.userDefinedTranslations + "','" + r.userBlacklistedWords + "');"
     setTimeout(f, r.translationTimeout);
   }
 });

@@ -55,3 +55,6 @@ a.share_button:hover {
 .deletePattern{
   margin-top: -5px;
 }
+.optionsSpan12, .optionsSpan4, .optionsSpan5{
+  margin-left: 0 !important;
+}

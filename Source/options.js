@@ -87,7 +87,7 @@ function options() {
   // Saves options to localStorage.
   function save_options() {
     options = ["translationTimeout", "minimumSourceWordLength", "translatedWordStyle", "blacklist",
-               "userDefinedTranslations"];
+               "userDefinedTranslations", "userBlacklistedWords"];
 
     localStorage["activation"] = document.getElementById("activationOn").checked;
 
@@ -193,7 +193,7 @@ function options() {
     options = ["translationTimeout", 
                "sourceLanguage", "targetLanguage", "translationProbability", 
                "minimumSourceWordLength", "translatedWordStyle", "blacklist",
-               "userDefinedTranslations"];
+               "userDefinedTranslations", "userBlacklistedWords"];
 
     if (S("activation") == "true") {
       document.getElementById("activationOn").checked = true;
@@ -202,7 +202,7 @@ function options() {
     }
 
     for (index in options) {
-      console.log("restoring " + options[index]);
+      console.log("Restoring:", options[index]);
       restore(options[index]);
     }
     restorePttrns();

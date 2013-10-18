@@ -1,16 +1,16 @@
 function initializeLocalStorage() {
-  if (localStorage["activation"] == null) {
-    localStorage["activation"] = "true";
-    localStorage["sourceLanguage"] = "en";
-    localStorage["targetLanguage"] = "ru";
-    localStorage["translationProbability"] = 15;
+  if(localStorage["activation"] == null){
+    localStorage["activation"]              = "true";
+    localStorage["sourceLanguage"]          = "en";
+    localStorage["targetLanguage"]          = "ru";
+    localStorage["translationProbability"]  = 15;
     localStorage["minimumSourceWordLength"] = 3;
-    localStorage["savedPatterns"] = JSON.stringify([[["en","English"],["ru","Russian"],"15",true], 
-                                                    [["da","Danish"],["en","English"],"15",false]]);
-    localStorage["translatedWordStyle"] = "color : #FE642E ;\nfont-style : normal ;";
+    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]);
+    localStorage["translatedWordStyle"]     = "color: #fe642e;\nfont-style: normal;";
     localStorage["userDefinedTranslations"] = '{"the":"the", "a":"a"}';
-    localStorage["translationTimeout"] = 50;	
-    localStorage["blacklist"] = "(stackoverflow.com|github.com|code.google.com)";
+    localStorage["userBlacklistedWords"]    = "(this|that)";
+    localStorage["translationTimeout"]      = 50;	
+    localStorage["blacklist"]               = "(stackoverflow.com|github.com|code.google.com)";
   }
 }
 initializeLocalStorage();
@@ -50,7 +50,6 @@ function translateOneRequestPerFewWords(words, callback) {
       concatWords = "";
       length = 0;
     }
-     
   }
   var tMap = {};
   translateORPFWRec(concatWordsArray,1,cWALength,tMap,callback);
@@ -91,13 +90,14 @@ function onRequest(request, sender, sendResponse) {
       sendResponse({translationMap : tMap});
     });
   } else if (request.getOptions) {
-    sendResponse({translationProbability : S("translationProbability"),
-                  minimumSourceWordLength : S("minimumSourceWordLength"),
-                  translatedWordStyle : S("translatedWordStyle"),
-                  userDefinedTranslations : S("userDefinedTranslations"),
-                  activation : S("activation"),
-                  blacklist : S("blacklist"),
-                  translationTimeout : S("translationTimeout")});
+    sendResponse({translationProbability    : S("translationProbability"),
+                  minimumSourceWordLength   : S("minimumSourceWordLength"),
+                  translatedWordStyle       : S("translatedWordStyle"),
+                  userDefinedTranslations   : S("userDefinedTranslations"),
+                  userBlacklistedWords      : S("userBlacklistedWords"),
+                  activation                : S("activation"),
+                  blacklist                 : S("blacklist"),
+                  translationTimeout        : S("translationTimeout")});
   }
 };
 
