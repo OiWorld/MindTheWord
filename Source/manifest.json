@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Mind the Word",
-  "version": "1.5",
+  "version": "1.6",
   "description": "Learn languages as you browse the web!",
   "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://www.google.com https://ssl.google-analytics.com;",
   "background" : 
