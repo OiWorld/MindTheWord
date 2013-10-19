@@ -1,16 +1,16 @@
 function initializeLocalStorage() {
   if(localStorage["activation"] == null){
+    localStorage["blacklist"]               = "(stackoverflow.com|github.com|code.google.com)";
     localStorage["activation"]              = "true";
+    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]);
     localStorage["sourceLanguage"]          = "en";
     localStorage["targetLanguage"]          = "ru";
+    localStorage["translationTimeout"]      = 50;
+    localStorage["translatedWordStyle"]     = "color: #fe642e;\nfont-style: normal;";
+    localStorage["userBlacklistedWords"]    = "(this|that)";
     localStorage["translationProbability"]  = 15;
     localStorage["minimumSourceWordLength"] = 3;
-    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]);
-    localStorage["translatedWordStyle"]     = "color: #fe642e;\nfont-style: normal;";
     localStorage["userDefinedTranslations"] = '{"the":"the", "a":"a"}';
-    localStorage["userBlacklistedWords"]    = "(this|that)";
-    localStorage["translationTimeout"]      = 50;	
-    localStorage["blacklist"]               = "(stackoverflow.com|github.com|code.google.com)";
   }
 }
 initializeLocalStorage();

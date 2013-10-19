@@ -1,4 +1,5 @@
 function options() {
+
   var options;
 	
   google.load("language", "1");
@@ -6,8 +7,29 @@ function options() {
   window.onload = init;
   function init(){
 	  set_languages();
-	  restore_options();
+    fixLocalStorage();
     showCSSResults();
+  }
+
+  // Fix any localStorage if needed
+  function fixLocalStorage(){
+    var ls = { // localStorage
+      "blacklist"               : "(stackoverflow.com|github.com|code.google.com)",
+      "activation"              : "true",
+      "savedPatterns"           : JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]),
+      "sourceLanguage"          : "en",
+      "targetLanguage"          : "ru",
+      "translationTimeout"      : 50,
+      "translatedWordStyle"     : "color: #fe642e;\nfont-style: normal;",
+      "userBlacklistedWords"    : "(this|that)",
+      "translationProbability"  : 15,
+      "minimumSourceWordLength" : 3,
+      "userDefinedTranslations" : '{"the":"the", "a":"a"}'
+    }
+    for(var name in ls){
+      if(S(name) == null || S(name) == "undefined"){ localStorage[name] = ls[name] }
+    }
+    restore_options(); // Restore when everything's been fixed
   }
 
   document.addEventListener('DOMContentLoaded', function () {
