@@ -32,10 +32,6 @@
     "128" : "128.png"
   },
   "permissions": [ 
-    "tabs", 
-    "http://ajax.googleapis.com/*", 
-    "http://*.google.com/*", 
-    "http://google.com/*", 
-    "http://*/*",
-    "https://*/*" ]
+    "tabs",
+    "<all_urls>"]
 }

@@ -19,7 +19,6 @@ function options() {
       "savedPatterns"           : JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]),
       "sourceLanguage"          : "en",
       "targetLanguage"          : "ru",
-      "translationTimeout"      : 50,
       "translatedWordStyle"     : "color: #fe642e;\nfont-style: normal;",
       "userBlacklistedWords"    : "(this|that)",
       "translationProbability"  : 15,
@@ -102,8 +101,7 @@ function options() {
 
   // Saves options to localStorage.
   function save_options() {
-    options = ["translationTimeout", "minimumSourceWordLength", "translatedWordStyle", "blacklist",
-               "userDefinedTranslations", "userBlacklistedWords"];
+    options = ["minimumSourceWordLength", "translatedWordStyle", "blacklist", "userDefinedTranslations", "userBlacklistedWords"];
 
     localStorage["activation"] = document.getElementById("activationOn").checked;
 
@@ -225,8 +223,7 @@ function options() {
   }
 
   function restore_options() {
-    options = ["translationTimeout", 
-               "sourceLanguage", "targetLanguage", "translationProbability", 
+    options = ["sourceLanguage", "targetLanguage", "translationProbability", 
                "minimumSourceWordLength", "translatedWordStyle", "blacklist",
                "userDefinedTranslations", "userBlacklistedWords"];
 
