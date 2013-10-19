@@ -7,11 +7,13 @@ function options() {
   function init(){
 	  set_languages();
 	  restore_options();
+    showCSSResults();
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('save-button').addEventListener('click', save_options);
     document.getElementById("addTranslationBtn").addEventListener("click", createPattern);
+    document.getElementById("translatedWordStyle").addEventListener("keyup", showCSSResults);
   });
 
   /***
@@ -20,42 +22,35 @@ function options() {
   * Fade: int, how long before it'd completely hidden (I'd recommend this to be lower than duration time)
   */
   function status(text, duration, fade){
-    var status = document.createElement("div");
-        status.className = "alert alert-success";
-        status.innerText = text;
-        document.getElementById("status").appendChild(status);
+    (function(text, duration, fade){
+      var status = document.createElement("div");
+          status.className = "alert alert-success";
+          status.innerText = text;
+          document.getElementById("status").appendChild(status);
 
-    setTimeout(function(){
-      var opacity = 1,
-          ntrvl = setInterval(function(){
-            if(opacity <= 0.01){ clearInterval(ntrvl); document.getElementById("status").removeChild(status); }
-            status.style.opacity = opacity;
-            opacity -= (1 / fade);
-          }, 1)
-    }, (duration - fade))
-    console.log(text);
-  }
-  function callStatus(text, duration, fade){
-    (function(a, b, c){
-      status(a, b, c);
+      setTimeout(function(){
+        var opacity = 1,
+            ntrvl = setInterval(function(){
+              if(opacity <= 0.01){ clearInterval(ntrvl); document.getElementById("status").removeChild(status); }
+              status.style.opacity = opacity;
+              opacity -= (1 / fade);
+            }, 1)
+      }, (duration - fade))
+      console.log(text);
     })(text, duration, fade)
   }
 
-  function activatePattrn(){
-    var _id = this.getElementsByTagName("input")[0].value,
-        pttrns = JSON.parse(localStorage["savedPatterns"])
-        selectedPattrn = pttrns[_id],
-        o = ["sourceLanguage", "targetLanguage", "translationProbability"];
-
-    localStorage[o[0]] = selectedPattrn[0][0];
-    localStorage[o[1]] = selectedPattrn[1][0];
-    localStorage[o[2]] = selectedPattrn[2];
-
-    for(var i in pttrns){ pttrns[i][3] = (i == _id ? true : false); }
-    localStorage["savedPatterns"] = JSON.stringify(pttrns);
-
-    restorePttrns();
-    callStatus("New translation-pattrn applied", 1500, 100);
+  function showCSSResults(){
+    if(!oldNum){ var oldNum = 0 }
+    var synonyms = ["awesome", "magnificent", "fabolous", "impressive", "great",
+                    "beautiful", "amazing", "awe-inspiring", "astonishing", "astounding",
+                    "noble", "formidable", "heroic", "spectacular", "important-looking",
+                    "majestic", "dazzling", "splendid", "brilliant", "glorious"],
+        num = Math.floor(Math.random()*synonyms.length);
+    while(num == oldNum){ num = Math.floor(Math.random()*synonyms.length) } // We should not use the same word again. Now, should we?
+    oldNum = num;
+    document.getElementById("resultSpan").style.cssText = document.getElementById("translatedWordStyle").value;
+    document.getElementById("resultSpan").innerText = synonyms[num];
   }
   
   //Sets Languages
@@ -71,7 +66,6 @@ function options() {
   }
 
   function S(key) { return localStorage[key]; } 
-
 
   function save(id) {
     var e = document.getElementById(id);
@@ -101,7 +95,7 @@ function options() {
     }
 	
     // Update status to let user know options were saved.
-    callStatus("Options Saved", 1500, 100);
+    status("Options Saved", 1500, 100);
   }
 
   // Create new translation pattern
@@ -126,18 +120,18 @@ function options() {
                  false
                 ]);
     localStorage["savedPatterns"] = JSON.stringify(pttrns);
-    restorePttrns();
-    callStatus("New translation pattern saved", 1500, 100);
+    restorePatterns();
+    status("New translation pattern saved", 1500, 100);
   }
 
-
-  function restorePttrns(){
+  // Restore those old patterns
+  function restorePatterns(){
     document.getElementById("savedTranslationPatterns").innerHTML = "";
     var pttrns = JSON.parse(localStorage["savedPatterns"]),
         html = "";
 
     for(var i in pttrns){
-      html += "<p class='alert alert-"+(pttrns[i][3] ? "success" : "nothing")+" tPattrn'> \
+      html += "<p class='alert alert-"+(pttrns[i][3] ? "success" : "nothing")+" tPattern'> \
                 Translate approx. \
                 <span class='label label-info'>"+pttrns[i][2]+"%</span> \
                 of all \
@@ -150,12 +144,13 @@ function options() {
     }
 
     document.getElementById("savedTranslationPatterns").innerHTML = html;
-    var pttrns = document.getElementsByClassName("tPattrn");
-    for(var i=0; i<pttrns.length; i++){ pttrns[i].addEventListener("click", activatePattrn); }
+    var pttrns = document.getElementsByClassName("tPattern");
+    for(var i=0; i<pttrns.length; i++){ pttrns[i].addEventListener("click", activatePattern); }
     var delPattern = document.getElementsByClassName("deletePattern");
     for(var i=0; i<delPattern.length; i++){ delPattern[i].addEventListener("click", deletePattern); }
   }
 
+  // I don't like that pattern
   function deletePattern(e){
     e.stopPropagation();
     var _id = this.parentNode.getElementsByTagName("input")[0].value,
@@ -167,9 +162,27 @@ function options() {
       pttrns.splice(_id,1);
       if(moveTrue){ pttrns[0][3] = true; }
       localStorage["savedPatterns"] = JSON.stringify(pttrns);
-      restorePttrns();
-      callStatus("Pattern deleted", 1500, 100); 
+      restorePatterns();
+      status("Pattern deleted", 1500, 100); 
     }
+  }
+
+  // Pattern, activate!
+  function activatePattern(){
+    var _id = this.getElementsByTagName("input")[0].value,
+        pttrns = JSON.parse(localStorage["savedPatterns"])
+        selectedPattern = pttrns[_id],
+        o = ["sourceLanguage", "targetLanguage", "translationProbability"];
+
+    localStorage[o[0]] = selectedPattern[0][0];
+    localStorage[o[1]] = selectedPattern[1][0];
+    localStorage[o[2]] = selectedPattern[2];
+
+    for(var i in pttrns){ pttrns[i][3] = (i == _id ? true : false); }
+    localStorage["savedPatterns"] = JSON.stringify(pttrns);
+
+    restorePatterns();
+    status("New translation-pattern applied", 1500, 100);
   }
 
   function restore(id) {
@@ -205,9 +218,8 @@ function options() {
       console.log("Restoring:", options[index]);
       restore(options[index]);
     }
-    restorePttrns();
+    restorePatterns();
   }
-
 
   google_analytics('UA-1471148-14');  
 }
