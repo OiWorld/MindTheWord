@@ -1,15 +1,16 @@
 function initializeLocalStorage() {
-  if (localStorage["activation"] == null) {
-    localStorage["activation"] = "true";
-    localStorage["sourceLanguage"] = "en";
-    localStorage["targetLanguage"] = "ru";
-    localStorage["translationProbability"] = 15;
+  if(localStorage["activation"] == null){
+    localStorage["blacklist"]               = "(stackoverflow.com|github.com|code.google.com)";
+    localStorage["activation"]              = "true";
+    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]);
+    localStorage["sourceLanguage"]          = "en";
+    localStorage["targetLanguage"]          = "ru";
+    localStorage["translatedWordStyle"]     = "color: #fe642e;\nfont-style: normal;";
+    localStorage["userBlacklistedWords"]    = "(this|that)";
+    localStorage["translationProbability"]  = 15;
     localStorage["minimumSourceWordLength"] = 3;
-    localStorage["translatedWordStyle"] = "color : #FE642E ;\nfont-style : normal ;";
     localStorage["userDefinedTranslations"] = '{"the":"the", "a":"a"}';
-    localStorage["translationTimeout"] = 50;	
-    localStorage["blacklist"] = "(stackoverflow.com|github.com|code.google.com)";
-  } 
+  }
 }
 initializeLocalStorage();
 
@@ -48,7 +49,6 @@ function translateOneRequestPerFewWords(words, callback) {
       concatWords = "";
       length = 0;
     }
-     
   }
   var tMap = {};
   translateORPFWRec(concatWordsArray,1,cWALength,tMap,callback);
@@ -80,22 +80,35 @@ function translateORPFWRec(concatWordsArray, index, length, tMap,callback) {
   }
 }  	
 
-	
+function length(associativeArray) {
+  var l = 0;
+  for (e in associativeArray) { l++; }
+  return l;       
+}
 function onRequest(request, sender, sendResponse) {
   if (request.wordsToBeTranslated) {
-    console.log("words to be translated: " + JSON.stringify(request.wordsToBeTranslated));
+    console.log("words to be translated:", request.wordsToBeTranslated);
     translateOneRequestPerFewWords(request.wordsToBeTranslated, function(tMap) {
-      console.log("translations: " + JSON.stringify(tMap));
+      console.log("translations:", tMap);
       sendResponse({translationMap : tMap});
     });
+    console.log(length(request.wordsToBeTranslated));
   } else if (request.getOptions) {
-    sendResponse({translationProbability : S("translationProbability"),
-                  minimumSourceWordLength : S("minimumSourceWordLength"),
-                  translatedWordStyle : S("translatedWordStyle"),
-                  userDefinedTranslations : S("userDefinedTranslations"),
-                  activation : S("activation"),
-                  blacklist : S("blacklist"),
-                  translationTimeout : S("translationTimeout")});
+    sendResponse({translationProbability    : S("translationProbability"),
+                  minimumSourceWordLength   : S("minimumSourceWordLength"),
+                  translatedWordStyle       : S("translatedWordStyle"),
+                  userDefinedTranslations   : S("userDefinedTranslations"),
+                  userBlacklistedWords      : S("userBlacklistedWords"),
+                  activation                : S("activation"),
+                  blacklist                 : S("blacklist")
+                })
+  } else if (request.runMindTheWord) {
+    chrome.tabs.onUpdated.addListener(function(tabId, info){ //Wait untill page has finished loading
+      if(info.status == "complete"){
+        console.log(info.status);
+        sendResponse(true);
+      }
+    })
   }
 };
 

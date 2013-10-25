@@ -100,10 +100,11 @@ function length(associativeArray) {
   return l;     	
 }
 
-function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength) {
-  var sourceWords = {};
+/*function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
+  var sourceWords = {},
+      userBlacklistedWords = new RegExp(userBlacklistedWords);
   for (word in countedWords) {
-    if (word != "" && !/\d/.test(word) && word.length >= minimumSourceWordLength) {
+    if (word != "" && !/\d/.test(word) && word.length >= minimumSourceWordLength && !userBlacklistedWords.test(word.toLowerCase())) {
       var randomNumber = Math.floor(Math.random()*100)
       // Ugly hack: translation probability is multiplied by a factor,
       // in order to compensate a reduction in translation due to how punctuation is dealt with.
@@ -112,12 +113,39 @@ function filterSourceWords(countedWords, translationProbability, minimumSourceWo
       }
     }     
   }
+  console.log("Translating", Math.floor((length(countedWords) * translationProbability) / 100), "of", length(countedWords), "words (Roughly", JSON.parse(translationProbability), "percent)");
+  console.log(countedWords);
+  return sourceWords;
+}*/
+
+// More precise than the old one
+function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
+  var sourceWords = {},
+      userBlacklistedWords = new RegExp(userBlacklistedWords);
+
+  while(length(sourceWords) <= Math.floor((length(countedWords) * translationProbability) / 100)){
+    var word = pickRandomProperty(countedWords);
+    if(word != "" && !/\d/.test(word) && word.length >= minimumSourceWordLength && !userBlacklistedWords.test(word.toLowerCase()) && !(word in sourceWords)){
+      sourceWords[word] = countedWords[word];
+    }
+  }
+  console.log("Translating", Math.floor((length(countedWords) * translationProbability) / 100), "of", length(countedWords), "words (Roughly", JSON.parse(translationProbability), "percent)");
   return sourceWords;
 }
 
+// http://stackoverflow.com/a/2532251/754471
+function pickRandomProperty(obj) {
+  var result;
+  var count = 0;
+  for (var prop in obj){
+    if (Math.random() < 1/++count){
+      result = prop;
+    }
+  }
+  return result;
+}
 
-
-function main(translationProbability, minimumSourceWordLength, userDefinedTranslations) {
+function main(translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords) {
   var words = document.body.innerText.split(/\s|,|[.()]|\d/g);
   var countedWords = {}
   for (index in words) {
@@ -128,15 +156,16 @@ function main(translationProbability, minimumSourceWordLength, userDefinedTransl
       countedWords[words[index]] = 1;
     }
   }
-  requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength),
-          function(tMap) {processTranslations(tMap, JSON.parse(userDefinedTranslations));}); 
+  requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords),
+          function(tMap) {processTranslations(tMap, userDefinedTranslations);}); 
 }
 
 chrome.extension.sendRequest({getOptions : "Give me the options chosen by the user..." }, function(r) {
   var blacklist = new RegExp(r.blacklist);
   if (r.activation == "true" && !blacklist.test(document.URL)) {
     insertCSS(r.translatedWordStyle);
-    var f = "main(" + r.translationProbability + "," + r.minimumSourceWordLength + ",'" + r.userDefinedTranslations + "');"
-    setTimeout(f, r.translationTimeout);
+    chrome.extension.sendRequest({runMindTheWord: "Pretty please?"}, function(){
+      main(r.translationProbability, r.minimumSourceWordLength, r.userDefinedTranslations , r.userBlacklistedWords);
+    })
   }
 });
