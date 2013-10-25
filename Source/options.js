@@ -157,7 +157,7 @@ function options() {
                 of all \
                 <span class='label label-info'>"+pttrns[i][0][1]+"</span> \
                 words into \
-                <span class='label label-info'>"+pttrns[i][1][1]+"</span>.\
+                <span class='label label-info'>"+pttrns[i][1][1]+"</span> \
                 <button class='btn btn-danger pull-right deletePattern'>Delete</button>\
                 <input type='hidden' value='"+i+"' />\
               </p>";
@@ -202,7 +202,7 @@ function options() {
     localStorage["savedPatterns"] = JSON.stringify(pttrns);
 
     restorePatterns();
-    status("New translation-pattern applied", 1500, 100);
+    status("Selected translation configuration was activated", 1500, 100);
   }
 
   function restore(id) {

@@ -47,14 +47,14 @@ a.share_button:hover {
 }
 
 /* Custom alert styles */
-.alert-nothing{
+.alert-nothing {
   color: black;
   background-color: #eee;
   border-color: #ddd;
 }
-.deletePattern{
+.deletePattern {
   margin-top: -5px;
 }
-.optionsSpan12, .optionsSpan4, .optionsSpan5{
+.optionsSpan {
   margin-left: 0 !important;
 }

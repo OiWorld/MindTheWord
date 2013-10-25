@@ -42,7 +42,7 @@
         <!-- Basic -->
         <div class="row-fluid tab-pane active" id="tBasic">
           <div class="span3 text-center">
-            Turn translations: <br />
+            <h3>Turn translations</h3>
             <b>ON</b> 
             <input type="radio" name="activation" value="on" id="activationOn"/>
             <input type="radio" name="activation" value="off" id="activationOff"/>
@@ -50,9 +50,14 @@
           </div>
           <div class="span9">
             <div>
-              <h3>New Translation pattern</h3>
+              <h3>Select Translation Configuration</h3>
+              <div id="savedTranslationPatterns"></div>
+            </div>
+            <hr>
+            <div>
+              <h3>Create New Translation Configuration</h3>
               <p>
-                Translate approximately
+                Translate approx.
                 <select ID = "translationProbability" style="width:5em">
                  <option value="10">10%</option>
                  <option value="15">15%</option>
@@ -63,10 +68,7 @@
                  <option value="40">40%</option>
                  <option value="45">45%</option>
                 </select>
-                of all words
-              </p>
-              <p>
-                from 
+                of all 
                 <select ID = "sourceLanguage" style="width:10em">
                   <option value="en">English</option>
                 <!-- 
@@ -125,7 +127,7 @@
                   <option value="yi">Yiddish</option>
                 -->
                 </select>
-                to
+                words into
                 <select ID = "targetLanguage" style="width:10em">
                 <!--  
                   <option value="af">Afrikaans</option>
@@ -182,13 +184,8 @@
                   <option value="yi">Yiddish</option>
                 -->
                 </select>
+                <button id="addTranslationBtn" class="btn btn-primary pull-right">Create</button>
               </p>
-              <button id="addTranslationBtn" class="btn btn-primary">Create pattern</button>
-            </div>
-            <hr>
-            <div>
-              <h3>Saved Translation patterns</h3>
-              <div id="savedTranslationPatterns"></div>
             </div>
           </div>
 
@@ -199,30 +196,30 @@
         <div class="row-fluid tab-pane" id="tAdvanced">
           <div class="span12">
             <h3>Adjustments</h3>
-            <div class="span5 optionsSpan5">
-              <p>
-                Do not translate words shorter than 
-                <input size="1" type="text" id="minimumSourceWordLength" style="width:1em"/>
-                characters.
-              </p>
-            </div>
-            <div class="span7">
+            <div class="span8 optionsSpan">
               <p>
                 <p>
                 Format the translated words according to the following <a href="http://lesliefranke.com/files/reference/csscheatsheet.html">CSS</a>
                 property-value pairs:
                 </p>
-                <textarea class="span12" rows="6" id="translatedWordStyle"></textarea>
+                <textarea class="span12" rows="4" id="translatedWordStyle"></textarea>
                 <p>
-                  <b>Result:</b> I love this <span id="resultSpan"></span> style!
+                  <b>Example:</b> I love this <span id="resultSpan"></span> style!
                 </p>
               </p>
             </div>
+            <div class="span4">
+              <p>
+                Translate no word shorter than 
+                <input size="1" type="text" id="minimumSourceWordLength" style="width:1em"/>
+                characters.
+              </p>
+            </div>
           </div>
-          <div class="span12 optionsSpan12">
+          <div class="span12 optionsSpan">
             <hr>
             <h3>Blacklisting</h3>
-            <div class="span4 optionsSpan4">
+            <div class="span4 optionsSpan">
               <p>
                 Do not translate the following websites:  
                 <br><br>
@@ -238,7 +235,7 @@
             </div>
             <div class="span4">
               <p>
-                Do not translate the following:
+                Do not translate the following words:
                 <br><br>
                 <textarea class="span12" rows="4" id="userBlacklistedWords"></textarea>
               </p>
@@ -249,7 +246,7 @@
 
 
 
-        <!-- Conttributions -->
+        <!-- Contributions -->
         <div class="row-fluid tab-pane" id="tContributions">
           <div class="span3">
             <b>If you are social...</b> <br>
