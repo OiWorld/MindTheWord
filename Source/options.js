@@ -11,33 +11,13 @@ function options() {
   window.onload = init;
   function init(){
 	  set_languages();
-    fixLocalStorage();
-    showCSSResults();
-  }
-
-  // Fix any localStorage if needed
-  function fixLocalStorage(){
-    var ls = { // localStorage
-      "blacklist"               : "(stackoverflow.com|github.com|code.google.com)",
-      "activation"              : "true",
-      "savedPatterns"           : JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]),
-      "sourceLanguage"          : "en",
-      "targetLanguage"          : "ru",
-      "translatedWordStyle"     : "color: #fe642e;\nfont-style: normal;",
-      "userBlacklistedWords"    : "(this|that)",
-      "translationProbability"  : 15,
-      "minimumSourceWordLength" : 3,
-      "userDefinedTranslations" : '{"the":"the", "a":"a"}'
-    }
-    for(var name in ls){
-      if(S(name) == null || S(name) == "undefined"){ localStorage[name] = ls[name] }
-    }
-    restore_options(); // Restore when everything's been fixed
+    restore_options();
+    showCSSExample();
   }
 
   document.addEventListener("DOMContentLoaded", function () {
     e("addTranslationBtn").addEventListener("click", createPattern);
-    e("translatedWordStyle").addEventListener("keyup", showCSSResults);
+    e("translatedWordStyle").addEventListener("keyup", showCSSExample);
     console.log(options);
     for (i in options) {
       console.log("blur event for " + options[i]);
@@ -70,7 +50,7 @@ function options() {
     })(text, duration, fade)
   }
 
-  function showCSSResults(){
+  function showCSSExample(){
     if(!oldNum){ var oldNum = 0 }
     var synonyms = ["awesome", "magnificent", "fabolous", "impressive", "great",
                     "beautiful", "amazing", "awe-inspiring", "astonishing", "astounding",
@@ -220,9 +200,53 @@ function options() {
     restorePatterns();
   }
 
+
+  function restore_options() {
+    fixLocalStorage();
+
+    var options = ["sourceLanguage", "targetLanguage", "translationProbability", 
+               "minimumSourceWordLength", "translatedWordStyle", "blacklist",
+               "userDefinedTranslations", "userBlacklistedWords"];
+
+    for (index in options) {
+      console.log("Restoring:", options[index]);
+      restore(options[index]);
+    }
+    restorePatterns();
+  }
+
+    // Fix any localStorage if needed
+  function fixLocalStorage(){
+    console.debug("fixLocalStorage");
+
+    var ls = { // localStorage
+      "blacklist"               : "(stackoverflow.com|github.com|code.google.com)",
+      "activation"              : "true",
+      "savedPatterns"           : JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]),
+      "sourceLanguage"          : "en",
+      "targetLanguage"          : "ru",
+      "translatedWordStyle"     : "color: #FE642E;\nfont-style: normal;",
+      "userBlacklistedWords"    : "(this|that)",
+      "translationProbability"  : 15,
+      "minimumSourceWordLength" : 3,
+      "userDefinedTranslations" : '{"the":"the", "a":"a"}'
+    }
+    for(var name in ls){
+      if(S(name) == null || S(name) == "undefined" || S(name) == ""){ 
+        console.log("Fixing: " + name);
+        localStorage[name] = ls[name]; 
+      }
+    }
+  }
+
   function restore(option) {
+    console.debug("restore(" + option + ")");
+
     var elem = e(option);
     var type = elem.tagName.toLowerCase();
+
+    console.debug("Value for " + option + "in localStorage is: " + S(option));
+
     if (type == "select") {
       for (var i = 0; i < elem.children.length; i++) {
         var child = elem.children[i];
@@ -235,18 +259,6 @@ function options() {
     else {
       elem.value = S(option);
     }   
-  }
-
-  function restore_options() {
-    options = ["sourceLanguage", "targetLanguage", "translationProbability", 
-               "minimumSourceWordLength", "translatedWordStyle", "blacklist",
-               "userDefinedTranslations", "userBlacklistedWords"];
-
-    for (index in options) {
-      console.log("Restoring:", options[index]);
-      restore(options[index]);
-    }
-    restorePatterns();
   }
 
   google_analytics('UA-1471148-14');  
