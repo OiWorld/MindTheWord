@@ -1,3 +1,7 @@
+function e(id) {
+  return document.getElementById(id);
+}
+
 function options() {
 
   var options;
@@ -32,9 +36,9 @@ function options() {
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('save-button').addEventListener('click', save_options);
-    document.getElementById("addTranslationBtn").addEventListener("click", createPattern);
-    document.getElementById("translatedWordStyle").addEventListener("keyup", showCSSResults);
+    e("save-button").addEventListener('click', save_options);
+    e("addTranslationBtn").addEventListener("click", createPattern);
+    e("translatedWordStyle").addEventListener("keyup", showCSSResults);
   });
 
   /***
@@ -47,12 +51,12 @@ function options() {
       var status = document.createElement("div");
           status.className = "alert alert-success";
           status.innerText = text;
-          document.getElementById("status").appendChild(status);
+          e("status").appendChild(status);
 
       setTimeout(function(){
         var opacity = 1,
             ntrvl = setInterval(function(){
-              if(opacity <= 0.01){ clearInterval(ntrvl); document.getElementById("status").removeChild(status); }
+              if(opacity <= 0.01){ clearInterval(ntrvl); e("status").removeChild(status); }
               status.style.opacity = opacity;
               opacity -= (1 / fade);
             }, 1)
@@ -70,8 +74,8 @@ function options() {
         num = Math.floor(Math.random()*synonyms.length);
     while(num == oldNum){ num = Math.floor(Math.random()*synonyms.length) } // We should not use the same word again. Now, should we?
     oldNum = num;
-    document.getElementById("resultSpan").style.cssText = document.getElementById("translatedWordStyle").value;
-    document.getElementById("resultSpan").innerText = synonyms[num];
+    e("resultSpan").style.cssText = e("translatedWordStyle").value;
+    e("resultSpan").innerText = synonyms[num];
   }
   
   //Sets Languages
@@ -82,20 +86,20 @@ function options() {
       var name = language.substring(0, 1) + language.substring(1).toLowerCase().replace('_', ' - ');
       targetLanguageOptions += '<option value="' + languages[language] + '">' + name + '</option>'
     }
-    document.getElementById("sourceLanguage").innerHTML = targetLanguageOptions;
-    document.getElementById("targetLanguage").innerHTML = targetLanguageOptions;
+    e("sourceLanguage").innerHTML = targetLanguageOptions;
+    e("targetLanguage").innerHTML = targetLanguageOptions;
   }
 
   function S(key) { return localStorage[key]; } 
 
   function save(id) {
-    var e = document.getElementById(id);
-    var type = e.tagName.toLowerCase();
+    var elem = e(id);
+    var type = elem.tagName.toLowerCase();
     if (type == "select") {
-      localStorage[id] = e.children[e.selectedIndex].value;
+      localStorage[id] = elem.children[elem.selectedIndex].value;
     }
     else {
-      localStorage[id] = e.value; 
+      localStorage[id] = elem.value; 
     }
   }
 
@@ -143,7 +147,7 @@ function options() {
 
 
   function restorePatterns(){
-    document.getElementById("savedTranslationPatterns").innerHTML = "";
+    e("savedTranslationPatterns").innerHTML = "";
     var pttrns = JSON.parse(localStorage["savedPatterns"]),
         html = "";
 
@@ -165,7 +169,7 @@ function options() {
               <input type='hidden' value='-1' \
             </p>";
 
-    document.getElementById("savedTranslationPatterns").innerHTML = html;
+    e("savedTranslationPatterns").innerHTML = html;
     var pttrns = document.getElementsByClassName("tPattern");
     for(var i=0; i<pttrns.length; i++){ pttrns[i].addEventListener("click", activatePattern); }
     var delPattern = document.getElementsByClassName("deletePattern");
@@ -173,8 +177,8 @@ function options() {
   }
 
 
-  function deletePattern(e){
-    e.stopPropagation();
+  function deletePattern(c){
+    c.stopPropagation();
     var _id = this.parentNode.getElementsByTagName("input")[0].value,
         pttrns = JSON.parse(localStorage["savedPatterns"]),
         moveTrue = false; // Are you deleting active one?
@@ -212,20 +216,20 @@ function options() {
     restorePatterns();
   }
 
-  function restore(id) {
-    var e = document.getElementById(id);
-    var type = e.tagName.toLowerCase();
+  function restore(option) {
+    var elem = e(option);
+    var type = elem.tagName.toLowerCase();
     if (type == "select") {
-      for (var i = 0; i < e.children.length; i++) {
-        var child = e.children[i];
-        if (child.value == S(id)) {
+      for (var i = 0; i < elem.children.length; i++) {
+        var child = elem.children[i];
+        if (child.value == S(option)) {
           child.selected = "true";
           break;
         }
       }
     }
     else {
-      e.value = S(id);
+      elem.value = S(option);
     }   
   }
 
