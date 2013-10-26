@@ -25,6 +25,7 @@
       "all_frames" : false
     }
   ],
+  "web_accessible_resources" : ["assets/js/mtw.js", "assets/js/jquery-1.10.0.js", "assets/css/*", "assets/font/*"],
   "icons" : {
     "22" : "assets/img/22.png",
     "24" : "assets/img/24.png",
@@ -32,6 +33,7 @@
     "128" : "assets/img/128.png"
   },
   "permissions": [ 
+    "http://google.com/",
     "tabs",
     "<all_urls>"]
 }
