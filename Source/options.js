@@ -141,7 +141,7 @@ function options() {
                 ]);
     localStorage["savedPatterns"] = JSON.stringify(pttrns);
     restorePatterns();
-    status("New translation pattern saved", 1500, 100);
+    status("New translation configuration created", 1500, 100);
   }
 
   // Restore those old patterns
@@ -151,7 +151,7 @@ function options() {
         html = "";
 
     for(var i in pttrns){
-      html += "<p class='alert alert-"+(pttrns[i][3] ? "success" : "nothing")+" tPattern'> \
+      html += "<p class='alert alert-"+((pttrns[i][3] && S("activation") == "true") ? "success" : "nothing")+" tPattern'> \
                 Translate approx. \
                 <span class='label label-info'>"+pttrns[i][2]+"%</span> \
                 of all \
@@ -162,6 +162,11 @@ function options() {
                 <input type='hidden' value='"+i+"' />\
               </p>";
     }
+
+    html += "<p class='alert alert-"+((S("activation") == "false") ? "success" : "nothing")+" tPattern'> \
+              Do not translate \
+              <input type='hidden' value='-1' \
+            </p>";
 
     document.getElementById("savedTranslationPatterns").innerHTML = html;
     var pttrns = document.getElementsByClassName("tPattern");
@@ -190,19 +195,29 @@ function options() {
   // Pattern, activate!
   function activatePattern(){
     var _id = this.getElementsByTagName("input")[0].value,
-        pttrns = JSON.parse(localStorage["savedPatterns"])
-        selectedPattern = pttrns[_id],
-        o = ["sourceLanguage", "targetLanguage", "translationProbability"];
+        pttrns = JSON.parse(localStorage["savedPatterns"]);
 
-    localStorage[o[0]] = selectedPattern[0][0];
-    localStorage[o[1]] = selectedPattern[1][0];
-    localStorage[o[2]] = selectedPattern[2];
+    if (_id == -1) {
+      localStorage["activation"] = "false";
+      status("Translation was deactivated", 1500, 100);
+    }
+    else {
+      localStorage["activation"] = "true";
+
+      var selectedPattern = pttrns[_id],
+          o = ["sourceLanguage", "targetLanguage", "translationProbability"];      
+      
+      localStorage[o[0]] = selectedPattern[0][0];
+      localStorage[o[1]] = selectedPattern[1][0];
+      localStorage[o[2]] = selectedPattern[2];
+
+      status("Selected translation configuration was activated", 1500, 100);
+    }
 
     for(var i in pttrns){ pttrns[i][3] = (i == _id ? true : false); }
     localStorage["savedPatterns"] = JSON.stringify(pttrns);
 
     restorePatterns();
-    status("Selected translation configuration was activated", 1500, 100);
   }
 
   function restore(id) {
@@ -226,12 +241,6 @@ function options() {
     options = ["sourceLanguage", "targetLanguage", "translationProbability", 
                "minimumSourceWordLength", "translatedWordStyle", "blacklist",
                "userDefinedTranslations", "userBlacklistedWords"];
-
-    if (S("activation") == "true") {
-      document.getElementById("activationOn").checked = true;
-    } else {
-      document.getElementById("activationOff").checked = true;
-    }
 
     for (index in options) {
       console.log("Restoring:", options[index]);
