@@ -99,7 +99,7 @@ function options() {
     }
   }
 
-  // Saves options to localStorage.
+  // Save options to localStorage.
   function save_options() {
     options = ["minimumSourceWordLength", "translatedWordStyle", "blacklist", "userDefinedTranslations", "userBlacklistedWords"];
 
@@ -118,7 +118,6 @@ function options() {
     status("Options Saved", 1500, 100);
   }
 
-  // Create new translation pattern
   function createPattern(){
     var pttrns = JSON.parse(localStorage["savedPatterns"]),
         src = new Array(),
@@ -144,7 +143,7 @@ function options() {
     status("New translation configuration created", 1500, 100);
   }
 
-  // Restore those old patterns
+
   function restorePatterns(){
     document.getElementById("savedTranslationPatterns").innerHTML = "";
     var pttrns = JSON.parse(localStorage["savedPatterns"]),
@@ -175,7 +174,7 @@ function options() {
     for(var i=0; i<delPattern.length; i++){ delPattern[i].addEventListener("click", deletePattern); }
   }
 
-  // I don't like that pattern
+
   function deletePattern(e){
     e.stopPropagation();
     var _id = this.parentNode.getElementsByTagName("input")[0].value,
@@ -192,7 +191,6 @@ function options() {
     }
   }
 
-  // Pattern, activate!
   function activatePattern(){
     var _id = this.getElementsByTagName("input")[0].value,
         pttrns = JSON.parse(localStorage["savedPatterns"]);
