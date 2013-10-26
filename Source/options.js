@@ -4,7 +4,7 @@ function e(id) {
 
 function options() {
 
-  var options = ["minimumSourceWordLength", "translatedWordStyle", "blacklist", "userDefinedTranslations", "userBlacklistedWords"];
+  
 	
   google.load("language", "1");
 
@@ -18,23 +18,24 @@ function options() {
   document.addEventListener("DOMContentLoaded", function () {
     e("addTranslationBtn").addEventListener("click", createPattern);
     e("translatedWordStyle").addEventListener("keyup", showCSSExample);
-    console.log(options);
-    for (i in options) {
-      console.log("blur event for " + options[i]);
-      e(options[i]).addEventListener("blur", save_options);
-      //save(options[i]);
-    }
+
+    e("minimumSourceWordLength").addEventListener("blur", save_minimumSourceWordLength);
+    e("translatedWordStyle").addEventListener("blur", save_translatedWordStyle);
+    e("blacklist").addEventListener("blur", save_blacklist);
+    e("userDefinedTranslations").addEventListener("blur", save_userDefinedTranslations);
+    e("userBlacklistedWords").addEventListener("blur", save_userBlacklistedWords);
   });
 
   /***
   * Text: String, what you'd like it to say
-  * Duration: int, how long before it disapears
+  * Duration: int, how long before it disappears
   * Fade: int, how long before it'd completely hidden (I'd recommend this to be lower than duration time)
+  * Type: "success", "error", ...
   */
-  function status(text, duration, fade){
+  function status(text, duration, fade, type) {
     (function(text, duration, fade){
       var status = document.createElement("div");
-          status.className = "alert alert-success";
+          status.className = "alert alert-" + type;
           status.innerText = text;
           e("status").appendChild(status);
 
@@ -49,10 +50,13 @@ function options() {
       console.log(text);
     })(text, duration, fade)
   }
+  function statusDefault(text) {
+    status(text, 1500, 100, "success");
+  }
 
   function showCSSExample(){
     if(!oldNum){ var oldNum = 0 }
-    var synonyms = ["awesome", "magnificent", "fabolous", "impressive", "great",
+    var synonyms = ["awesome", "magnificent", "fabulous", "impressive", "great",
                     "beautiful", "amazing", "awe-inspiring", "astonishing", "astounding",
                     "noble", "formidable", "heroic", "spectacular", "important-looking",
                     "majestic", "dazzling", "splendid", "brilliant", "glorious"],
@@ -77,32 +81,59 @@ function options() {
 
   function S(key) { return localStorage[key]; } 
 
-  function save(id) {
+  function save(id, message) {
     var elem = e(id);
-    var type = elem.tagName.toLowerCase();
-    if (type == "select") {
-      localStorage[id] = elem.children[elem.selectedIndex].value;
+    
+    var v;
+    if (elem.tagName.toLowerCase() == "select") {
+      v = elem.children[elem.selectedIndex].value;    
     }
     else {
-      localStorage[id] = elem.value; 
+      v = elem.value; 
+    }
+
+    if (localStorage[id] != v) {
+      localStorage[id] = v;
+      statusDefault(message);
     }
   }
 
-  // Save options to localStorage.
-  function save_options() {
-
-    for (i in options) {
-      save(options[i]);
-    }
-
-    try { JSON.parse(S("userDefinedTranslations"));} 
+  // Save to localStorage.
+  function save_userDefinedTranslations() {
+    try { 
+      JSON.parse(e("userDefinedTranslations").value);
+      save("userDefinedTranslations", "User-defined translations saved");
+    } 
     catch(e) {
-      alert('Your options have been saved, but your user-defined translations are badly specified and therefore will not be used. Please provide your user-defined translations according to the following format:\n\n {"word1":"translation1", "word2":"translation2", "word3":"translation3", "word4":"translation4"}');
+      console.debug(S("userDefinedTranslations"))
+      status('Your user-defined translations are badly specified and therefore will not be used. \
+              Please provide your user-defined translations according to the following format: \
+              \n\n {"word1":"translation1", "word2":"translation2", "word3":"translation3", "word4":"translation4"}', 9000, 600, "error");
     }
-	
-    // Update status to let user know options were saved.
-    status("Options Saved", 1500, 100);
   }
+
+
+  function save_minimumSourceWordLength() {
+    // ToDo: Implement validation
+    save("minimumSourceWordLength", "Minimum word length saved");
+  }
+
+  function save_translatedWordStyle() {
+    // ToDo: Implement validation
+    save("translatedWordStyle","Translated word style saved");
+  }
+
+  function save_blacklist() {
+    // ToDo: Implement validation
+    save("blacklist", "Blacklist saved");
+  }
+
+  function save_userBlacklistedWords() {
+    // ToDo: Implement validation
+    save("userBlacklistedWords", "Blacklisted words saved");
+  }
+
+  
 
   function createPattern(){
     var pttrns = JSON.parse(localStorage["savedPatterns"]),
@@ -126,7 +157,7 @@ function options() {
                 ]);
     localStorage["savedPatterns"] = JSON.stringify(pttrns);
     restorePatterns();
-    status("New translation configuration created", 1500, 100);
+    statusDefault("New translation configuration created");
   }
 
 
@@ -165,7 +196,7 @@ function options() {
     c.stopPropagation();
     var _id = this.parentNode.getElementsByTagName("input")[0].value,
         pttrns = JSON.parse(localStorage["savedPatterns"]),
-        moveTrue = false; // Are you deleting active one?
+        moveTrue = false; // Are you deleting the active pattern?
     
     if(pttrns.length > 1){
       if(pttrns[_id][3]){ moveTrue = true; }
@@ -186,12 +217,11 @@ function options() {
     else {
       localStorage["activation"] = "true";
 
-      var selectedPattern = pttrns[_id],
-          o = ["sourceLanguage", "targetLanguage", "translationProbability"];      
+      var selectedPattern = pttrns[_id];      
       
-      localStorage[o[0]] = selectedPattern[0][0];
-      localStorage[o[1]] = selectedPattern[1][0];
-      localStorage[o[2]] = selectedPattern[2];
+      localStorage["sourceLanguage"] = selectedPattern[0][0];
+      localStorage["targetLanguage"] = selectedPattern[1][0];
+      localStorage["translationProbability"] = selectedPattern[2];
     }
 
     for(var i in pttrns){ pttrns[i][3] = (i == _id ? true : false); }
