@@ -2,9 +2,9 @@ function initializeLocalStorage() {
   if(localStorage["activation"] == null){
     localStorage["blacklist"]               = "(stackoverflow.com|github.com|code.google.com)";
     localStorage["activation"]              = "true";
-    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]);
+    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["la","Latin"],"15",true], [["en","English"],["ru","Russian"],"15",false]]);
     localStorage["sourceLanguage"]          = "en";
-    localStorage["targetLanguage"]          = "ru";
+    localStorage["targetLanguage"]          = "la";
     localStorage["translatedWordStyle"]     = "color: #fe642e;\nfont-style: normal;";
     localStorage["userBlacklistedWords"]    = "(this|that)";
     localStorage["translationProbability"]  = 15;
