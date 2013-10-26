@@ -103,8 +103,6 @@ function options() {
   function save_options() {
     options = ["minimumSourceWordLength", "translatedWordStyle", "blacklist", "userDefinedTranslations", "userBlacklistedWords"];
 
-    localStorage["activation"] = document.getElementById("activationOn").checked;
-
     for (index in options) {
       save(options[index]);
     }
@@ -151,7 +149,7 @@ function options() {
 
     for(var i in pttrns){
       html += "<p class='alert alert-"+((pttrns[i][3] && S("activation") == "true") ? "success" : "nothing")+" tPattern'> \
-                Translate approx. \
+                Translate \
                 <span class='label label-info'>"+pttrns[i][2]+"%</span> \
                 of all \
                 <span class='label label-info'>"+pttrns[i][0][1]+"</span> \
@@ -187,7 +185,6 @@ function options() {
       if(moveTrue){ pttrns[0][3] = true; }
       localStorage["savedPatterns"] = JSON.stringify(pttrns);
       restorePatterns();
-      status("Pattern deleted", 1500, 100); 
     }
   }
 
@@ -197,7 +194,6 @@ function options() {
 
     if (_id == -1) {
       localStorage["activation"] = "false";
-      status("Translation was deactivated", 1500, 100);
     }
     else {
       localStorage["activation"] = "true";
@@ -208,8 +204,6 @@ function options() {
       localStorage[o[0]] = selectedPattern[0][0];
       localStorage[o[1]] = selectedPattern[1][0];
       localStorage[o[2]] = selectedPattern[2];
-
-      status("Selected translation configuration was activated", 1500, 100);
     }
 
     for(var i in pttrns){ pttrns[i][3] = (i == _id ? true : false); }
