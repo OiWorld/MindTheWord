@@ -4,7 +4,7 @@ function e(id) {
 
 function options() {
 
-  var options;
+  var options = ["minimumSourceWordLength", "translatedWordStyle", "blacklist", "userDefinedTranslations", "userBlacklistedWords"];
 	
   google.load("language", "1");
 
@@ -35,10 +35,15 @@ function options() {
     restore_options(); // Restore when everything's been fixed
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    e("save-button").addEventListener('click', save_options);
+  document.addEventListener("DOMContentLoaded", function () {
     e("addTranslationBtn").addEventListener("click", createPattern);
     e("translatedWordStyle").addEventListener("keyup", showCSSResults);
+    console.log(options);
+    for (i in options) {
+      console.log("blur event for " + options[i]);
+      e(options[i]).addEventListener("blur", save_options);
+      //save(options[i]);
+    }
   });
 
   /***
@@ -105,10 +110,9 @@ function options() {
 
   // Save options to localStorage.
   function save_options() {
-    options = ["minimumSourceWordLength", "translatedWordStyle", "blacklist", "userDefinedTranslations", "userBlacklistedWords"];
 
-    for (index in options) {
-      save(options[index]);
+    for (i in options) {
+      save(options[i]);
     }
 
     try { JSON.parse(S("userDefinedTranslations"));} 
