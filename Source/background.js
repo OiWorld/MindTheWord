@@ -103,7 +103,7 @@ function onRequest(request, sender, sendResponse) {
                   blacklist                 : S("blacklist")
                 })
   } else if (request.runMindTheWord) {
-    chrome.tabs.onUpdated.addListener(function(tabId, info){ //Wait untill page has finished loading
+    chrome.tabs.onUpdated.addListener(function(tabId, info){ //Wait until page has finished loading
       if(info.status == "complete"){
         console.log(info.status);
         sendResponse(true);
