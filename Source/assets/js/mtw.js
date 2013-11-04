@@ -21,22 +21,37 @@ window.onload = function(){
 
     	if(!_this.dataset.phonetic){
     		loading = true;
-    		jQuery.getJSON("http://www.google.com/dictionary/json?q=" + _this.dataset.query + "&sl=en&tl=en&callback=?", function(r) {
-			    	console.log(r);
-			    	console.log(r.primaries[0].terms[1].text, r.primaries[0].terms[2].text);
-			    	_this.dataset.phonetic = r.primaries[0].terms[1].text;
-			    	_this.dataset.sound = r.primaries[0].terms[2].text;
-			    	loading = false;
+    		// + "&tl=" + _this.dataset.tl 
+    		jQuery.getJSON("http://www.google.com/dictionary/json?q=" + _this.innerText + "&sl=" + _this.dataset.sl + "&tl=" + _this.dataset.tl + "&callback=?", 
+    			function(r) {
+    				if(typeof r.primaries === "object"){
+    					_this.dataset.phonetic = r.primaries[0].terms[1].text;
+				    	_this.dataset.sound = r.primaries[0].terms[2].text;
+    				}else{
+    					_this.dataset.phonetic = "_UNKNOWN_";
+    				}
+    				loading = false;
 				}
 			)
     	}
     	interval = setInterval(function(){
-    		if(!loading){
-    			infoBox.innerHTML = "<b>" + _this.dataset.query + "</b> <span class='icon-volume'></span> [" + _this.dataset.phonetic + "]";
+    		if(!loading || _this.dataset.phonetic){
+    			var sound = "", phonetic = "";
+    			if(_this.dataset.sound){ sound = "<span class='icon-volume'></span> " }
+    			if(_this.dataset.phonetic != "_UNKNOWN_"){ phonetic = "[" + _this.dataset.phonetic + "]" }
+    			infoBox.innerHTML = "<b>" + _this.dataset.query + "</b> " + sound + phonetic;
 		    	infoBox.style.top = (offset.y - 25) + "px";
 		    	infoBox.style.left = (offset.x) + "px";
 		    	infoBox.style.display = "block";
 		    	clearInterval(interval);
+
+		    	if(_this.dataset.sound){
+		    		infoBox.getElementsByClassName("icon-volume")[0].addEventListener("click", function(){
+			    		var audioElm = document.createElement("audio");
+			    		audioElm.setAttribute("src", _this.dataset.sound);
+			    		audioElm.play();
+			    	})
+		    	}
     		}
     	}, 100)
     }

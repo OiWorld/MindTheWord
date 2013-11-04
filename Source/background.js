@@ -2,9 +2,9 @@ function initializeLocalStorage() {
   if(localStorage["activation"] == null){
     localStorage["blacklist"]               = "(stackoverflow.com|github.com|code.google.com)";
     localStorage["activation"]              = "true";
-    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["la","Latin"],"15",true], [["en","English"],["ru","Russian"],"15",false]]);
+    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["it","Italian"],"15",true], [["en","English"],["la","Latin"],"15",false]]);
     localStorage["sourceLanguage"]          = "en";
-    localStorage["targetLanguage"]          = "la";
+    localStorage["targetLanguage"]          = "it";
     localStorage["translatedWordStyle"]     = "color: #fe642e;\nfont-style: normal;";
     localStorage["userBlacklistedWords"]    = "(this|that)";
     localStorage["translationProbability"]  = 15;
@@ -100,7 +100,9 @@ function onRequest(request, sender, sendResponse) {
                   userDefinedTranslations   : S("userDefinedTranslations"),
                   userBlacklistedWords      : S("userBlacklistedWords"),
                   activation                : S("activation"),
-                  blacklist                 : S("blacklist")
+                  blacklist                 : S("blacklist"),
+                  sourceLanguage            : S("sourceLanguage"),
+                  targetLanguage            : S("targetLanguage")
                 })
   } else if (request.runMindTheWord) {
     chrome.tabs.onUpdated.addListener(function(tabId, info){ //Wait until page has finished loading
