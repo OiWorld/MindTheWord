@@ -1,6 +1,8 @@
 // Copyright (c) 2011-2013 Bruno Woltzenlogel Paleo. All rights reserved.
 // With a little help of these awesome guys, https://github.com/OiWorld/MindTheWord/graphs/contributors!
 
+var sl, tl;
+
 function insertCSS(cssStyle) {
   var cssText = document.createTextNode("<!-- span.translatedWord {" + cssStyle + "} -->"),
       css = document.createElement('style');
@@ -86,7 +88,9 @@ function replaceAll(text, translationMap) {
 
 function invertMap(map) {
   var iMap = {};
-  for (e in map) { iMap[map[e]] = '<span data-query="'+ e +'" data-phonetic="" data-sound="" class="translatedWord">' + map[e] + '</span>'; }
+  for (e in map) { 
+    iMap[map[e]] = '<span data-sl="'+ sl +'" data-tl="'+ tl +'" data-query="'+ e +'" data-phonetic="" data-sound="" class="translatedWord">' + map[e] + '</span>'; 
+  }
   return iMap;
 }
 
@@ -159,6 +163,8 @@ function main(translationProbability, minimumSourceWordLength, userDefinedTransl
 
 chrome.extension.sendRequest({getOptions : "Give me the options chosen by the user..." }, function(r) {
   var blacklist = new RegExp(r.blacklist);
+  sl = r.sourceLanguage;
+  tl = r.targetLanguage;
   if (r.activation == "true" && !blacklist.test(document.URL)) {
     insertCSS(r.translatedWordStyle);
     chrome.extension.sendRequest({runMindTheWord: "Pretty please?"}, function(){
