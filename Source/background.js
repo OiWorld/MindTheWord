@@ -102,7 +102,13 @@ function onRequest(request, sender, sendResponse) {
                   activation                : S("activation"),
                   blacklist                 : S("blacklist"),
                   sourceLanguage            : S("sourceLanguage"),
-                  targetLanguage            : S("targetLanguage")
+                  targetLanguage            : S("targetLanguage"),
+                  MindTheInjection          : [
+                                                chrome.extension.getURL("/assets/js/mtw.js"), 
+                                                chrome.extension.getURL("/assets/css/mtw.css"),
+                                                chrome.extension.getURL("/assets/css/fontello.css"), 
+                                                chrome.extension.getURL("/assets/css/animation.css")
+                                              ]
                 })
   } else if (request.runMindTheWord) {
     chrome.tabs.onUpdated.addListener(function(tabId, info){ //Wait until page has finished loading
