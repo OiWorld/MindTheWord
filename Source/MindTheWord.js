@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2013 Bruno Woltzenlogel Paleo. All rights reserved.
 // With a little help of these awesome guys, https://github.com/OiWorld/MindTheWord/graphs/contributors!
 
-var sl, tl;
+var sl, tl, customURLs;
 
 function insertCSS(cssStyle) {
   var cssText = document.createTextNode("<!-- span.translatedWord {" + cssStyle + "} -->"),
@@ -13,13 +13,11 @@ function insertCSS(cssStyle) {
   document.getElementsByTagName("head")[0].appendChild(css).appendChild(cssText);
 
   var s = document.createElement("script");
-  s.setAttribute("src","chrome-extension://ihkdeijkfhjbnnnodbgokdbdoghfjkpe/assets/js/mtw.js"); // fabjlaokbhaoehejcoblhahcekmogbom
+  s.setAttribute("src", customURLs[0]);
   document.getElementsByTagName("head")[0].appendChild(s);
 
-  var styles = ["chrome-extension://ihkdeijkfhjbnnnodbgokdbdoghfjkpe/assets/css/mtw.css", 
-                "chrome-extension://ihkdeijkfhjbnnnodbgokdbdoghfjkpe/assets/css/fontello.css",
-                "chrome-extension://ihkdeijkfhjbnnnodbgokdbdoghfjkpe/assets/css/animation.css"];
-  for(var s in styles){ // fabjlaokbhaoehejcoblhahcekmogbom
+  var styles = [customURLs[1], customURLs[2], customURLs[3]];
+  for(var s in styles){
     var css = document.createElement("link"); 
     css.setAttribute("rel","stylesheet"); css.setAttribute("type","text/css"); css.setAttribute("media","all"); css.setAttribute("href",styles[s]);
     document.getElementsByTagName("head")[0].appendChild(css);
@@ -29,11 +27,13 @@ function insertCSS(cssStyle) {
   infoBox.setAttribute("id","MindTheInfoBox");
   document.getElementsByTagName("body")[0].appendChild(infoBox);
 
+/*
   if(!window.jQuery){
     var s = document.createElement("script");
-    s.setAttribute("src","chrome-extension://ihkdeijkfhjbnnnodbgokdbdoghfjkpe/assets/js/jquery-1.10.0.js"); // fabjlaokbhaoehejcoblhahcekmogbom
+    s.setAttribute("src", customURLs[4]);
     document.getElementsByTagName("head")[0].appendChild(s);
   }
+*/
 }
 
 function requestTranslations(sourceWords, callback) {
@@ -165,6 +165,7 @@ chrome.extension.sendRequest({getOptions : "Give me the options chosen by the us
   var blacklist = new RegExp(r.blacklist);
   sl = r.sourceLanguage;
   tl = r.targetLanguage;
+  customURLs = r.MindTheInjection;
   if (r.activation == "true" && !blacklist.test(document.URL)) {
     insertCSS(r.translatedWordStyle);
     chrome.extension.sendRequest({runMindTheWord: "Pretty please?"}, function(){
