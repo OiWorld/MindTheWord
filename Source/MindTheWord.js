@@ -1,22 +1,43 @@
 // Copyright (c) 2011-2013 Bruno Woltzenlogel Paleo. All rights reserved.
+// With a little help of these awesome guys, https://github.com/OiWorld/MindTheWord/graphs/contributors!
 
+var sl, tl, customURLs;
 
 function insertCSS(cssStyle) {
-  var css = document.createElement('style');
+  var cssText = document.createTextNode("<!-- span.translatedWord {" + cssStyle + "} -->"),
+      css = document.createElement('style');
   css.setAttribute("id","MindTheWordStyles");
   css.setAttribute("title","MindTheWordStyles");
   css.setAttribute("type","text/css");
   css.setAttribute("media","all");
-  document.getElementsByTagName("head")[0].appendChild(css);
-  var cssText = document.createTextNode("<!-- span.translatedWord {" + cssStyle + "} -->");
-  document.getElementById("MindTheWordStyles").appendChild(cssText);
+  document.getElementsByTagName("head")[0].appendChild(css).appendChild(cssText);
+
+  var s = document.createElement("script");
+  s.setAttribute("src", customURLs[0]);
+  document.getElementsByTagName("head")[0].appendChild(s);
+
+  var styles = [customURLs[1], customURLs[2], customURLs[3]];
+  for(var s in styles){
+    var css = document.createElement("link"); 
+    css.setAttribute("rel","stylesheet"); css.setAttribute("type","text/css"); css.setAttribute("media","all"); css.setAttribute("href",styles[s]);
+    document.getElementsByTagName("head")[0].appendChild(css);
+  }
+
+  var infoBox = document.createElement("div");
+  infoBox.setAttribute("id","MindTheInfoBox");
+  document.getElementsByTagName("body")[0].appendChild(infoBox);
+
+/*
+  if(!window.jQuery){
+    var s = document.createElement("script");
+    s.setAttribute("src", customURLs[4]);
+    document.getElementsByTagName("head")[0].appendChild(s);
+  }
+*/
 }
 
-
 function requestTranslations(sourceWords, callback) {
-  //alert("source: " + JSON.stringify(sourceWords) )
   chrome.extension.sendRequest({wordsToBeTranslated : sourceWords }, function(response) {
-      //alert("translation: " + JSON.stringify(response.translationMap))
       callback(response.translationMap);
   });
 }
@@ -67,10 +88,9 @@ function replaceAll(text, translationMap) {
 
 function invertMap(map) {
   var iMap = {};
-  //alert(JSON.stringify(map))
-  for (e in map) { iMap[map[e]] = '<span title="'+ e +'" class="translatedWord">' + map[e] + '</span>'; }
-  //for (e in map) { iMap[map[e]] = '<span title="'+ e +'" class="translatedWord" style="' + translatedWordStyle + '">' + map[e] + '</span>'; }
-  //alert(JSON.stringify(iMap))
+  for (e in map) { 
+    iMap[map[e]] = '<span data-sl="'+ sl +'" data-tl="'+ tl +'" data-query="'+ e +'" data-phonetic="" data-sound="" class="translatedWord">' + map[e] + '</span>'; 
+  }
   return iMap;
 }
 
@@ -83,7 +103,6 @@ function processTranslations(translationMap, userDefinedTMap) {
       filteredTMap[w] = translationMap[w];
     }
   }
-  //alert(userDefinedTMap)
   for (w in userDefinedTMap) {
     if (w != userDefinedTMap[w]) {
       filteredTMap[w] = userDefinedTMap[w];
@@ -99,24 +118,6 @@ function length(associativeArray) {
   for (e in associativeArray) { l++; }
   return l;     	
 }
-
-/*function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
-  var sourceWords = {},
-      userBlacklistedWords = new RegExp(userBlacklistedWords);
-  for (word in countedWords) {
-    if (word != "" && !/\d/.test(word) && word.length >= minimumSourceWordLength && !userBlacklistedWords.test(word.toLowerCase())) {
-      var randomNumber = Math.floor(Math.random()*100)
-      // Ugly hack: translation probability is multiplied by a factor,
-      // in order to compensate a reduction in translation due to how punctuation is dealt with.
-      if (randomNumber < translationProbability * 3) {  
-        sourceWords[word] = countedWords[word];
-      }
-    }     
-  }
-  console.log("Translating", Math.floor((length(countedWords) * translationProbability) / 100), "of", length(countedWords), "words (Roughly", JSON.parse(translationProbability), "percent)");
-  console.log(countedWords);
-  return sourceWords;
-}*/
 
 // More precise than the old one
 function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
@@ -162,6 +163,9 @@ function main(translationProbability, minimumSourceWordLength, userDefinedTransl
 
 chrome.extension.sendRequest({getOptions : "Give me the options chosen by the user..." }, function(r) {
   var blacklist = new RegExp(r.blacklist);
+  sl = r.sourceLanguage;
+  tl = r.targetLanguage;
+  customURLs = r.MindTheInjection;
   if (r.activation == "true" && !blacklist.test(document.URL)) {
     insertCSS(r.translatedWordStyle);
     chrome.extension.sendRequest({runMindTheWord: "Pretty please?"}, function(){

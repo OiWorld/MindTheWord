@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Mind the Word",
-  "version": "1.6",
+  "version": "1.7",
   "description": "Learn languages as you browse the web!",
   "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://www.google.com https://ssl.google-analytics.com;",
   "background" : 
@@ -25,6 +25,7 @@
       "all_frames" : false
     }
   ],
+  "web_accessible_resources" : ["assets/js/mtw.js", "assets/js/jquery-1.10.0.js", "assets/css/*", "assets/font/*"],
   "icons" : {
     "22" : "assets/img/22.png",
     "24" : "assets/img/24.png",
@@ -32,6 +33,7 @@
     "128" : "assets/img/128.png"
   },
   "permissions": [ 
+    "http://google.com/",
     "tabs",
     "<all_urls>"]
 }

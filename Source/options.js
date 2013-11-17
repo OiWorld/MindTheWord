@@ -3,8 +3,6 @@ function e(id) {
 }
 
 function options() {
-
-  
 	
   google.load("language", "1");
 
@@ -18,7 +16,6 @@ function options() {
   document.addEventListener("DOMContentLoaded", function () {
     e("addTranslationBtn").addEventListener("click", createPattern);
     e("translatedWordStyle").addEventListener("keyup", showCSSExample);
-
     e("minimumSourceWordLength").addEventListener("blur", save_minimumSourceWordLength);
     e("translatedWordStyle").addEventListener("blur", save_translatedWordStyle);
     e("blacklist").addEventListener("blur", save_blacklist);
