@@ -2,9 +2,9 @@ function initializeLocalStorage() {
   if(localStorage["activation"] == null){
     localStorage["blacklist"]               = "(stackoverflow.com|github.com|code.google.com)";
     localStorage["activation"]              = "true";
-    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]);
+    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["it","Italian"],"15",true], [["en","English"],["la","Latin"],"15",false]]);
     localStorage["sourceLanguage"]          = "en";
-    localStorage["targetLanguage"]          = "ru";
+    localStorage["targetLanguage"]          = "it";
     localStorage["translatedWordStyle"]     = "color: #fe642e;\nfont-style: normal;";
     localStorage["userBlacklistedWords"]    = "(this|that)";
     localStorage["translationProbability"]  = 15;
@@ -100,7 +100,15 @@ function onRequest(request, sender, sendResponse) {
                   userDefinedTranslations   : S("userDefinedTranslations"),
                   userBlacklistedWords      : S("userBlacklistedWords"),
                   activation                : S("activation"),
-                  blacklist                 : S("blacklist")
+                  blacklist                 : S("blacklist"),
+                  sourceLanguage            : S("sourceLanguage"),
+                  targetLanguage            : S("targetLanguage"),
+                  MindTheInjection          : [
+                                                chrome.extension.getURL("/assets/js/mtw.js"), 
+                                                chrome.extension.getURL("/assets/css/mtw.css"),
+                                                chrome.extension.getURL("/assets/css/fontello.css"), 
+                                                chrome.extension.getURL("/assets/css/animation.css")
+                                              ]
                 })
   } else if (request.runMindTheWord) {
     chrome.tabs.onUpdated.addListener(function(tabId, info){ //Wait until page has finished loading
