@@ -169,7 +169,7 @@ chrome.extension.sendRequest({getOptions : "Give me the options chosen by the us
   if (r.activation == "true" && !blacklist.test(document.URL)) {
     insertCSS(r.translatedWordStyle);
     chrome.extension.sendRequest({runMindTheWord: "Pretty please?"}, function(){
-      main(r.translationProbability, r.minimumSourceWordLength, r.userDefinedTranslations , r.userBlacklistedWords);
+      main(r.translationProbability, r.minimumSourceWordLength, JSON.parse(r.userDefinedTranslations), r.userBlacklistedWords);
     })
   }
 });
