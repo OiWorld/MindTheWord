@@ -158,7 +158,7 @@ function main(translationProbability, minimumSourceWordLength, userDefinedTransl
     }
   }
   requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords),
-          function(tMap) {processTranslations(tMap, userDefinedTranslations);}); 
+          function(tMap) {processTranslations(tMap, JSON.parse(userDefinedTranslations));}); 
 }
 
 chrome.extension.sendRequest({getOptions : "Give me the options chosen by the user..." }, function(r) {
