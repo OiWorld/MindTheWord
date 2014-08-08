@@ -4,45 +4,20 @@
 var sl, tl, customURLs;
 
 function insertCSS(cssStyle) {
-  var cssText = document.createTextNode("<!-- span.translatedWord {" + cssStyle + "} -->"),
-      css = document.createElement('style');
-  css.setAttribute("id","MindTheWordStyles");
-  css.setAttribute("title","MindTheWordStyles");
-  css.setAttribute("type","text/css");
-  css.setAttribute("media","all");
-  document.getElementsByTagName("head")[0].appendChild(css).appendChild(cssText);
-
+  document.styleSheets[0].insertRule("span.mtwTranslatedWord {" + cssStyle + "}", 0);
   var s = document.createElement("script");
   s.setAttribute("src", customURLs[0]);
   document.getElementsByTagName("head")[0].appendChild(s);
-
-  var styles = [customURLs[1], customURLs[2], customURLs[3]];
-  for(var s in styles){
-    var css = document.createElement("link"); 
-    css.setAttribute("rel","stylesheet"); css.setAttribute("type","text/css"); css.setAttribute("media","all"); css.setAttribute("href",styles[s]);
-    document.getElementsByTagName("head")[0].appendChild(css);
-  }
-
-  var infoBox = document.createElement("div");
-  infoBox.setAttribute("id","MindTheInfoBox");
-  document.getElementsByTagName("body")[0].appendChild(infoBox);
-
-/*
-  if(!window.jQuery){
-    var s = document.createElement("script");
-    s.setAttribute("src", customURLs[4]);
-    document.getElementsByTagName("head")[0].appendChild(s);
-  }
-*/
 }
 
 function requestTranslations(sourceWords, callback) {
-  chrome.extension.sendRequest({wordsToBeTranslated : sourceWords }, function(response) {
+  chrome.runtime.sendMessage({wordsToBeTranslated : sourceWords }, function(response) {
       callback(response.translationMap);
   });
 }
 
 function deepHTMLReplacement(node, tMap, iTMap){
+  var badTags = ['TEXTAREA', 'INPUT', 'SCRIPT', 'CODE', 'A'];
   if (node.nodeType == Node.TEXT_NODE) {
     var newNodeValue = replaceAll(node.nodeValue, tMap);
     if (newNodeValue != node.nodeValue) {
@@ -50,8 +25,7 @@ function deepHTMLReplacement(node, tMap, iTMap){
       var parent = node.parentNode;
       parent.innerHTML = replaceAll(parent.innerHTML, iTMap);     
     }
-  }
-  else if (node.nodeType == Node.ELEMENT_NODE && node.tagName != 'TEXTAREA' && node.tagName != 'INPUT' && node.tagName != 'SCRIPT' && node.tagName != 'CODE') {
+  } else if (node.nodeType == Node.ELEMENT_NODE && !!badTags.indexOf(node.tagName)) {
     var child = node.firstChild;
     while (child){
         deepHTMLReplacement(child,tMap,iTMap);
@@ -88,11 +62,15 @@ function replaceAll(text, translationMap) {
 
 function invertMap(map) {
   var iMap = {};
+  var swapJs = "javascript:__mindtheword.toggleElement(this)";
   for (e in map) { 
-    iMap[map[e]] = '<span data-sl="'+ sl +'" data-tl="'+ tl +'" data-query="'+ e +'" data-phonetic="" data-sound="" class="translatedWord">' + map[e] + '</span>'; 
+    iMap[map[e]] = '<span data-sl="'+ sl +'" data-tl="'+ tl +'" data-query="'+ e +
+	    '" data-original="' + e + '" data-translated="' + map[e] +
+	    '" class="mtwTranslatedWord" onClick="' + swapJs + '">' + map[e] + '</span>'; 
   }
   return iMap;
 }
+
 
 function containsIllegalCharacters(s) { return /[0-9{}.,;:]/.test(s); }
 
@@ -109,66 +87,111 @@ function processTranslations(translationMap, userDefinedTMap) {
     }
   }
   if (length(filteredTMap) != 0) {
-    deepHTMLReplacement(document.body, filteredTMap, invertMap(filteredTMap)); 
+    paragraphs = document.getElementsByTagName('p');
+    for (var i=0; i<paragraphs.length; i++) {
+      deepHTMLReplacement(paragraphs[i], filteredTMap, invertMap(filteredTMap)); 
+    }
   }
 }
 
-function length(associativeArray) {
-  var l = 0;
-  for (e in associativeArray) { l++; }
-  return l;     	
+function length(obj) {
+  return Object.keys(obj).length;
 }
 
 // More precise than the old one
 function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
-  var sourceWords = {},
-      userBlacklistedWords = new RegExp(userBlacklistedWords);
+  var userBlacklistedWords = new RegExp(userBlacklistedWords);
 
-  while(length(sourceWords) <= Math.floor((length(countedWords) * translationProbability) / 100)){
-    var word = pickRandomProperty(countedWords);
-    if(word != "" && !/\d/.test(word) && word.length >= minimumSourceWordLength && !userBlacklistedWords.test(word.toLowerCase()) && !(word in sourceWords)){
-      sourceWords[word] = countedWords[word];
-    }
-  }
-  console.log("Translating", Math.floor((length(countedWords) * translationProbability) / 100), "of", length(countedWords), "words (Roughly", JSON.parse(translationProbability), "percent)");
-  return sourceWords;
+  var countedWordsList = shuffle(toList(countedWords, function(word, count) {
+    return !!word && word.length >= minimumSourceWordLength && // no words that are too short
+	  word != "" && !/\d/.test(word) && // no empty words
+	  word.charAt(0) != word.charAt(0).toUpperCase() && // no proper nouns
+	  !userBlacklistedWords.test(word.toLowerCase()); // no blacklisted words
+  }));
+
+  var targetLength = Math.floor((countedWordsList.length * translationProbability) / 100);
+  return toMap(countedWordsList.slice(0, targetLength - 1));
 }
 
-// http://stackoverflow.com/a/2532251/754471
-function pickRandomProperty(obj) {
-  var result;
-  var count = 0;
-  for (var prop in obj){
-    if (Math.random() < 1/++count){
-      result = prop;
+function toList(map, filter) {
+  var list = [];
+  for (var item in map) {
+    if (filter(item, map[item])) {
+      list.push(item);
     }
   }
-  return result;
+  return list;
 }
+
+function toMap(list) {
+  var map = {};
+  for (var i=0; i<list.length; i++) {
+    map[list[i]] = 1;
+  }
+  return map;
+}
+
+function shuffle(o) {
+  for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  return o;
+}
+
+function getAllWords() {
+  var maxWords = 10000, ngramMin = 2, ngramMax = 3, wordCount = 0;
+  var countedWords = {};
+  paragraphs = document.getElementsByTagName('p');
+  console.log("Getting words from all "+paragraphs.length+" paragraphs");
+  for (var i=0; i<paragraphs.length; i++) {
+    var words = paragraphs[i].innerText.split(/\s|,|[.()]|\d/g);
+    for (var j=0; j<words.length; j++) {
+      for (var b=ngramMin; b <= ngramMax; b++) {
+        var word = ngramAt(words, j, b);
+        if (!(word in countedWords)) {
+          countedWords[word] = 0;
+          wordCount += 1;
+        }
+        countedWords[word] += 1;
+      }
+    }
+  }
+  console.log("Counted "+wordCount+" words");
+  return countedWords;
+}
+
+function ngramAt(list, index, ngram) {
+  return list.slice(index, index+ngram).join(" ");
+}
+
+__mindtheword = new function() {
+	this.translated = true;
+	this.toggleAllElements = function() {
+		this.translated = !this.translated;
+		var words = document.getElementsByClassName('mtwTranslatedWord');
+		for (var i=0; i<words.length; i++) {
+			var word = words[i];
+			word.innerHTML = (this.translated) ? word.dataset.translated: word.dataset.original;
+		}
+	};
+};
 
 function main(translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords) {
-  var words = document.body.innerText.split(/\s|,|[.()]|\d/g);
-  var countedWords = {}
-  for (index in words) {
-    if (countedWords[words[index]]) {
-      countedWords[words[index]] += 1;
-    }
-    else {
-      countedWords[words[index]] = 1;
-    }
-  }
+  console.log('starting translation');
+  var countedWords = getAllWords();
+  console.log(countedWords);
   requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords),
-          function(tMap) {processTranslations(tMap, JSON.parse(userDefinedTranslations));}); 
+          function(tMap) {processTranslations(tMap, userDefinedTranslations);}); 
 }
 
-chrome.extension.sendRequest({getOptions : "Give me the options chosen by the user..." }, function(r) {
+console.log("mindTheWord running");
+chrome.runtime.sendMessage({getOptions : "Give me the options chosen by the user..." }, function(r) {
+  console.log("got data. activated? " + r.activation);
   var blacklist = new RegExp(r.blacklist);
   sl = r.sourceLanguage;
   tl = r.targetLanguage;
   customURLs = r.MindTheInjection;
-  if (r.activation == "true" && !blacklist.test(document.URL)) {
+  if (!!r.activation && !blacklist.test(document.URL)) {
     insertCSS(r.translatedWordStyle);
-    chrome.extension.sendRequest({runMindTheWord: "Pretty please?"}, function(){
+    chrome.runtime.sendMessage({runMindTheWord: "Pretty please?"}, function(){
       main(r.translationProbability, r.minimumSourceWordLength, JSON.parse(r.userDefinedTranslations), r.userBlacklistedWords);
     })
   }

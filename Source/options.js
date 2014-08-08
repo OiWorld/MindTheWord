@@ -1,17 +1,19 @@
+var storage = chrome.storage.local;
+var cachedStorage = {};
+
 function e(id) {
   return document.getElementById(id);
 }
 
-function options() {
-	
-  google.load("language", "1");
-
-  window.onload = init;
-  function init(){
-	  set_languages();
-    restore_options();
-    showCSSExample();
-  }
+$(function() {	
+  var languageLoaded = function(){
+    loadStorageIntoCache(function() {
+      set_languages();
+      restore_options();
+      showCSSExample();
+    });
+  };
+  google.load("language", "1", {callback: languageLoaded});
 
   document.addEventListener("DOMContentLoaded", function () {
     e("addTranslationBtn").addEventListener("click", createPattern);
@@ -76,7 +78,24 @@ function options() {
     e("targetLanguage").innerHTML = targetLanguageOptions;
   }
 
-  function S(key) { return localStorage[key]; } 
+  function S(key) { return cachedStorage[key]; } 
+
+  function loadStorageIntoCache(callback) {
+    storage.get(null, function(data) {
+      cachedStorage = data;
+      if (!!callback) {
+        callback(data);
+      } 
+    });
+  }
+
+  function saveBulk(data, message) {
+    storage.set(data, function() {
+      statusDefault(message);
+      loadStorageIntoCache();
+      restorePatterns();
+    });
+  }
 
   function save(id, message) {
     var elem = e(id);
@@ -89,9 +108,8 @@ function options() {
       v = elem.value; 
     }
 
-    if (localStorage[id] != v) {
-      localStorage[id] = v;
-      statusDefault(message);
+    if (cachedStorage[id] != v) {
+      saveBulk({id: v}, message);
     }
   }
 
@@ -133,7 +151,7 @@ function options() {
   
 
   function createPattern(){
-    var pttrns = JSON.parse(localStorage["savedPatterns"]),
+    var pttrns = JSON.parse(S("savedPatterns")),
         src = new Array(),
         trg = new Array(),
         prb = new Array();
@@ -152,19 +170,17 @@ function options() {
                  prb[1],
                  false
                 ]);
-    localStorage["savedPatterns"] = JSON.stringify(pttrns);
-    restorePatterns();
-    statusDefault("New translation configuration created");
+    save("savedPatterns", JSON.stringify(pttrns));
   }
 
 
   function restorePatterns(){
     e("savedTranslationPatterns").innerHTML = "";
-    var pttrns = JSON.parse(localStorage["savedPatterns"]),
+    var pttrns = JSON.parse(S("savedPatterns")),
         html = "";
 
     for(var i in pttrns){
-      html += "<p class='alert alert-"+((pttrns[i][3] && S("activation") == "true") ? "success" : "nothing")+" tPattern'> \
+      html += "<p class='alert alert-"+((pttrns[i][3] && !!S("activation")) ? "success" : "nothing")+" tPattern'> \
                 Translate \
                 <span class='label label-info'>"+pttrns[i][2]+"%</span> \
                 of all \
@@ -176,7 +192,7 @@ function options() {
               </p>";
     }
 
-    html += "<p class='alert alert-"+((S("activation") == "false") ? "success" : "nothing")+" tPattern'> \
+    html += "<p class='alert alert-"+((!S("activation")) ? "success" : "nothing")+" tPattern'> \
               Do not translate \
               <input type='hidden' value='-1' \
             </p>";
@@ -192,45 +208,41 @@ function options() {
   function deletePattern(c){
     c.stopPropagation();
     var _id = this.parentNode.getElementsByTagName("input")[0].value,
-        pttrns = JSON.parse(localStorage["savedPatterns"]),
+        pttrns = JSON.parse(S("savedPatterns")),
         moveTrue = false; // Are you deleting the active pattern?
     
     if(pttrns.length > 1){
       if(pttrns[_id][3]){ moveTrue = true; }
       pttrns.splice(_id,1);
       if(moveTrue){ pttrns[0][3] = true; }
-      localStorage["savedPatterns"] = JSON.stringify(pttrns);
-      restorePatterns();
+      save("savedPatterns", JSON.stringify(pttrns));
     }
   }
 
   function activatePattern(){
     var _id = this.getElementsByTagName("input")[0].value,
-        pttrns = JSON.parse(localStorage["savedPatterns"]);
+        pttrns = JSON.parse(S("savedPatterns"));
 
+    toSave = {};
     if (_id == -1) {
-      localStorage["activation"] = "false";
-    }
-    else {
-      localStorage["activation"] = "true";
+      toSave["activation"] = false;
+    } else {
+      toSave["activation"] = true;
 
       var selectedPattern = pttrns[_id];      
       
-      localStorage["sourceLanguage"] = selectedPattern[0][0];
-      localStorage["targetLanguage"] = selectedPattern[1][0];
-      localStorage["translationProbability"] = selectedPattern[2];
+      toSave["sourceLanguage"] = selectedPattern[0][0];
+      toSave["targetLanguage"] = selectedPattern[1][0];
+      toSave["translationProbability"] = selectedPattern[2];
     }
 
     for(var i in pttrns){ pttrns[i][3] = (i == _id ? true : false); }
-    localStorage["savedPatterns"] = JSON.stringify(pttrns);
-
-    restorePatterns();
+    toSave["savedPatterns"] = JSON.stringify(pttrns);
+    saveBulk(toSave);
   }
 
 
   function restore_options() {
-    fixLocalStorage();
-
     var options = ["sourceLanguage", "targetLanguage", "translationProbability", 
                "minimumSourceWordLength", "translatedWordStyle", "blacklist",
                "userDefinedTranslations", "userBlacklistedWords"];
@@ -238,31 +250,6 @@ function options() {
     for (index in options) {
       console.log("Restoring:", options[index]);
       restore(options[index]);
-    }
-    restorePatterns();
-  }
-
-    // Fix any localStorage if needed
-  function fixLocalStorage(){
-    console.debug("fixLocalStorage");
-
-    var ls = { // localStorage
-      "blacklist"               : "(stackoverflow.com|github.com|code.google.com)",
-      "activation"              : "true",
-      "savedPatterns"           : JSON.stringify([[["en","English"],["ru","Russian"],"15",true], [["da","Danish"],["en","English"],"15",false]]),
-      "sourceLanguage"          : "en",
-      "targetLanguage"          : "ru",
-      "translatedWordStyle"     : "color: #FE642E;\nfont-style: normal;",
-      "userBlacklistedWords"    : "(this|that)",
-      "translationProbability"  : 15,
-      "minimumSourceWordLength" : 3,
-      "userDefinedTranslations" : '{"the":"the", "a":"a"}'
-    }
-    for(var name in ls){
-      if(S(name) == null || S(name) == "undefined" || S(name) == ""){ 
-        console.log("Fixing: " + name);
-        localStorage[name] = ls[name]; 
-      }
     }
   }
 
@@ -272,7 +259,7 @@ function options() {
     var elem = e(option);
     var type = elem.tagName.toLowerCase();
 
-    console.debug("Value for " + option + "in localStorage is: " + S(option));
+    console.debug("Value for " + option + " in localStorage is: " + S(option));
 
     if (type == "select") {
       for (var i = 0; i < elem.children.length; i++) {
@@ -289,4 +276,4 @@ function options() {
   }
 
   google_analytics('UA-1471148-14');  
-}
+});
