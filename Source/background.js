@@ -1,5 +1,5 @@
 console.log("Starting up MindTheWord background page");
-var storage = chrome.storage.local;
+var storage = chrome.storage.sync;
 
 function initializeStorage() {
   storage.get("initialized", function(result) {
