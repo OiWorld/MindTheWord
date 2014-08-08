@@ -1,4 +1,4 @@
-var storage = chrome.storage.local;
+var storage = chrome.storage.sync;
 var cachedStorage = {};
 
 function e(id) {
