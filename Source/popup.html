@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="PopupApp">
   <head>
     <title>Mind The Word</title>
     <style type="text/css">
@@ -22,11 +22,15 @@
     }
     </style>
 
+    <script type="text/javascript" src="assets/js/angular.min.js"></script>
     <script type="text/javascript" src="popup.js"></script>
   </head>
   <body>
-    <div id="languageToggle" class="button">Toggle</div>
-    <div id="optionsButton" class="button">Options</div>
+    <div ng-controller="PopupController">
+      <div class="button" ng-click="toggleEnabled()">{{ data.activation ? "Turn Off" : "Turn On" }}</div>
+      <div class="button" ng-click="toggleWords()" ng-disabled="{{ !data.activation }}">Toggle {{ toggledOn ? "Off" : "On" }}</div>
+      <div class="button" ng-click="options()">Options</div>
+    </div>
   </body>
 </html>
 

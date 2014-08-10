@@ -172,6 +172,9 @@ __mindtheword = new function() {
 			word.innerHTML = (this.translated) ? word.dataset.translated: word.dataset.original;
 		}
 	};
+  this.isTranslated = function() {
+    return this.translated;
+  };
 };
 
 function main(translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords) {
