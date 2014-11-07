@@ -1,4 +1,4 @@
-/* This script was injected by MindtheWord */
+/* This script was injected by MindTheWord */
 __mindtheword = new function() {
 	this.toggleElement = function(elem) {
 		var word = elem.innerHTML;
