@@ -11,7 +11,7 @@ function initializeStorage() {
         savedPatterns: JSON.stringify([[["en","English"],["it","Italian"],"25",true], [["en","English"],["la","Latin"],"15",false]]),
         sourceLanguage: "en",
         targetLanguage: "it",
-        translatedWordStyle: "font-style: italic;\nbackground-color: rgba(200, 100, 50, 0.11);",
+        translatedWordStyle: "font-style: inherit;\ncolor: rgba(255,153,0,1);\nbackground-color: rgba(256, 100, 50, 0);",
         userBlacklistedWords: "(this|that)",
         translationProbability: 15,
         minimumSourceWordLength: 3,
