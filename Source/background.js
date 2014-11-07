@@ -8,13 +8,15 @@ function initializeStorage() {
         initialized: true,
         activation: true,
         blacklist: "(stackoverflow.com|github.com|code.google.com|developer.*.com|duolingo.com)",
-        savedPatterns: JSON.stringify([[["en","English"],["it","Italian"],"15",true], [["en","English"],["la","Latin"],"15",false]]),
+        savedPatterns: JSON.stringify([[["en","English"],["it","Italian"],"25",true], [["en","English"],["la","Latin"],"15",false]]),
         sourceLanguage: "en",
         targetLanguage: "it",
         translatedWordStyle: "font-style: italic;\nbackground-color: rgba(200, 100, 50, 0.11);",
         userBlacklistedWords: "(this|that)",
         translationProbability: 15,
         minimumSourceWordLength: 3,
+        ngramMin: 1,
+        ngramMax: 1,
         userDefinedTranslations: '{"the":"the", "a":"a"}',
       };
       console.log("setting defaults: ");

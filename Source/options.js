@@ -18,6 +18,8 @@ $(function() {
     e("addTranslationBtn").addEventListener("click", createPattern);
     e("translatedWordStyle").addEventListener("keyup", showCSSExample);
     e("minimumSourceWordLength").addEventListener("blur", save_minimumSourceWordLength);
+    e("ngramMin").addEventListener("blur", save_ngramMin);
+    e("ngramMax").addEventListener("blur", save_ngramMax);
     e("translatedWordStyle").addEventListener("blur", save_translatedWordStyle);
     e("blacklist").addEventListener("blur", save_blacklist);
     e("userDefinedTranslations").addEventListener("blur", save_userDefinedTranslations);
@@ -198,7 +200,8 @@ $(function() {
 
   function restoreOptions(data) {
     var options = ["sourceLanguage", "targetLanguage", "translationProbability", 
-               "minimumSourceWordLength", "translatedWordStyle", "blacklist",
+               "minimumSourceWordLength", "ngramMin", "ngramMax", 
+               "translatedWordStyle", "blacklist",
                "userDefinedTranslations", "userBlacklistedWords"];
 
     for (index in options) {
@@ -224,19 +227,6 @@ $(function() {
       elem.value = data[option];
     }   
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -314,6 +304,12 @@ $(function() {
     save("userBlacklistedWords", "Blacklisted words saved");
   }
 
+  function save_ngramMin() {
+    save("ngramMin", "Minimum word sequence length saved")
+  }
 
+  function save_ngramMax() {
+    save("ngramMax", "Maximum word sequence length saved")
+  }
   google_analytics('UA-1471148-14');  
 });

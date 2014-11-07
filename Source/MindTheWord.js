@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2015 Bruno Woltzenlogel Paleo. All rights reserved.
 // With a little help of these awesome guys, https://github.com/OiWorld/MindTheWord/graphs/contributors!
 
-var sl, tl;
+var sl, tl; // source language and target language
 
 function injectCSS(cssStyle) {
   document.styleSheets[0].insertRule("span.mtwTranslatedWord {" + cssStyle + "}", 0);
@@ -138,8 +138,8 @@ function shuffle(o) {
   return o;
 }
 
-function getAllWords() {
-  var maxWords = 10000, ngramMin = 1, ngramMax = 1, wordCount = 0;
+function getAllWords(ngramMin,ngramMax) {
+  console.log("getAllWords: ngramMin = " + ngramMin + "; ngramMax = " + ngramMax);
   var countedWords = {};
   paragraphs = document.getElementsByTagName('p');
   console.log("Getting words from all "+paragraphs.length+" paragraphs");
@@ -150,18 +150,16 @@ function getAllWords() {
         var word = ngramAt(words, j, b);
         if (!(word in countedWords)) {
           countedWords[word] = 0;
-          wordCount += 1;
         }
         countedWords[word] += 1;
       }
     }
   }
-  console.log("Counted "+wordCount+" words");
   return countedWords;
 }
 
-function ngramAt(list, index, ngram) {
-  return list.slice(index, index+ngram).join(" ");
+function ngramAt(list, index, n) {
+  return list.slice(index, index+n).join(" ");
 }
 
 __mindtheword = new function() {
@@ -179,9 +177,9 @@ __mindtheword = new function() {
   };
 };
 
-function main(translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords) {
+function main(ngramMin, ngramMax, translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords) {
   console.log('starting translation');
-  var countedWords = getAllWords();
+  var countedWords = getAllWords(ngramMin, ngramMax);
   console.log(countedWords);
   requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords),
           function(tMap) {processTranslations(tMap, userDefinedTranslations);}); 
@@ -189,15 +187,26 @@ function main(translationProbability, minimumSourceWordLength, userDefinedTransl
 
 console.log("mindTheWord running");
 chrome.runtime.sendMessage({getOptions : "Give me the options chosen by the user..." }, function(r) {
-  console.log("got data. activated? " + r.activation);
+  console.log("Options received: \n" + 
+              "  activation: " + r.activation + "\n" +
+              "  ngramMin: " + r.ngramMin + "\n" +
+              "  ngramMax: " + r.ngramMax );
+
+
   var blacklist = new RegExp(r.blacklist);
-  sl = r.sourceLanguage;
-  tl = r.targetLanguage;
-  injectScript(r.script);
   if (!!r.activation && !blacklist.test(document.URL)) {
+    sl = r.sourceLanguage;
+    tl = r.targetLanguage;
+    injectScript(r.script);
     injectCSS(r.translatedWordStyle);
-    chrome.runtime.sendMessage({runMindTheWord: "Pretty please?"}, function(){
-      main(r.translationProbability, r.minimumSourceWordLength, JSON.parse(r.userDefinedTranslations), r.userBlacklistedWords);
+
+    chrome.runtime.sendMessage({runMindTheWord: "Execute!"}, function(){
+      main(parseInt(r.ngramMin), 
+           parseInt(r.ngramMax), 
+           r.translationProbability, 
+           r.minimumSourceWordLength, 
+           JSON.parse(r.userDefinedTranslations), 
+           r.userBlacklistedWords);
     })
   }
 });
