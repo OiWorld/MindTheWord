@@ -1,36 +1,47 @@
-function initializeLocalStorage() {
-  if(localStorage["activation"] == null){
-    localStorage["blacklist"]               = "(stackoverflow.com|github.com|code.google.com)";
-    localStorage["activation"]              = "true";
-    localStorage["savedPatterns"]           = JSON.stringify([[["en","English"],["it","Italian"],"15",true], [["en","English"],["la","Latin"],"15",false]]);
-    localStorage["sourceLanguage"]          = "en";
-    localStorage["targetLanguage"]          = "it";
-    localStorage["translatedWordStyle"]     = "color: #fe642e;\nfont-style: normal;";
-    localStorage["userBlacklistedWords"]    = "(this|that)";
-    localStorage["translationProbability"]  = 15;
-    localStorage["minimumSourceWordLength"] = 3;
-    localStorage["userDefinedTranslations"] = '{"the":"the", "a":"a"}';
-  }
+console.log("Starting up MindTheWord background page");
+var storage = chrome.storage.sync;
+
+function initializeStorage() {
+  storage.get("initialized", function(result) {
+    if (!(result.initialized)) {
+      var data = {
+        initialized: true,
+        activation: true,
+        blacklist: "(stackoverflow.com|github.com|code.google.com|developer.*.com|duolingo.com)",
+        savedPatterns: JSON.stringify([[["en","English"],["it","Italian"],"25",true], [["en","English"],["la","Latin"],"15",false]]),
+        sourceLanguage: "en",
+        targetLanguage: "it",
+        translatedWordStyle: "font-style: inherit;\ncolor: rgba(255,153,0,1);\nbackground-color: rgba(256, 100, 50, 0);",
+        userBlacklistedWords: "(this|that)",
+        translationProbability: 15,
+        minimumSourceWordLength: 3,
+        ngramMin: 1,
+        ngramMax: 1,
+        userDefinedTranslations: '{"the":"the", "a":"a"}',
+      };
+      console.log("setting defaults: ");
+      console.log(data);
+      storage.set(data);
+    }
+  });
 }
-initializeLocalStorage();
-
-function S(key) { return localStorage[key]; } 
+initializeStorage();
 
 
-function googleTranslateURL() {
+function googleTranslateURL(prefs) {
     var url = 'http://translate.google.com/translate_a/t?client=f&otf=1&pc=0&hl=en';
-    var sL = S("sourceLanguage");
+    var sL = prefs["sourceLanguage"];
     if(sL != 'auto') {
       url += '&sl=' + sL;
     }
-    url += '&tl=' + S("targetLanguage");
+    url += '&tl=' + prefs["targetLanguage"];
     url += '&text=';
     return url;
 }	
 
 
-function translateOneRequestPerFewWords(words, callback) {
-  console.debug("words: " + JSON.stringify(words));
+function translateOneRequestPerFewWords(words, prefs, callback) {
+  //console.debug("words: " + JSON.stringify(words));
   var concatWords = "";
   var length = 0
   var maxLength = 800;
@@ -38,9 +49,9 @@ function translateOneRequestPerFewWords(words, callback) {
   var cWALength = 1;
 
   for (word in words) {
-    console.debug("word: " + word);
+    //console.debug("word: " + word);
     concatWords += word + ". "  ;
-    console.debug("concatWords: " + concatWords);
+    //console.debug("concatWords: " + concatWords);
     concatWordsArray[cWALength] = concatWords;
     length += encodeURIComponent(word + ". ").length;
 
@@ -51,16 +62,16 @@ function translateOneRequestPerFewWords(words, callback) {
     }
   }
   var tMap = {};
-  translateORPFWRec(concatWordsArray,1,cWALength,tMap,callback);
+  translateORPFWRec(concatWordsArray, 1, cWALength, tMap, prefs, callback);
 }
 
-function translateORPFWRec(concatWordsArray, index, length, tMap,callback) {
+function translateORPFWRec(concatWordsArray, index, length, tMap, prefs, callback) {
   console.log("translateORPFWRec");
   console.debug("concatWordsArray: " + JSON.stringify(concatWordsArray));
   console.debug("index: " + index +  "; length: " + length);
   if (index > length) callback(tMap)
   else { 
-    var url = googleTranslateURL() + concatWordsArray[index];
+    var url = googleTranslateURL(prefs) + concatWordsArray[index];
     var xhr = new XMLHttpRequest(); xhr.open("GET", url, true);
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
@@ -73,43 +84,32 @@ function translateORPFWRec(concatWordsArray, index, length, tMap,callback) {
           var transT = trans.replace(/[.\u3002]/,""); // removes punctuation
           tMap[origT] = transT;
         }
-        translateORPFWRec(concatWordsArray, index + 1, length, tMap, callback);
+        translateORPFWRec(concatWordsArray, index + 1, length, tMap, prefs, callback);
       }
     }
     xhr.send();
   }
 }  	
 
-function length(associativeArray) {
-  var l = 0;
-  for (e in associativeArray) { l++; }
-  return l;       
-}
-function onRequest(request, sender, sendResponse) {
+function onMessage(request, sender, sendResponse) {
+  console.log("onMessage ");
+  console.log(request);
   if (request.wordsToBeTranslated) {
     console.log("words to be translated:", request.wordsToBeTranslated);
-    translateOneRequestPerFewWords(request.wordsToBeTranslated, function(tMap) {
-      console.log("translations:", tMap);
-      sendResponse({translationMap : tMap});
+    storage.get(null, function(prefs) {
+      translateOneRequestPerFewWords(request.wordsToBeTranslated, prefs, function(tMap) {
+        console.log("translations:", tMap);
+        sendResponse({translationMap : tMap});
+      });
     });
-    console.log(length(request.wordsToBeTranslated));
+    //console.log(length(request.wordsToBeTranslated));
   } else if (request.getOptions) {
-    sendResponse({translationProbability    : S("translationProbability"),
-                  minimumSourceWordLength   : S("minimumSourceWordLength"),
-                  translatedWordStyle       : S("translatedWordStyle"),
-                  userDefinedTranslations   : S("userDefinedTranslations"),
-                  userBlacklistedWords      : S("userBlacklistedWords"),
-                  activation                : S("activation"),
-                  blacklist                 : S("blacklist"),
-                  sourceLanguage            : S("sourceLanguage"),
-                  targetLanguage            : S("targetLanguage"),
-                  MindTheInjection          : [
-                                                chrome.extension.getURL("/assets/js/mtw.js"), 
-                                                chrome.extension.getURL("/assets/css/mtw.css"),
-                                                chrome.extension.getURL("/assets/css/fontello.css"), 
-                                                chrome.extension.getURL("/assets/css/animation.css")
-                                              ]
-                })
+    storage.get(null, function(data) {
+      data.script = [chrome.extension.getURL("/assets/js/mtw.js")];
+      console.log("sending getOptions data");
+      console.log(data);
+      sendResponse(data);
+    });
   } else if (request.runMindTheWord) {
     chrome.tabs.onUpdated.addListener(function(tabId, info){ //Wait until page has finished loading
       if(info.status == "complete"){
@@ -118,14 +118,14 @@ function onRequest(request, sender, sendResponse) {
       }
     })
   }
+  return true;
 };
 
-chrome.extension.onRequest.addListener(onRequest);
+chrome.runtime.onMessage.addListener(onMessage);
 
 function browserActionClicked() {
   chrome.tabs.create({url:chrome.extension.getURL("options.html")});
 }
 
-chrome.browserAction.onClicked.addListener(browserActionClicked);
-
 google_analytics('UA-1471148-13');
+console.log("Done setting up MindTheWord background page");
