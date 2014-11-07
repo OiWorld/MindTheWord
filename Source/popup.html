@@ -2,35 +2,22 @@
 <html ng-app="PopupApp">
   <head>
     <title>Mind The Word</title>
-    <style type="text/css">
-    body {
-      overflow: hidden;
-      margin: 0px;
-      padding: 0px;
-      background: white;
-      font-family: sans-serif;
-    }
-	
-    .button {
-      width: 120px;
-      height: 36px;
-      line-height: 36px;
-      text-align: center;
-    }
-    .button:hover {
-      background-color: rgba(0,0,0,0.3);
-    }
-    </style>
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <script type="text/javascript" src="assets/js/angular.min.js"></script>
     <script type="text/javascript" src="popup.js"></script>
   </head>
   <body>
-    <div ng-controller="PopupController">
-      <div class="button" ng-click="toggleEnabled()">{{ data.activation ? "Turn Off" : "Turn On" }}</div>
-      <div class="button" ng-click="toggleWords()" ng-disabled="{{ !data.activation }}">Toggle {{ toggledOn ? "Off" : "On" }}</div>
-      <div class="button" ng-click="options()">Options</div>
-    </div>
+    <div ng-controller="PopupController"><div class="btn-group">
+      <button type="button" class="btn btn-lg btn-primary" ng-click="toggleEnabled()">Turn {{ data.activation ? "Off" : "On" }}</button>
+
+      <button type="button" class="btn btn-lg btn-success" ng-click="toggleWords()">{{ toggledOn ? "Toggle" : "Toggle" }}</button>
+
+      <button type="button" class="btn btn-lg btn-warning" ng-click="options()">
+      Options
+      </button>
+    </div></div>
   </body>
 </html>
 
