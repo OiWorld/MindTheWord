@@ -103,7 +103,7 @@ function onMessage(request, sender, sendResponse) {
     //console.log(length(request.wordsToBeTranslated));
   } else if (request.getOptions) {
     storage.get(null, function(data) {
-      data.MindTheInjection = [chrome.extension.getURL("/assets/js/mtw.js")];
+      data.script = [chrome.extension.getURL("/assets/js/mtw.js")];
       console.log("sending getOptions data");
       console.log(data);
       sendResponse(data);

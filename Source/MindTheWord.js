@@ -1,13 +1,16 @@
-// Copyright (c) 2011-2013 Bruno Woltzenlogel Paleo. All rights reserved.
+// Copyright (c) 2011-2015 Bruno Woltzenlogel Paleo. All rights reserved.
 // With a little help of these awesome guys, https://github.com/OiWorld/MindTheWord/graphs/contributors!
 
-var sl, tl, customURLs;
+var sl, tl;
 
-function insertCSS(cssStyle) {
+function injectCSS(cssStyle) {
   document.styleSheets[0].insertRule("span.mtwTranslatedWord {" + cssStyle + "}", 0);
+}
+
+function injectScript(scriptURL) {
   var s = document.createElement("script");
-  s.setAttribute("src", customURLs[0]);
-  document.getElementsByTagName("head")[0].appendChild(s);
+  s.setAttribute("src", scriptURL);
+  document.getElementsByTagName("head")[0].appendChild(s); 
 }
 
 function requestTranslations(sourceWords, callback) {
@@ -98,7 +101,6 @@ function length(obj) {
   return Object.keys(obj).length;
 }
 
-// More precise than the old one
 function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
   var userBlacklistedWords = new RegExp(userBlacklistedWords);
 
@@ -137,7 +139,7 @@ function shuffle(o) {
 }
 
 function getAllWords() {
-  var maxWords = 10000, ngramMin = 2, ngramMax = 3, wordCount = 0;
+  var maxWords = 10000, ngramMin = 1, ngramMax = 1, wordCount = 0;
   var countedWords = {};
   paragraphs = document.getElementsByTagName('p');
   console.log("Getting words from all "+paragraphs.length+" paragraphs");
@@ -191,9 +193,9 @@ chrome.runtime.sendMessage({getOptions : "Give me the options chosen by the user
   var blacklist = new RegExp(r.blacklist);
   sl = r.sourceLanguage;
   tl = r.targetLanguage;
-  customURLs = r.MindTheInjection;
+  injectScript(r.script);
   if (!!r.activation && !blacklist.test(document.URL)) {
-    insertCSS(r.translatedWordStyle);
+    injectCSS(r.translatedWordStyle);
     chrome.runtime.sendMessage({runMindTheWord: "Pretty please?"}, function(){
       main(r.translationProbability, r.minimumSourceWordLength, JSON.parse(r.userDefinedTranslations), r.userBlacklistedWords);
     })
