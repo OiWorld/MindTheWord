@@ -98,10 +98,12 @@ $(function() {
   
 
   function createPattern(){
-    var pttrns = JSON.parse(S("savedPatterns")),
+    var patterns = JSON.parse(S("savedPatterns")),
         src = new Array(),
         trg = new Array(),
         prb = new Array();
+
+    console.debug(S("savedPatterns"));
 
     src[0] = document.getElementById("sourceLanguage");
     src[1] = src[0].children[src[0].selectedIndex].value;
@@ -112,12 +114,12 @@ $(function() {
     prb[0] = document.getElementById("translationProbability");
     prb[1] = prb[0].children[prb[0].selectedIndex].value;
 
-    pttrns.push([[src[1], src[2]],
-                 [trg[1], trg[2]],
-                 prb[1],
-                 false
-                ]);
-    saveBulk({"savedPatterns": JSON.stringify(pttrns)});
+    patterns.push([[src[1], src[2]],
+                   [trg[1], trg[2]],
+                   prb[1],
+                   false
+                  ]);
+    saveBulk({"savedPatterns": JSON.stringify(patterns)});
   }
 
 
@@ -125,6 +127,12 @@ $(function() {
     e("savedTranslationPatterns").innerHTML = "";
     var patterns = JSON.parse(data["savedPatterns"]);
     var patternsElem = $("#savedTranslationPatterns").html("");
+
+    // DeleteButton should only be shown if there are two or more patterns
+    var deleteButton = "";
+    if (patterns.length > 1) {
+      deleteButton = "<button class='btn btn-danger pull-right deletePattern'>Delete</button>";
+    };
 
     $.each(patterns, function(i, pattern) {
       var listElem = $("<p class='alert alert-"+((pattern[3] && !!data["activation"]) ? "success" : "nothing")+" tPattern'> \
@@ -134,7 +142,7 @@ $(function() {
                 <span class='label label-info'>"+pattern[0][1]+"</span> \
                 words into \
                 <span class='label label-info'>"+pattern[1][1]+"</span> \
-                <button class='btn btn-danger pull-right deletePattern'>Delete</button>\
+                " + deleteButton + " \
                 <input type='hidden' value='"+i+"' />\
               </p>");
       listElem.click(function() {
