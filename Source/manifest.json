@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Mind the Word",
-  "version": "1.8",
-  "description": "Learn languages as you browse the web!",
+  "version": "1.9",
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
   "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://www.google.com https://ssl.google-analytics.com;",
   "background" : {
     "scripts" : ["assets/js/google-analytics.js", "background.js"],
