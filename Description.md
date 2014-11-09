@@ -108,6 +108,22 @@ afrikaans, albanais, amharique, arabe, arménien, azerbaïdjanais, basque, biél
 Que vos études de langue vous apportent la joie et la fluidité!
 
 
+Italian (it)
+-----------
+
+Translated by: Tatsiana Pasherstnik
+
+ToDo
+
+
+Bielorussian
+------------
+
+Translated by: Tatsiana Pasherstnik
+
+ToDo
+
+
 
 Portuguese (pt)
 ---------------
