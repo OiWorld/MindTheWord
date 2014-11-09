@@ -1,5 +1,5 @@
-== English (en) ==
-
+English (en)
+------------
 
 MindTheWord provides language immersion while you browse the internet.
 
@@ -19,7 +19,8 @@ The following languages are supported so far:
 May your language learning bring you joy and fluency!
 
 
-== German (de) ==
+German (de)
+-----------
 
 MindTheWord bietet Sprachimmersion, während Sie im Internet surfen.
 
@@ -42,7 +43,8 @@ Möge Ihr Sprachenlernen Ihnen Freude bringen!
 
 
 
-== Spanish (es) ==
+Spanish (es)
+------------
 
 MindTheWord ofrece inmersión lingüística mientras navegas por internet.
 
@@ -64,7 +66,8 @@ Que sus estudios de idiomas traigan alegría y fluidez!
 
 
 
-== French (fr) ==
+French (fr)
+-----------
 
 MindTheWord fournit immersion linguistique pendant que vous naviguez sur Internet.
 
@@ -87,7 +90,8 @@ Que vos études de langue vous apporter la joie et la fluidité!
 
 
 
-== Portuguese (pt) ==
+Portuguese (pt)
+---------------
 
 MindTheWord oferece imersão em idiomas enquanto você navega pela internet.
 
@@ -107,3 +111,28 @@ africâner, albanês, amárico, árabe, armênio, azeri, basco, bielorrusso, ben
 
 Que seus estudos de línguas estrangeiras lhe tragam alegria e fluência!
 
+
+Russian (ru)
+------------
+
+Short: Изучайте языки во время пользования интернетом!
+
+MindTheWord помогает погрузиться в изучаемый язык во время просмотра страниц Интернета.
+
+На каждой просматриваемой странице MindTheWord переводит несколько случайных слов на язык интересующий пользователя.
+Так как переведенные иностранные слова находятся в контексте языка известного пользователю, их суть можно легко понять и запомнить.
+
+Это позволяет без особых усилий увеличить словарный запас и улучшить языковые навыки.
+
+Настройки позволяют установить:
+
+* сколько должно быть переведено;
+* каким образом переведенные слова должны быть выделены;
+* собственный словарь слов с заранее определенным переводом;
+* "черный список" сайтов, которые не должны быть переведены;
+* и многое другое...
+
+Качество перевода зависит от GoogleTranslate. 
+На текущий момент поддерживаются следующие языки:
+
+Желаем Вам удовольствия от изучения языков!
