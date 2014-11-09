@@ -1,3 +1,8 @@
+This file contains MindTheWord's description translated to several languages.
+
+Many thanks to all the translators! 
+
+
 English (en)
 ------------
 
@@ -25,6 +30,8 @@ May your language learning bring you joy and fluency!
 German (de)
 -----------
 
+Translated by: Bruno Woltzenlogel Paleo
+
 (Short: Lernen Sie Sprachen, während Sie im Internet surfen!)
 
 MindTheWord bietet Sprachimmersion, während Sie im Internet surfen.
@@ -51,6 +58,8 @@ Möge Ihr Sprachenlernen Ihnen Freude bringen!
 Spanish (es)
 ------------
 
+Translated by: Bruno Woltzenlogel Paleo
+
 (Short: Aprende idiomas mientras navegas por el Internet!)
 
 MindTheWord ofrece inmersión lingüística mientras navegas por internet.
@@ -75,6 +84,8 @@ Que sus estudios de idiomas traigan alegría y fluidez!
 
 French (fr)
 -----------
+
+Translated by: Bruno Woltzenlogel Paleo
 
 (Short: Apprendre des langues pendant que vous naviguez sur Internet!)
 
@@ -101,6 +112,8 @@ Que vos études de langue vous apportent la joie et la fluidité!
 Portuguese (pt)
 ---------------
 
+Translated by: Bruno Woltzenlogel Paleo
+
 (Short: Aprenda idiomas enquanto você navega pela Internet!)
 
 MindTheWord oferece imersão em idiomas enquanto você navega pela internet.
@@ -124,6 +137,8 @@ Que seus estudos de línguas estrangeiras lhe tragam alegria e fluência!
 
 Russian (ru)
 ------------
+
+Translated by: Ekaterina Lebedeva
 
 (Short: Изучайте языки во время пользования интернетом!)
 
@@ -153,6 +168,8 @@ MindTheWord помогает погрузиться в изучаемый язы
 
 Chinese (zh)
 ------------
+
+Translated by: Sai Qian
 
 (Short: 浏览互联网的同时学习语言！)
 
