@@ -1,6 +1,8 @@
 English (en)
 ------------
 
+(Short: Learn languages while browsing the Internet!)
+
 MindTheWord provides language immersion while you browse the internet.
 
 In every webpage visited, it randomly translates a few words into the target language specified by you. Because the translated words are kept in context, it is easy to infer and memorize their meanings. Therefore, you effortlessly learn new vocabulary and improve your language skills.
@@ -21,6 +23,8 @@ May your language learning bring you joy and fluency!
 
 German (de)
 -----------
+
+(Short: Lernen Sie Sprachen, während Sie im Internet surfen!)
 
 MindTheWord bietet Sprachimmersion, während Sie im Internet surfen.
 
@@ -46,6 +50,8 @@ Möge Ihr Sprachenlernen Ihnen Freude bringen!
 Spanish (es)
 ------------
 
+(Short: Aprende idiomas mientras navegas por el Internet!)
+
 MindTheWord ofrece inmersión lingüística mientras navegas por internet.
 
 En todas las páginas web visitadas, se traducen aleatoriamente azar unas cuantas palabras en el idioma de destino especificado por usted. Dado que las palabras traducidas se mantienen en contexto, es fácil inferir y memorizar sus significados. Por lo tanto, puede aprender nuevo vocabulario y mejorar sus conocimientos del idioma sin esfuerzo.
@@ -69,6 +75,8 @@ Que sus estudios de idiomas traigan alegría y fluidez!
 French (fr)
 -----------
 
+(Short: Apprendre des langues pendant que vous naviguez sur Internet!)
+
 MindTheWord offre immersion linguistique pendant que vous naviguez sur Internet.
 
 Dans chaque page visitée, quelques mots sont traduit aléatoirement dans la langue que vous avez indiquée. Du fait que les mots traduits sont maintenus dans leur contexte, il est facile de déduire et mémoriser leurs significations. Par conséquent, vous apprendrez facilement un nouveau vocabulaire et améliorez vos compétences linguistiques.
@@ -89,9 +97,10 @@ Que vos études de langue vous apportent la joie et la fluidité!
 
 
 
-
 Portuguese (pt)
 ---------------
+
+(Short: Aprenda idiomas enquanto você navega pela Internet!)
 
 MindTheWord oferece imersão em idiomas enquanto você navega pela internet.
 
