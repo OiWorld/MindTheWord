@@ -17,6 +17,7 @@ In the options, you can configure:
 
 Translation quality depends on GoogleTranslate. 
 The following languages are supported so far:
+Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, Belarusian, Bengali, Bihari, Bulgarian, Burmese, Breton, Catalan, Cherokee, Chinese, Chinese (simplified), Chinese (traditional), Corsican, Croatian, Czech, Danish, Dhivehi, Dutch, English, Esperanto, Estonian, Faroese, Filipino, Finnish, French, Frisian, Galician, Georgian, German, Greek, Gujarati, Haitian, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Inuktitut, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer, Korean, Kurdish, Kyrgyz, Lao, Laothian, Latin, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Norwegian, Occitan, Oriya, Pashto, Persian, Polish, Portuguese, Punjabi, Quechua, Romanian, Russian, Sanskrit, Scots - gaelic, Serbian, Sindhi, Sinhalese, Slovak, Slovenian, Spanish, Sundanese, Swahili, Swedish, Syriac, Tajik, Tamil, Tagalog, Tatar, Telugu, Thai, Tibetan, Tonga, Turkish, Ukrainian, Urdu, Uzbek, Uighur, Vietnamese, Welsh, Yiddish, Yoruba.
 
 May your language learning bring you joy and fluency!
 
@@ -124,7 +125,7 @@ Que seus estudos de línguas estrangeiras lhe tragam alegria e fluência!
 Russian (ru)
 ------------
 
-Short: Изучайте языки во время пользования интернетом!
+(Short: Изучайте языки во время пользования интернетом!)
 
 MindTheWord помогает погрузиться в изучаемый язык во время просмотра страниц Интернета.
 
@@ -143,5 +144,6 @@ MindTheWord помогает погрузиться в изучаемый язы
 
 Качество перевода зависит от GoogleTranslate. 
 На текущий момент поддерживаются следующие языки:
+Африкаанс, албанский, амхарский, арабский, армянский, азербайджанский, баскский, белорусский, бенгальский, Бихари, болгарский, бирманский, Бретон, каталанский, Cherokee, китайский, китайский (упрощенный), китайский (традиционный), корсиканский, хорватский, чешский, датский, дивехи, голландский, английский, эсперанто, эстонский, язык Фарерских островов, филиппинский, финский, французский, Frisian, галисийский, грузинский, немецкий, греческий, гуджарати, гаитянский, иврит, хинди, венгерский, исландский, индонезийский, инуктитут, ирландский, итальянский, японский, яванский, каннада, казахский, кхмеров, корейский, курдский, кыргызы, Лао, лаосский, латынь, латышский, литовский, люксембургский, македонский, малайский, малаялам, Мальтийский, маори, маратхи, монгольский, непальский, норвежский, окситанский, Ория, пушту, персидский, польский, португальский, пенджаби, кечуа, румынский, русский, санскрит, гэльский, сербский, Синди, сингальский, словацкий, словенский, испанский, суданский, суахили, шведский, сирийский, таджикистанский, тамильский, тагальский, татарский, телугу, тайский, тибетский, Тонга, турецкий, украинский, урду, узбекский, уйгурский, вьетнамский, валлийский, идиш, йоруба
 
-Желаем Вам удовольствия от изучения языков!
+Желаем Вам удовольствия от изучения иностранных языков!
