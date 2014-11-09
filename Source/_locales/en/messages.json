@@ -1,10 +1,10 @@
 {
   "appName": {
-    "message": "Mind the Word",
+    "message": "MindTheWord",
     "description": "The title of the application, displayed in the web store."
   },
   "appDesc": {
-    "message": "Learn languages as you browse the web!",
+    "message": "Learn languages while browsing the Internet!",
     "description": "The description of the application, displayed in the web store."
   }
 }
