@@ -4,7 +4,7 @@
     "description": "The title of the application, displayed in the web store."
   },
   "appDesc": {
-    "message": "Learn languages as you browse the web!",
+    "message": "浏览互联网的同时学习语言！",
     "description": "The description of the application, displayed in the web store."
   }
 }
