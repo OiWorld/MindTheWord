@@ -69,23 +69,23 @@ Que sus estudios de idiomas traigan alegría y fluidez!
 French (fr)
 -----------
 
-MindTheWord fournit immersion linguistique pendant que vous naviguez sur Internet.
+MindTheWord offre immersion linguistique pendant que vous naviguez sur Internet.
 
-Dans chaque page visitée, elle se traduit par hasard quelques mots dans la langue cible que vous avez indiquée. Du fait que les mots traduits sont maintenus dans leur contexte, il est facile d'en déduire et mémoriser leurs significations. Par conséquent, vous apprendrez facilement un nouveau vocabulaire et d'améliorer vos compétences linguistiques.
+Dans chaque page visitée, quelques mots sont traduit aléatoirement dans la langue que vous avez indiquée. Du fait que les mots traduits sont maintenus dans leur contexte, il est facile de déduire et mémoriser leurs significations. Par conséquent, vous apprendrez facilement un nouveau vocabulaire et améliorez vos compétences linguistiques.
 
 Dans les options, vous pouvez configurer:
-* Combien doit être traduit;
-* Mots comment traduits doivent être mis en évidence;
-* Votre propre dictionnaire de traduction pré-définis;
-* Combien de mots consécutifs doivent être traduits;
-* Une liste noire de sites Web qui ne devrait pas être traduit;
-* Et bien plus encore ...
+* combien doit être traduit;
+* comment doivent être mis en évidence les mots traduits;
+* combien de mots consécutifs doivent être traduits;
+* votre propre dictionnaire de traductions pré-définies;
+* une liste de sites Web qui ne devrait pas être traduit;
+* et bien plus encore ...
 
-La qualité de la traduction dépend GoogleTranslate.
+La qualité de la traduction dépend du GoogleTranslate.
 Les langues suivantes sont disponibles à ce jour:
-Afrikaans, albanais, amharique, arabe, arménien, azerbaïdjanais, basque, biélorusse, bengali, Bihari, bulgare, birman, le breton, le catalan, le Cherokee, chinois, chinois (simplifié), chinois (traditionnel), corse, croate, tchèque, danois, Dhivehi, néerlandais, anglais, espéranto, l'estonien, féroïen, philippin, finnois, français, frison, le galicien, géorgien, allemand, grec, gujarati, haïtien, hébreu, hindi, hongrois, islandais, indonésien, l'inuktitut, irlandais, italien, japonais, javanais, kannada, le kazakh, le khmer, le coréen, kurde, kirghize, le Laos, laotien, latin, letton, lituanien, luxembourgeois, macédonien, malais, malayalam, maltais, maori, marathi, mongol, népalais, norvégien, occitan, Oriya, le pachto, persan, polonais, portugais, punjabi, Quechua, roumain, russe, sanskrit, Ecossais - gaélique, serbe, le sindhi, Cinghalais, slovaque, slovène, espagnol, Sundanese, le swahili, le suédois, le syriaque, tadjik, Tamil, Tagalog, tatar, Telugu, thaï, tibétain, Tonga, turc, ukrainien, urdu, ouzbek, ouïgour, le vietnamien, le gallois, le yiddish, le yoruba.
+afrikaans, albanais, amharique, arabe, arménien, azerbaïdjanais, basque, biélorusse, bengali, Bihari, bulgare, birman, le breton, le catalan, le Cherokee, chinois, chinois (simplifié), chinois (traditionnel), corse, croate, tchèque, danois, Dhivehi, néerlandais, anglais, espéranto, l'estonien, féroïen, philippin, finnois, français, frison, le galicien, géorgien, allemand, grec, gujarati, haïtien, hébreu, hindi, hongrois, islandais, indonésien, l'inuktitut, irlandais, italien, japonais, javanais, kannada, le kazakh, le khmer, le coréen, kurde, kirghize, le Laos, laotien, latin, letton, lituanien, luxembourgeois, macédonien, malais, malayalam, maltais, maori, marathi, mongol, népalais, norvégien, occitan, Oriya, le pachto, persan, polonais, portugais, punjabi, Quechua, roumain, russe, sanskrit, Ecossais - gaélique, serbe, le sindhi, Cinghalais, slovaque, slovène, espagnol, Sundanese, le swahili, le suédois, le syriaque, tadjik, Tamil, Tagalog, tatar, Telugu, thaï, tibétain, Tonga, turc, ukrainien, urdu, ouzbek, ouïgour, le vietnamien, le gallois, le yiddish, le yoruba.
 
-Que vos études de langue vous apporter la joie et la fluidité!
+Que vos études de langue vous apportent la joie et la fluidité!
 
 
 
