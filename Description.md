@@ -2,6 +2,9 @@ This file contains MindTheWord's description translated to several languages.
 
 Many thanks to all the translators! 
 
+If you would like to contribute a translation to your language (or improve one of the translations shown here), please send it to [MindTheWord@gmail.com](mailto:MindTheWord@gmail.com). If you know ```git```and ```Github```, you may also  make a pull request of your contribution.
+
+
 
 English (en)
 ------------
