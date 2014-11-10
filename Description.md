@@ -1,6 +1,6 @@
 This file contains MindTheWord's description translated to several languages.
 
-Many thanks to all the translators! 
+Many thanks to all the translators!
 
 If you would like to contribute a translation to your language (or improve one of the translations shown here), please send it to [MindTheWord@gmail.com](mailto:MindTheWord@gmail.com). If you know ```git```and ```Github```, you may also  make a pull request of your contribution.
 
@@ -23,7 +23,7 @@ In the options, you can configure:
 * a blacklist of websites that should not be translated;
 * and much more...
 
-Translation quality depends on GoogleTranslate. 
+Translation quality depends on GoogleTranslate.
 The following languages are supported so far:
 Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, Belarusian, Bengali, Bihari, Bulgarian, Burmese, Breton, Catalan, Cherokee, Chinese, Chinese (simplified), Chinese (traditional), Corsican, Croatian, Czech, Danish, Dhivehi, Dutch, English, Esperanto, Estonian, Faroese, Filipino, Finnish, French, Frisian, Galician, Georgian, German, Greek, Gujarati, Haitian, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Inuktitut, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer, Korean, Kurdish, Kyrgyz, Lao, Laothian, Latin, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Norwegian, Occitan, Oriya, Pashto, Persian, Polish, Portuguese, Punjabi, Quechua, Romanian, Russian, Sanskrit, Scots - gaelic, Serbian, Sindhi, Sinhalese, Slovak, Slovenian, Spanish, Sundanese, Swahili, Swedish, Syriac, Tajik, Tamil, Tagalog, Tatar, Telugu, Thai, Tibetan, Tonga, Turkish, Ukrainian, Urdu, Uzbek, Uighur, Vietnamese, Welsh, Yiddish, Yoruba.
 
@@ -49,7 +49,7 @@ In den Optionen können Sie folgendes konfigurieren:
 * Eine schwarze Liste von Websites, die nicht übersetzt werden sollen;
 * Und vieles mehr ...
 
-Die Übersetzungsqualität hängt von GoogleTranslate ab. 
+Die Übersetzungsqualität hängt von GoogleTranslate ab.
 Die folgenden Sprachen werden bisher unterstützt:
 Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, Belarusian, Bengali, Bihari, Bulgarian, Burmese, Breton, Catalan, Cherokee, Chinese, Chinese (simplified), Chinese (traditional), Corsican, Croatian, Czech, Danish, Dhivehi, Dutch, English, Esperanto, Estonian, Faroese, Filipino, Finnish, French, Frisian, Galician, Georgian, German, Greek, Gujarati, Haitian, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Inuktitut, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer, Korean, Kurdish, Kyrgyz, Lao, Laothian, Latin, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Norwegian, Occitan, Oriya, Pashto, Persian, Polish, Portuguese, Punjabi, Quechua, Romanian, Russian, Sanskrit, Scots - gaelic, Serbian, Sindhi, Sinhalese, Slovak, Slovenian, Spanish, Sundanese, Swahili, Swedish, Syriac, Tajik, Tamil, Tagalog, Tatar, Telugu, Thai, Tibetan, Tonga, Turkish, Ukrainian, Urdu, Uzbek, Uighur, Vietnamese, Welsh, Yiddish, Yoruba.
 
@@ -77,7 +77,7 @@ En las opciones, puede configurar:
 * una lista de sitios web que no deben ser traducidos;
 * y mucho más...
 
-La calidad de la traducción depende de GoogleTranslate. 
+La calidad de la traducción depende de GoogleTranslate.
 Los siguientes idiomas están disponibles hasta el momento:
 Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, Belarusian, Bengali, Bihari, Bulgarian, Burmese, Breton, Catalan, Cherokee, Chinese, Chinese (simplified), Chinese (traditional), Corsican, Croatian, Czech, Danish, Dhivehi, Dutch, English, Esperanto, Estonian, Faroese, Filipino, Finnish, French, Frisian, Galician, Georgian, German, Greek, Gujarati, Haitian, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Inuktitut, Irish, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer, Korean, Kurdish, Kyrgyz, Lao, Laothian, Latin, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Norwegian, Occitan, Oriya, Pashto, Persian, Polish, Portuguese, Punjabi, Quechua, Romanian, Russian, Sanskrit, Scots - gaelic, Serbian, Sindhi, Sinhalese, Slovak, Slovenian, Spanish, Sundanese, Swahili, Swedish, Syriac, Tajik, Tamil, Tagalog, Tatar, Telugu, Thai, Tibetan, Tonga, Turkish, Ukrainian, Urdu, Uzbek, Uighur, Vietnamese, Welsh, Yiddish, Yoruba.
 
@@ -177,7 +177,7 @@ MindTheWord помогает погрузиться в изучаемый язы
 * "черный список" сайтов, которые не должны быть переведены;
 * и многое другое...
 
-Качество перевода зависит от GoogleTranslate. 
+Качество перевода зависит от GoogleTranslate.
 На текущий момент поддерживаются следующие языки:
 африкаанс, албанский, амхарский, арабский, армянский, азербайджанский, баскский, белорусский, бенгальский, бихари, болгарский, бирманский, бретонский, каталанский, чероки, китайский, китайский (упрощенный), китайский (традиционный), корсиканский, хорватский, чешский, датский, дивехи, голландский, английский, эсперанто, эстонский, фарерский, филиппинский, финский, французский, фризский, галисийский, грузинский, немецкий, греческий, гуджарати, гаитянский, иврит, хинди, венгерский, исландский, индонезийский, инуктитут, ирландский, итальянский, японский, яванский, каннада, казахский, кхмерский, корейский, курдский, киргизский, лао, лаосский, латынь, латышский, литовский, люксембургский, македонский, малайский, малаялам, мальтийский, маори, маратхи, монгольский, непальский, норвежский, окситанский, ория, пушту, персидский, польский, португальский, пенджаби, кечуа, румынский, русский, санскрит, гэльский, сербский, синдхи, сингальский, словацкий, словенский, испанский, суданский, суахили, шведский, сирийский, таджикистанский, тамильский, тагальский, татарский, телугу, тайский, тибетский, тонганский, турецкий, украинский, урду, узбекский, уйгурский, вьетнамский, валлийский, идиш, йоруба.
 
@@ -207,3 +207,59 @@ MindTheWord在您浏览互联网的同时给您提供一种浸入式的语言学
 翻译质量取决于“谷歌翻译”（“GoogleTranslate”）。目前支持的语言包括：南非荷兰语，阿尔巴尼亚语，阿姆哈拉语，阿拉伯语，亚美尼亚，阿塞拜疆语，巴斯克语，白俄罗斯语，孟加拉语，比哈尔，保加利亚，缅甸，布列塔尼语，加泰罗尼亚语，切诺基，中国，中国（简体），中国（繁体），科西嘉，克罗地亚语，捷克语，丹麦语，迪维希语，荷兰语，英语，世界语，爱沙尼亚，法罗群岛，菲律宾语，芬兰语，法语，弗里西亚语，加利西亚语，格鲁吉亚语，德语，希腊语，古吉拉特语，海地语，希伯来语，印地文，匈牙利语，冰岛语，印度尼西亚语，因纽特语，爱尔兰，意大利，日本，爪哇语，卡纳达语，哈萨克语，高棉语，韩国语，库尔德语，吉尔吉斯斯坦，老挝，老挝语，拉丁语，拉脱维亚语，立陶宛语，卢森堡，马其顿语，马来语，马拉雅拉姆语，马耳他语，毛利语，马拉地语，蒙古语，尼泊尔语，挪威，奥克，奥里亚语，普什图语，波斯语，波兰语，葡萄牙语，旁遮普语，克丘亚语，罗马尼亚语，俄语，梵语，苏格兰 - 盖尔语，塞尔维亚语，信德语，僧伽罗人，斯洛伐克语，斯洛文尼亚语，西班牙语，巽，斯瓦希里语，瑞典语，叙利亚，塔吉克，泰米尔语，菲律宾语，塔塔尔语，泰卢固语，泰语，藏语，汤加，土耳其语，乌克兰语，乌尔都语，乌兹别克，维吾尔语，越南语，威尔士语，意第绪语，约鲁巴语。
 
 愿您学习语言的过程一帆风顺！
+
+
+עברית (he)
+------------
+
+תרגום: Translated by: Irina Kalderon Libal
+
+(בקצרה: למדי שפות תוך כדי גלישה באינטרנט)
+
+יMindTheWord מאפשרת הטמעת שפות בזמן גלישה באינטרנט.
+
+בכל אתר שתבקרי, מספר מלים שייבחרו באקראי יתורגמו לשפת היעד שבחרת. דרך זו של תרגום מלים בודדות מתוך אתר שלם, מקלה על הבנת משמעותם ועוזרת לזכרם. כך תוכלי ללמוד מלים חדשות ללא מאמץ ולשפר את כישורי השפה שלך.
+
+בדף האפשרויות, תוכלי לבחור:
+* את אחוז המלים שיתורגמו.
+* כיצד המלים המתורגמות יופיעו בדף.
+* איך לתרגם מלים מסוימות.
+* כמה מלים עוקבות יתורגמו יחדיו.
+* רשימת אתרים אותם אין ברצונך לתרגם.
+* ועוד אופציות רבות אחרות...
+
+איכות התרגום תלויה באיכות גוגל תרגום (google translate).
+
+השפות הבאות נתמכות כרגע:
+אפריקאנס, אלבנית, אמהרית, ערבית, ארמנית, אזרית, באסקית, בלארוסית, בנגלית, ביהרית, בולגרית, בורמזית, ברטונית, קטלנית, צ'רוקי, סינית מפושטת, סינית מסורתית, קורסיקאית, קרואטית, צ'כית, דנית, דיווהית, הולנדית, אנגלית, אספרנטו, אסטונית, פארואזית, פיליפינית, פינית, צרפתית, פריזית, גליציאנית, גרוזינית, גרמנית, יוונית, גוג'ראטית, קריאולית, עברית, הינדית, הונגרית, איסלנדית, אינדונזית, אינוקטיטוט, אירית, איטלקית, יפנית, ג'אווה, קנדית, קזחית, חמרית, קוריאנית, קורדית, קירגיזית, לאית, לטינית, לטבית, ליטאית, לוקסמבורגית, מקדונית,  מלאית, מלאיאלאם, מלטזית, מאורית, מראטהי, מונגולית, נפאלית, נורווגית, אוקסיטנית, אורייה, פשטונית, פרסית, פולנית, פורטוגזית, פנג'אבי, קצ'ואה, רומנית, רוסית, סנסקריט, גאלית סקוטית, סרבית, סינדהי, סינהאלית, סלובקית, סלובנית, ספרדית, סונדנזית, סווהילי, שוודית, סורית, טג'יקית, טמילית, טגלוג, טטרית, טלוגו, תאית, טיבטית, טונגאית, טורקית, אוקראינית, אורדו, אוזבקית, אויגור, וייטנאמית, ולשית, אידיש, יורובית.
+
+בתקווה שלימודי השפה יגרמו לך להנאה וישפרו את רהיטותך!
+
+Bulgarian (bg)
+------------
+
+Translated by: Irina Kalderon Libal
+
+(Short: Изучайте языки во время пользования интернетом!)
+
+MindTheWord помогает погрузиться в изучаемый язык во время просмотра страниц Интернета.
+
+На каждой просматриваемой странице MindTheWord переводит несколько случайных слов на язык интересующий пользователя.
+Так как переведенные иностранные слова находятся в контексте языка известного пользователю, их суть можно легко понять и запомнить.
+
+Это позволяет без особых усилий увеличить словарный запас и улучшить языковые навыки.
+
+Настройки позволяют установить:
+
+* сколько должно быть переведено;
+* каким образом переведенные слова должны быть выделены;
+* сколько непосредственно рядом стоящих слов должно быть переведено
+* собственный словарь слов с заранее определенным переводом;
+* "черный список" сайтов, которые не должны быть переведены;
+* и многое другое...
+
+Качество перевода зависит от GoogleTranslate.
+На текущий момент поддерживаются следующие языки:
+африкаанс, албанский, амхарский, арабский, армянский, азербайджанский, баскский, белорусский, бенгальский, бихари, болгарский, бирманский, бретонский, каталанский, чероки, китайский, китайский (упрощенный), китайский (традиционный), корсиканский, хорватский, чешский, датский, дивехи, голландский, английский, эсперанто, эстонский, фарерский, филиппинский, финский, французский, фризский, галисийский, грузинский, немецкий, греческий, гуджарати, гаитянский, иврит, хинди, венгерский, исландский, индонезийский, инуктитут, ирландский, итальянский, японский, яванский, каннада, казахский, кхмерский, корейский, курдский, киргизский, лао, лаосский, латынь, латышский, литовский, люксембургский, македонский, малайский, малаялам, мальтийский, маори, маратхи, монгольский, непальский, норвежский, окситанский, ория, пушту, персидский, польский, португальский, пенджаби, кечуа, румынский, русский, санскрит, гэльский, сербский, синдхи, сингальский, словацкий, словенский, испанский, суданский, суахили, шведский, сирийский, таджикистанский, тамильский, тагальский, татарский, телугу, тайский, тибетский, тонганский, турецкий, украинский, урду, узбекский, уйгурский, вьетнамский, валлийский, идиш, йоруба.
+
+Желаем Вам удовольствия от изучения иностранных языков!
