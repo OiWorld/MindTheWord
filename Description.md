@@ -209,7 +209,7 @@ MindTheWord在您浏览互联网的同时给您提供一种浸入式的语言学
 愿您学习语言的过程一帆风顺！
 
 
-עברית (he)
+&#x202b;עברית (he)
 ------------
 
 תרגום: Translated by: Irina Kalderon Libal
