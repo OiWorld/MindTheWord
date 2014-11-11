@@ -116,7 +116,25 @@ Italian (it)
 
 Translated by: Tatsiana Pasherstnik
 
-ToDo
+(Short: Studiare lingue mentre navigate su Internet)
+
+MindTheWord aiuta ad immergervi nella lingua che studiate mentre visitate le pagine web.
+
+In ogni pagina visitata MindTheWord traduce alcune parole a caso nella lingua che avete scelto. Si può capire il significato delle parole e memorizzarle facilmente perché sono presentate nel contesto. Questo vi aiuta a studiare il lessico nuovo e migliorare le vostre capacità linguistiche senza alcun sforzo! 
+
+Potete scegliere le seguenti opzioni: 
+* quante parole devono essere tradotte; 
+* come devono essere evidenziate le parole tradotte;
+* il vostro dizionario personale con la traduzione predefinita; 
+* quante parole di seguito devono essere tradotte; 
+* una lista di siti che non devono essere tradotti; 
+* e tanto altro…
+
+La qualità della traduzione dipende da GoogleTranslate. Per ora le lingue disponibili sono le seguenti: 
+afrikaans, albanese, amarico, arabo, armeno, azerbaigiano, basco, bielorusso, bengalese, bihari, bulgaro, birmano, bretone, catalano, cherokee, cinese, cinese (simplificato), cinese (tradizionale), corso, croato, ceco, danese, dhivehi, olandese, inglese, esperanto, estone, faroese, filippino, finlandese, francese, frisone, gallego, georgiano, tedesco, greco, gujarati, haitiano, ebraico, hindi, ungherese, islandese, indonesiano, inuktitut, irlandese, italiano, giapponese, giavanese, kannada, kazako, khmer, coreano, curdo, kirghiso, lao, latino, lettone, lituano, lussemburghese, macedone, malese, malayalam, maltese, maori, marathi, mongolo, nepalese, norvegese, occitano, oriya, pashtu, persiano, polacco, portoghese, punjabi, quechua, rumeno, russo, sanscrito, gaelico, serbo, sindhi, singalese, slovacco, sloveno, spagnolo, sudanese, swahili, svedese, siriano, tagico, tamil, tagalog, tartaro, telugu, tailandese, tibetano, tongano, turco, ucraino, urdu, usbeco, uiguro, vietnamita, gallese, yiddish, yoruba. 
+
+Vi auguriamo buono studio!
+
 
 
 Bielorussian
