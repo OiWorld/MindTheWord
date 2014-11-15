@@ -357,11 +357,12 @@ yabancı dil becerinizi yükseltebilirsiniz.
 
 Seçenekler kısmında, aşağıdakileri kişiselleştirebilirsiniz:
 
--Site içeriğinin ne kadarının çevirilmesi gerektiği; Çevrilen
--kelimelerin ne sekilde görüntülenmesi gerektiği; Kendi
--çevirilerinizden olusan kişisel sözlüğünüz; Kaç tane ardışık
--kelimenin çevrilmesi gerektiği; Çevrilmemesini istediğiniz internet
--sayfalarının listesi; Ve çok daha fazlası...
+* Site içeriğinin ne kadarının çevirilmesi gerektiği; 
+* Çevrilen kelimelerin ne sekilde görüntülenmesi gerektiği; 
+* Kendi çevirilerinizden olusan kişisel sözlüğünüz; 
+* Kaç tane ardışık kelimenin çevrilmesi gerektiği; 
+* Çevrilmemesini istediğiniz internet sayfalarının listesi; 
+* Ve çok daha fazlası...
 
 Çevirinin kalitesi, Google Translate’in yazıyı nasıl çevirdiğine
 bağlıdır. Halihazırda desteklenen diller: Afrikanca, Arnavutça,
