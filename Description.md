@@ -339,6 +339,52 @@ MindTheWord помогает погрузиться в изучаемый язы
 Желаем Вам удовольствия от изучения иностранных языков!
 
 
+Turkish (tr)
+------------
+
+Translated by: Erman Acar
+
+(Short: Internette gezinirken bir yandan farklı diller öğrenin)
+
+MindTheWord internette gezinirken bir dili sadece o dili kullanarak
+öğrenmenizi saglar.
+
+MindTheWord, ziyaret ettiginiz her sitede bazı kelimeleri rastgele
+öğrenmek istediğiniz dile çevirir.  Çevirilen kelimeler belirli bir
+kontekst içerisinde çevrildiğinden ötürü, anlamlarını öğrenmek ve
+akılda tutmak kolaylaşır. Bu sayede, hemen hemen hiç çaba harcamadan
+yabancı dil becerinizi yükseltebilirsiniz.
+
+Seçenekler kısmında, aşağıdakileri kişiselleştirebilirsiniz:
+
+-Site içeriğinin ne kadarının çevirilmesi gerektiği; Çevrilen
+-kelimelerin ne sekilde görüntülenmesi gerektiği; Kendi
+-çevirilerinizden olusan kişisel sözlüğünüz; Kaç tane ardışık
+-kelimenin çevrilmesi gerektiği; Çevrilmemesini istediğiniz internet
+-sayfalarının listesi; Ve çok daha fazlası...
+
+Çevirinin kalitesi, Google Translate’in yazıyı nasıl çevirdiğine
+bağlıdır. Halihazırda desteklenen diller: Afrikanca, Arnavutça,
+Amharca, Arapça, Ermenice, Azerice, Baskça, Belarusça, Bengalce,
+Biharice, Bulgarca, Burmaca, Bretonca, Katalanca, Çerokice, Çince,
+Çince (sadeleştirilmiş), Korsikaca, Hırvatça, Çekçe, Danca, Maldivce,
+Flemenkçe, İngilizce, Esperanto, Estonca, Faroece, Filipince, Fince,
+Fransızca, Frizce, Galiçyaca, Gürcüce, Almanca, Yunanca, Gucaratça,
+Haiti Kreyolu, İbranice, Hintçe, Macarca, İzlandaca, Endonezce,
+Inuitçe, İrlandaca, İtalyanca, Japonca, Cava dili, Kannada dili,
+Kazakça, Khmerce, Korece, Kürtçe, Kırgızca, Laoca, Latince, Letonca,
+Litvanca,Lüksemburgca, Makedonca, Malayca, Malayalam dili, Maltaca,
+Maorice, Marathi, Moğolca, Nepali, Oksitanca, Oriya dili, Peştuca,
+Farsça, Lehçe, Portekizce, Pencapça, Keçuva dili, Romence, Rusça,
+Sanskritçe, İskoçça (Kelt dili), Sırpça, Sindhî, Seylanca, Slovakça,
+Slovence, İspanyolca, Sunda dili, Svahili, İsveççe, Süryanice,
+Tacikçe, Tamilce, Tagalogca, Tatarca, Teluguca, Tayca, Tibetçe,
+Tongaca, Türkçe, Ukraynaca, Urduca, Özbekçe, Uygurca, Vietnamca,
+Galce, Yidiş, Yorubaca.
+
+Neşeli ve akıcı bir dil öğrenimi dileriz!
+
+
 
 Chinese (zh)
 ------------
