@@ -414,7 +414,9 @@ MindTheWord在您浏览互联网的同时给您提供一种浸入式的语言学
 Japanese (ja)
 -------------
 
-（Short: ネットサーフィンしながら、　言語を学びましょう）
+Translated by: Elias Kaneko and Nobuo Kimura
+
+(Short: ネットサーフィンしながら、　言語を学びましょう)
 
 MindTheWord　ではネットサーフィンしながら、イマージョン・プログラムを通じて言語習得を目指します。
 
