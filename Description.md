@@ -212,7 +212,7 @@ MindTheWord在您浏览互联网的同时给您提供一种浸入式的语言学
 עברית (he)
 ------------
 
-תרגום: Translated by: Irina Kalderon Libal
+Translated by: Irina Kalderon Libal תרגום:
 
 (בקצרה: למדי שפות תוך כדי גלישה באינטרנט)
 
