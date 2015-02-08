@@ -7,7 +7,7 @@ In your proposal, please elaborate one of Mind the Word's [suggested ideas](http
 Candidates and their proposals will be evaluated according to the following criteria:
 
  1. candidate's proficiency in Javascript, HTML, CSS... (This is the main criterium!)
- 2. candidate's understanding of how to implement browser extensions for Google Chrome.
+ 2. candidate's understanding of how to implement browser extensions.
  3. candidate's familiarity of Google's translation APIs.
  4. proposal's likelihood to be successfully implemented during the timeframe of GSoC.
  5. proposal's interest for the users of Mind The Word.
