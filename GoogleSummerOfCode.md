@@ -6,14 +6,18 @@ In your proposal, please elaborate one of Mind the Word's [suggested ideas](http
 
 Candidates and their proposals will be evaluated according to the following criteria:
 
- 1. candidate's proficiency in Javascript, HTML, CSS, Chrome's browser extension API and Google's translation APIs.
- 2. proposal's likelihood to be successfully implemented during the timeframe of GSoC.
- 3. proposal's interest for the users of Mind The Word.
+ 1. candidate's proficiency in Javascript, HTML, CSS... (This is the main criterium!)
+ 2. candidate's understanding of how to implement browser extensions for Google Chrome.
+ 3. candidate's familiarity of Google's translation APIs.
+ 4. proposal's likelihood to be successfully implemented during the timeframe of GSoC.
+ 5. proposal's interest for the users of Mind The Word.
   
+
 The best way to demonstrate that you are the right candidate is by doing one or more of the following:
 
+* send samples of code you have produced in the past (especially in JavaScript).
 * [fork Mind the Word's repository](https://github.com/OiWorld/MindTheWord/), and make pull requests of any contributions you might have. We suggest you try to fix some of the current issues that we have especially labeled as [puzzles for GSoC](https://github.com/OiWorld/MindTheWord/issues?labels=puzzle+for+GSoC&milestone=&page=1&state=open). Contact us before you start.   
-* send samples of code you have produced in the past (especially in JavaScript), and explain why you think the techniques, algorithms or data structures you used in these samples are relevant for Mind The Word.
+
 
 Please write about this in your application.
 
