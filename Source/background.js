@@ -1,6 +1,9 @@
 console.log("Starting up MindTheWord background page");
 var storage = chrome.storage.sync;
 
+/**
+ * @desc Storage Initialization for blacklist, patterns, option languages
+ */
 function initializeStorage() {
   storage.get("initialized", function(result) {
     if (!(result.initialized)) {
@@ -27,7 +30,11 @@ function initializeStorage() {
 }
 initializeStorage();
 
-
+/**
+ * @desc Constructs google translate url
+ * @params User saved preferences
+ * @return Google Translate query from source to destination language
+ */
 function googleTranslateURL(prefs) {
     var url = 'http://translate.google.com/translate_a/t?client=f&otf=1&pc=0&hl=en';
     var sL = prefs["sourceLanguage"];
