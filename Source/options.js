@@ -2,19 +2,19 @@ var storage = chrome.storage.sync;
 var cachedStorage = {};
 
 function e(id) {
-  return document.getElementById(id);
+    return document.getElementById(id);
 }
 
 $(function() {	
-  var languageLoaded = function(){
-    loadStorageAndUpdate(function(data) {
-      initUi();
-      updateUi(data);
-    });
-  };
-  google.load("language", "1", {callback: languageLoaded});
+    var languageLoaded = function(){
+        loadStorageAndUpdate(function(data) {
+        initUi();
+        updateUi(data);
+        });
+    };
+google.load("language", "1", {callback: languageLoaded});
 
-  function setupListeners() {
+function setupListeners() {
     e("addTranslationBtn").addEventListener("click", createPattern);
     e("translatedWordStyle").addEventListener("keyup", showCSSExample);
     e("minimumSourceWordLength").addEventListener("blur", save_minimumSourceWordLength);
@@ -24,84 +24,84 @@ $(function() {
     e("blacklist").addEventListener("blur", save_blacklist);
     e("userDefinedTranslations").addEventListener("blur", save_userDefinedTranslations);
     e("userBlacklistedWords").addEventListener("blur", save_userBlacklistedWords);
-  }
+}
 
-  function initUi() {
+function initUi() {
     setLanguages();
     setupListeners();
-  }
+}
 
-  //Sets Languages
-  function setLanguages(){
+//Sets Languages
+function setLanguages(){
     var languages = google.language.Languages
     var targetLanguageOptions = " "
     for(var language in languages) {
-      var name = language.substring(0, 1) + language.substring(1).toLowerCase().replace('_', ' - ');
-      targetLanguageOptions += '<option value="' + languages[language] + '">' + name + '</option>'
+        var name = language.substring(0, 1) + language.substring(1).toLowerCase().replace('_', ' - ');
+        targetLanguageOptions += '<option value="' + languages[language] + '">' + name + '</option>'
     }
     e("sourceLanguage").innerHTML = targetLanguageOptions;
     e("targetLanguage").innerHTML = targetLanguageOptions;
-  }
+}
 
 
-  function updateUi(data) {
-      console.log("Updating UI");
-      restoreOptions(data);
-      restorePatterns(data);
-      showCSSExample();
-  }
+function updateUi(data) {
+    console.log("Updating UI");
+    restoreOptions(data);
+    restorePatterns(data);
+    showCSSExample();
+}
 
-  /***
-  * Text: String, what you'd like it to say
-  * Duration: int, how long before it disappears
-  * Fade: int, how long before it'd completely hidden (I'd recommend this to be lower than duration time)
-  * Type: "success", "error", ...
-  */
-  function status(text, duration, fade, type) {
+/***
+* Text: String, what you'd like it to say
+* Duration: int, how long before it disappears
+* Fade: int, how long before it'd completely hidden (I'd recommend this to be lower than duration time)
+* Type: "success", "error", ...
+*/
+function status(text, duration, fade, type) {
     (function(text, duration, fade){
-      var status = document.createElement("div");
-          status.className = "alert alert-" + type;
-          status.innerText = text;
-          e("status").appendChild(status);
+        var status = document.createElement("div");
+        status.className = "alert alert-" + type;
+        status.innerText = text;
+        e("status").appendChild(status);
 
-      setTimeout(function(){
-        var opacity = 1,
+        setTimeout(function(){
+            var opacity = 1,
             ntrvl = setInterval(function(){
-              if(opacity <= 0.01){ clearInterval(ntrvl); e("status").removeChild(status); }
-              status.style.opacity = opacity;
-              opacity -= (1 / fade);
+            if(opacity <= 0.01){ clearInterval(ntrvl); e("status").removeChild(status); }
+            status.style.opacity = opacity;
+            opacity -= (1 / fade);
             }, 1)
-      }, (duration - fade))
-      console.log(text);
+        }, (duration - fade))
+        console.log(text);
     })(text, duration, fade)
-  }
-  function statusDefault(text) {
+}
+function statusDefault(text) {
     status(text, 1500, 100, "success");
-  }
+}
 
-  function showCSSExample(){
+function showCSSExample(){
     if(!oldNum){ var oldNum = 0 }
     var synonyms = ["awesome", "magnificent", "fabulous", "impressive", "great",
-                    "beautiful", "amazing", "awe-inspiring", "astonishing", "astounding",
-                    "noble", "formidable", "heroic", "spectacular", "important-looking",
-                    "majestic", "dazzling", "splendid", "brilliant", "glorious"],
-        num = Math.floor(Math.random()*synonyms.length);
+        "beautiful", "amazing", "awe-inspiring", "astonishing", "astounding",
+        "noble", "formidable", "heroic", "spectacular", "important-looking",
+        "majestic", "dazzling", "splendid", "brilliant", "glorious"],
+    num = Math.floor(Math.random()*synonyms.length);
     while(num == oldNum){ num = Math.floor(Math.random()*synonyms.length) } // We should not use the same word again. Now, should we?
     oldNum = num;
     e("resultSpan").style.cssText = e("translatedWordStyle").value;
     e("resultSpan").innerText = synonyms[num];
-  }
-  
+}
 
 
 
-  
 
-  function createPattern(){
+
+
+function createPattern(){
     var patterns = JSON.parse(S("savedPatterns")),
-        src = new Array(),
-        trg = new Array(),
-        prb = new Array();
+    src = new Array(),
+    trg = new Array(),
+    prb = new Array();
 
     console.debug(S("savedPatterns"));
 
@@ -115,15 +115,15 @@ $(function() {
     prb[1] = prb[0].children[prb[0].selectedIndex].value;
 
     patterns.push([[src[1], src[2]],
-                   [trg[1], trg[2]],
-                   prb[1],
-                   false
-                  ]);
+        [trg[1], trg[2]],
+        prb[1],
+        false
+        ]);
     saveBulk({"savedPatterns": JSON.stringify(patterns)});
-  }
+}
 
 
-  function restorePatterns(data){
+function restorePatterns(data){
     e("savedTranslationPatterns").innerHTML = "";
     var patterns = JSON.parse(data["savedPatterns"]);
     var patternsElem = $("#savedTranslationPatterns").html("");
@@ -132,65 +132,65 @@ $(function() {
     var deleteButton = "";
     if (patterns.length > 1) {
       deleteButton = "<button class='btn btn-danger pull-right deletePattern'>Delete</button>";
-    };
+  };
 
     $.each(patterns, function(i, pattern) {
-      var listElem = $("<p class='alert alert-"+((pattern[3] && !!data["activation"]) ? "success" : "nothing")+" tPattern'> \
-                Translate \
-                <span class='label label-info'>"+pattern[2]+"%</span> \
-                of all \
-                <span class='label label-info'>"+pattern[0][1]+"</span> \
-                words into \
-                <span class='label label-info'>"+pattern[1][1]+"</span> \
-                " + deleteButton + " \
-                <input type='hidden' value='"+i+"' />\
-              </p>");
-      listElem.click(function() {
-        activatePattern(i, patterns);
-      });
-      listElem.find('.deletePattern').click(function(e) {
-        deletePattern(i, patterns, e);
-      });
-      patternsElem.append(listElem);
+        var listElem = $("<p class='alert alert-"+((pattern[3] && !!data["activation"]) ? "success" : "nothing")+" tPattern'> \
+            Translate \
+            <span class='label label-info'>"+pattern[2]+"%</span> \
+            of all \
+            <span class='label label-info'>"+pattern[0][1]+"</span> \
+            words into \
+            <span class='label label-info'>"+pattern[1][1]+"</span> \
+            " + deleteButton + " \
+            <input type='hidden' value='"+i+"' />\
+            </p>");
+        listElem.click(function() {
+            activatePattern(i, patterns);
+        });
+        listElem.find('.deletePattern').click(function(e) {
+            deletePattern(i, patterns, e);
+        });
+        patternsElem.append(listElem);
     });
 
     var nonElem = $("<p class='alert alert-"+((!data["activation"]) ? "success" : "nothing")+" tPattern'> \
-              Do not translate \
-              <input type='hidden' value='-1' \
-            </p>");
-    nonElem.click(function() {
+      Do not translate \
+      <input type='hidden' value='-1' \
+      </p>");
+  nonElem.click(function() {
       activatePattern(-1, data);
-    });
-    patternsElem.append(nonElem);
-  }
+  });
+  patternsElem.append(nonElem);
+}
 
 
-  function deletePattern(index, patterns, e){
+function deletePattern(index, patterns, e){
     e.stopPropagation();
     var _id = index,
         moveTrue = false; // Are you deleting the active pattern?
-    
-    if(patterns.length > 1){
-      if(patterns[_id][3]) { 
-        moveTrue = true;
-      }
-      patterns.splice(_id,1);
-      if(moveTrue){
-        patterns[0][3] = true;
-        activatePattern(0, patterns);
-      } else {
-        saveBulk({"savedPatterns": JSON.stringify(patterns)});
-      }
-    }
-  }
 
-  function activatePattern(index, patterns){
+        if(patterns.length > 1){
+          if(patterns[_id][3]) { 
+            moveTrue = true;
+        }
+        patterns.splice(_id,1);
+        if(moveTrue){
+            patterns[0][3] = true;
+            activatePattern(0, patterns);
+        } else {
+            saveBulk({"savedPatterns": JSON.stringify(patterns)});
+        }
+    }
+}
+
+function activatePattern(index, patterns){
     var _id = index;
 
     var toSave = {};
     if (_id == -1) {
       toSave["activation"] = false;
-    } else {
+  } else {
       toSave["activation"] = true;
 
       var selectedPattern = patterns[_id];      
@@ -198,26 +198,26 @@ $(function() {
       toSave["sourceLanguage"] = selectedPattern[0][0];
       toSave["targetLanguage"] = selectedPattern[1][0];
       toSave["translationProbability"] = selectedPattern[2];
-    }
-
-    for(var i in patterns){ patterns[i][3] = (i == _id ? true : false); }
-    toSave["savedPatterns"] = JSON.stringify(patterns);
-    saveBulk(toSave);
   }
 
+  for(var i in patterns){ patterns[i][3] = (i == _id ? true : false); }
+    toSave["savedPatterns"] = JSON.stringify(patterns);
+saveBulk(toSave);
+}
 
-  function restoreOptions(data) {
+
+function restoreOptions(data) {
     var options = ["sourceLanguage", "targetLanguage", "translationProbability", 
-               "minimumSourceWordLength", "ngramMin", "ngramMax", 
-               "translatedWordStyle", "blacklist",
-               "userDefinedTranslations", "userBlacklistedWords"];
+    "minimumSourceWordLength", "ngramMin", "ngramMax", 
+    "translatedWordStyle", "blacklist",
+    "userDefinedTranslations", "userBlacklistedWords"];
 
     for (index in options) {
       restore(options[index], data);
-    }
   }
+}
 
-  function restore(option, data) {
+function restore(option, data) {
     var elem = e(option);
     var type = elem.tagName.toLowerCase();
 
@@ -229,95 +229,95 @@ $(function() {
         if (child.value == data[option]) {
           child.selected = "true";
           break;
-        }
       }
-    } else {
-      elem.value = data[option];
-    }   
   }
+} else {
+  elem.value = data[option];
+}   
+}
 
 
 
-  /** Storage **/
-  function S(key) { return cachedStorage[key]; } 
+/** Storage **/
+function S(key) { return cachedStorage[key]; } 
 
-  function loadStorageAndUpdate(callback) {
+function loadStorageAndUpdate(callback) {
     storage.get(null, function(data) {
       console.log("Loaded storage");
       cachedStorage = data;
       if (!!callback) {
         callback(data);
-      } 
-    });
-  }
+    } 
+});
+}
 
-  function saveBulk(data, message) {
+function saveBulk(data, message) {
     storage.set(data, function() {
       statusDefault(message);
       loadStorageAndUpdate(function(data) {
         updateUi(data);
-      });
     });
-  }
+  });
+}
 
-  function save(id, message) {
+function save(id, message) {
     var elem = e(id);
     
     var v;
     if (elem.tagName.toLowerCase() == "select") {
       v = elem.children[elem.selectedIndex].value;    
-    }
-    else {
+  }
+  else {
       v = elem.value; 
-    }
-    console.log("Saving "+id+" as "+v);
-    if (cachedStorage[id] != v) {
+  }
+  console.log("Saving "+id+" as "+v);
+  if (cachedStorage[id] != v) {
       var map = {};
       map[id] = v;
       saveBulk(map, message);
-    }
   }
+}
 
   // Save to localStorage.
   function save_userDefinedTranslations() {
     try { 
       JSON.parse(e("userDefinedTranslations").value);
       save("userDefinedTranslations", "User-defined translations saved");
-    } 
-    catch(e) {
+  } 
+  catch(e) {
       console.debug(S("userDefinedTranslations"))
       status('Your user-defined translations are badly specified and therefore will not be used. \
-              Please provide your user-defined translations according to the following format: \
-              \n\n {"word1":"translation1", "word2":"translation2", "word3":"translation3", "word4":"translation4"}', 9000, 600, "error");
-    }
+          Please provide your user-defined translations according to the following format: \
+          \n\n {"word1":"translation1", "word2":"translation2", "word3":"translation3", "word4":"translation4"}', 9000, 600, "error");
   }
+}
 
-  function save_minimumSourceWordLength() {
+function save_minimumSourceWordLength() {
     // ToDo: Implement validation
     save("minimumSourceWordLength", "Minimum word length saved");
-  }
+}
 
-  function save_translatedWordStyle() {
+function save_translatedWordStyle() {
     // ToDo: Implement validation
     save("translatedWordStyle","Translated word style saved");
-  }
+}
 
-  function save_blacklist() {
+function save_blacklist() {
     // ToDo: Implement validation
     save("blacklist", "Blacklist saved");
-  }
+}
 
-  function save_userBlacklistedWords() {
+function save_userBlacklistedWords() {
     // ToDo: Implement validation
     save("userBlacklistedWords", "Blacklisted words saved");
-  }
+}
 
-  function save_ngramMin() {
+function save_ngramMin() {
     save("ngramMin", "Minimum word sequence length saved")
-  }
+}
 
-  function save_ngramMax() {
+function save_ngramMax() {
     save("ngramMax", "Maximum word sequence length saved")
-  }
-  google_analytics('UA-1471148-14');  
+}
+google_analytics('UA-1471148-14');  
 });
