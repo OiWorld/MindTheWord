@@ -29,14 +29,14 @@ function deepHTMLReplacement(node, tMap, iTMap){
             parent.innerHTML = replaceAll(parent.innerHTML, iTMap);
         }
     }
-    else if (node.nodeType == Node.ELEMENT_NODE && !!badTags.indexOf(node.tagName)) {
+    else if (node.nodeType == Node.ELEMENT_NODE && !(badTags.indexOf(node.tagName) > -1)) {
         var child = node.firstChild;
-            while (child){
-                deepHTMLReplacement(child,tMap,iTMap);
-                child = child.nextSibling;
-            }
+        while (child){
+            deepHTMLReplacement(child,tMap,iTMap);
+            child = child.nextSibling;
         }
     }
+}
 
 // http://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
 function escapeRegExp(str) {
