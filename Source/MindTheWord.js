@@ -193,6 +193,7 @@ chrome.runtime.sendMessage({getOptions : "Give me the options chosen by the user
               "  ngramMin: " + r.ngramMin + "\n" +
               "  ngramMax: " + r.ngramMax );
 
+    console.log("Options: \n" + JSON.stringify(r));
 
     var blacklist = new RegExp(r.blacklist);
     if (!!r.activation && !blacklist.test(document.URL)) {

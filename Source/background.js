@@ -1,31 +1,35 @@
 console.log("Starting up MindTheWord background page");
 var storage = chrome.storage.sync;
 
+// defaultStorage is used if the storage has not been initialized yet.
+var defaultStorage = {
+      initialized: true,
+      activation: true,
+      blacklist: "(stackoverflow.com|github.com|code.google.com|developer.*.com|duolingo.com)",
+      savedPatterns: JSON.stringify([[["en","English"],["it","Italian"],"25",true], 
+                                     [["en","English"],["la","Latin"],"15",false]]),
+      sourceLanguage: "en",
+      targetLanguage: "it",
+      translatedWordStyle: "font-style: inherit;\ncolor: rgba(255,153,0,1);\nbackground-color: rgba(256, 100, 50, 0);",
+      userBlacklistedWords: "(this|that)",
+      translationProbability: 15,
+      minimumSourceWordLength: 3,
+      ngramMin: 1,
+      ngramMax: 1,
+      userDefinedTranslations: '{"the":"the", "a":"a"}',
+    }
+
+
 /**
- * @desc Storage Initialization for blacklist, patterns, option languages
+ * @desc initialize storage if needed
  */
 function initializeStorage() {
-    storage.get("initialized", function(result) {
-        if (!(result.initialized)) {
-            var data = {
-                initialized: true,
-                activation: true,
-                blacklist: "(stackoverflow.com|github.com|code.google.com|developer.*.com|duolingo.com)",
-                savedPatterns: JSON.stringify([[["en","English"],["it","Italian"],"25",true], [["en","English"],["la","Latin"],"15",false]]),
-                sourceLanguage: "en",
-                targetLanguage: "it",
-                translatedWordStyle: "font-style: inherit;\ncolor: rgba(255,153,0,1);\nbackground-color: rgba(256, 100, 50, 0);",
-                userBlacklistedWords: "(this|that)",
-                translationProbability: 15,
-                minimumSourceWordLength: 3,
-                ngramMin: 1,
-                ngramMax: 1,
-                userDefinedTranslations: '{"the":"the", "a":"a"}',
-            };
-        console.log("setting defaults: ");
-        console.log(data);
-        storage.set(data);
-        }
+    storage.get(null, function(storage) {
+      if (JSON.stringify(storage) == "{}") {
+        console.log("setting storage to defaultStorage: ");
+        console.log(JSON.stringify(defaultStorage));
+        storage.set(defaultStorage);
+      }
     });
 }
 initializeStorage();

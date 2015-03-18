@@ -1,15 +1,33 @@
 var storage = chrome.storage.sync;
 var cachedStorage = {};
 
+// defaultStorage is used if the storage has not been initialized yet.
+var defaultStorage = {
+      initialized: true,
+      activation: true,
+      blacklist: "(stackoverflow.com|github.com|code.google.com|developer.*.com|duolingo.com)",
+      savedPatterns: JSON.stringify([[["en","English"],["it","Italian"],"25",true], 
+                                     [["en","English"],["la","Latin"],"15",false]]),
+      sourceLanguage: "en",
+      targetLanguage: "it",
+      translatedWordStyle: "font-style: inherit;\ncolor: rgba(255,153,0,1);\nbackground-color: rgba(256, 100, 50, 0);",
+      userBlacklistedWords: "(this|that)",
+      translationProbability: 15,
+      minimumSourceWordLength: 3,
+      ngramMin: 1,
+      ngramMax: 1,
+      userDefinedTranslations: '{"the":"the", "a":"a"}',
+    }
+
 function e(id) {
-    return document.getElementById(id);
+  return document.getElementById(id);
 }
 
 $(function() {	
     var languageLoaded = function(){
         loadStorageAndUpdate(function(data) {
-        initUi();
-        updateUi(data);
+          initUi();
+          updateUi(data);
         });
     };
 google.load("language", "1", {callback: languageLoaded});
@@ -27,28 +45,33 @@ function setupListeners() {
 }
 
 function initUi() {
-    setLanguages();
-    setupListeners();
+  console.log("initUi begin");
+  setLanguages();
+  setupListeners();
+  console.log("initUi end");
 }
 
 //Sets Languages
 function setLanguages(){
-    var languages = google.language.Languages
-    var targetLanguageOptions = " "
-    for(var language in languages) {
-        var name = language.substring(0, 1) + language.substring(1).toLowerCase().replace('_', ' - ');
-        targetLanguageOptions += '<option value="' + languages[language] + '">' + name + '</option>'
-    }
-    e("sourceLanguage").innerHTML = targetLanguageOptions;
-    e("targetLanguage").innerHTML = targetLanguageOptions;
+  console.log("setLanguages begin");
+  var languages = google.language.Languages
+  var targetLanguageOptions = " "
+  for(var language in languages) {
+      var name = language.substring(0, 1) + language.substring(1).toLowerCase().replace('_', ' - ');
+      targetLanguageOptions += '<option value="' + languages[language] + '">' + name + '</option>'
+  }
+  e("sourceLanguage").innerHTML = targetLanguageOptions;
+  e("targetLanguage").innerHTML = targetLanguageOptions;
+  console.log("setLanguages end");
 }
 
 
 function updateUi(data) {
-    console.log("Updating UI");
+    console.log("updateUI begin");
     restoreOptions(data);
     restorePatterns(data);
     showCSSExample();
+    console.log("updateUI end");
 }
 
 /***
@@ -98,34 +121,39 @@ function showCSSExample(){
 
 
 function createPattern(){
-    var patterns = JSON.parse(S("savedPatterns")),
-    src = new Array(),
-    trg = new Array(),
-    prb = new Array();
+  console.log("createPattern begin");
+  var patterns = JSON.parse(S("savedPatterns")),
+  src = new Array(),
+  trg = new Array(),
+  prb = new Array();
 
-    console.debug(S("savedPatterns"));
+  console.debug(S("savedPatterns"));
 
-    src[0] = document.getElementById("sourceLanguage");
-    src[1] = src[0].children[src[0].selectedIndex].value;
-    src[2] = src[0].children[src[0].selectedIndex].text;
-    trg[0] = document.getElementById("targetLanguage");
-    trg[1] = trg[0].children[trg[0].selectedIndex].value;
-    trg[2] = trg[0].children[trg[0].selectedIndex].text;
-    prb[0] = document.getElementById("translationProbability");
-    prb[1] = prb[0].children[prb[0].selectedIndex].value;
+  src[0] = document.getElementById("sourceLanguage");
+  src[1] = src[0].children[src[0].selectedIndex].value;
+  src[2] = src[0].children[src[0].selectedIndex].text;
+  trg[0] = document.getElementById("targetLanguage");
+  trg[1] = trg[0].children[trg[0].selectedIndex].value;
+  trg[2] = trg[0].children[trg[0].selectedIndex].text;
+  prb[0] = document.getElementById("translationProbability");
+  prb[1] = prb[0].children[prb[0].selectedIndex].value;
 
-    patterns.push([[src[1], src[2]],
-        [trg[1], trg[2]],
-        prb[1],
-        false
-        ]);
-    saveBulk({"savedPatterns": JSON.stringify(patterns)});
+  patterns.push([[src[1], src[2]],
+      [trg[1], trg[2]],
+      prb[1],
+      false
+      ]);
+  saveBulk({"savedPatterns": JSON.stringify(patterns)});
+  console.log("createPattern end");
 }
 
 
 function restorePatterns(data){
+  console.log("restorePatterns begin");
     e("savedTranslationPatterns").innerHTML = "";
+    console.log(data["savedPatterns"])
     var patterns = JSON.parse(data["savedPatterns"]);
+    console.log("savedPatterns: " + patterns)
     var patternsElem = $("#savedTranslationPatterns").html("");
 
     // DeleteButton should only be shown if there are two or more patterns
@@ -162,6 +190,7 @@ function restorePatterns(data){
       activatePattern(-1, data);
   });
   patternsElem.append(nonElem);
+  console.log("restorePatterns end");
 }
 
 
@@ -241,12 +270,25 @@ function restore(option, data) {
 /** Storage **/
 function S(key) { return cachedStorage[key]; } 
 
+
+
 function loadStorageAndUpdate(callback) {
     storage.get(null, function(data) {
-      console.log("Loaded storage");
-      cachedStorage = data;
+      console.log("data: " + data + " : " + JSON.stringify(data));
+      var d = {};
+      if (JSON.stringify(data) == "{}" ) { // in this case, storage was not initialized yet
+        console.log("setting storage to defaultStorage (stringified): ");
+        console.log(JSON.stringify(defaultStorage));
+        storage.set(defaultStorage);
+        d = defaultStorage;
+      }
+      else {
+        d = data;
+      }
+
+      cachedStorage = d;
       if (!!callback) {
-        callback(data);
+        callback(d);
     } 
 });
 }
