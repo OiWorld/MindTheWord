@@ -187,7 +187,7 @@ function restorePatterns(data){
       <input type='hidden' value='-1' \
       </p>");
   nonElem.click(function() {
-      activatePattern(-1, data);
+      activatePattern(-1, patterns);
   });
   patternsElem.append(nonElem);
   console.log("restorePatterns end");
