@@ -79,6 +79,7 @@ function invertMap(map) {
 function containsIllegalCharacters(s) { return /[0-9{}.,;:]/.test(s); }
 
 function processTranslations(translationMap, userDefinedTMap) { 
+    console.log(JSON.stringify(translationMap));
     var filteredTMap = {};
     for (w in translationMap) {
         if (w != translationMap[w] && translationMap[w] != "" && !userDefinedTMap[w] && !containsIllegalCharacters(translationMap[w])) {

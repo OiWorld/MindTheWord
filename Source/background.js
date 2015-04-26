@@ -78,8 +78,9 @@ function translateOneRequestPerFewWords(words, prefs, callback) {
 
 function translateORPFWRec(concatWordsArray, index, length, tMap, prefs, callback) {
     console.log("translateORPFWRec");
-    console.debug("concatWordsArray: " + JSON.stringify(concatWordsArray));
+    //console.debug("concatWordsArray: " + JSON.stringify(concatWordsArray));
     console.debug("index: " + index +  "; length: " + length);
+    console.debug("concatWordsArray[index]: " + concatWordsArray[index]);
     if (index > length) callback(tMap)
     else { 
         var url = googleTranslateURL(prefs) + concatWordsArray[index];
