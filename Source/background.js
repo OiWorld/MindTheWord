@@ -17,6 +17,7 @@ var defaultStorage = {
       ngramMin: 1,
       ngramMax: 1,
       userDefinedTranslations: '{"the":"the", "a":"a"}',
+      translatorService: "Google Translate"
     }
 
 
@@ -33,23 +34,6 @@ function initializeStorage() {
     });
 }
 initializeStorage();
-
-/**
- * @desc Constructs google translate url
- * @params User saved preferences
- * @return Google Translate query from source to destination language
- */
-function googleTranslateURL(prefs) {
-    var url = 'http://translate.google.com/translate_a/t?client=f&otf=1&pc=0&hl=en';
-    var sL = prefs["sourceLanguage"];
-    if(sL != 'auto') {
-        url += '&sl=' + sL;
-    }
-    url += '&tl=' + prefs["targetLanguage"];
-    url += '&text=';
-    return url;
-}	
-
 
 function translateOneRequestPerFewWords(words, prefs, callback) {
   //console.debug("words: " + JSON.stringify(words));
@@ -76,31 +60,111 @@ function translateOneRequestPerFewWords(words, prefs, callback) {
     translateORPFWRec(concatWordsArray, 1, cWALength, tMap, prefs, callback);
 }
 
+var translator = {
+    translate: function(prefs, word) {}
+};
+
+var googleTranslator = function() {};
+googleTranslator.prototype = Object.create(translator);
+
+var yandexTranslator = function() {};
+yandexTranslator.prototype = Object.create(translator);
+
+/**
+ * @desc Constructs google translate url
+ * @params User saved preferences
+ * @params word to be translated
+ * @return Google Translate query from source to destination language
+ */
+googleTranslator.prototype.translate = function(prefs, word, callback){
+    var url = 'http://translate.google.com/translate_a/t?client=f&otf=1&pc=0&hl=en';
+    var sL = prefs["sourceLanguage"];
+    if(sL != 'auto') {
+        url += '&sl=' + sL;
+    }
+    url += '&tl=' + prefs["targetLanguage"];
+    url += '&text=';
+    url += word;
+
+    getData(url, function(result){
+        var tMap = {}
+        for (i in result.sentences) {
+            var orig = result.sentences[i].orig;
+            var origT = orig.substring(0,orig.length - 1);
+            var trans = result.sentences[i].trans;
+            var transT = trans.replace(/[.\u3002]/,""); // removes punctuation
+            tMap[origT] = transT;
+        }
+        callback(tMap);
+    });
+}
+
+yandexTranslator.prototype.translate = function(prefs, word, callback){
+    var apikey = "trnsl.1.1.20150429T202526Z.d63a1483e719555a.852f432bad29a4628c1d1694b6114c0efb22f183"
+
+    url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + apikey;
+    url += "&lang=" + prefs["sourceLanguage"] + "-" + prefs["targetLanguage"]
+
+    // currently a hack to create array of words, ideally it would be better to passdown an array of words.
+    var words = word.split('.');
+    for(var i=0; i < words.length; i++){
+        url += "&text=" + words[i].trim(' ');
+    }
+
+    getData(url, function(result){
+        var tMap = {}
+        for (var i=0; i < words.length; i++) {
+            var origT = words[i].trim(' ');
+            var transT = result.text[i];
+            tMap[origT] = transT;
+        }
+        callback(tMap);
+    });
+}
+
+function getData(url, callback){
+    var xhr = new XMLHttpRequest(); 
+    xhr.open("GET", url, true);
+    xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                callback(JSON.parse(xhr.responseText));
+            }
+        }
+    xhr.send();
+}
+
+var TranslatorFactory = {
+   getTranslator : function(type) {}
+};
+
+var ConcreteTranslatorFactory = function(){}
+
+ConcreteTranslatorFactory.prototype = Object.create(TranslatorFactory);
+ConcreteTranslatorFactory.prototype.getTranslator = function(type){
+    if(type === "Google Translate"){
+        return new googleTranslator();
+    }
+    return new yandexTranslator();
+}
+
+
 function translateORPFWRec(concatWordsArray, index, length, tMap, prefs, callback) {
     console.log("translateORPFWRec");
     console.debug("concatWordsArray: " + JSON.stringify(concatWordsArray));
     console.debug("index: " + index +  "; length: " + length);
     if (index > length) callback(tMap)
     else { 
-        var url = googleTranslateURL(prefs) + concatWordsArray[index];
-        var xhr = new XMLHttpRequest(); xhr.open("GET", url, true);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4) {
-                //alert(xhr.responseText);
-                var r = JSON.parse(xhr.responseText);
-                for (i in r.sentences) {
-                    var orig = r.sentences[i].orig;
-                    var origT = orig.substring(0,orig.length - 1);
-	                var trans = r.sentences[i].trans;
-                    var transT = trans.replace(/[.\u3002]/,""); // removes punctuation
-                    tMap[origT] = transT;
+        var url = new new ConcreteTranslatorFactory().getTranslator(prefs.translatorService).translate(prefs, concatWordsArray[index],
+            function(pMap){
+                for (var key in pMap){
+                    if (pMap.hasOwnProperty(key)) {
+                        tMap[key] = pMap[key];
+                    }
                 }
-            translateORPFWRec(concatWordsArray, index + 1, length, tMap, prefs, callback);
-            }
-        }
-        xhr.send();
+                translateORPFWRec(concatWordsArray, index + 1, length, tMap, prefs, callback);
+            });
     }
-} 	
+}
 
 function onMessage(request, sender, sendResponse) {
     console.log("onMessage ");
