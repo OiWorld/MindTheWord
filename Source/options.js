@@ -17,6 +17,7 @@ var defaultStorage = {
       ngramMin: 1,
       ngramMax: 1,
       userDefinedTranslations: '{"the":"the", "a":"a"}',
+      translatorService: "Google Translate"
     }
 
 function e(id) {
@@ -42,6 +43,7 @@ function setupListeners() {
     e("blacklist").addEventListener("blur", save_blacklist);
     e("userDefinedTranslations").addEventListener("blur", save_userDefinedTranslations);
     e("userBlacklistedWords").addEventListener("blur", save_userBlacklistedWords);
+    e("translatorService").addEventListener("blur", save_translatorService);
 }
 
 function initUi() {
@@ -71,6 +73,7 @@ function updateUi(data) {
     restoreOptions(data);
     restorePatterns(data);
     showCSSExample();
+    showTranslatorLink();
     console.log("updateUI end");
 }
 
@@ -115,10 +118,22 @@ function showCSSExample(){
     e("resultSpan").innerText = synonyms[num];
 }
 
+function showTranslatorLink(){
+   var elem = e("translatorService");
+   var link = document.createElement("a");
 
-
-
-
+   if(elem.children[elem.selectedIndex].value === "Google Translate"){
+    link.href = "http://translate.google.com/";
+    link.innerText = "Powered by Google.Translate";
+   }
+   else{
+    link.href = "http://translate.yandex.com/";
+    link.innerText = "Powered by Yandex.Translate";
+   }
+   link.target = "_blank";
+   e("translatorInfo").innerHTML = '';
+   e("translatorInfo").appendChild(link);
+}
 
 function createPattern(){
   console.log("createPattern begin");
@@ -239,7 +254,7 @@ function restoreOptions(data) {
     var options = ["sourceLanguage", "targetLanguage", "translationProbability", 
     "minimumSourceWordLength", "ngramMin", "ngramMax", 
     "translatedWordStyle", "blacklist",
-    "userDefinedTranslations", "userBlacklistedWords"];
+    "userDefinedTranslations", "userBlacklistedWords", "translatorService"];
 
     for (index in options) {
       restore(options[index], data);
@@ -352,6 +367,11 @@ function save_blacklist() {
 function save_userBlacklistedWords() {
     // ToDo: Implement validation
     save("userBlacklistedWords", "Blacklisted words saved");
+}
+
+function save_translatorService() {
+   save("translatorService", "TranslatorService saved");
+   showTranslatorLink();
 }
 
 function save_ngramMin() {
