@@ -17,8 +17,9 @@ var defaultStorage = {
       ngramMin: 1,
       ngramMax: 1,
       userDefinedTranslations: '{"the":"the", "a":"a"}',
-      translatorService: "Google Translate"
-    }
+      translatorService: "Google Translate",
+      yandexTranslatorApiKey: ""
+    };
 
 function e(id) {
   return document.getElementById(id);
@@ -43,24 +44,73 @@ function setupListeners() {
     e("blacklist").addEventListener("blur", save_blacklist);
     e("userDefinedTranslations").addEventListener("blur", save_userDefinedTranslations);
     e("userBlacklistedWords").addEventListener("blur", save_userBlacklistedWords);
-    e("translatorService").addEventListener("blur", save_translatorService);
+    e("yandexTranslatorApiKey").addEventListener("blur", save_yandexTranslatorApiKey);
+    $('#translatorService').change(function(e){setLanguages(e.currentTarget.value);});
 }
 
 function initUi() {
   console.log("initUi begin");
-  setLanguages();
   setupListeners();
   console.log("initUi end");
 }
 
+var YandexLanaguages = {
+Albanian:	"sq",
+Arabian:	"ar",
+Armenian:	"hy",
+Azeri:	"az",
+Belarusian:	"be",
+Bosnian:	"bs",
+Bulgarian:	"bg",
+Catalan:	"ca",
+Croatian:	"hr",
+Czech:	"cs",
+Chinese:	"zh",
+Danish:	"da",
+Dutch:	"nl",
+English:	"en",
+Estonian:	"et",
+Finnish:	"fi",
+French:	"fr",
+Georgian:	"ka",
+German:	"de",
+Greek:	"el",
+Hebrew:	"he",
+Hungarian:	"hu",
+Icelandic:	"is",
+Indonesian:	"id",
+Italian:	"it",
+Japanese:	"ja",
+Korean:	"ko",
+Latvian:	"lv",
+Lithuanian:	"lt",
+Macedonian:	"mk",
+Malay:	"ms",
+Maltese:	"mt",
+Norwegian:	"no",
+Polish:	"pl",
+Portuguese:	"pt",
+Romanian:	"ro",
+Russian:	"ru",
+Spanish:	"es",
+Serbian:	"sr",
+Slovak:	"sk",
+Slovenian:	"sl",
+Swedish:	"sv",
+Thai:	"th",
+Turkish:	"tr",
+Ukrainian:	"uk",
+Vietnamese:	"vi"
+};
+
 //Sets Languages
-function setLanguages(){
+function setLanguages(translatorService){
   console.log("setLanguages begin");
-  var languages = google.language.Languages
-  var targetLanguageOptions = " "
+  var languages = (translatorService === "Yandex")? YandexLanaguages : google.language.Languages;
+  var targetLanguageOptions = " ";
   for(var language in languages) {
       var name = language.substring(0, 1) + language.substring(1).toLowerCase().replace('_', ' - ');
-      targetLanguageOptions += '<option value="' + languages[language] + '">' + name + '</option>'
+      targetLanguageOptions += '<option value="' + languages[language] + '">' + name + '</option>';
   }
   e("sourceLanguage").innerHTML = targetLanguageOptions;
   e("targetLanguage").innerHTML = targetLanguageOptions;
@@ -72,8 +122,9 @@ function updateUi(data) {
     console.log("updateUI begin");
     restoreOptions(data);
     restorePatterns(data);
+    setLanguages(data["translatorService"]);
     showCSSExample();
-    showTranslatorLink();
+    
     console.log("updateUI end");
 }
 
@@ -118,23 +169,6 @@ function showCSSExample(){
     e("resultSpan").innerText = synonyms[num];
 }
 
-function showTranslatorLink(){
-   var elem = e("translatorService");
-   var link = document.createElement("a");
-
-   if(elem.children[elem.selectedIndex].value === "Google Translate"){
-    link.href = "http://translate.google.com/";
-    link.innerText = "Powered by Google.Translate";
-   }
-   else{
-    link.href = "http://translate.yandex.com/";
-    link.innerText = "Powered by Yandex.Translate";
-   }
-   link.target = "_blank";
-   e("translatorInfo").innerHTML = '';
-   e("translatorInfo").appendChild(link);
-}
-
 function createPattern(){
   console.log("createPattern begin");
   var patterns = JSON.parse(S("savedPatterns")),
@@ -143,7 +177,8 @@ function createPattern(){
   prb = new Array();
 
   console.debug(S("savedPatterns"));
-
+  var translator = document.getElementById("translatorService");
+  var service = translator.children[translator.selectedIndex].value;
   src[0] = document.getElementById("sourceLanguage");
   src[1] = src[0].children[src[0].selectedIndex].value;
   src[2] = src[0].children[src[0].selectedIndex].text;
@@ -156,9 +191,10 @@ function createPattern(){
   patterns.push([[src[1], src[2]],
       [trg[1], trg[2]],
       prb[1],
-      false
+      false,
+      service
       ]);
-  saveBulk({"savedPatterns": JSON.stringify(patterns)});
+  saveBulk({"savedPatterns": JSON.stringify(patterns)}, "Saved Pattern");
   console.log("createPattern end");
 }
 
@@ -179,7 +215,8 @@ function restorePatterns(data){
 
     $.each(patterns, function(i, pattern) {
         var listElem = $("<p class='alert alert-"+((pattern[3] && !!data["activation"]) ? "success" : "nothing")+" tPattern'> \
-            Translate \
+            Use " + ((pattern[4] === "Yandex") ? "Yandex " : "Google ") + "\
+            to translate \
             <span class='label label-info'>"+pattern[2]+"%</span> \
             of all \
             <span class='label label-info'>"+pattern[0][1]+"</span> \
@@ -223,14 +260,14 @@ function deletePattern(index, patterns, e){
             patterns[0][3] = true;
             activatePattern(0, patterns);
         } else {
-            saveBulk({"savedPatterns": JSON.stringify(patterns)});
+            saveBulk({"savedPatterns": JSON.stringify(patterns)}, "Deleted Pattern");
         }
     }
 }
 
 function activatePattern(index, patterns){
     var _id = index;
-
+    var message = "Pattern Activated.";
     var toSave = {};
     if (_id == -1) {
       toSave["activation"] = false;
@@ -242,19 +279,23 @@ function activatePattern(index, patterns){
       toSave["sourceLanguage"] = selectedPattern[0][0];
       toSave["targetLanguage"] = selectedPattern[1][0];
       toSave["translationProbability"] = selectedPattern[2];
+      toSave["translatorService"] = selectedPattern[4] || "Google Translate";
+      
+      if(toSave["translatorService"] === "Yandex"){
+         message += " Make sure you have setup Yandex Api key";
+      }
   }
 
   for(var i in patterns){ patterns[i][3] = (i == _id ? true : false); }
-    toSave["savedPatterns"] = JSON.stringify(patterns);
-saveBulk(toSave);
+  toSave["savedPatterns"] = JSON.stringify(patterns);
+  saveBulk(toSave, message);
 }
-
 
 function restoreOptions(data) {
     var options = ["sourceLanguage", "targetLanguage", "translationProbability", 
     "minimumSourceWordLength", "ngramMin", "ngramMax", 
     "translatedWordStyle", "blacklist",
-    "userDefinedTranslations", "userBlacklistedWords", "translatorService"];
+    "userDefinedTranslations", "userBlacklistedWords", "translatorService", "yandexTranslatorApiKey"];
 
     for (index in options) {
       restore(options[index], data);
@@ -369,9 +410,8 @@ function save_userBlacklistedWords() {
     save("userBlacklistedWords", "Blacklisted words saved");
 }
 
-function save_translatorService() {
-   save("translatorService", "TranslatorService saved");
-   showTranslatorLink();
+function save_yandexTranslatorApiKey() {
+  save("yandexTranslatorApiKey", "Yandex Api Key Updated.");
 }
 
 function save_ngramMin() {

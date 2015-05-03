@@ -17,8 +17,9 @@ var defaultStorage = {
       ngramMin: 1,
       ngramMax: 1,
       userDefinedTranslations: '{"the":"the", "a":"a"}',
-      translatorService: "Google Translate"
-    }
+      translatorService: "Google Translate",
+      yandexTranslatorApiKey: ""
+    };
 
 
 /**
@@ -38,7 +39,7 @@ initializeStorage();
 function translateOneRequestPerFewWords(words, prefs, callback) {
   //console.debug("words: " + JSON.stringify(words));
     var concatWords = "";
-    var length = 0
+    var length = 0;
     var maxLength = 800;
     var concatWordsArray = {};
     var cWALength = 1;
@@ -88,7 +89,7 @@ googleTranslator.prototype.translate = function(prefs, word, callback){
 
     getData(url, function(result){
         var tMap = {}
-        for (i in result.sentences) {
+        for (var i in result.sentences) {
             var orig = result.sentences[i].orig;
             var origT = orig.substring(0,orig.length - 1);
             var trans = result.sentences[i].trans;
@@ -100,10 +101,10 @@ googleTranslator.prototype.translate = function(prefs, word, callback){
 }
 
 yandexTranslator.prototype.translate = function(prefs, word, callback){
-    var apikey = "trnsl.1.1.20150429T202526Z.d63a1483e719555a.852f432bad29a4628c1d1694b6114c0efb22f183"
+    var apikey = prefs["yandexTranslatorApiKey"];
 
-    url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + apikey;
-    url += "&lang=" + prefs["sourceLanguage"] + "-" + prefs["targetLanguage"]
+    var url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + apikey;
+    url += "&lang=" + prefs["sourceLanguage"] + "-" + prefs["targetLanguage"];
 
     // currently a hack to create array of words, ideally it would be better to passdown an array of words.
     var words = word.split('.');
