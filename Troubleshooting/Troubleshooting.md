@@ -48,15 +48,19 @@ If you contact us, it is very helpful if you take screenshots (i.e. pictures of 
 
 3. go to Chrome's menu (in the upper right corner) and click on the menu item "More Tools> Javascript Console".
 
-![JSConsole](JSConsole.png)
-
 4. reload the options page.
 
 5. Take screenshots of the options page (both of your basic options and your advanced options) together with the Javascript console.
 
+6. Send the screenshots and a description of your problem to [us](mailto:MindTheWord@gmail.com).
+
+
+The images below show how to open the Javascript Console and how a screenshot of the options page with console errors looks like.
+
+![JSConsole](JSConsole.png)
+
 ![OptionsConsole](OptionsConsole.png)
 
-6. Send the screenshots and a description of your problem to [us](mailto:MindTheWord@gmail.com).
 
 
 The screenshots of your options will show us whether you are configuring the extension correctly, and the screenshots of the javascript console will show us whether any error is occurring during the execution of the code in the options page.
