@@ -7,6 +7,11 @@ Quality of Translations
 *Mind the Word* depends on the *Google Translate* and *Yandex Translate* services. Therefore, the quality of the translations provided by *Mind the Word* depends on the quality of these services. 
 
 
+Google Translate's Unreliability
+--------------------------------
+
+Recently, the option to use Google within Mind The Word stopped working for many users. If you see no translations when you select *Google* as your translation provider in the options page, you are probably being affected by this problem. That is why we started offering an alternative: *Yandex*. Its translation service has been much more reliable recently. Please give it a try! Note that Yandex requires an *API key*, but you can [obtain one for free](https://tech.yandex.com/keys/get/?service=trnsl). 
+
 
 Blank Options Page
 ------------------
