@@ -55,7 +55,7 @@ If you contact us, it is very helpful if you take screenshots (i.e. pictures of 
 6. Send the screenshots and a description of your problem to [us](mailto:MindTheWord@gmail.com).
 
 
-The images below show how to open the Javascript Console and how a screenshot of the options page with console errors looks like.
+The images below show how to open the Javascript Console and how a screenshot of the options page with the console message log looks like.
 
 ![JSConsole](JSConsole.png)
 
