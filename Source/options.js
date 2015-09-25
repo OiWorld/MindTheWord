@@ -35,6 +35,7 @@ $(function () {
     google.load("language", "1", {callback: languageLoaded});
 
     function setupListeners() {
+        e("getKeyBtn").addEventListener("click", getKey);
         e("addTranslationBtn").addEventListener("click", createPattern);
         e("translatedWordStyle").addEventListener("keyup", showCSSExample);
         e("minimumSourceWordLength").addEventListener("blur", save_minimumSourceWordLength);
@@ -175,6 +176,12 @@ $(function () {
         e("resultSpan").style.cssText = e("translatedWordStyle").value;
         e("resultSpan").innerText = synonyms[num];
     }
+
+    function getKey() {
+      console.log("getKey pressed")
+      window.open("https://tech.yandex.com/keys/get/?service=trnsl","_self")    
+    }
+    
 
     function createPattern() {
         console.log("createPattern begin");

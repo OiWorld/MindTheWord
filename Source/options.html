@@ -52,8 +52,8 @@
 
                     <p>Use
                         <select id="translatorService">
-                            <option>Google Translate</option>
-                            <option>Yandex</option>
+                            <option>Google Translate (Unreliable!)</option>
+                            <option>Yandex (Recommended!)</option>
                         </select> to translate
                         <select ID="translationProbability" style="width:5em">
                             <option value="5">5%</option>
@@ -85,13 +85,27 @@
                     <hr>
                     <h3>Translation Settings</h3>
 
-                    <div class="span4 optionsSpan">
-                        <p>Insert here your Yandex API Key (<a href="https://tech.yandex.com/keys/get/?service=trnsl">get key</a>):
+                    <div>
+                        <button id="getKeyBtn" class="btn btn-primary">Get Free Yandex Key</button>
+
+                        The key enables the use of Yandex's translation services up to 10 million translated characters per month. 
+                    </div>
+
+                    <br />
+
+                    <div class="span3 optionsSpan">
+                        <p>Insert here your Yandex API Key:
                         </p>
                     </div>
                     <div>
                         <input type="text" id="yandexTranslatorApiKey">
                         <b><a href="http://translate.yandex.com/">Powered by Yandex.Translate</a></b>
+                    </div>
+
+                    <br />
+
+                    <div>
+                        If this App is not working for you, please visit the <a href="https://github.com/OiWorld/MindTheWord/blob/master/Troubleshooting/Troubleshooting.md">Troubleshooting Page</a>.
                     </div>
                 </div>
             </div>
