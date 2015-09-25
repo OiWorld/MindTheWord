@@ -13,7 +13,7 @@ Blank Options Page
 
 A few users have been experiencing a problem in which the options page is blank and no translation configuration can be created, as shown in the screenshot below:
 
-ToDo: screenshot
+![BlankOptions](BlankOptions.png)
 
 
 This problem seems to be caused by failed storage or retrieval of the options in Google's synchronized storage servers when *Mind The Word* is installed and loaded for the first time. This may be due to a temporary communication problem with Google.
@@ -48,13 +48,13 @@ If you contact us, it is very helpful if you take screenshots (i.e. pictures of 
 
 3. go to Chrome's menu (in the upper right corner) and click on the menu item "More Tools> Javascript Console".
 
-ToDo: Screenshot
+![JSConsole](JSConsole.png)
 
 4. reload the options page.
 
 5. Take screenshots of the options page (both of your basic options and your advanced options) together with the Javascript console.
 
-ToDo: shot
+![OptionsConsole](OptionsConsole.png)
 
 6. Send the screenshots and a description of your problem to [us](mailto:MindTheWord@gmail.com).
 
@@ -71,9 +71,6 @@ You can do the same thing for the website that you are trying to translate:
 3. reload the webpage.
 
 4. take screenshots of the webpage together with the javascript console.
-
-
-ToDo: shot
 
 5. send the screenshots and a description of your problem to [us](mailto:MindTheWord@gmail.com).
 
