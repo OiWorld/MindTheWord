@@ -23,6 +23,8 @@ describe('filterSourceWordsPreferUserDefined function', function() {
 
       }, wordList, userDefinedWords);
 
+      console.log(Object(filteredWordList));
+
       // check equality
       page.evaluate(function(a, b) {
         //chai.expect(a).to.deep.equal(b);
