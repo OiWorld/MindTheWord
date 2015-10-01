@@ -1,15 +1,15 @@
 {
-    "author": "Chris Harding",
-    "dependencies": {
-        "chai": "^3.3.0",
-        "mocha": "^2.3.3",
-        "sinon-chrome": "^0.2.1"
-    },
-    "description": "Unit testing for MindTheWorld Chrome extension.",
-    "main": "src/MindTheWorld.js",
-    "name": "MindTheWorldTests",
-    "scripts": {
-        "test": "phantomjs ./Tests/run.js"
-    },
-    "version": "1.0.0"
+  "name": "MindTheWorld",
+  "description": "Unit testing for MindTheWorld Chrome extension.",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "node_modules/.bin/phantomjs Tests/run.js"
+  },
+  "devDependencies": {
+    "sinon-chrome": "^0.2.0",
+    "mocha": "^1.21.4",
+    "chai": "^1.9.2",
+    "phantomjs": "^1.9.12",
+    "sinon": "^1.11.1"
+  }
 }
