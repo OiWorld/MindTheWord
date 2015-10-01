@@ -16,6 +16,11 @@ the context.
 Read more in
 [Description.md](Description.md).
 
+Testing
+-------
+
+Testing requires node.js. Install with `npm install` and run with `npm test`.
+
 
 License
 -------
@@ -28,4 +33,4 @@ Contributions
 
 If you would like to contribute to the development of this extension, please [contact the developers](mailto:bruno.wp@gmail.com).
 
-* [Google Summer of Code](GoogleSummerOfCode.md) grants are available every year. If you would like to apply, it is never too early to contact us. 
+* [Google Summer of Code](GoogleSummerOfCode.md) grants are available every year. If you would like to apply, it is never too early to contact us.
