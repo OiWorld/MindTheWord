@@ -43,7 +43,7 @@ function escapeRegExp(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
 
-// ToDo: This should be improved. The use of spaces is an ugly hack. 
+// ToDo: This should be improved. The use of spaces is an ugly hack.
 function replaceAll(text, translationMap) {
     var rExp = "";
     for (var sourceWord in translationMap) {
@@ -104,6 +104,20 @@ function length(obj) {
 }
 
 function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
+    var userBlacklistedWords = new RegExp(userBlacklistedWords);
+
+    var countedWordsList = shuffle(toList(countedWords, function (word, count) {
+        return !!word && word.length >= minimumSourceWordLength && // no words that are too short
+            word != "" && !/\d/.test(word) && // no empty words
+            word.charAt(0) != word.charAt(0).toUpperCase() && // no proper nouns
+            !userBlacklistedWords.test(word.toLowerCase()); // no blacklisted words
+    }));
+
+    var targetLength = Math.floor((countedWordsList.length * translationProbability) / 100);
+    return toMap(countedWordsList.slice(0, targetLength - 1));
+}
+
+function filterSourceWordsPreferUserDefined(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
     var userBlacklistedWords = new RegExp(userBlacklistedWords);
 
     var countedWordsList = shuffle(toList(countedWords, function (word, count) {

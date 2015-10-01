@@ -19,7 +19,7 @@ describe('filterSourceWords function', function() {
         var translationProbability = 15.0;
         var minimumSourceWordLength = 1;
         var userBlacklistedWords = "(this|that)";
-        return filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords);
+        return filterSourceWordsPreferUserDefined(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords);
 
       }, word_list);
 
