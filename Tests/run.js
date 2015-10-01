@@ -11,8 +11,8 @@ phantom.injectJs(node_modules + 'sinon-chrome/src/phantom-tweaks.js');
 mocha.setup({ui: 'bdd', reporter: 'spec'});
 phantom.injectJs('beforeeach.js');
 
-phantom.injectJs('get_words.test.js');
-phantom.injectJs('filter_words.test.js');
+phantom.injectJs('getWords.test.js');
+phantom.injectJs('filterWords.test.js');
 
 mocha.run(function(failures) {
   // setTimeout is needed to supress "Unsafe JavaScript attempt to access..."
