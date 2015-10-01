@@ -145,7 +145,7 @@ function filterSourceWords(countedWords, translationProbability, minimumSourceWo
             !userBlacklistedWords.test(word.toLowerCase()); // no blacklisted words
     }));
 
-    var targetLength = Math.floor((countedWordsList.length * translationProbability) / 100);
+    var targetLength = Math.floor((length(countedWords) * translationProbability) / 100);
     return toMap(countedWordsList.slice(0, targetLength - 1));
 }
 
@@ -156,7 +156,7 @@ function filterSourceWordsPreferUserDefined(countedWords, translationProbability
     var b = toList(countedWords, function(word,count) {return 1;});
     countedWordsList = intersect(a,b);
 
-    var targetLength = Math.floor((countedWordsList.length * translationProbability) / 100);
+    var targetLength = Math.floor((length(countedWords) * translationProbability) / 100);
     return toMap(countedWordsList.slice(0, targetLength - 1));
 }
 
