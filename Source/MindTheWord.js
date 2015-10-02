@@ -149,7 +149,7 @@ function filterSourceWords(countedWords, translationProbability, minimumSourceWo
     return toMap(countedWordsList.slice(0, targetLength - 1));
 }
 
-function filterSourceWordsPreferUserDefined(countedWords, translationProbability, userDefinedTranslations) {
+function filterSourceWordsLimitToUserDefined(countedWords, translationProbability, userDefinedTranslations) {
     var userBlacklistedWords = new RegExp(userBlacklistedWords);
 
     var a = toList(userDefinedTranslations, function(word,count) {return 1;});
