@@ -222,11 +222,17 @@ __mindtheword = new function () {
     };
 };
 
-function main(ngramMin, ngramMax, translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords) {
+function main(ngramMin, ngramMax, translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords, limitToUserDefined) {
     console.log('starting translation');
     var countedWords = getAllWords(ngramMin, ngramMax);
     console.log(countedWords);
-    requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords),
+    var filteredWords;
+    if (limitToUserDefined) {
+        filteredWords = filterSourceWordsLimitToUserDefined(countedWords, translationProbability, userDefinedTranslations);
+    } else {
+        filteredWords = filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords);
+    }
+    requestTranslations(filteredWords,
         function (tMap) {
             processTranslations(tMap, userDefinedTranslations);
         });
@@ -254,7 +260,8 @@ chrome.runtime.sendMessage({getOptions: "Give me the options chosen by the user.
                 r.translationProbability,
                 r.minimumSourceWordLength,
                 JSON.parse(r.userDefinedTranslations),
-                r.userBlacklistedWords);
+                r.userBlacklistedWords,
+                r.limitToUserDefined);
         })
     }
 });
