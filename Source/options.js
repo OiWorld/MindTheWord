@@ -1,4 +1,4 @@
-var storage = chrome.storage.sync;
+var storage = chrome.storage.local;
 var cachedStorage = {};
 
 // defaultStorage is used if the storage has not been initialized yet.
