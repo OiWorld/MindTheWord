@@ -7,8 +7,8 @@ app.controller('PopupController', ['$scope', function ($scope) {
     };
 
     $scope.toggleEnabled = function () {
-        chrome.storage.sync.get("activation", function (data) {
-            chrome.storage.sync.set({activation: !data.activation}, function () {
+        chrome.storage.local.get("activation", function (data) {
+            chrome.storage.local.set({activation: !data.activation}, function () {
                 chrome.tabs.executeScript(null, {code: "window.location.reload();"});
                 window.close();
             });
@@ -26,7 +26,7 @@ app.controller('PopupController', ['$scope', function ($scope) {
                 $scope.toggledOn = translated[0];
             });
         });
-        chrome.storage.sync.get(null, function (data) {
+        chrome.storage.local.get(null, function (data) {
             $scope.$apply(function () {
                 $scope.data = data;
             });
