@@ -217,7 +217,24 @@ $(function () {
         console.log("restorePatterns begin");
         e("savedTranslationPatterns").innerHTML = "";
         console.log(data["savedPatterns"]);
-        var patterns = JSON.parse(data["savedPatterns"]);
+        var patterns = null;
+        try {
+            patterns = JSON.parse(data["savedPatterns"]);  
+        }
+        // The following three lines of code should not be necessary, 
+        // because loadStorageAndUpdate already takes care of the cases
+        // when the storage is null, and hence "data" should always be non-null
+        // however, many users have been experiencing an unexplained bug (issue # 39)
+        // which is causing the var "patterns" to be "undefined". 
+        // the following three lines of code aim to increase robustness, 
+        // until this bug is properly solved.
+        catch(e) {
+            console.debug("this should never happen");
+            console.debug(e);
+            patterns = defaultStorage;
+        }
+
+
         console.log("savedPatterns: " + patterns);
         var patternsElem = $("#savedTranslationPatterns").html("");
 
@@ -347,7 +364,7 @@ $(function () {
         storage.get(null, function (data) {
             console.log("data: " + data + " : " + JSON.stringify(data));
             var d = {};
-            if (JSON.stringify(data) == "{}") { // in this case, storage was not initialized yet
+            if (data == null || JSON.stringify(data) == "{}") { // in this case, storage was not initialized yet
                 console.log("setting storage to defaultStorage (stringified): ");
                 console.log(JSON.stringify(defaultStorage));
                 storage.set(defaultStorage);
