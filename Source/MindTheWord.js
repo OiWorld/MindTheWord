@@ -270,7 +270,7 @@ chrome.runtime.sendMessage({getOptions: "Give me the options chosen by the user.
         chrome.runtime.sendMessage({runMindTheWord: "Execute!"}, function () {
             main(parseInt(r.ngramMin),
                 parseInt(r.ngramMax),
-                r.translationProbability,
+                r.translationProbability + 24, // ToDo: I am increasing the probability here, to compensate for decreases caused elsewhere. This should be fixed.
                 r.minimumSourceWordLength,
                 JSON.parse(r.userDefinedTranslations),
                 r.userBlacklistedWords,
