@@ -57,7 +57,7 @@ $(function () {
         console.log("initUi end");
     }
 
-    var YandexLanaguages = {
+    var YandexLanguages = {
         Albanian: "sq",
         Arabian: "ar",
         Armenian: "hy",
@@ -109,7 +109,7 @@ $(function () {
 //Sets Languages
     function setLanguages(translatorService) {
         console.log("setLanguages begin");
-        var languages = (translatorService === "Yandex") ? YandexLanaguages : google.language.Languages;
+        var languages = (translatorService === "Yandex") ? YandexLanguages : google.language.Languages;
         var targetLanguageOptions = " ";
         for (var language in languages) {
             var name = language.substring(0, 1) + language.substring(1).toLowerCase().replace('_', ' - ');
