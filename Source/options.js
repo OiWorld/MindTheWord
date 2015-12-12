@@ -1,4 +1,4 @@
-var storage = chrome.storage.sync;
+var storage = chrome.storage.local;
 var cachedStorage = {};
 
 // defaultStorage is used if the storage has not been initialized yet.
@@ -17,6 +17,7 @@ var defaultStorage = {
     ngramMin: 1,
     ngramMax: 1,
     userDefinedTranslations: '{"the":"the", "a":"a"}',
+    limitToUserDefined: false,
     translatorService: "Google Translate",
     yandexTranslatorApiKey: ""
 };
@@ -44,6 +45,7 @@ $(function () {
         e("translatedWordStyle").addEventListener("blur", save_translatedWordStyle);
         e("blacklist").addEventListener("blur", save_blacklist);
         e("userDefinedTranslations").addEventListener("blur", save_userDefinedTranslations);
+        e("limitToUserDefined").addEventListener("click", save_limitToUserDefined);
         e("userBlacklistedWords").addEventListener("blur", save_userBlacklistedWords);
         e("yandexTranslatorApiKey").addEventListener("blur", save_yandexTranslatorApiKey);
         $('#translatorService').change(function (e) {
@@ -179,9 +181,9 @@ $(function () {
 
     function getKey() {
       console.log("getKey pressed")
-      window.open("https://tech.yandex.com/keys/get/?service=trnsl","_self")    
+      window.open("https://tech.yandex.com/keys/get/?service=trnsl","_self")
     }
-    
+
 
     function createPattern() {
         console.log("createPattern begin");
@@ -420,6 +422,11 @@ $(function () {
           Please provide your user-defined translations according to the following format: \
           \n\n {"word1":"translation1", "word2":"translation2", "word3":"translation3", "word4":"translation4"}', 9000, 600, "error");
         }
+    }
+
+    function save_limitToUserDefined() {
+        // ToDo: Implement validation
+        save("limitToUserDefined", "Limit to user defined saved");
     }
 
     function save_minimumSourceWordLength() {

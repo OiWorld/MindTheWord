@@ -116,6 +116,38 @@ function length(obj) {
     return Object.keys(obj).length;
 }
 
+function intersect() {
+  var i, all, shortest, nShortest, n, len, ret = [], obj={}, nOthers;
+  nOthers = arguments.length-1;
+  nShortest = arguments[0].length;
+  shortest = 0;
+  for (i=0; i<=nOthers; i++){
+    n = arguments[i].length;
+    if (n<nShortest) {
+      shortest = i;
+      nShortest = n;
+    }
+  }
+  for (i=0; i<=nOthers; i++) {
+    n = (i===shortest)?0:(i||shortest); //Read the shortest array first. Read the first array instead of the shortest
+    len = arguments[n].length;
+    for (var j=0; j<len; j++) {
+        var elem = arguments[n][j];
+        if(obj[elem] === i-1) {
+          if(i === nOthers) {
+            ret.push(elem);
+            obj[elem]=0;
+          } else {
+            obj[elem]=i;
+          }
+        }else if (i===0) {
+          obj[elem]=0;
+        }
+    }
+  }
+  return ret;
+}
+
 function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
     var userBlacklistedWords = new RegExp(userBlacklistedWords);
 
@@ -126,7 +158,18 @@ function filterSourceWords(countedWords, translationProbability, minimumSourceWo
             !userBlacklistedWords.test(word.toLowerCase()); // no blacklisted words
     }));
 
-    var targetLength = Math.floor((countedWordsList.length * translationProbability) / 100);
+    var targetLength = Math.floor((length(countedWords) * translationProbability) / 100);
+    return toMap(countedWordsList.slice(0, targetLength - 1));
+}
+
+function filterSourceWordsLimitToUserDefined(countedWords, translationProbability, userDefinedTranslations) {
+    var userBlacklistedWords = new RegExp(userBlacklistedWords);
+
+    var a = toList(userDefinedTranslations, function(word,count) {return 1;});
+    var b = toList(countedWords, function(word,count) {return 1;});
+    countedWordsList = intersect(a,b);
+
+    var targetLength = Math.floor((length(countedWords) * translationProbability) / 100);
     return toMap(countedWordsList.slice(0, targetLength - 1));
 }
 
@@ -192,11 +235,17 @@ __mindtheword = new function () {
     };
 };
 
-function main(ngramMin, ngramMax, translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords) {
+function main(ngramMin, ngramMax, translationProbability, minimumSourceWordLength, userDefinedTranslations, userBlacklistedWords, limitToUserDefined) {
     console.log('starting translation');
     var countedWords = getAllWords(ngramMin, ngramMax);
     console.log(countedWords);
-    requestTranslations(filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords),
+    var filteredWords;
+    if (limitToUserDefined) {
+        filteredWords = filterSourceWordsLimitToUserDefined(countedWords, translationProbability, userDefinedTranslations);
+    } else {
+        filteredWords = filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords);
+    }
+    requestTranslations(filteredWords,
         function (tMap) {
             processTranslations(tMap, userDefinedTranslations);
         });
@@ -224,7 +273,8 @@ chrome.runtime.sendMessage({getOptions: "Give me the options chosen by the user.
                 r.translationProbability,
                 r.minimumSourceWordLength,
                 JSON.parse(r.userDefinedTranslations),
-                r.userBlacklistedWords);
+                r.userBlacklistedWords,
+                r.limitToUserDefined);
         })
     }
 });
