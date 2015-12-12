@@ -4,7 +4,12 @@
 var srcLang, targetLang; // source language and target language
 
 function injectCSS(cssStyle) {
-    document.styleSheets[0].insertRule("span.mtwTranslatedWord {" + cssStyle + "}", 0);
+    try {
+        document.styleSheets[0].insertRule("span.mtwTranslatedWord {" + cssStyle + "}", 0);
+    }
+    catch(e) {
+        console.debug(e);
+    }
 }
 
 function injectScript(scriptURL) {
@@ -14,6 +19,8 @@ function injectScript(scriptURL) {
 }
 
 function requestTranslations(sourceWords, callback) {
+    console.log("requestTranslations");
+    console.log("Source Words: " + JSON.stringify(sourceWords) );
     chrome.runtime.sendMessage({wordsToBeTranslated: sourceWords}, function (response) {
         callback(response.translationMap);
     });
@@ -43,20 +50,26 @@ function escapeRegExp(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
 
-// ToDo: This should be improved. The use of spaces is an ugly hack. 
+// ToDo: This should be improved. The use of spaces is an ugly hack.
+// This ugly hack causes a decrease in the number of words that are translated.
 function replaceAll(text, translationMap) {
+    console.log("replaceAll");
     var rExp = "";
     for (var sourceWord in translationMap) {
+        //rExp += "(" + escapeRegExp(sourceWord) + ")|";
         rExp += "(\\s" + escapeRegExp(sourceWord) + "\\s)|";
     }
     rExp = rExp.substring(0, rExp.length - 1);
+    console.log("rExp: " + rExp);
     var regExp = new RegExp(rExp, "gm");
     var newText = text.replace(regExp, function (m) {
-
+        //if (translationMap[m] !== null) {
         if (translationMap[m.substring(1, m.length - 1)] !== null) {
+            //return translationMap[m.substring(1, m.length - 1)] ;
             return " " + translationMap[m.substring(1, m.length - 1)] + " ";
         }
         else {
+            //return m;
             return " " + m + " ";
         }
     });
