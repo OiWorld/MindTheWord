@@ -16,13 +16,13 @@ beforeEach(function() {
     if (trace && trace.length) {
       msgStack.push('TRACE:');
       trace.forEach(function(t) {
-        msgStack.push(' -> ' + t.file + ': ' + t.line + (t.function ? ' (in function "' + t.function +'")' : ''));
+        msgStack.push(' -> ' + t.file + ': ' + t.line + (t.function ? ' (in function "' + t.function + '")' : ''));
       });
     }
     // we need try..catch here as mocha throws error that catched by phantom.onError
     try {
       mocha.throwError(msgStack.join('\n'));
-    } catch(e) { }
+    } catch (e) { }
   };
 
   page.onInitialized = function() {
