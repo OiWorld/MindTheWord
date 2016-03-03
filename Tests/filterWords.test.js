@@ -18,7 +18,7 @@ describe('filterSourceWordsPreferUserDefined function', function() {
         var countedWords = wordList;
         var translationProbability = 15.0;
         var minimumSourceWordLength = 1;
-        var userBlacklistedWords = "(this|that)";
+        var userBlacklistedWords = '(this|that)';
         return filterSourceWordsLimitToUserDefined(countedWords, translationProbability, userDefinedTranslations);
 
       }, wordList, userDefinedTranslations);
