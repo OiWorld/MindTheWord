@@ -1,23 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html ng-app="PopupApp">
   <head>
     <title>Mind The Word</title>
-
     <link href="assets/css/bootstrap.css" rel="stylesheet">
-
-    <script type="text/javascript" src="assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/angular.min.js"></script> //angularjs lib
     <script type="text/javascript" src="popup.js"></script>
   </head>
   <body>
-    <div ng-controller="PopupController"><div class="btn-group">
-      <button type="button" class="btn btn-lg btn-primary" ng-click="toggleEnabled()">Turn {{ data.activation ? "Off" : "On" }}</button>
-
-      <button type="button" class="btn btn-lg btn-success" ng-click="toggleWords()">{{ toggledOn ? "Toggle" : "Toggle" }}</button>
-
-      <button type="button" class="btn btn-lg btn-warning" ng-click="options()">
-      Options
-      </button>
-    </div></div>
+    <div ng-controller="PopupController">
+      <div class="btn-group">
+        <button type="button" class="btn btn-lg btn-primary" ng-click="toggleEnabled()">Turn {{ data.activation ? "Off" : "On" }}</button>
+        <button type="button" class="btn btn-lg btn-success" ng-click="toggleWords()">{{ toggledOn ? "Toggle" : "Toggle" }}</button>
+        <button type="button" class="btn btn-lg btn-warning" ng-click="options()">Options</button>
+      </div>
+    </div>
   </body>
 </html>
 
