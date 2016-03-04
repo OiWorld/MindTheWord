@@ -234,7 +234,14 @@ __mindtheword = new function() {
     var words = document.getElementsByClassName('mtwTranslatedWord');
     for (var i = 0; i < words.length; i++) {
       var word = words[i];
+      var val = $('word').val();
+              if(isNumeric(val)) 
+                 {  
+                     i++;
+                 } 
+              else {  
       word.innerHTML = (this.translated) ? word.dataset.translated : word.dataset.original;
+    }
     }
   };
   this.isTranslated = function() {
