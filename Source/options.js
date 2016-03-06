@@ -453,5 +453,39 @@ $(function() {
     save('ngramMax', 'Maximum word sequence length saved');
   }
 
+  // Listener to update blacklist from context menu
+  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.updateBlacklist) {
+      tabURL = request.tabURL;
+      chrome.storage.local.get('blacklist', function(result) {
+
+        currentBlacklist = result.blacklist;
+        blacklistURLs = [];
+        blacklistURLs = currentBlacklist.slice(1,-1).split('|');
+
+        re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im;
+        domainNameFromTabURL =  tabURL.match(re)[0];
+
+        //to avoid duplication
+        if (blacklistURLs.indexOf(domainNameFromTabURL + '*') == -1) {
+
+          //incase of empty current black list
+          if (!currentBlacklist) {
+            updatedBlacklist = '(' + currentBlacklist.split(')')[0] + domainNameFromTabURL + '*)';
+          } else {
+            updatedBlacklist = currentBlacklist.split(')')[0] + '|' + domainNameFromTabURL + '*)';
+          }
+
+          id = 'blacklist';
+          if (cachedStorage[id] != updatedBlacklist) {
+            var map = {};
+            map[id] = updatedBlacklist;
+            saveBulk(map, 'Blacklist saved');
+          }
+        }
+      });
+    }
+  });
+
   google_analytics('UA-1471148-14');
 });

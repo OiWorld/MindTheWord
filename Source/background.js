@@ -205,5 +205,21 @@ function browserActionClicked() {
   chrome.tabs.create({url: chrome.extension.getURL('options.html')});
 }
 
+chrome.runtime.onInstalled.addListener(function() {
+  var context = 'page';
+  var title = 'Blacklist this website';
+  var id = chrome.contextMenus.create({'title': title, 'id': 'context' + context});
+});
+
+// add click event for context menu
+chrome.contextMenus.onClicked.addListener(onClickHandler);
+
+// sends current URL to be added to the blacklist
+function onClickHandler(info, tab) {
+  chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
+    chrome.runtime.sendMessage({updateBlacklist: 'Add website to blacklist', tabURL: tabs[0].url}, function(r) {});
+  });
+};
+
 google_analytics('UA-1471148-13');
 console.log('Done setting up MindTheWord background page');
