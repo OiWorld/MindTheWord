@@ -36,7 +36,7 @@ function deepHTMLReplacement(node, tMap, iTMap) {
       var parent = node.parentNode;
       parent.innerHTML = replaceAll(parent.innerHTML, iTMap);
     }
-  } else if (node.nodeType == Node.ELEMENT_NODE && !(badTags.indexOf(node.tagName) > -1)) {
+  } else if (node.nodeType == Node.ELEMENT_NODE && (badTags.indexOf(node.tagName) <= -1)) {
     var child = node.firstChild;
     while (child) {
       deepHTMLReplacement(child, tMap, iTMap);
@@ -79,7 +79,7 @@ function replaceAll(text, translationMap) {
 function invertMap(map) {
   var iMap = {};
   var swapJs = 'javascript:__mindtheword.toggleElement(this)';
-  for (e in map) {
+  for (var e in map) {
     iMap[map[e]] = '<span data-sl="' + srcLang + '" data-tl="' + targetLang + '" data-query="' + e +
         '" data-original="' + e + '" data-translated="' + map[e] +
         '" class="mtwTranslatedWord" onClick="' + swapJs + '">' + map[e] + '</span>';
@@ -93,8 +93,8 @@ function containsIllegalCharacters(s) {
 
 function processTranslations(translationMap, userDefinedTMap) {
   var filteredTMap = {};
-  for (w in translationMap) {
-    if (w != translationMap[w] && translationMap[w] != '' && !userDefinedTMap[w] && !containsIllegalCharacters(translationMap[w])) {
+  for (var w in translationMap) {
+    if (w != translationMap[w] && translationMap[w] !== '' && !userDefinedTMap[w] && !containsIllegalCharacters(translationMap[w])) {
       filteredTMap[w] = translationMap[w];
     }
   }
@@ -103,7 +103,7 @@ function processTranslations(translationMap, userDefinedTMap) {
       filteredTMap[w] = userDefinedTMap[w];
     }
   }
-  if (length(filteredTMap) != 0) {
+  if (length(filteredTMap) !== 0) {
     paragraphs = document.getElementsByTagName('p');
     for (var i = 0; i < paragraphs.length; i++) {
       deepHTMLReplacement(paragraphs[i], filteredTMap, invertMap(filteredTMap));
@@ -156,11 +156,11 @@ function intersect() {
 }
 
 function filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords) {
-  var userBlacklistedWords = new RegExp(userBlacklistedWords);
+  userBlacklistedWords = new RegExp(userBlacklistedWords);
 
   var countedWordsList = shuffle(toList(countedWords, function(word, count) {
     return !!word && word.length >= minimumSourceWordLength && // no words that are too short
-        word != '' && !/\d/.test(word) && // no empty words
+        word !== '' && !/\d/.test(word) && // no empty words
         word.charAt(0) != word.charAt(0).toUpperCase() && // no proper nouns
         !userBlacklistedWords.test(word.toLowerCase()); // no blacklisted words
   }));
@@ -227,7 +227,7 @@ function ngramAt(list, index, n) {
   return list.slice(index, index + n).join(' ');
 }
 
-__mindtheword = new function() {
+__mindtheword = function() {
   this.translated = true;
   this.toggleAllElements = function() {
     this.translated = !this.translated;

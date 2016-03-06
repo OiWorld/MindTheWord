@@ -43,7 +43,7 @@ function translateOneRequestPerFewWords(words, prefs, callback) {
   var concatWordsArray = {};
   var cWALength = 1;
 
-  for (word in words) {
+  for (var word in words) {
     //console.debug("word: " + word);
     concatWords += word + '. ';
     //console.debug("concatWords: " + concatWords);
@@ -81,11 +81,11 @@ yandexTranslator.prototype = Object.create(translator);
  */
 googleTranslator.prototype.translate = function(prefs, word, callback) {
   var url = 'http://translate.google.com/translate_a/t?client=f&otf=1&pc=0&hl=en';
-  var sL = prefs['sourceLanguage'];
+  var sL = prefs.sourceLanguage;
   if (sL != 'auto') {
     url += '&sl=' + sL;
   }
-  url += '&tl=' + prefs['targetLanguage'];
+  url += '&tl=' + prefs.targetLanguage;
   url += '&text=';
   url += word;
 
@@ -103,10 +103,10 @@ googleTranslator.prototype.translate = function(prefs, word, callback) {
 };
 
 yandexTranslator.prototype.translate = function(prefs, word, callback) {
-  var apikey = prefs['yandexTranslatorApiKey'];
+  var apikey = prefs.yandexTranslatorApiKey;
 
   var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + apikey;
-  url += '&lang=' + prefs['sourceLanguage'] + '-' + prefs['targetLanguage'];
+  url += '&lang=' + prefs.sourceLanguage + '-' + prefs.targetLanguage;
 
   // currently a hack to create array of words, ideally it would be better to passdown an array of words.
   var words = word.split('.');
