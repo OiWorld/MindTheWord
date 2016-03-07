@@ -358,9 +358,15 @@ $(function() {
 
   function loadStorageAndUpdate(callback) {
     storage.get(null, function(data) {
-      console.log('data: ' + data + ' : ' + JSON.stringify(data));
+      console.log(data);
       var d = {};
-      if (data == null || JSON.stringify(data) == '{}') { // in this case, storage was not initialized yet
+      /*
+      * Here we have to check if the storage is initialized or not
+      * as well as check if the data object has fields other than
+      * activation. Hence we check for saved patterns, as it matters
+      * the most. 
+      **/
+      if (data === null || JSON.stringify(data) == '{}' || !data.savedPatterns) {
         console.log('setting storage to defaultStorage (stringified): ');
         console.log(JSON.stringify(defaultStorage));
         storage.set(defaultStorage);
