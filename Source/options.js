@@ -392,8 +392,12 @@ $(function() {
     var v;
     if (elem.tagName.toLowerCase() == 'select') {
       v = elem.children[elem.selectedIndex].value;
-    } else {
-      v = elem.value;
+    } 
+    else if (elem.type.toLowerCase() == 'checkbox'){
+      v = elem.checked
+    }
+    else {
+      v = elem.value
     }
     console.log('Saving ' + id + ' as ' + v);
     if (cachedStorage[id] != v) {

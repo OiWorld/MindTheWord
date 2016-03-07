@@ -92,18 +92,21 @@ function containsIllegalCharacters(s) {
 }
 
 function processTranslations(translationMap, userDefinedTMap) {
+
   var filteredTMap = {};
   for (var w in translationMap) {
     if (w != translationMap[w] && translationMap[w] !== '' && !userDefinedTMap[w] && !containsIllegalCharacters(translationMap[w])) {
       filteredTMap[w] = translationMap[w];
     }
   }
+
   for (w in userDefinedTMap) {
     if (w != userDefinedTMap[w]) {
       filteredTMap[w] = userDefinedTMap[w];
     }
   }
-  if (length(filteredTMap) !== 0) {
+
+  if (length(filteredTMap) != 0) {
     paragraphs = document.getElementsByTagName('p');
     for (var i = 0; i < paragraphs.length; i++) {
       deepHTMLReplacement(paragraphs[i], filteredTMap, invertMap(filteredTMap));
