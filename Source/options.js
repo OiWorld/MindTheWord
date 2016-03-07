@@ -125,7 +125,7 @@ $(function() {
     console.log('updateUI begin');
     restoreOptions(data);
     restorePatterns(data);
-    setLanguages(data['translatorService']);
+    setLanguages(data.translatorService);
     showCSSExample();
 
     console.log('updateUI end');
@@ -163,8 +163,9 @@ $(function() {
   }
 
   function showCSSExample() {
+    var oldNum;
     if (!oldNum) {
-      var oldNum = 0;
+      oldNum = 0;
     }
     var synonyms = ['awesome', 'magnificent', 'fabulous', 'impressive', 'great',
             'beautiful', 'amazing', 'awe-inspiring', 'astonishing', 'astounding',
@@ -216,10 +217,10 @@ $(function() {
   function restorePatterns(data) {
     console.log('restorePatterns begin');
     e('savedTranslationPatterns').innerHTML = '';
-    console.log(data['savedPatterns']);
+    console.log(data.savedPatterns);
     var patterns = null;
     try {
-      patterns = JSON.parse(data['savedPatterns']);
+      patterns = JSON.parse(data.savedPatterns);
     }
     // The following three lines of code should not be necessary,
     // because loadStorageAndUpdate already takes care of the cases
@@ -243,7 +244,7 @@ $(function() {
       deleteButton = '<button class=\'btn btn-danger pull-right deletePattern\'>Delete</button>';
     }
     $.each(patterns, function(i, pattern) {
-      var listElem = $('<p class=\'alert alert-' + ((pattern[3] && !!data['activation']) ? 'success' : 'nothing') + ' tPattern\'> \
+      var listElem = $('<p class=\'alert alert-' + ((pattern[3] && !!data.activation) ? 'success' : 'nothing') + ' tPattern\'> \
             Use '      + ((pattern[4] === 'Yandex') ? 'Yandex ' : 'Google ') + '\
             to translate \
             <span class=\'label label-info\'>'      + pattern[2] + '%</span> \
@@ -263,7 +264,7 @@ $(function() {
       patternsElem.append(listElem);
     });
 
-    var nonElem = $('<p class=\'alert alert-' + ((!data['activation']) ? 'success' : 'nothing') + ' tPattern\'> \
+    var nonElem = $('<p class=\'alert alert-' + ((!data.activation) ? 'success' : 'nothing') + ' tPattern\'> \
       Do not translate \
       <input type=\'hidden\' value=\'-1\' \
       </p>');
@@ -298,18 +299,18 @@ $(function() {
     var message = 'Pattern Activated.';
     var toSave = {};
     if (_id == -1) {
-      toSave['activation'] = false;
+      toSave.activation = false;
     } else {
-      toSave['activation'] = true;
+      toSave.activation = true;
 
       var selectedPattern = patterns[_id];
 
-      toSave['sourceLanguage'] = selectedPattern[0][0];
-      toSave['targetLanguage'] = selectedPattern[1][0];
-      toSave['translationProbability'] = selectedPattern[2];
-      toSave['translatorService'] = selectedPattern[4] || 'Google Translate';
+      toSave.sourceLanguage = selectedPattern[0][0];
+      toSave.targetLanguage = selectedPattern[1][0];
+      toSave.translationProbability = selectedPattern[2];
+      toSave.translatorService = selectedPattern[4] || 'Google Translate';
 
-      if (toSave['translatorService'] === 'Yandex') {
+      if (toSave.translatorService === 'Yandex') {
         message += ' Make sure you have setup Yandex Api key';
       }
     }
@@ -317,7 +318,7 @@ $(function() {
     for (var i in patterns) {
       patterns[i][3] = (i == _id ? true : false);
     }
-    toSave['savedPatterns'] = JSON.stringify(patterns);
+    toSave.savedPatterns = JSON.stringify(patterns);
     saveBulk(toSave, message);
   }
 
@@ -327,7 +328,7 @@ $(function() {
         'translatedWordStyle', 'blacklist',
         'userDefinedTranslations', 'userBlacklistedWords', 'translatorService', 'yandexTranslatorApiKey'];
 
-    for (index in options) {
+    for (var index in options) {
       restore(options[index], data);
     }
   }
@@ -360,7 +361,7 @@ $(function() {
     storage.get(null, function(data) {
       console.log('data: ' + data + ' : ' + JSON.stringify(data));
       var d = {};
-      if (data == null || JSON.stringify(data) == '{}') { // in this case, storage was not initialized yet
+      if (!data || JSON.stringify(data) == '{}') { // in this case, storage was not initialized yet
         console.log('setting storage to defaultStorage (stringified): ');
         console.log(JSON.stringify(defaultStorage));
         storage.set(defaultStorage);
