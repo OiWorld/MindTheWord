@@ -373,7 +373,12 @@ $(function() {
     storage.get(null, function(data) {
       console.log('data: ' + data + ' : ' + JSON.stringify(data));
       var d = {};
-      if (!data || JSON.stringify(data) == '{}') { // in this case, storage was not initialized yet
+      /*
+      * In this case, we have to check for storage not initialized
+      * as well as check if the object data has fields other than
+      * activation or not.
+      **/
+      if (!data || JSON.stringify(data) == '{}' || !data.savedPatterns) {
         console.log('setting storage to defaultStorage (stringified): ');
         console.log(JSON.stringify(defaultStorage));
         storage.set(defaultStorage);
