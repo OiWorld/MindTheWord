@@ -187,11 +187,11 @@ $(function() {
 
   function createPattern() {
     console.log('createPattern begin');
-    var patterns = JSON.parse(S('savedPatterns')),
+    var stringify = JSON.stringify(S('savedPatterns')),
         src = [],
         trg = [],
         prb = [];
-
+    var patterns = JSON.parse(stringify);
     console.debug(S('savedPatterns'));
     var translator = document.getElementById('translatorService');
     var service = translator.children[translator.selectedIndex].value;
