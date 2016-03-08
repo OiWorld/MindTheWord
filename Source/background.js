@@ -244,5 +244,6 @@ function onClickHandler(info, tab) {
   }
 };
 
+
 google_analytics('UA-1471148-13');
 console.log('Done setting up MindTheWord background page');
