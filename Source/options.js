@@ -470,6 +470,15 @@ $(function() {
     save('ngramMax', 'Maximum word sequence length saved');
   }
 
+  // ToDo: Move the blacklist listener to background.js (find better solution)
+
+  // "Options.js" will only be executed when the user opens the options page.
+  // Therefore, it seems that until the user opens the options page, the messages
+  // sent in line 220 of "background.js" will not be handled
+
+  // Moving this functionality into "background.js" as it will lead to duplication of code
+  // as the entire functionality of saveBulk from "option.js" will have to be implemented again
+
   // Listener to update blacklist from context menu
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.updateBlacklist) {
