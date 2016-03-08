@@ -338,15 +338,17 @@ $(function() {
     var options = ['sourceLanguage', 'targetLanguage', 'translationProbability',
         'minimumSourceWordLength', 'ngramMin', 'ngramMax',
         'translatedWordStyle', 'blacklist',
-        'userDefinedTranslations', 'userBlacklistedWords', 'translatorService', 'yandexTranslatorApiKey'];
+        'userDefinedTranslations', 'userBlacklistedWords', 'translatorService', 'yandexTranslatorApiKey', 'limitToUserDefined'];
 
     for (var index in options) {
+      console.log(index);
       restore(options[index], data);
     }
   }
 
   function restore(option, data) {
     var elem = e(option);
+    //for checkbox this returns input
     var type = elem.tagName.toLowerCase();
 
     console.debug('Restore ' + option + ' to: ' + data[option]);
@@ -358,6 +360,15 @@ $(function() {
           child.selected = 'true';
           break;
         }
+      }
+    }
+    //Restores the options for limitToUserDefinedTranslations
+    else if (elem.type.toLowerCase() == 'checkbox') {
+      if (data[option]){
+        elem.checked = true;
+      }
+      else {
+        elem.checked = false;
       }
     } else {
       elem.value = data[option];
