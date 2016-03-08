@@ -6,8 +6,16 @@ var defaultStorage = {
   initialized: true,
   activation: true,
   blacklist: '(stackoverflow.com|github.com|code.google.com|developer.*.com|duolingo.com)',
-  savedPatterns: JSON.stringify([[['en', 'English'], ['it', 'Italian'], '25', true],
-      [['en', 'English'], ['la', 'Latin'], '15', false]]),
+  savedPatterns: JSON.stringify([
+    [
+      ['en', 'English'],
+      ['it', 'Italian'], '25', true
+    ],
+    [
+      ['en', 'English'],
+      ['la', 'Latin'], '15', false
+    ]
+  ]),
   sourceLanguage: 'en',
   targetLanguage: 'it',
   translatedWordStyle: 'font-style: inherit;\ncolor: rgba(255,153,0,1);\nbackground-color: rgba(256, 100, 50, 0);',
@@ -61,16 +69,13 @@ function translateOneRequestPerFewWords(words, prefs, callback) {
 }
 
 var translator = {
-  translate: function(prefs, word) {
-    }
+  translate: function(prefs, word) {}
 };
 
-var googleTranslator = function() {
-};
+var googleTranslator = function() {};
 googleTranslator.prototype = Object.create(translator);
 
-var yandexTranslator = function() {
-};
+var yandexTranslator = function() {};
 yandexTranslator.prototype = Object.create(translator);
 
 /**
@@ -137,12 +142,10 @@ function getData(url, callback) {
 }
 
 var TranslatorFactory = {
-  getTranslator: function(type) {
-    }
+  getTranslator: function(type) {}
 };
 
-var ConcreteTranslatorFactory = function() {
-};
+var ConcreteTranslatorFactory = function() {};
 
 ConcreteTranslatorFactory.prototype = Object.create(TranslatorFactory);
 ConcreteTranslatorFactory.prototype.getTranslator = function(type) {
@@ -159,14 +162,14 @@ function translateORPFWRec(concatWordsArray, index, length, tMap, prefs, callbac
   if (index > length) callback(tMap);
   else {
     new new ConcreteTranslatorFactory().getTranslator(prefs.translatorService).translate(prefs, concatWordsArray[index],
-            function(pMap) {
-              for (var key in pMap) {
-                if (pMap.hasOwnProperty(key)) {
-                  tMap[key] = pMap[key];
-                }
-              }
-              translateORPFWRec(concatWordsArray, index + 1, length, tMap, prefs, callback);
-            });
+      function(pMap) {
+        for (var key in pMap) {
+          if (pMap.hasOwnProperty(key)) {
+            tMap[key] = pMap[key];
+          }
+        }
+        translateORPFWRec(concatWordsArray, index + 1, length, tMap, prefs, callback);
+      });
   }
 }
 
@@ -178,7 +181,9 @@ function onMessage(request, sender, sendResponse) {
     storage.get(null, function(prefs) {
       translateOneRequestPerFewWords(request.wordsToBeTranslated, prefs, function(tMap) {
         console.log('translations:', tMap);
-        sendResponse({translationMap: tMap});
+        sendResponse({
+          translationMap: tMap
+        });
       });
     });
     //console.log(length(request.wordsToBeTranslated));
@@ -202,7 +207,9 @@ function onMessage(request, sender, sendResponse) {
 chrome.runtime.onMessage.addListener(onMessage);
 
 function browserActionClicked() {
-  chrome.tabs.create({url: chrome.extension.getURL('options.html')});
+  chrome.tabs.create({
+    url: chrome.extension.getURL('options.html')
+  });
 }
 
 
@@ -220,7 +227,6 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // sends current URL to be added to the blacklist
 function onClickHandler(info, tab) {
-
   if (info.menuItemId == "blacklistWebsite") {
     chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
       chrome.runtime.sendMessage({updateBlacklist: 'Add website to blacklist', tabURL: tabs[0].url}, function(r) {});
