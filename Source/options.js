@@ -203,7 +203,8 @@ $(function() {
     if (S('savedPatterns') !== undefined) {
       patterns = JSON.parse(S('savedPatterns'));
     }
-    var src = [],
+    var patterns = JSON.parse(S('savedPatterns')),
+      src = [],
       trg = [],
       prb = [];
 
