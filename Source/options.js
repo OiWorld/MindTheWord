@@ -341,7 +341,6 @@ $(function() {
         'userDefinedTranslations', 'userBlacklistedWords', 'translatorService', 'yandexTranslatorApiKey', 'limitToUserDefined'];
 
     for (var index in options) {
-      console.log(index);
       restore(options[index], data);
     }
   }
