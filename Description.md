@@ -33,7 +33,7 @@ In the options, you can configure:
 Translation quality depends on GoogleTranslate.
 The following languages are supported so far:
 Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, 
-Belarusian, Bengali, Bihari, Bulgarian, Burmese, Breton, Catalan, 
+Belarusian, Bengali, Bhojpuri, Bulgarian, Burmese, Breton, Catalan, 
 Cherokee, Chinese, Chinese (simplified), Chinese (traditional), 
 Corsican, Croatian, Czech, Danish, Dhivehi, Dutch, English, Esperanto, 
 Estonian, Faroese, Filipino, Finnish, French, Frisian, Galician, Georgian, 
@@ -76,7 +76,7 @@ In den Optionen können Sie folgendes konfigurieren:
 Die Übersetzungsqualität hängt von GoogleTranslate ab.
 Die folgenden Sprachen werden bisher unterstützt:
 Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, 
-Belarusian, Bengali, Bihari, Bulgarian, Burmese, Breton, Catalan, 
+Belarusian, Bengali, Bhojpuri, Bulgarian, Burmese, Breton, Catalan, 
 Cherokee, Chinese, Chinese (simplified), Chinese (traditional), 
 Corsican, Croatian, Czech, Danish, Dhivehi, Dutch, English, 
 Esperanto, Estonian, Faroese, Filipino, Finnish, French, Frisian, 
