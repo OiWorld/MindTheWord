@@ -204,12 +204,24 @@ $(function() {
     prb[0] = document.getElementById('translationProbability');
     prb[1] = prb[0].children[prb[0].selectedIndex].value;
 
-    patterns.push([[src[1], src[2]],
+    var duplicateInput = false; //to check duplicate patterns
+    for (index in patterns) {
+      if (patterns[index][0][0] === src[1] && patterns[index][1][0] === trg[1] && patterns[index][2] === prb[1]) {
+        duplicateInput = true;
+        status('Pattern already exists', 9000, 600, 'error');
+      }
+    }
+
+    if (duplicateInput === false) {
+      patterns.push([
+        [src[1], src[2]],
         [trg[1], trg[2]],
         prb[1],
         false,
         service
-    ]);
+      ]);
+    }
+
     saveBulk({'savedPatterns': JSON.stringify(patterns)}, 'Saved Pattern');
     console.log('createPattern end');
   }
