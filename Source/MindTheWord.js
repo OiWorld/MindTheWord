@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2015 Bruno Woltzenlogel Paleo. All rights reserved.
 // With a little help of these awesome guys, https://github.com/OiWorld/MindTheWord/graphs/contributors!
 
-var srcLang, 
+var srcLang,
     targetLang; // source language and target language
 
 function injectCSS(cssStyle) {
@@ -116,14 +116,14 @@ function length(obj) {
 }
 
 function intersect() {
-  var i, 
-      all, 
-      shortest, 
-      nShortest, 
-      n, 
-      len, 
-      ret = [], 
-      obj = {}, 
+  var i,
+      all,
+      shortest,
+      nShortest,
+      n,
+      len,
+      ret = [],
+      obj = {},
       nOthers;
   nOthers = arguments.length - 1;
   nShortest = arguments[0].length;
@@ -235,13 +235,11 @@ __mindtheword = function() {
     for (var i = 0; i < words.length; i++) {
       var word = words[i];
       var val = $('word').val();
-              if(isNumeric(val)) 
-                 {  
-                     i++;
-                 } 
-              else {  
-      word.innerHTML = (this.translated) ? word.dataset.translated : word.dataset.original;
-    }
+      if (isNumeric(val)) {
+        i++;
+      } else {
+        word.innerHTML = (this.translated) ? word.dataset.translated : word.dataset.original;
+      }
     }
   };
   this.isTranslated = function() {

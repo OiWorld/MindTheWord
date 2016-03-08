@@ -38,5 +38,7 @@
     "http://google.com/",
     "tabs",
     "<all_urls>",
-    "storage"]
+    "storage",
+    "contextMenus"
+  ]
 }
