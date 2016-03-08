@@ -227,7 +227,6 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // sends current URL to be added to the blacklist
 function onClickHandler(info, tab) {
-
   if (info.menuItemId == "blacklistWebsite") {
     chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
       chrome.runtime.sendMessage({updateBlacklist: 'Add website to blacklist', tabURL: tabs[0].url}, function(r) {});
