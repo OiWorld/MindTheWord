@@ -6,8 +6,16 @@ var defaultStorage = {
   initialized: true,
   activation: true,
   blacklist: '(stackoverflow.com|github.com|code.google.com|developer.*.com|duolingo.com)',
-  savedPatterns: JSON.stringify([[['en', 'English'], ['it', 'Italian'], '25', true],
-      [['en', 'English'], ['la', 'Latin'], '15', false]]),
+  savedPatterns: JSON.stringify([
+    [
+      ['en', 'English'],
+      ['it', 'Italian'], '25', true
+    ],
+    [
+      ['en', 'English'],
+      ['la', 'Latin'], '15', false
+    ]
+  ]),
   sourceLanguage: 'en',
   targetLanguage: 'it',
   translatedWordStyle: 'font-style: inherit;\ncolor: rgba(255,153,0,1);\nbackground-color: rgba(256, 100, 50, 0);',
@@ -33,7 +41,9 @@ $(function() {
       updateUi(data);
     });
   };
-  google.load('language', '1', {callback: languageLoaded});
+  google.load('language', '1', {
+    callback: languageLoaded
+  });
 
   function setupListeners() {
     e('getKeyBtn').addEventListener('click', getKey);
@@ -121,6 +131,7 @@ $(function() {
     e('targetLanguage').innerHTML = targetLanguageOptions;
     console.log('setLanguages end');
   }
+
   function updateUi(data) {
     console.log('updateUI begin');
     restoreOptions(data);
@@ -145,14 +156,14 @@ $(function() {
 
       setTimeout(function() {
         var opacity = 1,
-                    ntrvl = setInterval(function() {
-                      if (opacity <= 0.01) {
-                        clearInterval(ntrvl);
-                        e('status').removeChild(status);
-                      }
-                      status.style.opacity = opacity;
-                      opacity -= (1 / fade);
-                    }, 1);
+          ntrvl = setInterval(function() {
+            if (opacity <= 0.01) {
+              clearInterval(ntrvl);
+              e('status').removeChild(status);
+            }
+            status.style.opacity = opacity;
+            opacity -= (1 / fade);
+          }, 1);
       }, (duration - fade));
       console.log(text);
     })(text, duration, fade);
@@ -168,10 +179,11 @@ $(function() {
       oldNum = 0;
     }
     var synonyms = ['awesome', 'magnificent', 'fabulous', 'impressive', 'great',
-            'beautiful', 'amazing', 'awe-inspiring', 'astonishing', 'astounding',
-            'noble', 'formidable', 'heroic', 'spectacular', 'important-looking',
-            'majestic', 'dazzling', 'splendid', 'brilliant', 'glorious'],
-        num = Math.floor(Math.random() * synonyms.length);
+        'beautiful', 'amazing', 'awe-inspiring', 'astonishing', 'astounding',
+        'noble', 'formidable', 'heroic', 'spectacular', 'important-looking',
+        'majestic', 'dazzling', 'splendid', 'brilliant', 'glorious'
+      ],
+      num = Math.floor(Math.random() * synonyms.length);
     while (num == oldNum) {
       num = Math.floor(Math.random() * synonyms.length);
     } // We should not use the same word again. Now, should we?
@@ -181,16 +193,16 @@ $(function() {
   }
 
   function getKey() {
-      console.log('getKey pressed');
-      window.open('https://tech.yandex.com/keys/get/?service=trnsl','_self');
-    }
+    console.log('getKey pressed');
+    window.open('https://tech.yandex.com/keys/get/?service=trnsl', '_self');
+  }
 
   function createPattern() {
     console.log('createPattern begin');
     var patterns = JSON.parse(S('savedPatterns')),
-        src = [],
-        trg = [],
-        prb = [];
+      src = [],
+      trg = [],
+      prb = [];
 
     console.debug(S('savedPatterns'));
     var translator = document.getElementById('translatorService');
@@ -205,7 +217,7 @@ $(function() {
     prb[1] = prb[0].children[prb[0].selectedIndex].value;
 
     var duplicateInput = false; //to check duplicate patterns
-    for (index in patterns) {
+    for (var index in patterns) {
       if (patterns[index][0][0] === src[1] && patterns[index][1][0] === trg[1] && patterns[index][2] === prb[1]) {
         duplicateInput = true;
         status('Pattern already exists', 9000, 600, 'error');
@@ -222,7 +234,9 @@ $(function() {
       ]);
     }
 
-    saveBulk({'savedPatterns': JSON.stringify(patterns)}, 'Saved Pattern');
+    saveBulk({
+      'savedPatterns': JSON.stringify(patterns)
+    }, 'Saved Pattern');
     console.log('createPattern end');
   }
 
@@ -257,15 +271,15 @@ $(function() {
     }
     $.each(patterns, function(i, pattern) {
       var listElem = $('<p class=\'alert alert-' + ((pattern[3] && !!data.activation) ? 'success' : 'nothing') + ' tPattern\'> \
-            Use '      + ((pattern[4] === 'Yandex') ? 'Yandex ' : 'Google ') + '\
+            Use ' + ((pattern[4] === 'Yandex') ? 'Yandex ' : 'Google ') + '\
             to translate \
-            <span class=\'label label-info\'>'      + pattern[2] + '%</span> \
+            <span class=\'label label-info\'>' + pattern[2] + '%</span> \
             of all \
-            <span class=\'label label-info\'>'      + pattern[0][1] + '</span> \
+            <span class=\'label label-info\'>' + pattern[0][1] + '</span> \
             words into \
-            <span class=\'label label-info\'>'      + pattern[1][1] + '</span> \
-            '      + deleteButton + ' \
-            <input type=\'hidden\' value=\''      + i + '\' />\
+            <span class=\'label label-info\'>' + pattern[1][1] + '</span> \
+            ' + deleteButton + ' \
+            <input type=\'hidden\' value=\'' + i + '\' />\
             </p>');
       listElem.click(function() {
         activatePattern(i, patterns);
@@ -290,7 +304,7 @@ $(function() {
   function deletePattern(index, patterns, e) {
     e.stopPropagation();
     var _id = index,
-        moveTrue = false; // Are you deleting the active pattern?
+      moveTrue = false; // Are you deleting the active pattern?
 
     if (patterns.length > 1) {
       if (patterns[_id][3]) {
@@ -301,7 +315,9 @@ $(function() {
         patterns[0][3] = true;
         activatePattern(0, patterns);
       } else {
-        saveBulk({'savedPatterns': JSON.stringify(patterns)}, 'Deleted Pattern');
+        saveBulk({
+          'savedPatterns': JSON.stringify(patterns)
+        }, 'Deleted Pattern');
       }
     }
   }
@@ -336,9 +352,10 @@ $(function() {
 
   function restoreOptions(data) {
     var options = ['sourceLanguage', 'targetLanguage', 'translationProbability',
-        'minimumSourceWordLength', 'ngramMin', 'ngramMax',
-        'translatedWordStyle', 'blacklist',
-        'userDefinedTranslations', 'userBlacklistedWords', 'translatorService', 'yandexTranslatorApiKey', 'limitToUserDefined'];
+      'minimumSourceWordLength', 'ngramMin', 'ngramMax',
+      'translatedWordStyle', 'blacklist',
+      'userDefinedTranslations', 'userBlacklistedWords', 'translatorService', 'yandexTranslatorApiKey', 'limitToUserDefined'
+    ];
 
     for (var index in options) {
       restore(options[index], data);
@@ -363,10 +380,9 @@ $(function() {
     }
     //Restores the options for limitToUserDefinedTranslations
     else if (elem.type.toLowerCase() == 'checkbox') {
-      if (data[option]){
+      if (data[option]) {
         elem.checked = true;
-      }
-      else {
+      } else {
         elem.checked = false;
       }
     } else {
@@ -414,12 +430,10 @@ $(function() {
     var v;
     if (elem.tagName.toLowerCase() == 'select') {
       v = elem.children[elem.selectedIndex].value;
-    } 
-    else if (elem.type.toLowerCase() == 'checkbox'){
-      v = elem.checked
-    }
-    else {
-      v = elem.value
+    } else if (elem.type.toLowerCase() == 'checkbox') {
+      v = elem.checked;
+    } else {
+      v = elem.value;
     }
     console.log('Saving ' + id + ' as ' + v);
     if (cachedStorage[id] != v) {
@@ -434,12 +448,11 @@ $(function() {
     try {
       JSON.parse(e('userDefinedTranslations').value);
       save('userDefinedTranslations', 'User-defined translations saved');
-    }
-    catch (e) {
+    } catch (e) {
       console.debug(S('userDefinedTranslations'));
       status('Your user-defined translations are badly specified and therefore will not be used. \
           Please provide your user-defined translations according to the following format: \
-          \n\n {"word1":"translation1", "word2":"translation2", "word3":"translation3", "word4":"translation4"}'    , 9000, 600, 'error');
+          \n\n {"word1":"translation1", "word2":"translation2", "word3":"translation3", "word4":"translation4"}', 9000, 600, 'error');
     }
   }
 
@@ -497,10 +510,10 @@ $(function() {
 
         currentBlacklist = result.blacklist;
         blacklistURLs = [];
-        blacklistURLs = currentBlacklist.slice(1,-1).split('|');
+        blacklistURLs = currentBlacklist.slice(1, -1).split('|');
 
         re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im;
-        domainNameFromTabURL =  tabURL.match(re)[0];
+        domainNameFromTabURL = tabURL.match(re)[0];
 
         //to avoid duplication
         if (blacklistURLs.indexOf(domainNameFromTabURL + '*') == -1) {

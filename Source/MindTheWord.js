@@ -2,13 +2,12 @@
 // With a little help of these awesome guys, https://github.com/OiWorld/MindTheWord/graphs/contributors!
 
 var srcLang,
-    targetLang; // source language and target language
+  targetLang; // source language and target language
 
 function injectCSS(cssStyle) {
   try {
     document.styleSheets[0].insertRule('span.mtwTranslatedWord {' + cssStyle + '}', 0);
-  }
-  catch (e) {
+  } catch (e) {
     console.debug(e);
   }
 }
@@ -22,7 +21,9 @@ function injectScript(scriptURL) {
 function requestTranslations(sourceWords, callback) {
   console.log('requestTranslations');
   console.log('Source Words: ' + JSON.stringify(sourceWords));
-  chrome.runtime.sendMessage({wordsToBeTranslated: sourceWords}, function(response) {
+  chrome.runtime.sendMessage({
+    wordsToBeTranslated: sourceWords
+  }, function(response) {
     callback(response.translationMap);
   });
 }
@@ -81,8 +82,8 @@ function invertMap(map) {
   var swapJs = 'javascript:__mindtheword.toggleElement(this)';
   for (var e in map) {
     iMap[map[e]] = '<span data-sl="' + srcLang + '" data-tl="' + targetLang + '" data-query="' + e +
-        '" data-original="' + e + '" data-translated="' + map[e] +
-        '" class="mtwTranslatedWord" onClick="' + swapJs + '">' + map[e] + '</span>';
+      '" data-original="' + e + '" data-translated="' + map[e] +
+      '" class="mtwTranslatedWord" onClick="' + swapJs + '">' + map[e] + '</span>';
   }
   return iMap;
 }
@@ -106,7 +107,7 @@ function processTranslations(translationMap, userDefinedTMap) {
     }
   }
 
-  if (length(filteredTMap) != 0) {
+  if (length(filteredTMap) !== 0) {
     paragraphs = document.getElementsByTagName('p');
     for (var i = 0; i < paragraphs.length; i++) {
       deepHTMLReplacement(paragraphs[i], filteredTMap, invertMap(filteredTMap));
@@ -120,14 +121,14 @@ function length(obj) {
 
 function intersect() {
   var i,
-      all,
-      shortest,
-      nShortest,
-      n,
-      len,
-      ret = [],
-      obj = {},
-      nOthers;
+    all,
+    shortest,
+    nShortest,
+    n,
+    len,
+    ret = [],
+    obj = {},
+    nOthers;
   nOthers = arguments.length - 1;
   nShortest = arguments[0].length;
   shortest = 0;
@@ -150,7 +151,7 @@ function intersect() {
         } else {
           obj[elem] = i;
         }
-      }else if (i === 0) {
+      } else if (i === 0) {
         obj[elem] = 0;
       }
     }
@@ -163,9 +164,9 @@ function filterSourceWords(countedWords, translationProbability, minimumSourceWo
 
   var countedWordsList = shuffle(toList(countedWords, function(word, count) {
     return !!word && word.length >= minimumSourceWordLength && // no words that are too short
-        word !== '' && !/\d/.test(word) && // no empty words
-        word.charAt(0) != word.charAt(0).toUpperCase() && // no proper nouns
-        !userBlacklistedWords.test(word.toLowerCase()); // no blacklisted words
+      word !== '' && !/\d/.test(word) && // no empty words
+      word.charAt(0) != word.charAt(0).toUpperCase() && // no proper nouns
+      !userBlacklistedWords.test(word.toLowerCase()); // no blacklisted words
   }));
 
   var targetLength = Math.floor((length(countedWords) * translationProbability) / 100);
@@ -175,9 +176,13 @@ function filterSourceWords(countedWords, translationProbability, minimumSourceWo
 function filterSourceWordsLimitToUserDefined(countedWords, translationProbability, userDefinedTranslations) {
   var userBlacklistedWords = new RegExp(userBlacklistedWords);
 
-  var a = toList(userDefinedTranslations, function(word, count) {return 1;});
-  var b = toList(countedWords, function(word, count) {return 1;});
-  countedWordsList = intersect(a,b);
+  var a = toList(userDefinedTranslations, function(word, count) {
+    return 1;
+  });
+  var b = toList(countedWords, function(word, count) {
+    return 1;
+  });
+  countedWordsList = intersect(a, b);
 
   var targetLength = Math.floor((length(countedWords) * translationProbability) / 100);
   return toMap(countedWordsList.slice(0, targetLength - 1));
@@ -261,17 +266,19 @@ function main(ngramMin, ngramMax, translationProbability, minimumSourceWordLengt
     filteredWords = filterSourceWords(countedWords, translationProbability, minimumSourceWordLength, userBlacklistedWords);
   }
   requestTranslations(filteredWords,
-        function(tMap) {
-          processTranslations(tMap, userDefinedTranslations);
-        });
+    function(tMap) {
+      processTranslations(tMap, userDefinedTranslations);
+    });
 }
 
 console.log('mindTheWord running');
-chrome.runtime.sendMessage({getOptions: 'Give me the options chosen by the user...'}, function(r) {
+chrome.runtime.sendMessage({
+  getOptions: 'Give me the options chosen by the user...'
+}, function(r) {
   console.log('Options received: \n' +
-      '  activation: ' + r.activation + '\n' +
-      '  ngramMin: ' + r.ngramMin + '\n' +
-      '  ngramMax: ' + r.ngramMax);
+    '  activation: ' + r.activation + '\n' +
+    '  ngramMin: ' + r.ngramMin + '\n' +
+    '  ngramMax: ' + r.ngramMax);
 
   console.log('Options: \n' + JSON.stringify(r));
 
@@ -282,14 +289,16 @@ chrome.runtime.sendMessage({getOptions: 'Give me the options chosen by the user.
     injectScript(r.script);
     injectCSS(r.translatedWordStyle);
 
-    chrome.runtime.sendMessage({runMindTheWord: 'Execute!'}, function() {
+    chrome.runtime.sendMessage({
+      runMindTheWord: 'Execute!'
+    }, function() {
       main(parseInt(r.ngramMin),
-          parseInt(r.ngramMax),
-          r.translationProbability + 24, // ToDo: I am increasing the probability here, to compensate for decreases caused elsewhere. This should be fixed.
-          r.minimumSourceWordLength,
-          JSON.parse(r.userDefinedTranslations),
-          r.userBlacklistedWords,
-          r.limitToUserDefined);
+        parseInt(r.ngramMax),
+        r.translationProbability + 24, // ToDo: I am increasing the probability here, to compensate for decreases caused elsewhere. This should be fixed.
+        r.minimumSourceWordLength,
+        JSON.parse(r.userDefinedTranslations),
+        r.userBlacklistedWords,
+        r.limitToUserDefined);
     });
   }
 });
