@@ -521,6 +521,34 @@ $(function() {
         }
       });
     }
+
+    else if (request.updateUserBlacklistedWords) {
+      chrome.storage.local.get('userBlacklistedWords', function(result) {
+        currentUserBlacklistedWords = result.userBlacklistedWords;
+        blacklistedWords = [];
+        blacklistedWords =  currentUserBlacklistedWords.slice(1,-1).split('|');
+
+        wordToBeBlacklisted = request.word;
+
+        //to avoid duplication
+        if (blacklistedWords.indexOf(wordToBeBlacklisted) == -1) {
+
+          //incase of empty current black list
+          if (!currentUserBlacklistedWords) {
+            updatedBlacklistedWords = '(' +  wordToBeBlacklisted + ')';
+          } else {
+            updatedBlacklistedWords = currentUserBlacklistedWords.split(')')[0] + '|' + wordToBeBlacklisted + ')';
+          }
+
+          id = 'userBlacklistedWords';
+          if (cachedStorage[id] != updatedBlacklistedWords) {
+            var map = {};
+            map[id] = updatedBlacklistedWords;
+            saveBulk(map, 'Blacklist saved');
+          }
+        }
+      });
+    }
   });
 
   google_analytics('UA-1471148-14');
