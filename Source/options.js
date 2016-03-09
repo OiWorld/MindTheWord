@@ -199,8 +199,11 @@ $(function() {
 
   function createPattern() {
     console.log('createPattern begin');
-    var patterns = JSON.parse(S('savedPatterns')),
-      src = [],
+    var patterns = [];
+    if (S('savedPatterns') !== undefined) {
+      patterns = JSON.parse(S('savedPatterns'));
+    }
+    var src = [],
       trg = [],
       prb = [];
 
