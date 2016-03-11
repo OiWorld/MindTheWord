@@ -29,6 +29,8 @@ var defaultStorage = {
   yandexTranslatorApiKey: ''
 };
 
+var currentTranslatedMap = {};
+
 /**
  * @desc initialize storage if needed
  */
@@ -181,6 +183,7 @@ function onMessage(request, sender, sendResponse) {
     storage.get(null, function(prefs) {
       translateOneRequestPerFewWords(request.wordsToBeTranslated, prefs, function(tMap) {
         console.log('translations:', tMap);
+        currentTranslatedMap = tMap;
         sendResponse({
           translationMap: tMap
         });
@@ -215,7 +218,6 @@ function browserActionClicked() {
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.contextMenus.create({"title": "MindTheWord", "id": "parent", "contexts":["selection", "page"]});
-
   chrome.contextMenus.create(
       {"title": "Blacklist this website", "parentId": "parent", "id": "blacklistWebsite"});
 

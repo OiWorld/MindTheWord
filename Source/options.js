@@ -1,6 +1,5 @@
 var storage = chrome.storage.local;
 var cachedStorage = {};
-
 // defaultStorage is used if the storage has not been initialized yet.
 var defaultStorage = {
   initialized: true,
@@ -542,6 +541,56 @@ $(function() {
           }
         }
       });
+    } else if (request.updateUserBlacklistedWords) {
+        chrome.storage.local.get('userBlacklistedWords', function(result) {
+          currentUserBlacklistedWords = result.userBlacklistedWords;
+          blacklistedWords = [];
+          blacklistedWords =  currentUserBlacklistedWords.slice(1,-1).split('|');
+
+          wordToBeBlacklisted = request.word;
+
+          //to avoid duplication
+          if (blacklistedWords.indexOf(wordToBeBlacklisted) == -1) {
+
+            //incase of empty current black list
+            if (!currentUserBlacklistedWords) {
+              updatedBlacklistedWords = '(' +  wordToBeBlacklisted + ')';
+            } else {
+              updatedBlacklistedWords = currentUserBlacklistedWords.split(')')[0] + '|' + wordToBeBlacklisted + ')';
+            }
+
+            id = 'userBlacklistedWords';
+            if (cachedStorage[id] != updatedBlacklistedWords) {
+              var map = {};
+              map[id] = updatedBlacklistedWords;
+              saveBulk(map, 'Blacklist saved');
+            }
+          }
+        });
+    } else if(request.updateUserDictionary) {
+        chrome.storage.local.get('userDefinedTranslations', function(result) {
+          userDictionary = result.userDefinedTranslations;
+          userDict = JSON.parse(userDictionary);
+          console.log(userDict);
+
+          wordToSave = request.word;
+          translationToSave = request.translation;
+          //to avoid duplication
+          if (!userDict[wordToSave]) {
+            
+            userDict[wordToSave] = translationToSave;
+
+            stingifiedDict = JSON.stringify(userDict);
+            
+            id = 'userDefinedTranslations';
+            if (cachedStorage[id] !== stingifiedDict) {
+              console.log('saving');
+              var map = {};
+              map[id] = stingifiedDict;
+              saveBulk(map, 'userDefinedTranslations saved');
+            }
+          }
+        });
     }
 
     else if (request.updateUserBlacklistedWords) {
