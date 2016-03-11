@@ -9,11 +9,11 @@ var defaultStorage = {
   savedPatterns: JSON.stringify([
     [
       ['en', 'English'],
-      ['it', 'Italian'], '25', true
+      ['it', 'Italian'], '25', true, 'Yandex'
     ],
     [
       ['en', 'English'],
-      ['la', 'Latin'], '15', false
+      ['de', 'German'], '15', false, 'Yandex'
     ]
   ]),
   sourceLanguage: 'en',
@@ -25,7 +25,7 @@ var defaultStorage = {
   ngramMin: 1,
   ngramMax: 1,
   userDefinedTranslations: '{"the":"the", "a":"a"}',
-  translatorService: 'Google Translate',
+  translatorService: 'Yandex',
   yandexTranslatorApiKey: ''
 };
 

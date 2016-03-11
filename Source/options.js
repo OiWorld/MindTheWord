@@ -9,11 +9,11 @@ var defaultStorage = {
   savedPatterns: JSON.stringify([
     [
       ['en', 'English'],
-      ['it', 'Italian'], '25', true
+      ['it', 'Italian'], '25', true, 'Yandex'
     ],
     [
       ['en', 'English'],
-      ['la', 'Latin'], '15', false
+      ['de', 'German'], '15', false, 'Yandex'
     ]
   ]),
   sourceLanguage: 'en',
@@ -26,7 +26,7 @@ var defaultStorage = {
   ngramMax: 1,
   userDefinedTranslations: '{"the":"the", "a":"a"}',
   limitToUserDefined: false,
-  translatorService: 'Google Translate',
+  translatorService: 'Yandex',
   yandexTranslatorApiKey: ''
 };
 
@@ -265,7 +265,7 @@ $(function() {
       patterns = defaultStorage;
     }
 
-    console.log('savedPatterns: ' + patterns);
+    console.log('savedPatterns', patterns);
     var patternsElem = $('#savedTranslationPatterns').html('');
 
     // DeleteButton should only be shown if there are two or more patterns
@@ -340,7 +340,7 @@ $(function() {
       toSave.sourceLanguage = selectedPattern[0][0];
       toSave.targetLanguage = selectedPattern[1][0];
       toSave.translationProbability = selectedPattern[2];
-      toSave.translatorService = selectedPattern[4] || 'Google Translate';
+      toSave.translatorService = selectedPattern[4] || 'Yandex';
 
       if (toSave.translatorService === 'Yandex') {
         message += ' Make sure you have setup Yandex Api key';
