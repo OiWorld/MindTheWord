@@ -23,13 +23,13 @@
                 <div class="container">
                     <ul class="nav">
                         <li class="active">
-                            <a href="#tBasic" data-toggle="tab">Basic Options</a>
+                            <a href="#tBasic" data-toggle="tab" data-language="basicOptionsTab"></a>
                         </li>
                         <li>
-                            <a href="#tAdvanced" data-toggle="tab">Advanced Options</a>
+                            <a href="#tAdvanced" data-toggle="tab" data-language="advancedOptionsTab"></a>
                         </li>
                         <li>
-                            <a href="#tContributions" data-toggle="tab">Contributions</a>
+                            <a href="#tContributions" data-toggle="tab" data-language="contributionsTab"></a>
                         </li>
                     </ul>
                 </div>
@@ -42,13 +42,13 @@
         <div class="row-fluid tab-pane active" id="tBasic">
             <div class="span12">
                 <div>
-                    <h3>Select Translation Configuration</h3>
+                    <h3 data-language="selectTranslationHeading"></h3>
 
                     <div id="savedTranslationPatterns"></div>
                 </div>
                 <hr>
                 <div>
-                    <h3>Create New Translation Configuration</h3>
+                    <h3 data-language="newTranslationHeading"></h3>
 
                     <p>Use
                         <select id="translatorService">
@@ -81,13 +81,11 @@
                         <button id="addTranslationBtn" class="btn btn-primary pull-right">Create</button>
                     </p>
 
-                    <p>
-                    <b>Attention:</b> Google Translate is <i>not free</i>. Yandex is <i>recommended</i>!
-                    </p>
+                    <p data-language="attentionMessage"></p>
                 </div>
                 <div>
                     <hr>
-                    <h3>Translation Settings</h3>
+                    <h3 data-lanaguage = "translationSettings">Translation Settings</h3>
 
                     <div>
                         <button id="getKeyBtn" class="btn btn-primary">Get Free Yandex Key</button>
@@ -126,9 +124,7 @@
                 <div class="span8 optionsSpan">
                     <p>
 
-                    <p>Format the translated words according to the following
-                        <a href="http://lesliefranke.com/files/reference/csscheatsheet.html">CSS </a>property-value
-                        pairs:</p>
+                    <p data-language = "adjustmentsDescription"></p>
                     <textarea class="span12" rows="4" id="translatedWordStyle"></textarea>
 
                     <p>
@@ -151,14 +147,16 @@
                 <h3>Blacklisting</h3>
 
                 <div class="span6 optionsSpan">
-                    <p>Do not translate the following websites:
+                    <p>
+                        <span data-language = "blacklistingWebsitesDescription"></span>
                         <br>
                         <br>
                         <textarea class="span12" rows="4" id="blacklist"></textarea>
                     </p>
                 </div>
                 <div class="span6">
-                    <p>Do not translate the following words:
+                    <p>
+                        <span data-language = "blacklistingWordsDescription"></span>
                         <br>
                         <br>
                         <textarea class="span12" rows="4" id="userBlacklistedWords"></textarea>
@@ -169,7 +167,8 @@
                 <hr>
                 <h3>User-defined Translations</h3>
                 <div class="span8 optionsSpan">
-                    <p>Use the following user-defined translations:
+                    <p>
+                        <span data-language="userDefinedTranslations"></span>
                         <br>
                         <br>
                         <textarea class="span12" rows="4" id="userDefinedTranslations"></textarea>
@@ -177,7 +176,7 @@
                 </div>
                 <div class="span4">
                     <p>Limit to user-defined translations: <input type="checkbox" id="limitToUserDefined" /></p>
-                    <p>This will limit translations to only those provided in the user-defined dictionary. Words not in the dictionary will not be translated.</p>
+                    <p data-language="userLimitedTranslationsCheckbox"></p>
                 </div>
             </div>
             <div class="row-fluid">
