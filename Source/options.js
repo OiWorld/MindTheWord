@@ -570,6 +570,30 @@ $(function() {
           }
         }
       });
+    } else if(request.updateUserDictionary) {
+        chrome.storage.local.get('userDefinedTranslations', function(result) {
+          userDictionary = result.userDefinedTranslations;
+          userDict = JSON.parse(userDictionary);
+          console.log(userDict);
+
+          wordToSave = request.word;
+          translationToSave = request.translation;
+          //to avoid duplication
+          if (!userDict[wordToSave]) {
+            
+            userDict[wordToSave] = translationToSave;
+
+            stingifiedDict = JSON.stringify(userDict);
+            
+            id = 'userDefinedTranslations';
+            if (cachedStorage[id] !== stingifiedDict) {
+              console.log('saving');
+              var map = {};
+              map[id] = stingifiedDict;
+              saveBulk(map, 'userDefinedTranslations saved');
+            }
+          }
+        });
     }
   });
 
