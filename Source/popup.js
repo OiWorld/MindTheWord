@@ -1,8 +1,13 @@
 var app = angular.module('PopupApp', []);
 app.controller('PopupController', ['$scope', function($scope) {
+
+  chrome.tabs.executeScript(null, {
+    code: 'var inst = new __mindtheword();'
+  });
+
   $scope.toggleWords = function() {
     chrome.tabs.executeScript(null, {
-      code: '__mindtheword.toggleAllElements();'
+      code: 'inst.toggleAllElements();'
     }, function() {
       $scope.updateData();
     });
@@ -30,7 +35,7 @@ app.controller('PopupController', ['$scope', function($scope) {
 
   $scope.updateData = function() {
     chrome.tabs.executeScript(null, {
-      code: '__mindtheword.isTranslated()'
+      code: 'inst.isTranslated();'
     }, function(translated) {
       $scope.$apply(function() {
         $scope.toggledOn = translated[0];
