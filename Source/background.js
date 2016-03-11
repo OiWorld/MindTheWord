@@ -9,11 +9,11 @@ var defaultStorage = {
   savedPatterns: JSON.stringify([
     [
       ['en', 'English'],
-      ['it', 'Italian'], '25', true
+      ['it', 'Italian'], '25', true, 'Yandex'
     ],
     [
       ['en', 'English'],
-      ['la', 'Latin'], '15', false
+      ['de', 'German'], '15', false, 'Yandex'
     ]
   ]),
   sourceLanguage: 'en',
@@ -25,7 +25,7 @@ var defaultStorage = {
   ngramMin: 1,
   ngramMax: 1,
   userDefinedTranslations: '{"the":"the", "a":"a"}',
-  translatorService: 'Google Translate',
+  translatorService: 'Yandex',
   yandexTranslatorApiKey: ''
 };
 
@@ -215,49 +215,36 @@ function browserActionClicked() {
   });
 }
 
+
 chrome.runtime.onInstalled.addListener(function() {
   chrome.contextMenus.create({"title": "MindTheWord", "id": "parent", "contexts":["selection", "page"]});
- 
   chrome.contextMenus.create(
-    {"title": "Blacklist this website", "parentId": "parent", "id": "blacklistWebsite"});
- 
-  chrome.contextMenus.create(
-    {"title": "Blacklist selected word", "parentId": "parent", "contexts":["selection"], "id": "blacklistWord"});
+      {"title": "Blacklist this website", "parentId": "parent", "id": "blacklistWebsite"});
 
   chrome.contextMenus.create(
-    {"title": "Save word to dictionary", "parentId": "parent", "contexts":["selection"], "id": "saveWord"});
+      {"title": "Blacklist selected word", "parentId": "parent", "contexts":["selection"], "id": "blacklistWord"});
 });
 
-// add click event for context menu
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // sends current URL to be added to the blacklist
 function onClickHandler(info, tab) {
   if (info.menuItemId == "blacklistWebsite") {
-      chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
-        chrome.runtime.sendMessage({updateBlacklist: 'Add website to blacklist', tabURL: tabs[0].url}, function(r) {});
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
+      chrome.runtime.sendMessage({updateBlacklist: 'Add website to blacklist', tabURL: tabs[0].url}, function(r) {});
     });
 
   } else if (info.menuItemId == "blacklistWord") {
-      selectedText = info.selectionText;
-      if (selectedText.indexOf(' ') < 0) {
-        chrome.runtime.sendMessage({updateUserBlacklistedWords: 'Add words to blacklist', word: selectedText}, function(r) {});
-      }
-      else {
-        alert('Please select only a single word. "' + selectedText + '" is not allowed.'  );
-      }
-  } else if (info.menuItemId === "saveWord") {
-      selectedText = info.selectionText;
-      var translation = currentTranslatedMap[selectedText];
-      if (currentTranslatedMap[selectedText]) {
-        console.log('To save:' + selectedText);
-        chrome.runtime.sendMessage({updateUserDictionary: 'Add words to dictionary', word: selectedText, translation: translation}, function(r) {});
-      }
-      else {
-        alert('Please select translated word. "' + selectedText + '" is not translated.'  );
-      }
+    selectedText = info.selectionText;
+
+    if (selectedText.indexOf(' ') < 0) {
+      chrome.runtime.sendMessage({updateUserBlacklistedWords: 'Add words to blacklist', word: selectedText}, function(r) {});
+    }
+    else {
+      alert('Please select only a single word. "' + selectedText + '" is not allowed.'  );
+    }
   }
-} 
+};
 
 google_analytics('UA-1471148-13');
 console.log('Done setting up MindTheWord background page');
