@@ -63,9 +63,17 @@ $(function() {
     });
   }
 
+  function loadLocalizedText() {  
+    // Added multiple language support. replaces text with user language
+    for(var i=0;i< $('[data-language]').length;++i) {
+      $($('[data-language]')[i]).html(chrome.i18n.getMessage($($('[data-language]')[i]).data('language'))) 
+    }
+  }
+
   function initUi() {
     console.log('initUi begin');
     setupListeners();
+    loadLocalizedText();
     console.log('initUi end');
   }
 
@@ -355,6 +363,7 @@ $(function() {
   }
 
   function restoreOptions(data) {
+
     var options = ['sourceLanguage', 'targetLanguage', 'translationProbability',
       'minimumSourceWordLength', 'ngramMin', 'ngramMax',
       'translatedWordStyle', 'blacklist',
@@ -392,6 +401,7 @@ $(function() {
     } else {
       elem.value = data[option];
     }
+  
   }
 
   /** Storage **/
