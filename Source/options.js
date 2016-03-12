@@ -222,7 +222,7 @@ $(function() {
 
     var duplicateInput = false; //to check duplicate patterns
     for (var index in patterns) {
-      if (patterns[index][0][0] === src[1] && patterns[index][1][0] === trg[1] && patterns[index][2] === prb[1]) {
+      if (patterns[index][0][0] === src[1] && patterns[index][1][0] === trg[1] && patterns[index][2] === prb[1]  && patterns[index][4] === service) {
         duplicateInput = true;
         status('Pattern already exists', 9000, 600, 'error');
       }
