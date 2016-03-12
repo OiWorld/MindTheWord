@@ -57,7 +57,10 @@ $(function() {
     e('userDefinedTranslations').addEventListener('blur', save_userDefinedTranslations);
     e('limitToUserDefined').addEventListener('click', save_limitToUserDefined);
     e('userBlacklistedWords').addEventListener('blur', save_userBlacklistedWords);
-    e('yandexTranslatorApiKey').addEventListener('blur', save_yandexTranslatorApiKey);
+    e('updateYandexKey').addEventListener('click', function(event) {
+      event.preventDefault();
+      save_yandexTranslatorApiKey();
+    });
     $('#translatorService').change(function(e) {
       setLanguages(e.currentTarget.value);
     });
@@ -404,10 +407,10 @@ $(function() {
       console.log('data: ' + data + ' : ' + JSON.stringify(data));
       var d = {};
       /*
-      * In this case, we have to check for storage not initialized
-      * as well as check if the object data has fields other than
-      * activation or not.
-      **/
+       * In this case, we have to check for storage not initialized
+       * as well as check if the object data has fields other than
+       * activation or not.
+       **/
       if (!data || JSON.stringify(data) == '{}' || !data.savedPatterns) {
         console.log('setting storage to defaultStorage (stringified): ');
         console.log(JSON.stringify(defaultStorage));

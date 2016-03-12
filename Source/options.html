@@ -49,12 +49,13 @@
                 <hr>
                 <div>
                     <h3>Create New Translation Configuration</h3>
-
-                    <p>Use
+                    <form class="form-inline">
+                        <label>Use</label>
                         <select id="translatorService">
                             <option>Yandex</option>
                             <option>Google Translate</option>
-                        </select> to translate
+                        </select>
+                        <label>to translate</label>
                         <select ID="translationProbability" style="width:5em">
                             <option value="5">5%</option>
                             <option value="10">10%</option>
@@ -71,15 +72,16 @@
                             <option value="65">65%</option>
                             <option value="70">70%</option>
                             <option value="75">75%</option>
-                        </select> of all
+                        </select>
+                        <label>of all</label>
                         <select ID="sourceLanguage" style="width:10em">
                             <option value="en">English</option>
-
-                        </select> words into
+                        </select>
+                        <label>words into</label>
                         <select ID="targetLanguage" style="width:10em">
                         </select>
                         <button id="addTranslationBtn" class="btn btn-primary pull-right">Create</button>
-                    </p>
+                    </form>
 
                     <p>
                     <b>Attention:</b> Google Translate is <i>not free</i>. Yandex is <i>recommended</i>!
@@ -89,25 +91,20 @@
                     <hr>
                     <h3>Translation Settings</h3>
 
-                    <div>
+                    <p>
                         <button id="getKeyBtn" class="btn btn-primary">Get Free Yandex Key</button>
 
                         The key enables the use of Yandex's translation services up to 10 million translated characters per month.
-                    </div>
+                    </p>
 
-                    <br />
+                    <form class="form-inline">
+                        <label>Insert your Yandex API Key:</label>
+                        <input type="text" id="yandexTranslatorApiKey"></input>
+                        <button class="btn btn-primary" id="updateYandexKey">Update</button>
+                    </form>
 
-                    <div class="span3 optionsSpan">
-                        <p>Insert here your Yandex API Key:
-                        </p>
-                    </div>
-                    <div>
-                        <input type="text" id="yandexTranslatorApiKey">
-                        <b><a href="http://translate.yandex.com/">Powered by Yandex.Translate</a></b>
-                    </div>
-
-                    <br />
-
+                    <small><a href="http://translate.yandex.com/">Powered by Yandex.Translate</a></small>
+                    <hr>
                     <div>
                         If this App is not working for you, please visit the <a href="https://github.com/OiWorld/MindTheWord/blob/master/Troubleshooting/Troubleshooting.md">Troubleshooting Page</a>.
                     </div>
