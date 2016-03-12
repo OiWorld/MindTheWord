@@ -238,17 +238,16 @@ function ngramAt(list, index, n) {
 __mindtheword = function() {
   this.translated = true;
   this.toggleAllElements = function() {
+    console.log('toggleAllElements start');
     this.translated = !this.translated;
     var words = document.getElementsByClassName('mtwTranslatedWord');
     for (var i = 0; i < words.length; i++) {
       var word = words[i];
-      var val = $('word').val();
-      if (isNumeric(val)) {
-        i++;
-      } else {
-        word.innerHTML = (this.translated) ? word.dataset.translated : word.dataset.original;
+      if (isNaN(word.innerText)) { //isNaN returns true if parameter does NOT contain a number
+        word.innerText = (this.translated) ? word.dataset.translated : word.dataset.original;
       }
     }
+    console.log('toggleAllElements end');
   };
   this.isTranslated = function() {
     return this.translated;
