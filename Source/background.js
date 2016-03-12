@@ -29,6 +29,8 @@ var defaultStorage = {
   yandexTranslatorApiKey: ''
 };
 
+var currentTranslatedMap = {};
+
 /**
  * @desc initialize storage if needed
  */
@@ -180,6 +182,7 @@ function onMessage(request, sender, sendResponse) {
     console.log('words to be translated:', request.wordsToBeTranslated);
     storage.get(null, function(prefs) {
       translateOneRequestPerFewWords(request.wordsToBeTranslated, prefs, function(tMap) {
+        currentTranslatedMap = tMap;
         console.log('translations:', tMap);
         sendResponse({
           translationMap: tMap
@@ -214,13 +217,17 @@ function browserActionClicked() {
 
 
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.contextMenus.create({"title": "MindTheWord", "id": "parent", "contexts":["selection", "page"]});
+  chrome.contextMenus.create(
+      {"title": "MindTheWord", "id": "parent", "contexts":["selection", "page"]});
 
   chrome.contextMenus.create(
       {"title": "Blacklist this website", "parentId": "parent", "id": "blacklistWebsite"});
 
   chrome.contextMenus.create(
       {"title": "Blacklist selected word", "parentId": "parent", "contexts":["selection"], "id": "blacklistWord"});
+
+  chrome.contextMenus.create(
+      {"title": "Save word to dictionary", "parentId": "parent", "contexts":["selection"], "id": "saveWord"});
 });
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
@@ -241,8 +248,18 @@ function onClickHandler(info, tab) {
     else {
       alert('Please select only a single word. "' + selectedText + '" is not allowed.'  );
     }
+  } else if (info.menuItemId === "saveWord") {
+      selectedText = info.selectionText;
+      var translation = currentTranslatedMap[selectedText];
+      if (currentTranslatedMap[selectedText]) {
+        console.log('To save:' + selectedText);
+        chrome.runtime.sendMessage({updateUserDictionary: 'Add word to dictionary', word: selectedText, translation: translation}, function(r) {});
+      }
+      else {
+        alert('Please select translated word. "' + selectedText + '" is not translated.'  );
+      }
   }
-};
+}
 
 google_analytics('UA-1471148-13');
 console.log('Done setting up MindTheWord background page');
