@@ -56,10 +56,18 @@ function escapeRegExp(str) {
 function replaceAll(text, translationMap) {
   console.log('replaceAll');
   var rExp = '';
-  for (var sourceWord in translationMap) {
-    //rExp += "(" + escapeRegExp(sourceWord) + ")|";
+  // Sort the source words by length in descending order.
+  // Longer source strings might contain shorter source strings.
+  // It's important that the shorter strings are not replaced until the longer
+  // strings have been replaced and this sorting ensures that is the case.
+  var sortedSourceWords = Object.keys(translationMap)
+    .sort(function sortDescending(w1, w2) {
+      return w2.length - w1.length;
+    });
+  // Construct the rExp string based on the sorted source words.
+  sortedSourceWords.forEach(function concatRExp(sourceWord) {
     rExp += '(\\s' + escapeRegExp(sourceWord) + '\\s)|';
-  }
+  });
   rExp = rExp.substring(0, rExp.length - 1);
   console.log('rExp: ' + rExp);
   var regExp = new RegExp(rExp, 'gm');
