@@ -37,11 +37,10 @@ function deepHTMLReplacement(node, tMap, iTMap) {
       var parent = node.parentNode;
       parent.innerHTML = replaceAll(parent.innerHTML, iTMap);
     }
-  } else if (node.nodeType == Node.ELEMENT_NODE && (badTags.indexOf(node.tagName) <= -1)) {
-    var child = node.firstChild;
-    while (child) {
-      deepHTMLReplacement(child, tMap, iTMap);
-      child = child.nextSibling;
+  } else if (node.nodeType === Node.ELEMENT_NODE && (badTags.indexOf(node.tagName) <= -1)) {
+    var innerNodes = node.childNodes;
+    for (var index = 0; index < innerNodes.length-1; index++) {
+      deepHTMLReplacement(innerNodes[index], tMap, iTMap);
     }
   }
 }
@@ -301,7 +300,7 @@ chrome.runtime.sendMessage({
     }, function() {
       main(parseInt(r.ngramMin),
         parseInt(r.ngramMax),
-        r.translationProbability + 24, // ToDo: I am increasing the probability here, to compensate for decreases caused elsewhere. This should be fixed.
+        r.translationProbability,
         r.minimumSourceWordLength,
         JSON.parse(r.userDefinedTranslations),
         r.userBlacklistedWords,
