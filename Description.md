@@ -106,7 +106,11 @@ Translated by: Kyle Bedell and Danya Ramírez
 
 MindTheWord ofrece inmersión a una lengua extranjera mientras navegas por Internet. 
 
-Esta extensión traduce de manera aleatoria a la lengua meta que tú hayas seleccionado algunas de las palabras en cada página web que visites. Como las palabras traducidas se encuentran en contexto, es más fácil inferir y memorizar su significado. Así, puedes aprender nuevo vocabulario y mejorar tus habilidades lingüísticas sin mayor esfuerzo.    
+Esta extensión traduce de manera aleatoria a la lengua meta que tú hayas 
+seleccionado algunas de las palabras en cada página web que visites. Como las 
+palabras traducidas se encuentran en contexto, es más fácil inferir y memorizar 
+su significado. Así, puedes aprender nuevo vocabulario y mejorar tus habilidades 
+lingüísticas sin mayor esfuerzo.    
 
 Puedes configurar las siguientes opciones:
 * cuántas palabras o caracteres serán traducidos,
@@ -118,7 +122,19 @@ Puedes configurar las siguientes opciones:
 
 La calidad de las traducciones dependerá de la capacidad de GoogleTranslate:
 Hasta ahora se admiten los siguientes idiomas:
-Afrikaans, albanés, amhárico, árabe, armenio, azerbaiyano, euskera, bielorruso, bengalí, bhojpuri, búlgaro, birmano, bretón, catalán, cherokee, chino, chino (simplificado), chino (tradicional), corso, croata, checo, danés, divehi, holandés, inglés, esperanto, estonio, feroés, filipino, finlandés, francés, frisón, gallego, georgiano, alemán, griego, gujarati, haitiano, hebreo, hindi, húngaro, islandés, indonesio, inuktitut, irlandés, italiano, japonés, javanés, kannada, kasajo, khmer, coreano, kurdo, kirguís, lao, laosiano, latín, letón, lituano, luxemburgués, macedonio, malayo, malayalam, maltés, maori, marathi, mongol, nepalés, noruego, occitano, oriya, pastan, persa, polaco, portugués, punjabi, quechua, rumano, ruso, sánscrito, gaélico-escocés, serbio, sindhi, cingalés, eslovaco, eslovenio, español, sondanés, swahili, sueco, siríaco, tayiko, tamil, tagalo, tártaro, telugu, tailandés, tibetano, tonga, turco, ucraniano, urdu, uzbeko, uygur, vietnamita, galés, yiddish, yoruba.       
+Afrikaans, albanés, amhárico, árabe, armenio, azerbaiyano, euskera, bielorruso, 
+bengalí, bhojpuri, búlgaro, birmano, bretón, catalán, cherokee, chino, 
+chino (simplificado), chino (tradicional), corso, croata, checo, danés, divehi, 
+holandés, inglés, esperanto, estonio, feroés, filipino, finlandés, francés, 
+frisón, gallego, georgiano, alemán, griego, gujarati, haitiano, hebreo, hindi, 
+húngaro, islandés, indonesio, inuktitut, irlandés, italiano, japonés, javanés, 
+kannada, kasajo, khmer, coreano, kurdo, kirguís, lao, laosiano, latín, letón, 
+lituano, luxemburgués, macedonio, malayo, malayalam, maltés, maori, marathi, 
+mongol, nepalés, noruego, occitano, oriya, pastan, persa, polaco, portugués, 
+punjabi, quechua, rumano, ruso, sánscrito, gaélico-escocés, serbio, sindhi, 
+cingalés, eslovaco, eslovenio, español, sondanés, swahili, sueco, siríaco, 
+tayiko, tamil, tagalo, tártaro, telugu, tailandés, tibetano, tonga, turco, 
+ucraniano, urdu, uzbeko, uygur, vietnamita, galés, yiddish, yoruba.       
 
 ¡Que tu aprendizaje de idiomas te traiga felicidad y fluidez!
 
