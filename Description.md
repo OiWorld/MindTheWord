@@ -24,9 +24,9 @@ you effortlessly learn new vocabulary and improve your language skills.
 
 In the options, you can configure:
 * how much should be translated;
-* how translated words should be highlighted;
+* how translated words or characters should be highlighted;
 * your own dictionary of pre-defined translations;
-* how many consecutive words should be translated;
+* how many consecutive words or characters should be translated;
 * a blacklist of websites that should not be translated;
 * and much more...
 
@@ -39,7 +39,7 @@ Corsican, Croatian, Czech, Danish, Dhivehi, Dutch, English, Esperanto,
 Estonian, Faroese, Filipino, Finnish, French, Frisian, Galician, Georgian, 
 German, Greek, Gujarati, Haitian, Hebrew, Hindi, Hungarian, Icelandic, 
 Indonesian, Inuktitut, Irish, Italian, Japanese, Javanese, Kannada, 
-Kazakh, Khmer, Korean, Kurdish, Kyrgyz, Lao, Laothian, Latin, Latvian, 
+Kazakh, Khmer, Korean, Kurdish, Kyrgyz, Lao, Laotian, Latin, Latvian, 
 Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, 
 Marathi, Mongolian, Nepali, Norwegian, Occitan, Oriya, Pashto, Persian, 
 Polish, Portuguese, Punjabi, Quechua, Romanian, Russian, Sanskrit, 
@@ -100,45 +100,27 @@ Möge Ihr Sprachenlernen Ihnen Freude bringen!
 Spanish (es)
 ------------
 
-Translated by: Bruno Woltzenlogel Paleo
+Translated by: Kyle Bedell and Danya Ramírez
 
-(Short: Aprende idiomas mientras navegas por el Internet!)
+(Short: ¡Aprende idiomas mientras navegas por Internet!)
 
-MindTheWord ofrece inmersión lingüística mientras navegas por internet.
+MindTheWord ofrece inmersión a una lengua extranjera mientras navegas por Internet. 
 
-En todas las páginas web visitadas, se traducen aleatoriamente azar 
-unas cuantas palabras en el idioma de destino especificado por usted. 
-Dado que las palabras traducidas se mantienen en contexto, es fácil 
-inferir y memorizar sus significados. Por lo tanto, puede aprender 
-nuevo vocabulario y mejorar sus conocimientos del idioma sin esfuerzo.
+Esta extensión traduce de manera aleatoria a la lengua meta que tú hayas seleccionado algunas de las palabras en cada página web que visites. Como las palabras traducidas se encuentran en contexto, es más fácil inferir y memorizar su significado. Así, puedes aprender nuevo vocabulario y mejorar tus habilidades lingüísticas sin mayor esfuerzo.    
 
-En las opciones, puede configurar:
-* cuánto se debe traducir;
-* cómo deben destacarse las palabras traducidas;
-* su propio diccionario de traducciones previamente definidas;
-* cuántas palabras consecutivas deben traducirse;
-* una lista de sitios web que no deben ser traducidos;
-* y mucho más...
+Puedes configurar las siguientes opciones:
+* cuántas palabras o caracteres serán traducidos,
+* cómo realzar las palabras o caracteres traducidos,
+* tu propio diccionario o lista de traducciones predefinidas,
+* cuántas palabras o caracteres consecutivos serán traducidos,
+* una lista de páginas web que no deberán ser traducidas,
+* y mucho más…
 
-La calidad de la traducción depende de GoogleTranslate.
-Los siguientes idiomas están disponibles hasta el momento:
-Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque, 
-Belarusian, Bengali, Bihari, Bulgarian, Burmese, Breton, Catalan, 
-Cherokee, Chinese, Chinese (simplified), Chinese (traditional), Corsican, 
-Croatian, Czech, Danish, Dhivehi, Dutch, English, Esperanto, Estonian, 
-Faroese, Filipino, Finnish, French, Frisian, Galician, Georgian, German, 
-Greek, Gujarati, Haitian, Hebrew, Hindi, Hungarian, Icelandic, 
-Indonesian, Inuktitut, Irish, Italian, Japanese, Javanese, Kannada, 
-Kazakh, Khmer, Korean, Kurdish, Kyrgyz, Lao, Laothian, Latin, Latvian, 
-Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, 
-Marathi, Mongolian, Nepali, Norwegian, Occitan, Oriya, Pashto, Persian, 
-Polish, Portuguese, Punjabi, Quechua, Romanian, Russian, Sanskrit, 
-Scots - gaelic, Serbian, Sindhi, Sinhalese, Slovak, Slovenian, Spanish, 
-Sundanese, Swahili, Swedish, Syriac, Tajik, Tamil, Tagalog, Tatar, Telugu, 
-Thai, Tibetan, Tonga, Turkish, Ukrainian, Urdu, Uzbek, Uighur, 
-Vietnamese, Welsh, Yiddish, Yoruba.
+La calidad de las traducciones dependerá de la capacidad de GoogleTranslate:
+Hasta ahora se admiten los siguientes idiomas:
+Afrikaans, albanés, amhárico, árabe, armenio, azerbaiyano, euskera, bielorruso, bengalí, bhojpuri, búlgaro, birmano, bretón, catalán, cherokee, chino, chino (simplificado), chino (tradicional), corso, croata, checo, danés, divehi, holandés, inglés, esperanto, estonio, feroés, filipino, finlandés, francés, frisón, gallego, georgiano, alemán, griego, gujarati, haitiano, hebreo, hindi, húngaro, islandés, indonesio, inuktitut, irlandés, italiano, japonés, javanés, kannada, kasajo, khmer, coreano, kurdo, kirguís, lao, laosiano, latín, letón, lituano, luxemburgués, macedonio, malayo, malayalam, maltés, maori, marathi, mongol, nepalés, noruego, occitano, oriya, pastan, persa, polaco, portugués, punjabi, quechua, rumano, ruso, sánscrito, gaélico-escocés, serbio, sindhi, cingalés, eslovaco, eslovenio, español, sondanés, swahili, sueco, siríaco, tayiko, tamil, tagalo, tártaro, telugu, tailandés, tibetano, tonga, turco, ucraniano, urdu, uzbeko, uygur, vietnamita, galés, yiddish, yoruba.       
 
-Que sus estudios de idiomas traigan alegría y fluidez!
+¡Que tu aprendizaje de idiomas te traiga felicidad y fluidez!
 
 
 
