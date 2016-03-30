@@ -418,7 +418,7 @@ $(function() {
       * as well as check if the object data has fields other than
       * activation or not.
       **/
-      if (!data || JSON.stringify(data) == '{}' || !data.savedPatterns) {
+      if (!data || JSON.stringify(data) == '{}' || !data.savedPatterns || typeof data.savedPatterns=='undefined') {
         console.log('setting storage to defaultStorage (stringified): ');
         console.log(JSON.stringify(defaultStorage));
         storage.set(defaultStorage);
