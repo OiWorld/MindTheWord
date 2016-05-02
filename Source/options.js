@@ -57,7 +57,7 @@ $(function() {
     e('userDefinedTranslations').addEventListener('blur', save_userDefinedTranslations);
     e('limitToUserDefined').addEventListener('click', save_limitToUserDefined);
     e('userBlacklistedWords').addEventListener('blur', save_userBlacklistedWords);
-    e('yandexTranslatorApiKey').addEventListener('blur', save_yandexTranslatorApiKey);
+    e('yandexTranslatorApiKey').addEventListener('blur', validate_yandexTranslatorApiKey);
     $('#translatorService').change(function(e) {
       setLanguages(e.currentTarget.value);
     });
@@ -510,6 +510,16 @@ $(function() {
 
   function save_ngramMax() {
     save('ngramMax', 'Maximum word sequence length saved');
+  }
+
+  function validate_yandexTranslatorApiKey(){
+    var yandexKey = e("yandexTranslatorApiKey").value
+    if (yandexKey.match(/Unblock|Block/)){
+      alert("Please enter valid Yandex key.\nRemove Block key / Unblock key from the end of the key")
+    }
+    else {
+      save_yandexTranslatorApiKey()
+    }
   }
 
   // ToDo: Move the blacklist listener to background.js (find better solution)
