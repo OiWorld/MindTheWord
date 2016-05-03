@@ -513,13 +513,9 @@ $(function() {
   }
 
   function validate_yandexTranslatorApiKey(){
-    var yandexKey = e("yandexTranslatorApiKey").value
-    if (yandexKey.match(/Unblock|Block/)){
-      alert("Please enter valid Yandex key.\nRemove Block key / Unblock key from the end of the key")
-    }
-    else {
-      save_yandexTranslatorApiKey()
-    }
+    var yandexKeyInputElement = e("yandexTranslatorApiKey")
+    yandexKeyInputElement.value = yandexKeyInputElement.value.split(' ')[0] 
+    save_yandexTranslatorApiKey()
   }
 
   // ToDo: Move the blacklist listener to background.js (find better solution)
