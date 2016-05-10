@@ -1,6 +1,4 @@
 node_modules
-config.js
 jspm_packages
-package.json
 build.js
 build.js.map
