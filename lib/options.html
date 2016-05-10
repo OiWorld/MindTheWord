@@ -1,0 +1,70 @@
+<html ng-app>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Mind the Word</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mind the Word">
+    <meta name="author" content="Bruno Woltzenlogel Paleo">
+
+    <script src="assets/js/material.min.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script src="scripts/controllers/options.js"></script>
+
+    <link rel="stylesheet" href="assets/css/material.min.css">
+  </head>
+
+  <body>
+    <!-- Simple header with scrollable tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Mind the Word: Options</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+          <a href="#scroll-tab-1" class="mdl-layout__tab is-active">
+            <b>Translation Settings</b>
+          </a>
+          <a href="#scroll-tab-2" class="mdl-layout__tab">
+            <b>Advanced Settings</b>
+          </a>
+          <a href="#scroll-tab-3" class="mdl-layout__tab">
+            <b>Contribute</b>
+          </a>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+
+        <!-- Translation Settings tab content -->
+        <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
+          <div class="page-content">
+            <div class="mdl-grid">
+              <div class="mdl-layout-spacer"></div>
+              <div class="mdl-cell mdl-cell--4-col">
+                this div is centered
+              </div>
+              <div class="mdl-layout-spacer"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Advanced Settings tab content -->
+        <section class="mdl-layout__tab-panel" id="scroll-tab-2">
+          <div class="page-content">
+            Check
+          </div>
+        </section>
+
+        <!-- Contribute tab content -->
+        <section class="mdl-layout__tab-panel" id="scroll-tab-3">
+          <div class="page-content">
+            <!-- Your content goes here -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+
+</html>
