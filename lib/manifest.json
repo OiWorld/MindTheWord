@@ -9,12 +9,12 @@
     "scripts" : ["eventPage.js"],
     "persistent": false
   },
-  "options_page": "options.html",
+  "options_page": "views/options.html",
   "browser_action" :
   {
     "default_icon" : "assets/48.png",
     "default_title" : "Mind the Word!",
-    "default_popup" : "popup.html"
+    "default_popup" : "views/popup.html"
   },
   "content_scripts" : [
     {
