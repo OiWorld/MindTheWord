@@ -1,4 +1,4 @@
-<html ng-app>
+<html ng-app="MTWOptions">
 
   <head>
     <meta charset="utf-8">
@@ -9,14 +9,16 @@
 
     <script src="../assets/js/jquery-2.2.3.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bootstrap-colorpicker.min.js"></script>
     <script src="../assets/js/angular.min.js"></script>
     <script src="../scripts/controllers/options.js"></script>
 
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css">
     <link rel="stylesheet" href="../styles/main.css">
   </head>
 
-  <body>
+  <body ng-controller="OptionCtrl">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -46,12 +48,16 @@
           <div class="panel panel-primary">
             <div class="panel-heading">Existing Patterns</div>
             <div class="list-group">
-              <a href="#" class="list-group-item">Use
-                <span class="label label-info">Google</span>
+              <a href="#" ng-click="" class="list-group-item" ng-repeat="pattern in patterns">
+                Use
+                <span class="label label-info">{{pattern[4]}}</span>
+                to translate
+                <span class="label label-info">{{pattern[2]}}%</span>
+                of all
+                <span class="label label-info">{{pattern[0][1]}}</span>
+                words into
+                <span class="label label-info">{{pattern[1][1]}}</span>
               </a>
-              <a href="#" class="list-group-item">Morbi leo risus</a>
-              <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-              <a href="#" class="list-group-item">Vestibulum at eros</a>
             </div>
           </div>
 
@@ -62,7 +68,7 @@
                 <div class="form-group">
                   <label for="translator">Use
                   </label>
-                  <select class="form-control" id="translator">
+                  <select ng-model="translator" class="form-control" id="translator">
                     <option>Google</option>
                     <option>Yandex</option>
                     <option>Bing</option>
@@ -95,34 +101,84 @@
                     <option>German</option>
                   </select>
                 </div>
-                <button type="submit" class="btn btn-success pull-right">Create</button>
+                <button type="submit" class="btn btn-success pull-right" ng-click="createPattern()">Create</button>
               </form>
               <form class="form-inline">
                 <div class="form-group">
                   <label for="key">Translator Key:
                   </label>
-                  <input type="text" id="key" class="form-control">
+                  <input ng-model="key" ng-change="changeApiKey()" type="text" id="key" class="form-control">
                 </div>
               </form>
               <small>Note:
                 <label>Google Translate</label>
-                is not free. Yandex and Bing is recommended.</small>
+                is not free. Yandex and Bing are recommended.</small>
             </div>
           </div>
         </div>
 
         <div class="tab-pane" id="advanced-settings">
-          <div class="panel panel-primary">
-            <div class="panel-heading">Adjustments</div>
-            <div class="panel-body"></div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Adjustments</div>
+                <div class="panel-body">
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <label for="color-input">Color</label>
+                      <div id="colorpicker" class="input-group colorpicker-component">
+                        <input id="color-input" type="text" value="#00AABB" class="form-control"/>
+                        <span class="input-group-addon">
+                          <i></i>
+                        </span>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Word Configuration</div>
+                <div class="panel-body">
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <label for="min-word-len">Minimum word length
+                      </label>
+                      <input type="number" id="min-word-len" class="form-control">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
+
           <div class="row">
             <div class="col-md-6">
               <div class="panel panel-danger">
                 <div class="panel-heading">Blacklist Websites</div>
                 <div class="panel-body">
-                  Hi
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <input type="text" class="form-control">
+                      <div class="btn btn-danger">
+                        Add
+                      </div>
+                    </div>
+                  </form>
                 </div>
+                <ul class="list-group">
+                  <li class="list-group-item">Cras justo odio
+                    <div class="btn btn-success ">
+                      remove
+                    </div>
+                  </li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Morbi leo risus</li>
+                  <li class="list-group-item">Porta ac consectetur ac</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
               </div>
             </div>
             <div class="col-md-6">
@@ -140,7 +196,7 @@
                 </div>
                 <ul class="list-group">
                   <li class="list-group-item">Cras justo odio
-                    <div class="btn btn-success">
+                    <div class="btn btn-success ">
                       remove
                     </div>
                   </li>
@@ -152,10 +208,38 @@
               </div>
             </div>
           </div>
-          <div class="panel panel-primary">
-            <div class="panel-heading">User Defined Translations</div>
-            <div class="panel-body">
-              Hi
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">User Defined Translations</div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Options</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>john@example.com</td>
+                    </tr>
+                    <tr>
+                      <td>Mary</td>
+                      <td>Moe</td>
+                      <td>mary@example.com</td>
+                    </tr>
+                    <tr>
+                      <td>July</td>
+                      <td>Dooley</td>
+                      <td>july@example.com</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
             </div>
           </div>
         </div>
