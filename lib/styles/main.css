@@ -1,0 +1,10 @@
+.container {
+  width: 70% !important;
+  margin: 0px auto;
+  position: relative;
+  /*text-align:center;*/
+}
+
+.padding-0{
+  padding: 0
+}
