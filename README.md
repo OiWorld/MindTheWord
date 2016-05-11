@@ -8,16 +8,16 @@ Follow these steps
 
 ```shell
 npm install -g jspm
+npm install -g gulp
 npm install
 jspm install
 ```
 
-2. Navigate into `/frest_mtw/lib`
-3. Run the following command
+To start the chrome application, run
 
-`jspm bundle-sfx lib/scripts/app mtw.js`
-
-4. Refresh the chrome extension and it will have the new changes
+```shell
+gulp watch
+```
 
 Content Script: `mtw.js`
 Event Page (background script): `eventPage.js`
