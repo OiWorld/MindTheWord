@@ -7,59 +7,161 @@
     <meta name="description" content="Mind the Word">
     <meta name="author" content="Bruno Woltzenlogel Paleo">
 
-    <script src="../assets/js/material.min.js"></script>
+    <script src="../assets/js/jquery-2.2.3.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/angular.min.js"></script>
     <script src="../scripts/controllers/options.js"></script>
 
-    <link rel="stylesheet" href="../assets/css/material.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/main.css">
   </head>
 
   <body>
-    <!-- Simple header with scrollable tabs. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row container padding-0">
-          <!-- Title -->
-          <span class="mdl-layout-title">Mind the Word: Options</span>
-        </div>
-        <!-- Tabs -->
-        <div class="mdl-layout__tab-bar mdl-js-ripple-effect container padding-0">
-          <a href="#scroll-tab-1" class="mdl-layout__tab is-active">
-            <b>Translation Settings</b>
-          </a>
-          <a href="#scroll-tab-2" class="mdl-layout__tab">
-            <b>Advanced Settings</b>
-          </a>
-          <a href="#scroll-tab-3" class="mdl-layout__tab">
-            <b>Contribute</b>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand row" href="#">
+            <img alt="Brand" src="../assets/22.png">
+            <!-- Mind the Word -->
           </a>
         </div>
-      </header>
-      <main class="mdl-layout__content container" style="padding-top:16px">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#translation-settings" data-toggle="tab">Translation Settings</a>
+          </li>
+          <li>
+            <a href="#advanced-settings" data-toggle="tab">Advanced Settings</a>
+          </li>
+          <li>
+            <a href="#contribute" data-toggle="tab">Contribute</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-        <!-- Translation Settings tab content -->
-        <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
-          <div class="page-content">
-            check
-          </div>
-        </section>
+    <div class="container">
+      <div class="tab-content">
+        <div class="tab-pane active" id="translation-settings">
 
-        <!-- Advanced Settings tab content -->
-        <section class="mdl-layout__tab-panel" id="scroll-tab-2">
-          <div class="page-content">
-            Check
+          <div class="panel panel-primary">
+            <div class="panel-heading">Existing Patterns</div>
+            <div class="list-group">
+              <a href="#" class="list-group-item">Use
+                <span class="label label-info">Google</span>
+              </a>
+              <a href="#" class="list-group-item">Morbi leo risus</a>
+              <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+              <a href="#" class="list-group-item">Vestibulum at eros</a>
+            </div>
           </div>
-        </section>
 
-        <!-- Contribute tab content -->
-        <section class="mdl-layout__tab-panel" id="scroll-tab-3">
-          <div class="page-content">
-            <!-- Your content goes here -->
+          <div class="panel panel-primary">
+            <div class="panel-heading">Create a New Pattern</div>
+            <div class="panel-body">
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <label for="translator">Use
+                  </label>
+                  <select class="form-control" id="translator">
+                    <option>Google</option>
+                    <option>Yandex</option>
+                    <option>Bing</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="percentage">to translate
+                  </label>
+                  <select class="form-control" id="percentage">
+                    <option>10</option>
+                    <option>15</option>
+                    <option>20</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="srcLang">of all
+                  </label>
+                  <select class="form-control" id="srcLang">
+                    <option>English</option>
+                    <option>Hindi</option>
+                    <option>Marathi</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="targetLang">words into
+                  </label>
+                  <select class="form-control" id="targetLang">
+                    <option>Arabic</option>
+                    <option>Italian</option>
+                    <option>German</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-success pull-right">Create</button>
+              </form>
+              <form class="form-inline">
+                <div class="form-group">
+                  <label for="key">Translator Key:
+                  </label>
+                  <input type="text" id="key" class="form-control">
+                </div>
+              </form>
+              <small>Note:
+                <label>Google Translate</label>
+                is not free. Yandex and Bing is recommended.</small>
+            </div>
           </div>
-        </section>
-      </main>
+        </div>
+
+        <div class="tab-pane" id="advanced-settings">
+          <div class="panel panel-primary">
+            <div class="panel-heading">Adjustments</div>
+            <div class="panel-body"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-danger">
+                <div class="panel-heading">Blacklist Websites</div>
+                <div class="panel-body">
+                  Hi
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-danger">
+                <div class="panel-heading">Blacklist Words</div>
+                <div class="panel-body">
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <input type="text" class="form-control">
+                      <div class="btn btn-danger">
+                        Add
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item">Cras justo odio
+                    <div class="btn btn-success">
+                      remove
+                    </div>
+                  </li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Morbi leo risus</li>
+                  <li class="list-group-item">Porta ac consectetur ac</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">User Defined Translations</div>
+            <div class="panel-body">
+              Hi
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="contribute">Message</div>
+      </div>
     </div>
+    <!-- add footer -->
   </body>
-
 </html>

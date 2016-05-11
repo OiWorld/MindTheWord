@@ -1,0 +1,116 @@
+<html ng-app>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Mind the Word</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mind the Word">
+    <meta name="author" content="Bruno Woltzenlogel Paleo">
+
+    <script src="../assets/js/material.min.js"></script>
+    <script src="../assets/js/angular.min.js"></script>
+    <script src="../scripts/controllers/options.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/material.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+  </head>
+
+  <body>
+    <!-- Simple header with scrollable tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Mind the Word: Options</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+          <a href="#scroll-tab-1" class="mdl-layout__tab is-active">
+            <b>Translation Settings</b>
+          </a>
+          <a href="#scroll-tab-2" class="mdl-layout__tab">
+            <b>Advanced Settings</b>
+          </a>
+          <a href="#scroll-tab-3" class="mdl-layout__tab">
+            <b>Contribute</b>
+          </a>
+        </div>
+      </header>
+
+      <main class="mdl-layout__content" style="padding-top:16px">
+
+        <!-- Translation Settings tab content -->
+        <section class="mdl-layout__tab-panel is-active container" id="scroll-tab-1">
+          <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">Translator</th>
+                <th class="mdl-data-table__cell--non-numeric">From</th>
+                <th class="mdl-data-table__cell--non-numeric">To</th>
+                <th>Amount of Translation</th>
+                <th>Activate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric">Google</td>
+                <td class="mdl-data-table__cell--non-numeric">English</td>
+                <td class="mdl-data-table__cell--non-numeric">Hindi</td>
+                <td>15</td>
+                <td>
+                  <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2" style="width: 42px">
+                    <input type="checkbox" id="switch-2" class="mdl-switch__input">
+                    <span class="mdl-switch__label"></span>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <div class="mdl-card mdl-shadow--4dp" style="margin: 8px">
+            <div class="mdl-card__title mdl-card--expand">
+              <h2 class="mdl-card__title-text">Create New Pattern</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                View Updates
+              </a>
+            </div>
+          </div>
+
+          <div class="mdl-card mdl-shadow--4dp" style="margin: 8px;">
+            <div class="mdl-card__title mdl-card--expand">
+              <h2 class="mdl-card__title-text">Create New Pattern</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                View Updates
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Advanced Settings tab content -->
+        <section class="mdl-layout__tab-panel" id="scroll-tab-2">
+          <div class="page-content">
+            Check
+          </div>
+        </section>
+
+        <!-- Contribute tab content -->
+        <section class="mdl-layout__tab-panel" id="scroll-tab-3">
+          <div class="page-content">
+            <!-- Your content goes here -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+
+</html>
