@@ -43,12 +43,12 @@
 
     <div class="container">
       <div class="tab-content">
-        <div class="tab-pane active" id="translation-settings">
 
+        <div class="tab-pane active" id="translation-settings">
           <div class="panel panel-primary">
             <div class="panel-heading">Existing Patterns</div>
             <div class="list-group">
-              <a href="#" ng-click="" class="list-group-item" ng-repeat="pattern in patterns">
+              <a href="#" ng-click="activatePattern(pattern[0][0], pattern[1][0], pattern[2], pattern[4])" class="list-group-item" ng-repeat="(index, pattern) in patterns">
                 Use
                 <span class="label label-info">{{pattern[4]}}</span>
                 to translate
@@ -57,6 +57,11 @@
                 <span class="label label-info">{{pattern[0][1]}}</span>
                 words into
                 <span class="label label-info">{{pattern[1][1]}}</span>
+                <span class="pull-right">
+                  <button class="btn btn-warning" ng-click="deletePattern(index, $event)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </span>
               </a>
             </div>
           </div>
@@ -77,7 +82,7 @@
                 <div class="form-group">
                   <label for="percentage">to translate
                   </label>
-                  <select class="form-control" id="percentage">
+                  <select class="form-control" id="percentage" ng-model="percentage">
                     <option>10</option>
                     <option>15</option>
                     <option>20</option>
@@ -86,19 +91,15 @@
                 <div class="form-group">
                   <label for="srcLang">of all
                   </label>
-                  <select class="form-control" id="srcLang">
-                    <option>English</option>
-                    <option>Hindi</option>
-                    <option>Marathi</option>
+                  <select class="form-control" id="srcLang" ng-model="srcLang">
+                    <option ng-repeat="(language, code) in languages" ng-value="code">{{language}}</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="targetLang">words into
                   </label>
-                  <select class="form-control" id="targetLang">
-                    <option>Arabic</option>
-                    <option>Italian</option>
-                    <option>German</option>
+                  <select class="form-control" id="targetLang" ng-model="targetLang">
+                    <option ng-repeat="(language, code) in languages" ng-value="code">{{language}}</option>
                   </select>
                 </div>
                 <button type="submit" class="btn btn-success pull-right" ng-click="createPattern()">Create</button>
@@ -134,7 +135,20 @@
                       </div>
                     </div>
                   </form>
-
+                  <div class="btn-group" data-toggle="buttons" id="translation-style">
+                    <label class="btn btn-default">
+                      <input type="checkbox" name="styles" value="italic">
+                      <span class="glyphicon glyphicon-bold"></span>
+                    </label>
+                    <label class="btn btn-default">
+                      <input type="checkbox" name="styles" value="bold">
+                      <span class="glyphicon glyphicon-italic"></span>
+                    </label>
+                    <label class="btn btn-default">
+                      <input type="checkbox" name="styles" value="underline">
+                      <span class="glyphicon glyphicon-magnet"></span>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -149,6 +163,17 @@
                       <input type="number" id="min-word-len" class="form-control">
                     </div>
                   </form>
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <label for="ngram-min">Translated sequences should have at least
+                      </label>
+                      <input type="number" id="ngram-min" class="form-control" style="width:50px">
+                      <label for="ngram-max">and at most
+                      </label>
+                      <input type="number" id="ngram-max" class="form-control" style="width:50px">
+                      <label>words</label>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -161,23 +186,22 @@
                 <div class="panel-body">
                   <form class="form-inline">
                     <div class="form-group">
-                      <input type="text" class="form-control">
-                      <div class="btn btn-danger">
-                        Add
-                      </div>
+                      <label for="new-blacklist-word">Blacklist Website</label>
+                      <input type="text" class="form-control" id="new-blacklist-word">
                     </div>
+                    <span class="btn btn-danger pull-right">
+                      Add
+                    </span>
                   </form>
                 </div>
                 <ul class="list-group">
-                  <li class="list-group-item">Cras justo odio
-                    <div class="btn btn-success ">
-                      remove
-                    </div>
+                  <li class="list-group-item clearfix" ng-repeat="website in blacklistedWebsites">{{website}}
+                    <span class="pull-right">
+                      <button class="btn btn-warning" ng-click="removeBlackListedWebsite(website)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </span>
                   </li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Morbi leo risus</li>
-                  <li class="list-group-item">Porta ac consectetur ac</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
                 </ul>
               </div>
             </div>
@@ -187,23 +211,22 @@
                 <div class="panel-body">
                   <form class="form-inline">
                     <div class="form-group">
-                      <input type="text" class="form-control">
-                      <div class="btn btn-danger">
-                        Add
-                      </div>
+                      <label for="new-blacklist-word">Blacklist Word</label>
+                      <input type="text" class="form-control" id="new-blacklist-word">
                     </div>
+                    <span class="btn btn-danger pull-right">
+                      Add
+                    </span>
                   </form>
                 </div>
                 <ul class="list-group">
-                  <li class="list-group-item">Cras justo odio
-                    <div class="btn btn-success ">
-                      remove
-                    </div>
+                  <li class="list-group-item clearfix" ng-repeat="word in blacklistedWords">{{word}}
+                    <span class="pull-right">
+                      <button class="btn btn-warning" ng-click="removeBlackListedWord(word)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </span>
                   </li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Morbi leo risus</li>
-                  <li class="list-group-item">Porta ac consectetur ac</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
                 </ul>
               </div>
             </div>
@@ -212,29 +235,39 @@
             <div class="col-md-6">
               <div class="panel panel-primary">
                 <div class="panel-heading">User Defined Translations</div>
+                <div class="panel-body">
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="original" style="max-width: 160px">
+                    </div>
+                    <label>:</label>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="translated" style="max-width: 160px">
+                    </div>
+                    <span class="btn btn-danger pull-right" ng-click="addUserDefinedTranslation" >
+                      Add
+                    </span>
+                  </form>
+                </div>
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>From</th>
-                      <th>To</th>
-                      <th>Options</th>
+                      <th>Original</th>
+                      <th>Translated</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>Mary</td>
-                      <td>Moe</td>
-                      <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>July</td>
-                      <td>Dooley</td>
-                      <td>july@example.com</td>
+                    <tr ng-repeat="(from, to) in userDefinedTranslations">
+                      <td>{{from}}</td>
+                      <td>{{to}}</td>
+                      <td>
+                        <span class="pull-right">
+                          <button class="btn btn-warning" ng-click="removeUserDefinedTranslation(from)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                        </span>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -243,7 +276,9 @@
             </div>
           </div>
         </div>
+
         <div class="tab-pane" id="contribute">Message</div>
+
       </div>
     </div>
     <!-- add footer -->
