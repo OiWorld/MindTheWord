@@ -4,7 +4,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://www.google.com https://ssl.google-analytics.com https://code.getmdl.io/;",
+  "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://www.google.com https://ssl.google-analytics.com;",
   "background" : {
     "scripts" : ["eventPage.js"],
     "persistent": false
@@ -12,7 +12,7 @@
   "options_page": "views/options.html",
   "browser_action" :
   {
-    "default_icon" : "assets/48.png",
+    "default_icon" : "assets/img/48.png",
     "default_title" : "Mind the Word!",
     "default_popup" : "views/popup.html"
   },
@@ -29,12 +29,12 @@
       "all_frames" : false
     }
   ],
-  "web_accessible_resources" : ["assets/js/mtw.js", "assets/js/jquery-1.10.0.js", "assets/css/*", "assets/font/*"],
+  "web_accessible_resources" : ["assets/css/*", "assets/fonts/*"],
   "icons" : {
-    "22" : "assets/22.png",
-    "24" : "assets/24.png",
-    "48" : "assets/48.png",
-    "128" : "assets/128.png"
+    "22" : "assets/img/22.png",
+    "24" : "assets/img/24.png",
+    "48" : "assets/img/48.png",
+    "128" : "assets/img/128.png"
   },
   "permissions": [
     "http://google.com/",
