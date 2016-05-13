@@ -73,7 +73,7 @@
                 <div class="form-group">
                   <label for="translator">Use
                   </label>
-                  <select ng-model="translator" class="form-control" id="translator">
+                  <select ng-model="translator" ng-change="changeTranslator()" class="form-control" id="translator">
                     <option>Google</option>
                     <option>Yandex</option>
                     <option>Bing</option>
@@ -108,12 +108,12 @@
                 <div class="form-group">
                   <label for="key">Translator Key:
                   </label>
-                  <input ng-model="key" ng-change="changeApiKey()" type="text" id="key" class="form-control">
+                  <input ng-model="key" ng-blur="changeApiKey()" type="text" id="key" class="form-control">
                 </div>
               </form>
-              <small>Note:
-                <label>Google Translate</label>
-                is not free. Yandex and Bing are recommended.</small>
+              <small>
+                <span class="label label-danger">Note:</span>
+                Google Translate is not free. Yandex and Bing are recommended.</small>
             </div>
           </div>
         </div>
@@ -160,17 +160,17 @@
                     <div class="form-group">
                       <label for="min-word-len">Minimum word length
                       </label>
-                      <input type="number" id="min-word-len" class="form-control">
+                      <input type="number" id="min-word-len" class="form-control" ng-model="minWordLength">
                     </div>
                   </form>
                   <form class="form-inline">
                     <div class="form-group">
                       <label for="ngram-min">Translated sequences should have at least
                       </label>
-                      <input type="number" id="ngram-min" class="form-control" style="width:50px">
+                      <input type="number" id="ngram-min" class="form-control" style="width:50px" ng-model="ngramMin">
                       <label for="ngram-max">and at most
                       </label>
-                      <input type="number" id="ngram-max" class="form-control" style="width:50px">
+                      <input type="number" id="ngram-max" class="form-control" style="width:50px" ng-model="ngramMax">
                       <label>words</label>
                     </div>
                   </form>
@@ -246,7 +246,7 @@
                     <div class="form-group">
                       <input type="text" class="form-control" ng-model="translated" style="max-width: 160px">
                     </div>
-                    <span class="btn btn-danger pull-right" ng-click="addUserDefinedTranslation()" >
+                    <span class="btn btn-danger pull-right" ng-click="addUserDefinedTranslation()">
                       Add
                     </span>
                   </form>
@@ -282,7 +282,11 @@
         <div class="tab-pane" id="contribute">Message</div>
 
       </div>
+      <div id="status">
+
+      </div>
     </div>
+
     <!-- add footer -->
   </body>
 </html>
