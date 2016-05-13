@@ -186,10 +186,10 @@
                 <div class="panel-body">
                   <form class="form-inline">
                     <div class="form-group">
-                      <label for="new-blacklist-word">Blacklist Website</label>
-                      <input type="text" class="form-control" id="new-blacklist-word">
+                      <label for="new-blacklist-website">Blacklist Website</label>
+                      <input type="text" class="form-control" id="new-blacklist-website" ng-model="newBlacklistWebsite">
                     </div>
-                    <span class="btn btn-danger pull-right">
+                    <span class="btn btn-danger pull-right" ng-click="addBlackListedWebsite()">
                       Add
                     </span>
                   </form>
@@ -212,10 +212,12 @@
                   <form class="form-inline">
                     <div class="form-group">
                       <label for="new-blacklist-word">Blacklist Word</label>
-                      <input type="text" class="form-control" id="new-blacklist-word">
+                      <input type="text" class="form-control" id="new-blacklist-word" ng-model="newBlacklistWord">
                     </div>
-                    <span class="btn btn-danger pull-right">
-                      Add
+                    <span class="pull-right">
+                      <button class="btn btn-danger" ng-click="addBlackListedWord()">
+                        Add
+                      </button>
                     </span>
                   </form>
                 </div>
@@ -244,7 +246,7 @@
                     <div class="form-group">
                       <input type="text" class="form-control" ng-model="translated" style="max-width: 160px">
                     </div>
-                    <span class="btn btn-danger pull-right" ng-click="addUserDefinedTranslation" >
+                    <span class="btn btn-danger pull-right" ng-click="addUserDefinedTranslation()" >
                       Add
                     </span>
                   </form>
@@ -258,12 +260,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="(from, to) in userDefinedTranslations">
-                      <td>{{from}}</td>
-                      <td>{{to}}</td>
+                    <tr ng-repeat="(original, translated) in userDefinedTranslations">
+                      <td>{{original}}</td>
+                      <td>{{translated}}</td>
                       <td>
                         <span class="pull-right">
-                          <button class="btn btn-warning" ng-click="removeUserDefinedTranslation(from)">
+                          <button class="btn btn-warning" ng-click="removeUserDefinedTranslation(original)">
                             <span class="glyphicon glyphicon-trash"></span>
                           </button>
                         </span>
