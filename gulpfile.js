@@ -43,7 +43,7 @@ gulp.task('lint', function(){
 
 });
 
-gulp.task('watch', function(){
+gulp.task('watch', ['bundle-options', 'bundle-popup', 'bundle-content', 'bundle-event'], function(){
   gulp.watch('./lib/scripts/controllers/options.js', ['bundle-options']);
   gulp.watch('./lib/scripts/controllers/popup.js', ['bundle-popup']);
   gulp.watch('./lib/scripts/mtw.js', ['bundle-content']);
