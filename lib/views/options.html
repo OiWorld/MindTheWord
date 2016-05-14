@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../styles/main.css">
   </head>
 
-  <body ng-controller="OptionCtrl">
+  <body ng-controller="OptionCtrl as opctrl">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -45,7 +45,7 @@
           <div class="panel panel-primary">
             <div class="panel-heading">Existing Patterns</div>
             <div class="list-group">
-              <a href="#" ng-click="activatePattern(pattern[0][0], pattern[1][0], pattern[2], pattern[4])" class="list-group-item" ng-repeat="(index, pattern) in patterns">
+              <a href="#" ng-click="opctrl.activatePattern(pattern[0][0], pattern[1][0], pattern[2], pattern[4])" class="list-group-item" ng-repeat="(index, pattern) in opctrl.patterns">
                 Use
                 <span class="label label-info">{{pattern[4]}}</span>
                 to translate
@@ -55,7 +55,7 @@
                 words into
                 <span class="label label-info">{{pattern[1][1]}}</span>
                 <span class="pull-right">
-                  <button class="btn btn-warning" ng-click="deletePattern(index, $event)">
+                  <button class="btn btn-warning" ng-click="opctrl.deletePattern(index, $event)">
                     <span class="glyphicon glyphicon-trash"></span>
                   </button>
                 </span>
@@ -70,7 +70,7 @@
                 <div class="form-group">
                   <label for="translator">Use
                   </label>
-                  <select ng-model="translator" ng-change="changeTranslator()" class="form-control" id="translator">
+                  <select ng-model="opctrl.translator" ng-change="opctrl.changeTranslator()" class="form-control" id="translator">
                     <option>Google</option>
                     <option>Yandex</option>
                     <option>Bing</option>
@@ -79,7 +79,7 @@
                 <div class="form-group">
                   <label for="percentage">to translate
                   </label>
-                  <select class="form-control" id="percentage" ng-model="percentage">
+                  <select class="form-control" id="percentage" ng-model="opctrl.percentage">
                     <option>10</option>
                     <option>15</option>
                     <option>20</option>
@@ -88,24 +88,24 @@
                 <div class="form-group">
                   <label for="srcLang">of all
                   </label>
-                  <select class="form-control" id="srcLang" ng-model="srcLang">
-                    <option ng-repeat="(language, code) in languages" ng-value="code">{{language}}</option>
+                  <select class="form-control" id="srcLang" ng-model="opctrl.srcLang">
+                    <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="targetLang">words into
                   </label>
-                  <select class="form-control" id="targetLang" ng-model="targetLang">
-                    <option ng-repeat="(language, code) in languages" ng-value="code">{{language}}</option>
+                  <select class="form-control" id="targetLang" ng-model="opctrl.targetLang">
+                    <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
                   </select>
                 </div>
-                <button type="submit" class="btn btn-success pull-right" ng-click="createPattern()">Create</button>
+                <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()">Create</button>
               </form>
               <form class="form-inline">
                 <div class="form-group">
                   <label for="key">Translator Key:
                   </label>
-                  <input ng-model="key" ng-blur="changeApiKey()" type="text" id="key" class="form-control">
+                  <input ng-model="opctrl.key" ng-blur="opctrl.changeApiKey()" type="text" id="key" class="form-control">
                 </div>
               </form>
               <small>
@@ -157,17 +157,17 @@
                     <div class="form-group">
                       <label for="min-word-len">Minimum word length
                       </label>
-                      <input type="number" id="min-word-len" class="form-control" ng-model="minWordLength">
+                      <input type="number" id="min-word-len" class="form-control" ng-model="opctrl.minWordLength">
                     </div>
                   </form>
                   <form class="form-inline">
                     <div class="form-group">
                       <label for="ngram-min">Translated sequences should have at least
                       </label>
-                      <input type="number" id="ngram-min" class="form-control" style="width:50px" ng-model="ngramMin">
+                      <input type="number" id="ngram-min" class="form-control" style="width:50px" ng-model="opctrl.ngramMin">
                       <label for="ngram-max">and at most
                       </label>
-                      <input type="number" id="ngram-max" class="form-control" style="width:50px" ng-model="ngramMax">
+                      <input type="number" id="ngram-max" class="form-control" style="width:50px" ng-model="opctrl.ngramMax">
                       <label>words</label>
                     </div>
                   </form>
@@ -184,17 +184,17 @@
                   <form class="form-inline">
                     <div class="form-group">
                       <label for="new-blacklist-website">Blacklist Website</label>
-                      <input type="text" class="form-control" id="new-blacklist-website" ng-model="newBlacklistWebsite">
+                      <input type="text" class="form-control" id="new-blacklist-website" ng-model="opctrl.newBlacklistWebsite">
                     </div>
-                    <span class="btn btn-danger pull-right" ng-click="addBlackListedWebsite()">
+                    <span class="btn btn-danger pull-right" ng-click="opctrl.addBlackListedWebsite()">
                       Add
                     </span>
                   </form>
                 </div>
                 <ul class="list-group">
-                  <li class="list-group-item clearfix" ng-repeat="website in blacklistedWebsites">{{website}}
+                  <li class="list-group-item clearfix" ng-repeat="website in opctrl.blacklistedWebsites">{{website}}
                     <span class="pull-right">
-                      <button class="btn btn-warning" ng-click="removeBlackListedWebsite(website)">
+                      <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWebsite(website)">
                         <span class="glyphicon glyphicon-trash"></span>
                       </button>
                     </span>
@@ -209,19 +209,19 @@
                   <form class="form-inline">
                     <div class="form-group">
                       <label for="new-blacklist-word">Blacklist Word</label>
-                      <input type="text" class="form-control" id="new-blacklist-word" ng-model="newBlacklistWord">
+                      <input type="text" class="form-control" id="new-blacklist-word" ng-model="opctrl.newBlacklistWord">
                     </div>
                     <span class="pull-right">
-                      <button class="btn btn-danger" ng-click="addBlackListedWord()">
+                      <button class="btn btn-danger" ng-click="opctrl.addBlackListedWord()">
                         Add
                       </button>
                     </span>
                   </form>
                 </div>
                 <ul class="list-group">
-                  <li class="list-group-item clearfix" ng-repeat="word in blacklistedWords">{{word}}
+                  <li class="list-group-item clearfix" ng-repeat="word in opctrl.blacklistedWords">{{word}}
                     <span class="pull-right">
-                      <button class="btn btn-warning" ng-click="removeBlackListedWord(word)">
+                      <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWord(word)">
                         <span class="glyphicon glyphicon-trash"></span>
                       </button>
                     </span>
@@ -237,13 +237,13 @@
                 <div class="panel-body">
                   <form class="form-inline">
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="original" style="max-width: 160px">
+                      <input type="text" class="form-control" ng-model="opctrl.original" style="max-width: 160px">
                     </div>
                     <label>:</label>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="translated" style="max-width: 160px">
+                      <input type="text" class="form-control" ng-model="opctrl.translated" style="max-width: 160px">
                     </div>
-                    <span class="btn btn-danger pull-right" ng-click="addUserDefinedTranslation()">
+                    <span class="btn btn-danger pull-right" ng-click="opctrl.addUserDefinedTranslation()">
                       Add
                     </span>
                   </form>
@@ -257,12 +257,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="(original, translated) in userDefinedTranslations">
+                    <tr ng-repeat="(original, translated) in opctrl.userDefinedTranslations">
                       <td>{{original}}</td>
                       <td>{{translated}}</td>
                       <td>
                         <span class="pull-right">
-                          <button class="btn btn-warning" ng-click="removeUserDefinedTranslation(original)">
+                          <button class="btn btn-warning" ng-click="opctrl.removeUserDefinedTranslation(original)">
                             <span class="glyphicon glyphicon-trash"></span>
                           </button>
                         </span>
