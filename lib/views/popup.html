@@ -1,44 +1,32 @@
 <!doctype html>
-<html style="height: 170px" ng-app="mtwPopup">
+<html style="height: 125px" ng-app="MTWPopup">
 
-<head>
-  <script src="../assets/js/material.min.js"></script>
-  <script src="../assets/js/angular.min.js"></script>
-  <script src="../scripts/controllers/popup.js"></script>
+  <head>
+    <script src="../popup.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  </head>
 
-  <link rel="stylesheet" href="../assets/css/material.min.css">
-</head>
+  <body style="width: 225px; padding:20px" ng-controller="PopupCtrl">
 
-<body style="width: 200px" ng-controller="PopupCtrl">
-  <ul class="demo-list-control mdl-list">
-    <li class="mdl-list__item">
-      <span class="mdl-list__item-primary-content">
-        Turn On
-      </span>
-        <span class="mdl-list__item-secondary-action">
-          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
-            <input type="checkbox" id="list-switch-1" ng-model="enable" ng-click="toggleEnabled()" class="mdl-switch__input" checked />
-          </label>
-      </span>
-    </li>
-    <li class="mdl-list__item">
-      <span class="mdl-list__item-primary-content">
-        Toggle
-      </span>
-        <span class="mdl-list__item-secondary-action">
-          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-2">
-            <input type="checkbox" id="list-switch-2" ng-disabled="enable === false" ng-model="toggle" class="mdl-switch__input" checked />
-          </label>
-      </span>
-    </li>
-    <li class="mdl-list__item">
-      <span>
-        {{toggle}}
-      </span>
-    </li>
+    <form class="form-inline">
+      <div class="form-group">
+        <label>Activation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <div class="btn-group right-block">
+          <button type="button" class="btn btn-default" ng-click="setActivation(true)" ng-class="{'active': activation === true}">On</button>
+          <button type="button" class="btn btn-default" ng-click="setActivation(false)" ng-class="{'active': activation === false}">Off</button>
+        </div>
+      </div>
+    </form>
 
-  </ul>
+    <button class="btn btn-primary" ng-disabled="!activation">
+      <span class="glyphicon glyphicon-retweet"></span>
+      Toggle
+    </button>
+    <button class="btn btn-warning">
+      <span class="glyphicon glyphicon-cog"></span>
+      Options
+    </button>
 
-</body>
+  </body>
 
 </html>
