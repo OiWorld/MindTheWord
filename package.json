@@ -16,15 +16,10 @@
     }
   },
   "devDependencies": {
-    "chai": "^3.5.0",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-jspm": "^0.5.10",
     "gulp-rename": "^1.2.2",
-    "mocha": "^2.4.5",
-    "phantomjs": "^2.1.7",
-    "run-sequence": "^1.1.5",
-    "sinon": "^1.17.4",
-    "sinon-chrome": "^1.1.2"
+    "run-sequence": "^1.1.5"
   }
 }
