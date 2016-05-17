@@ -181,15 +181,12 @@
               <div class="panel panel-danger">
                 <div class="panel-heading">Blacklist Websites</div>
                 <div class="panel-body">
-                  <form class="form-inline">
-                    <div class="form-group">
-                      <label for="new-blacklist-website">Blacklist Website</label>
-                      <input type="text" class="form-control" id="new-blacklist-website" ng-model="opctrl.newBlacklistWebsite">
-                    </div>
-                    <span class="btn btn-danger pull-right" ng-click="opctrl.addBlackListedWebsite()">
-                      Add
+                  <div class="input-group">
+                    <input type="text" class="form-control"  ng-model="opctrl.newBlacklistWebsite" id="new-blacklist-word" placeholder="stackoverflow.com">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWebsite()">Add</button>
                     </span>
-                  </form>
+                  </div>
                 </div>
                 <ul class="list-group">
                   <li class="list-group-item clearfix" ng-repeat="website in opctrl.blacklistedWebsites">{{website}}
@@ -206,17 +203,12 @@
               <div class="panel panel-danger">
                 <div class="panel-heading">Blacklist Words</div>
                 <div class="panel-body">
-                  <form class="form-inline">
-                    <div class="form-group">
-                      <label for="new-blacklist-word">Blacklist Word</label>
-                      <input type="text" class="form-control" id="new-blacklist-word" ng-model="opctrl.newBlacklistWord">
-                    </div>
-                    <span class="pull-right">
-                      <button class="btn btn-danger" ng-click="opctrl.addBlackListedWord()">
-                        Add
-                      </button>
+                  <div class="input-group">
+                    <input type="text" class="form-control"  ng-model="opctrl.newBlacklistWord" id="new-blacklist-word" placeholder="and">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWord()">Add</button>
                     </span>
-                  </form>
+                  </div>
                 </div>
                 <ul class="list-group">
                   <li class="list-group-item clearfix" ng-repeat="word in opctrl.blacklistedWords">{{word}}
@@ -279,9 +271,7 @@
         <div class="tab-pane" id="contribute">Message</div>
 
       </div>
-      <div id="status">
-
-      </div>
+      <div id="status"></div>
     </div>
 
     <!-- add footer -->
