@@ -29,7 +29,7 @@
       "all_frames" : false
     }
   ],
-  "web_accessible_resources" : ["assets/css/*", "assets/fonts/*"],
+  "web_accessible_resources" : ["assets/css/*", "assets/fonts/*", "assets/js/*"],
   "icons" : {
     "22" : "assets/img/22.png",
     "24" : "assets/img/24.png",
