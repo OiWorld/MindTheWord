@@ -48,6 +48,7 @@ gulp.task('watch', ['bundle-options', 'bundle-popup', 'bundle-content', 'bundle-
   gulp.watch('./lib/scripts/controllers/popup.js', ['bundle-popup']);
   gulp.watch('./lib/scripts/mtw.js', ['bundle-content']);
   gulp.watch('./lib/scripts/eventPage.js', ['bundle-event']);
+  gulp.watch('./lib/scripts/services/*.js', ['bundle-content']);
 });
 
 gulp.task('build', function () {
