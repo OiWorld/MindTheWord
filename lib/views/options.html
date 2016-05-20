@@ -171,17 +171,17 @@
                     <div class="form-group">
                       <label for="min-word-len">Minimum word length
                       </label>
-                      <input type="number" id="min-word-len" class="form-control" ng-model="opctrl.minWordLength">
+                      <input type="number" id="min-word-len" class="form-control" ng-model="opctrl.minWordLength" ng-change="opctrl.setMinWordLength()">
                     </div>
                   </form>
                   <form class="form-inline">
                     <div class="form-group">
                       <label for="ngram-min">Translated sequences should have at least
                       </label>
-                      <input type="number" id="ngram-min" class="form-control" style="width:50px" ng-model="opctrl.ngramMin">
+                      <input type="number" id="ngram-min" class="form-control" style="width:50px" ng-model="opctrl.ngramMin" ng-change="opctrl.setNgramMin()">
                       <label for="ngram-max">and at most
                       </label>
-                      <input type="number" id="ngram-max" class="form-control" style="width:50px" ng-model="opctrl.ngramMax">
+                      <input type="number" id="ngram-max" class="form-control" style="width:50px" ng-model="opctrl.ngramMax" ng-change="opctrl.setNgramMax()">
                       <label>words</label>
                     </div>
                   </form>
