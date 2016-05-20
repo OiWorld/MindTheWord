@@ -1,4 +1,7 @@
 {
+  "name": "MindTheWord",
+  "description": "Mind the Word Chrome Extension",
+  "version": "2.0.3",
   "jspm": {
     "dependencies": {
       "angular": "github:angular/bower-angular@^1.5.5",
