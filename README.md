@@ -8,7 +8,7 @@ This package uses `jspm` to manage modules for javascript.
 Run the following commands in your cloned directory.
 
 ```shell
-npm install -g jspm gulp gulp-cli
+npm install -g jspm gulp gulp-cli jsdoc
 npm install
 jspm install
 ```
@@ -19,6 +19,12 @@ Install the extension in Chrome as an unpacked extension.
 
 ```shell
 gulp watch
+```
+
+**To generate docs**, run
+
+```shell
+jsdoc -c config.json
 ```
 
 Content Script: `mtw.js`
