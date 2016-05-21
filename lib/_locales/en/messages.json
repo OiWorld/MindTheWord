@@ -1,0 +1,52 @@
+{
+	"appName" : {
+		"message" : "MindTheWord",
+		"description": "The title of the application, displayed in the web store."
+	},
+	"appDesc" : {
+		"message": "Learn languages while browsing the Internet!",
+		"description": "The description of the application, displayed in the web store."
+	},
+	"selectTranslationHeading" : {
+		"message": "Select Translation Configuration", 
+		"description": "heading over list of translations"
+	},
+	"newTranslationHeading" : {
+		"message": "Create New Translation Configuration", 
+		"description": "heading over new translation form"
+	},
+	"attentionMessage" : {
+		"message": "<b>Attention:</b> Google Translate is <i>not free</i>. Yandex is <i>recommended</i>!"
+	},
+	"translationSettings" : {
+		"message": "Translation Settings"
+	},
+	"adjustmentsDescription" : {
+		"message": "Format the translated words according to the following <a href='http://lesliefranke.com/files/reference/csscheatsheet.html' target='_blank'>CSS </a>property-value pairs:"
+	}, 
+	"blacklistingWebsitesDescription" : {
+		"message" : "Do not translate the following websites: "
+	}, 
+	"blacklistingWordsDescription" : {
+		"message" : "Do not translate the following words: "
+	}, 
+	"userDefinedTranslations" : {
+		"message" : "Use the following user-defined translations:"
+	},  
+	"userLimitedTranslationsCheckbox" : {
+		"message" : "This will limit translations to only those provided in the user-defined dictionary. Words not in the dictionary will not be translated."
+	}, 
+	"basicOptionsTab" : {
+		"message" : "Basic Options "
+	}, 
+	"advancedOptionsTab" : {
+		"message" : "Advanced Options "
+	}, 
+	"contributionsTab" : {
+		"message" : "Contributions"
+	}
+}
+
+
+
+
