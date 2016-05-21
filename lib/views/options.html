@@ -114,17 +114,16 @@
                 </div>
                 <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()">Create</button>
               </form>
-              <form class="form-inline">
-                <div class="form-group">
-                  <label for="key">Translator Key:
-                  </label>
-                  <input ng-model="opctrl.key" ng-blur="opctrl.changeApiKey()" type="text" id="key" class="form-control">
-                </div>
-              </form>
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">{{opctrl.translator}} Key</span>
+                <input ng-model="opctrl.key" ng-blur="opctrl.changeApiKey()" type="text" id="key" class="form-control">
+              </div>
+              <br>
               <small>
                 <span class="label label-danger">Note:</span>
-                Google Translate is not free. Yandex and Bing are recommended. </br>
-                Generate your Yandex key: <a target="_blank" href="https://tech.yandex.com/keys/get/?service=trnsl">here</a></small>
+                Google Translate is not free. Yandex and Bing are recommended.
+                Generate your Yandex key: <a target="_blank" href="https://tech.yandex.com/keys/get/?service=trnsl">here</a>
+              </small>
             </div>
           </div>
         </div>
