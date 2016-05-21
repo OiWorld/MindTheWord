@@ -135,18 +135,16 @@
               <div class="panel panel-primary">
                 <div class="panel-heading">Adjustments</div>
                 <div class="panel-body">
-                  <form class="form-inline">
-                    <div class="form-group">
-                      <label for="color-input">Color</label>
-                      <div id="colorpicker" class="input-group colorpicker-component">
-                        <input id="color-input" type="text" value="#00AABB" class="form-control"/>
-                        <span class="input-group-addon">
-                          <i></i>
-                        </span>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="btn-group" data-toggle="buttons" id="translation-style">
+                  <div class="input-group">
+                    <span class="input-group-addon">Text Color</span>
+                    <input id="text-colorpicker" type="text" ng-model="opctrl.textColor" class="form-control"/>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">Background Color</span>
+                    <input id="bg-colorpicker" type="text" ng-model="opctrl.backColor" class="form-control"/>
+                  </div>
+                  <!-- <div class="btn-group" data-toggle="buttons" id="translation-style">
                     <label class="btn btn-default">
                       <input type="checkbox" name="styles" value="italic">
                       <span class="glyphicon glyphicon-bold"></span>
@@ -159,7 +157,11 @@
                       <input type="checkbox" name="styles" value="underline">
                       <span class="glyphicon glyphicon-magnet"></span>
                     </label>
-                  </div>
+                  </div> -->
+                  <br>
+                  <p>
+                    This is an <span style="{{opctrl.translatedWordStyle}}">awesome</span> style!
+                  </p>
                 </div>
               </div>
             </div>
