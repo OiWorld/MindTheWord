@@ -4,6 +4,10 @@
   position: relative;
 }
 
-.padding-0{
+.padding-0 {
   padding: 0
+}
+
+.active-list {
+  background-color: #eee;
 }

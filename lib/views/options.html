@@ -46,7 +46,7 @@
           <div class="panel panel-primary">
             <div class="panel-heading">Existing Patterns</div>
             <div class="list-group">
-              <a href="#" ng-click="opctrl.activatePattern(pattern[0][0], pattern[1][0], pattern[2], pattern[4])" class="list-group-item" ng-repeat="(index, pattern) in opctrl.patterns">
+              <a href="#" ng-click="opctrl.activatePattern($index)" class="list-group-item" ng-class="{'active-list': pattern[3]}" ng-repeat="(index, pattern) in opctrl.patterns">
                 Use
                 <span class="label label-info">{{pattern[4]}}</span>
                 to translate
