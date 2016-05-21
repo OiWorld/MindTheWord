@@ -11,3 +11,9 @@
 .active-list {
   background-color: #eee;
 }
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 20px;
+  margin: auto;
+}
