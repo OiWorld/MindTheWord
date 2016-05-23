@@ -1,32 +1,40 @@
-MTW
-===
-Mind the Word - Chrome Extension for learning new languages
------------------------------------------------------------
+MindTheWord
+===========
 
-This package uses `jspm` to manage modules for javascript.
+An extension for Google Chrome that helps people learn new languages while they browse the web.
 
-Run the following commands in your cloned directory.
+The extension is available for free at the
+[Chrome Web Store](https://chrome.google.com/webstore/detail/mind-the-word/fabjlaokbhaoehejcoblhahcekmogbom).
 
-```shell
-npm install -g jspm gulp gulp-cli jsdoc
-npm install
-jspm install
-```
 
-Install the extension in Chrome as an unpacked extension.
+MindTheWord helps the user to easily learn vocabulary of a new language
+while browsing pages in his native language. In every webpage visited, it
+randomly translates a few words into the language he would like to learn.
+Since only a few words are translated, it is easy to infer their meaning from
+the context.
 
-**To start the chrome application**, run
+Read more in
+[Description.md](Description.md).
 
-```shell
-gulp watch
-```
+Testing
+-------
 
-**To generate docs**, run
+Testing requires node.js. Install with `npm install` and run with `npm test`.
 
-```shell
-jsdoc -c config.json
-```
 
-Content Script: `mtw.js`
+Licenses
+--------
 
-Event Page (background script): `eventPage.js`
+* GNU-GPL-3.0
+
+* CC-By-NC-ND [![License](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+
+Contributions
+-------------
+
+If you would like to contribute to the development of this extension, please [contact the developers](mailto:bruno.wp@gmail.com).
+
+* [Google Summer of Code](GoogleSummerOfCode.md) grants are available every year. If you would like to apply, it is never too early to contact us.
+
+
