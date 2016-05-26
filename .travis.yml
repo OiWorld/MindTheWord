@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - stable
+
+before_script:
+  - npm install -g jspm karma-cli
+
+install:
+  - npm install
+  - jspm install
+
+script:
+  - npm test
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - node_modules
+    - jspm_packages
