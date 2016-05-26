@@ -26,4 +26,13 @@
   background-color: #f8f8f8;
   border: 1px solid;
   border-color: #e7e7e7;
+  z-index: 10;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.pointer {
+  cursor: pointer;
 }
