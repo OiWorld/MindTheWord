@@ -25,6 +25,12 @@ gulp watch
 jsdoc -c config.json
 ```
 
+**To build deployment copy**
+```shell
+gulp build
+```
+This will generate a dist folder containing deployment code.
+
 Content Script: `mtw.js`
 
 Event Page (background script): `eventPage.js`
