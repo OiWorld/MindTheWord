@@ -28,6 +28,7 @@
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-jspm": "^0.5.10",
+    "gulp-minify": "0.0.11",
     "gulp-rename": "^1.2.2",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",

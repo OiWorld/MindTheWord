@@ -1,0 +1,358 @@
+<html ng-app="MTWOptions">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Mind the Word</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mind the Word">
+    <meta name="author" content="Bruno Woltzenlogel Paleo">
+
+    <!-- <script src="../assets/js/bootstrap-colorpicker.min.js"></script> -->
+    <script src="../options.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+  </head>
+
+  <body ng-controller="OptionCtrl as opctrl">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="../assets/img/22.png">
+            <!-- Mind the Word -->
+          </a>
+          <b>
+            <a class="navbar-brand" href="#">Mind the Word</a>
+          </b>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active">
+            <a href="#translation-settings" data-toggle="tab">Translation Settings</a>
+          </li>
+          <li>
+            <a href="#advanced-settings" data-toggle="tab">Advanced Settings</a>
+          </li>
+          <li>
+            <a href="#contribute" data-toggle="tab">Contribute</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="tab-content">
+
+        <div class="tab-pane active" id="translation-settings">
+          <div class="panel panel-primary">
+            <div class="panel-heading">Existing Patterns</div>
+            <div class="list-group">
+              <a href="#" ng-click="opctrl.activatePattern($index)" class="list-group-item" ng-class="{'active-list': pattern[3]}" ng-repeat="(index, pattern) in opctrl.patterns">
+                Use
+                <span class="label label-info">{{pattern[4]}}</span>
+                to translate
+                <span class="label label-info">{{pattern[2]}}%</span>
+                of all
+                <span class="label label-info">{{pattern[0][1]}}</span>
+                words into
+                <span class="label label-info">{{pattern[1][1]}}</span>
+                <span class="pull-right">
+                  <button class="btn btn-warning" ng-click="opctrl.deletePattern(index, $event)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="panel panel-primary">
+            <div class="panel-heading">Create a New Pattern</div>
+            <div class="panel-body">
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <label for="translator">Use
+                  </label>
+                  <select ng-model="opctrl.translator" ng-change="opctrl.changeTranslator()" class="form-control" id="translator">
+                    <option>Google</option>
+                    <option>Yandex</option>
+                    <option>Bing</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="percentage">to translate
+                  </label>
+                  <select class="form-control" id="percentage" ng-model="opctrl.percentage">
+                    <option>10</option>
+                    <option>15</option>
+                    <option>20</option>
+                    <option>25</option>
+                    <option>30</option>
+                    <option>35</option>
+                    <option>40</option>
+                    <option>45</option>
+                    <option>50</option>
+                    <option>55</option>
+                    <option>60</option>
+                    <option>65</option>
+                    <option>70</option>
+                    <option>75</option>
+                    <option>80</option>
+                    <option>85</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="srcLang">of all
+                  </label>
+                  <select class="form-control" id="srcLang" ng-model="opctrl.srcLang">
+                    <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="targetLang">words into
+                  </label>
+                  <select class="form-control" id="targetLang" ng-model="opctrl.targetLang">
+                    <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()">Create</button>
+              </form>
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">{{opctrl.translator}}
+                  Key</span>
+                <input ng-model="opctrl.key" ng-blur="opctrl.changeApiKey()" type="text" id="key" class="form-control">
+              </div>
+              <br>
+              <small>
+                <span class="label label-danger">Note:</span>
+                Google Translate is not free. Yandex and Bing are recommended. Generate your Yandex key:
+                <a target="_blank" href="https://tech.yandex.com/keys/get/?service=trnsl">here</a>
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="advanced-settings">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary" style="min-height: 211px">
+                <div class="panel-heading">Adjustments</div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <span class="input-group-addon">Text Color</span>
+                    <input id="text-colorpicker" type="text" ng-model="opctrl.textColor" class="form-control"/>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">Background Color</span>
+                    <input id="bg-colorpicker" type="text" ng-model="opctrl.backColor" class="form-control"/>
+                  </div>
+                  <br>
+                  <p>
+                    This is an
+                    <span style="{{opctrl.translatedWordStyle}}">awesome</span>
+                    style!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-primary" style="min-height: 211px">
+                <div class="panel-heading">Word Configuration</div>
+                <div class="panel-body">
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <label for="min-word-len">Minimum word length
+                      </label>
+                      <input type="number" id="min-word-len" class="form-control" ng-model="opctrl.minWordLength" ng-change="opctrl.setMinWordLength()">
+                    </div>
+                  </form>
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <label for="ngram-min">Translated sequences should have at least
+                      </label>
+                      <input type="number" id="ngram-min" class="form-control" style="width:50px" ng-model="opctrl.ngramMin" ng-change="opctrl.setNgramMin()">
+                      <label for="ngram-max">and at most
+                      </label>
+                      <input type="number" id="ngram-max" class="form-control" style="width:50px" ng-model="opctrl.ngramMax" ng-change="opctrl.setNgramMax()">
+                      <label>words</label>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-danger">
+                <div class="panel-heading">Blacklist Websites</div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="opctrl.newBlacklistWebsite" id="new-blacklist-word" placeholder="stackoverflow.com">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWebsite()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <ul class="list-group" style="min-height: 197px">
+                  <li class="list-group-item clearfix" ng-repeat="website in opctrl.blacklistedWebsites | startFrom : opctrl.blacklistWebsitePage*4 | limitTo : 4">{{website}}
+                    <span class="pull-right">
+                      <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWebsite(website)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </span>
+                  </li>
+                </ul>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.range(opctrl.blacklistedWebsites.length) track by $index" class="pointer" ng-class="{'active': opctrl.blacklistWebsitePage === $index}">
+                      <a ng-click="opctrl.blacklistWebsitePage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-danger">
+                <div class="panel-heading">Blacklist Words</div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="opctrl.newBlacklistWord" id="new-blacklist-word" placeholder="and">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWord()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <ul class="list-group" style="min-height: 197px">
+                  <li class="list-group-item clearfix" ng-repeat="word in opctrl.blacklistedWords | startFrom : opctrl.blacklistWordPage*4 | limitTo : 4">{{word}}
+                    <span class="pull-right">
+                      <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWord(word)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </span>
+                  </li>
+                </ul>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.range(opctrl.blacklistedWords.length) track by $index" class="pointer" ng-class="{'active': opctrl.blacklistWordPage === $index}">
+                      <a ng-click="opctrl.blacklistWordPage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">User Defined Translations</div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" ng-model="opctrl.original" class="form-control">
+                    <span class="input-group-addon">:</span>
+                    <input type="text" ng-model="opctrl.translated" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addUserDefinedTranslation()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Original</th>
+                      <th>Translated</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="(original, translated) in opctrl.userDefinedTranslations">
+                      <td>{{original}}</td>
+                      <td>{{translated}}</td>
+                      <td>
+                        <span class="pull-right">
+                          <button class="btn btn-warning" ng-click="opctrl.removeUserDefinedTranslation(original)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="contribute">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Contribute</div>
+                <div class="panel-body">
+                  <div class="media">
+                    <div class="media-left">
+                      <a href="https://github.com/OiWorld/MindTheWord">
+                        <img class="media-object" src="../assets/img/github.png" height="64px">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      Fix bugs and implement new features for this free open-source extension. Clone our
+                      <a href="https://github.com/OiWorld/MindTheWord">repo</a>.
+                      <a href="https://github.com/OiWorld/MindTheWord/blob/master/GoogleSummerOfCode.md">Google Summer of Code
+                    scholarships</a> are available.
+                    <br>
+                    You can also mail us at <a href="mailto:MindTheWord@gmail.com">MindTheWord@gmail.com</a>.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Support</div>
+                <div class="panel-body">
+                  If you want to donate to support development of this and other free extensions.
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="margin:0">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                    ">
+                    <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal — The safer, easier way to pay online.">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="status" class="fixed-bottom"></div>
+
+    </div>
+
+    <footer class="footer">
+      <div class="container" style="padding: 14px">
+        <!-- <span class="text-muted">
+          Mind the Word 2016
+        </span> -->
+        <a href="#">Mind the Word 2016</a>&nbsp;&nbsp;
+        <a href="https://plus.google.com/share?&hl=en&url=http://goo.gl/G5uV9" title="Share MindTheWord in GooglePlus" class="share_button">
+          <img src="../assets/img/gplus.png" height="32px">
+        </a>
+        <a
+          href="http://www.facebook.com/sharer/sharer.php?s=100&p[title]=Mind the Word&p[summary]=Learn vocabulary easily while you browse the internet!&p[url]=http://goo.gl/G5uV9&p[images][0]=http://www.logic.at/people/bruno/assets/img/MindTheWord128.png&"
+          title="Share MindTheWord in Facebook"
+          class="share_button">
+          <img src="../assets/img/fb.png" height="28px" width="28px">
+        </a>&nbsp;
+        <a href="http://twitter.com/share?url=http://goo.gl/G5uV9&text=@OiWorld MindTheWord: learn vocabulary easily while you browse the internet!" title="Share MindTheWorld in Twitter" class="share_button">
+          <img src="../assets/img/twitter.png" height="19px">
+        </a>
+        <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US" class="pull-right">
+            <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png">
+          </a>
+      </div>
+    </footer>
+  </body>
+</html>
