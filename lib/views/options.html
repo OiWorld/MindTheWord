@@ -248,18 +248,14 @@
               <div class="panel panel-primary">
                 <div class="panel-heading">User Defined Translations</div>
                 <div class="panel-body">
-                  <form class="form-inline">
-                    <div class="form-group">
-                      <input type="text" class="form-control" ng-model="opctrl.original" style="max-width: 160px">
-                    </div>
-                    <label>:</label>
-                    <div class="form-group">
-                      <input type="text" class="form-control" ng-model="opctrl.translated" style="max-width: 160px">
-                    </div>
-                    <span class="btn btn-danger pull-right" ng-click="opctrl.addUserDefinedTranslation()">
-                      Add
+                  <div class="input-group">
+                    <input type="text" ng-model="opctrl.original" class="form-control">
+                    <span class="input-group-addon">:</span>
+                    <input type="text" ng-model="opctrl.translated" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addUserDefinedTranslation()">Add</button>
                     </span>
-                  </form>
+                  </div>
                 </div>
                 <table class="table">
                   <thead>
