@@ -257,7 +257,7 @@
                     </span>
                   </div>
                 </div>
-                <table class="table">
+                <table class="table table-list">
                   <thead>
                     <tr>
                       <th>Original</th>
@@ -266,12 +266,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="(original, translated) in opctrl.userDefinedTranslations">
-                      <td>{{original}}</td>
-                      <td>{{translated}}</td>
+                    <tr ng-repeat="translation in opctrl.userDefinedTranslationList | startFrom : opctrl.userDefinedTranslationPage*4 | limitTo : 4">
+                      <td>{{translation[0]}}</td>
+                      <td>{{translation[1]}}</td>
                       <td>
                         <span class="pull-right">
-                          <button class="btn btn-warning" ng-click="opctrl.removeUserDefinedTranslation(original)">
+                          <button class="btn btn-warning" ng-click="opctrl.removeUserDefinedTranslation(translation[0])">
                             <span class="glyphicon glyphicon-trash"></span>
                           </button>
                         </span>
@@ -279,6 +279,13 @@
                     </tr>
                   </tbody>
                 </table>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.range(opctrl.userDefinedTranslationList.length) track by $index" class="pointer" ng-class="{'active': opctrl.userDefinedTranslationPage === $index}">
+                      <a ng-click="opctrl.userDefinedTranslationPage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
             </div>
