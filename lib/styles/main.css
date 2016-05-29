@@ -36,3 +36,10 @@ body {
 .pointer {
   cursor: pointer;
 }
+
+/*adds bottom border to table for pagination*/
+.table-list {
+  border: solid;
+  border-width: 0 0 1px 0;
+  border-color: rgb(221, 221, 221);
+}
