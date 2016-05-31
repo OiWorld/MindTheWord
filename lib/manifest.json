@@ -41,6 +41,7 @@
     "tabs",
     "<all_urls>",
     "storage",
-    "contextMenus"
+    "contextMenus",
+    "tts"
   ]
 }
