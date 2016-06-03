@@ -118,15 +118,20 @@
                 <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()">Create</button>
               </form>
               <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">{{opctrl.translator}}
-                  Key</span>
+                <span class="input-group-addon" ng-if="opctrl.translator !== 'Bing'">{{opctrl.translator}} Key</span>
+                <span class="input-group-addon" ng-if="opctrl.translator === 'Bing'">Client Secret</span>
                 <input ng-model="opctrl.key" ng-blur="opctrl.changeApiKey()" type="text" id="key" class="form-control">
+              </div>
+              <br>
+              <div class="input-group" ng-if="opctrl.translator === 'Bing'">
+                <span class="input-group-addon">Client ID</span>
+                <input ng-model="opctrl.bingClientId" ng-blur="opctrl.changeApiKey()" type="text" class="form-control">
               </div>
               <br>
               <small>
                 <span class="label label-danger">Note:</span>
-                Google Translate is not free. Yandex and Bing are recommended. Generate your Yandex key:
-                <a target="_blank" href="https://tech.yandex.com/keys/get/?service=trnsl">here</a>
+                Google Translate is not free. <a href="https://www.microsoft.com/en-us/translator/getstarted.aspx" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Get Bing client key and ID">Bing</a> is free for first 2 million characters. <a target="_blank" href="https://tech.yandex.com/keys/get/?service=trnsl" data-toggle="tooltip" data-placement="bottom" title="Get Yandex Key">Yandex</a> is recommended.
+
               </small>
             </div>
           </div>
@@ -321,6 +326,8 @@
               </div>
             </div>
           </div>
+        </div>
+
         <div class="tab-pane" id="contribute">
           <div class="row">
             <div class="col-md-6">
