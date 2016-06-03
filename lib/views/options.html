@@ -118,9 +118,14 @@
                 <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()">Create</button>
               </form>
               <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">{{opctrl.translator}}
-                  Key</span>
+                <span class="input-group-addon" ng-if="opctrl.translator !== 'Bing'">{{opctrl.translator}} Key</span>
+                <span class="input-group-addon" ng-if="opctrl.translator === 'Bing'">Client Secret</span>
                 <input ng-model="opctrl.key" ng-blur="opctrl.changeApiKey()" type="text" id="key" class="form-control">
+              </div>
+              <br>
+              <div class="input-group" ng-if="opctrl.translator === 'Bing'">
+                <span class="input-group-addon">Client ID</span>
+                <input ng-model="opctrl.bingClientId" ng-blur="opctrl.changeApiKey()" type="text" class="form-control">
               </div>
               <br>
               <small>
@@ -321,6 +326,8 @@
               </div>
             </div>
           </div>
+        </div>
+
         <div class="tab-pane" id="contribute">
           <div class="row">
             <div class="col-md-6">
