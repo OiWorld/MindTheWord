@@ -42,6 +42,7 @@
     "<all_urls>",
     "storage",
     "contextMenus",
-    "tts"
+    "tts",
+    "unlimitedStorage"
   ]
 }
