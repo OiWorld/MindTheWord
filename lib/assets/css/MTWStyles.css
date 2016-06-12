@@ -1,0 +1,41 @@
+.noselect {
+  -webkit-user-select: none;
+}
+
+.popover {
+  position: absolute;
+  top: -50px;
+  display: inline-block;
+  padding: 4px;
+  background-color: black;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 2px 2px 10px black;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.anchor {
+  position: relative;
+  width: auto;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+span.mtwTranslatedWorde {
+  font-style: inherit;
+  color: rgba(86, 179, 90, 1.00);
+  background-color: white;
+}
+
+span.mtwTranslatedWordn {
+  font-style: inherit;
+  color: rgba(164, 59, 64, 1.00);
+  background-color: white;
+}
+
+span.mtwTranslatedWordh {
+  font-style: inherit;
+  color: rgba(209, 29, 29, 1.00);
+  background-color: white;
+}
