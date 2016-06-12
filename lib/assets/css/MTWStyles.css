@@ -4,6 +4,7 @@
 
 .popover {
   position: absolute;
+  top: -50px;
   display: inline-block;
   padding: 4px;
   background-color: black;
@@ -11,6 +12,14 @@
   border-radius: 6px;
   box-shadow: 2px 2px 10px black;
   user-select: none;
+  white-space: nowrap;
+}
+
+.anchor {
+  position: relative;
+  width: auto;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 span.mtwTranslatedWorde {
