@@ -159,7 +159,7 @@
                     <span class="label label-danger">Note:</span>
                     <span style = "color: rgba(86, 179, 90, 1.00);">rgba(86, 179, 90, 1.00), </span>
                     <span style = "color: rgba(164, 59, 64, 1.00);">rgba(164, 59, 64, 1.00)</span>
-                    and <span style = "color: rgba(209, 29, 29, 1.00);">rgba(209, 29, 29, 1.00)</span>
+                    and <span style = "color: rgba(209, 29, 29, 1.00)">rgba(209, 29, 29, 1.00)</span>
                     have been reserved for words in
                     <span style = "color: rgba(86, 179, 90, 1.00);"> easy,</span>
                     <span style = "color: rgba(164, 59, 64, 1.00);"> normal</span>
@@ -335,10 +335,64 @@
               </div>
             </div>
           </div>
-          <div class='row'>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Words In Difficulty Buckets</div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" ng-model="opctrl.newDifficultyBucketWord" class="form-control">
+                    <span class="input-group-addon">:</span>
+                    <select ng-model="opctrl.newDifficultyBucketWordLevel" class="form-control">
+                      <option>Easy</option>
+                      <option>Normal</option>
+                      <option>Hard</option>
+                    </select>
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addWordToDifficultyBucket()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <table class="table table-list">
+                  <thead>
+                    <tr>
+                      <th>Word</th>
+                      <th>Difficulty Level</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="word in opctrl.difficultyBucketsWords | startFrom : opctrl.difficultyBucketsWordPage*4 | limitTo : 4" ng-switch="opctrl.difficultyBuckets[word]">
+                      <td>{{word}}</td>
+                      <span>
+                        <td ng-switch-when='h'>Hard</td>
+                        <td ng-switch-when='n'>Normal</td>
+                        <td ng-switch-when='e'>Easy</td>
+                      </span>
+                      <td>
+                        <span class="pull-right">
+                          <button class="btn btn-warning" ng-click="opctrl.removeWordFromDifficultyBucket(word)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.hashRange(opctrl.difficultyBuckets) track by $index" class="pointer" ng-class="{'active': opctrl.difficultyBucketsWordPage === $index}">
+                      <a ng-click="opctrl.difficultyBucketsWordPage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             <div class="col-md-6">
               <div class="panel panel-danger">
-                <div class="panel-heading">Learnt Words</div>
+                <div class="panel-heading">
+                  Learnt Words  <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="The user can mark the words he/she knows as learnt. These words won't be translated.">?</span>
+                </div>
                 <div class="panel-body">
                   <div class="input-group">
                     <input type="text" class="form-control" ng-model="opctrl.newLearntWord" id="new-learnt-word" placeholder="and">
