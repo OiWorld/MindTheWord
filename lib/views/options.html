@@ -420,6 +420,54 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  Saved Translations <span class="label label-primary" data-toggle="tooltip" data-placement="bottom" title="User can save translations using the context menu and can even limit the translations to this list only">?</span>
+                </div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" ng-model="opctrl.original" class="form-control">
+                    <span class="input-group-addon">:</span>
+                    <input type="text" ng-model="opctrl.translated" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.saveTranslation()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <table class="table table-list">
+                  <thead>
+                    <tr>
+                      <th>Original</th>
+                      <th>Translated</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="translation in opctrl.savedTranslationList | startFrom : opctrl.savedTranslationPage*4 | limitTo : 4">
+                      <td>{{translation[0]}}</td>
+                      <td>{{translation[1]}}</td>
+                      <td>
+                        <span class="pull-right">
+                          <button class="btn btn-warning" ng-click="opctrl.removeSavedTranslation(translation[0])">
+                            <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.range(opctrl.savedTranslationList.length) track by $index" class="pointer" ng-class="{'active': opctrl.savedTranslationPage === $index}">
+                      <a ng-click="opctrl.savedTranslationPage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="tab-pane" id="contribute">
