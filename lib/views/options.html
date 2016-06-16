@@ -27,10 +27,16 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li class="active">
-            <a href="#translation-settings" data-toggle="tab">Translation Settings</a>
+            <a href="#translation-settings" data-toggle="tab">Translation</a>
           </li>
           <li>
-            <a href="#advanced-settings" data-toggle="tab">Advanced Settings</a>
+            <a href="#blacklisting" data-toggle="tab">Blacklist</a>
+          </li>
+          <li>
+            <a href="#learning" data-toggle="tab">Learning</a>
+          </li>
+          <li>
+            <a href="#advanced-settings" data-toggle="tab">Advanced</a>
           </li>
           <li>
             <a href="#contribute" data-toggle="tab">Contribute</a>
@@ -41,7 +47,6 @@
 
     <div class="container">
       <div class="tab-content">
-
         <div class="tab-pane active" id="translation-settings">
           <div class="panel panel-primary">
             <div class="panel-heading">Existing Patterns</div>
@@ -134,6 +139,203 @@
             </div>
           </div>
         </div>
+        <div class="tab-pane" id="blacklisting">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-danger">
+                <div class="panel-heading">Blacklist Websites</div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="opctrl.newBlacklistWebsite" id="new-blacklist-word" placeholder="stackoverflow.com">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWebsite()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <ul class="list-group" style="min-height: 197px">
+                  <li class="list-group-item clearfix" ng-repeat="website in opctrl.blacklistedWebsites | startFrom : opctrl.blacklistWebsitePage*4 | limitTo : 4">{{website}}
+                    <span class="pull-right">
+                      <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWebsite(website)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </span>
+                  </li>
+                </ul>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.range(opctrl.blacklistedWebsites.length) track by $index" class="pointer" ng-class="{'active': opctrl.blacklistWebsitePage === $index}">
+                      <a ng-click="opctrl.blacklistWebsitePage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-danger">
+                <div class="panel-heading">Blacklist Words</div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="opctrl.newBlacklistWord" id="new-blacklist-word" placeholder="and">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWord()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <ul class="list-group" style="min-height: 197px">
+                  <li class="list-group-item clearfix" ng-repeat="word in opctrl.blacklistedWords | startFrom : opctrl.blacklistWordPage*4 | limitTo : 4">{{word}}
+                    <span class="pull-right">
+                      <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWord(word)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </span>
+                  </li>
+                </ul>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.range(opctrl.blacklistedWords.length) track by $index" class="pointer" ng-class="{'active': opctrl.blacklistWordPage === $index}">
+                      <a ng-click="opctrl.blacklistWordPage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="learning">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  Saved Translations <span class="label label-primary" data-toggle="tooltip" data-placement="bottom" title="User can save translations using the context menu and can even limit the translations to this list only">?</span>
+                </div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" ng-model="opctrl.original" class="form-control">
+                    <span class="input-group-addon">:</span>
+                    <input type="text" ng-model="opctrl.translated" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.saveTranslation()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <table class="table table-list">
+                  <thead>
+                    <tr>
+                      <th>Original</th>
+                      <th>Translated</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="translation in opctrl.savedTranslationList | startFrom : opctrl.savedTranslationPage*4 | limitTo : 4">
+                      <td>{{translation[0]}}</td>
+                      <td>{{translation[1]}}</td>
+                      <td>
+                        <span class="pull-right">
+                          <button class="btn btn-warning" ng-click="opctrl.removeSavedTranslation(translation[0])">
+                            <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.range(opctrl.savedTranslationList.length) track by $index" class="pointer" ng-class="{'active': opctrl.savedTranslationPage === $index}">
+                      <a ng-click="opctrl.savedTranslationPage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Words In Difficulty Buckets</div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" ng-model="opctrl.newDifficultyBucketWord" class="form-control">
+                    <span class="input-group-addon">:</span>
+                    <select ng-model="opctrl.newDifficultyBucketWordLevel" class="form-control">
+                      <option>Easy</option>
+                      <option>Normal</option>
+                      <option>Hard</option>
+                    </select>
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addWordToDifficultyBucket()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <table class="table table-list">
+                  <thead>
+                    <tr>
+                      <th>Word</th>
+                      <th>Difficulty Level</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="word in opctrl.difficultyBucketsWords | startFrom : opctrl.difficultyBucketsWordPage*4 | limitTo : 4" ng-switch="opctrl.difficultyBuckets[word]">
+                      <td>{{word}}</td>
+                      <span>
+                        <td ng-switch-when='h'>Hard</td>
+                        <td ng-switch-when='n'>Normal</td>
+                        <td ng-switch-when='e'>Easy</td>
+                      </span>
+                      <td>
+                        <span class="pull-right">
+                          <button class="btn btn-warning" ng-click="opctrl.removeWordFromDifficultyBucket(word)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.hashRange(opctrl.difficultyBuckets) track by $index" class="pointer" ng-class="{'active': opctrl.difficultyBucketsWordPage === $index}">
+                      <a ng-click="opctrl.difficultyBucketsWordPage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-danger">
+                <div class="panel-heading">
+                  Learnt Words  <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="The user can mark the words he/she knows as learnt. These words won't be translated.">?</span>
+                </div>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="opctrl.newLearntWord" id="new-learnt-word" placeholder="and">
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addLearntWord()">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <ul class="list-group" style="min-height: 197px">
+                  <li class="list-group-item clearfix" ng-repeat="word in opctrl.learntWords | startFrom : opctrl.learntWordPage*4 | limitTo : 4">{{word}}
+                    <span class="pull-right">
+                      <button class="btn btn-warning" ng-click="opctrl.removeLearntWord(word)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </span>
+                  </li>
+                </ul>
+                <div class="text-center">
+                  <ul class="pagination">
+                    <li ng-repeat="x in opctrl.range(opctrl.learntWords.length) track by $index" class="pointer" ng-class="{'active': opctrl.learntWordPage === $index}">
+                      <a ng-click="opctrl.learntWordPage = $index">{{$index + 1}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="tab-pane" id="advanced-settings">
           <div class="row">
             <div class="col-md-6">
@@ -191,67 +393,6 @@
                       <label>words</label>
                     </div>
                   </form>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <div class="panel panel-danger">
-                <div class="panel-heading">Blacklist Websites</div>
-                <div class="panel-body">
-                  <div class="input-group">
-                    <input type="text" class="form-control" ng-model="opctrl.newBlacklistWebsite" id="new-blacklist-word" placeholder="stackoverflow.com">
-                    <span class="input-group-btn">
-                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWebsite()">Add</button>
-                    </span>
-                  </div>
-                </div>
-                <ul class="list-group" style="min-height: 197px">
-                  <li class="list-group-item clearfix" ng-repeat="website in opctrl.blacklistedWebsites | startFrom : opctrl.blacklistWebsitePage*4 | limitTo : 4">{{website}}
-                    <span class="pull-right">
-                      <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWebsite(website)">
-                        <span class="glyphicon glyphicon-trash"></span>
-                      </button>
-                    </span>
-                  </li>
-                </ul>
-                <div class="text-center">
-                  <ul class="pagination">
-                    <li ng-repeat="x in opctrl.range(opctrl.blacklistedWebsites.length) track by $index" class="pointer" ng-class="{'active': opctrl.blacklistWebsitePage === $index}">
-                      <a ng-click="opctrl.blacklistWebsitePage = $index">{{$index + 1}}</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="panel panel-danger">
-                <div class="panel-heading">Blacklist Words</div>
-                <div class="panel-body">
-                  <div class="input-group">
-                    <input type="text" class="form-control" ng-model="opctrl.newBlacklistWord" id="new-blacklist-word" placeholder="and">
-                    <span class="input-group-btn">
-                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWord()">Add</button>
-                    </span>
-                  </div>
-                </div>
-                <ul class="list-group" style="min-height: 197px">
-                  <li class="list-group-item clearfix" ng-repeat="word in opctrl.blacklistedWords | startFrom : opctrl.blacklistWordPage*4 | limitTo : 4">{{word}}
-                    <span class="pull-right">
-                      <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWord(word)">
-                        <span class="glyphicon glyphicon-trash"></span>
-                      </button>
-                    </span>
-                  </li>
-                </ul>
-                <div class="text-center">
-                  <ul class="pagination">
-                    <li ng-repeat="x in opctrl.range(opctrl.blacklistedWords.length) track by $index" class="pointer" ng-class="{'active': opctrl.blacklistWordPage === $index}">
-                      <a ng-click="opctrl.blacklistWordPage = $index">{{$index + 1}}</a>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -335,141 +476,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="panel panel-primary">
-                <div class="panel-heading">Words In Difficulty Buckets</div>
-                <div class="panel-body">
-                  <div class="input-group">
-                    <input type="text" ng-model="opctrl.newDifficultyBucketWord" class="form-control">
-                    <span class="input-group-addon">:</span>
-                    <select ng-model="opctrl.newDifficultyBucketWordLevel" class="form-control">
-                      <option>Easy</option>
-                      <option>Normal</option>
-                      <option>Hard</option>
-                    </select>
-                    <span class="input-group-btn">
-                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addWordToDifficultyBucket()">Add</button>
-                    </span>
-                  </div>
-                </div>
-                <table class="table table-list">
-                  <thead>
-                    <tr>
-                      <th>Word</th>
-                      <th>Difficulty Level</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="word in opctrl.difficultyBucketsWords | startFrom : opctrl.difficultyBucketsWordPage*4 | limitTo : 4" ng-switch="opctrl.difficultyBuckets[word]">
-                      <td>{{word}}</td>
-                      <span>
-                        <td ng-switch-when='h'>Hard</td>
-                        <td ng-switch-when='n'>Normal</td>
-                        <td ng-switch-when='e'>Easy</td>
-                      </span>
-                      <td>
-                        <span class="pull-right">
-                          <button class="btn btn-warning" ng-click="opctrl.removeWordFromDifficultyBucket(word)">
-                            <span class="glyphicon glyphicon-trash"></span>
-                          </button>
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="text-center">
-                  <ul class="pagination">
-                    <li ng-repeat="x in opctrl.hashRange(opctrl.difficultyBuckets) track by $index" class="pointer" ng-class="{'active': opctrl.difficultyBucketsWordPage === $index}">
-                      <a ng-click="opctrl.difficultyBucketsWordPage = $index">{{$index + 1}}</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="panel panel-danger">
-                <div class="panel-heading">
-                  Learnt Words  <span class="label label-danger" data-toggle="tooltip" data-placement="bottom" title="The user can mark the words he/she knows as learnt. These words won't be translated.">?</span>
-                </div>
-                <div class="panel-body">
-                  <div class="input-group">
-                    <input type="text" class="form-control" ng-model="opctrl.newLearntWord" id="new-learnt-word" placeholder="and">
-                    <span class="input-group-btn">
-                      <button class="btn btn-danger" type="submit" ng-click="opctrl.addLearntWord()">Add</button>
-                    </span>
-                  </div>
-                </div>
-                <ul class="list-group" style="min-height: 197px">
-                  <li class="list-group-item clearfix" ng-repeat="word in opctrl.learntWords | startFrom : opctrl.learntWordPage*4 | limitTo : 4">{{word}}
-                    <span class="pull-right">
-                      <button class="btn btn-warning" ng-click="opctrl.removeLearntWord(word)">
-                        <span class="glyphicon glyphicon-trash"></span>
-                      </button>
-                    </span>
-                  </li>
-                </ul>
-                <div class="text-center">
-                  <ul class="pagination">
-                    <li ng-repeat="x in opctrl.range(opctrl.learntWords.length) track by $index" class="pointer" ng-class="{'active': opctrl.learntWordPage === $index}">
-                      <a ng-click="opctrl.learntWordPage = $index">{{$index + 1}}</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="panel panel-primary">
-                <div class="panel-heading">
-                  Saved Translations <span class="label label-primary" data-toggle="tooltip" data-placement="bottom" title="User can save translations using the context menu and can even limit the translations to this list only">?</span>
-                </div>
-                <div class="panel-body">
-                  <div class="input-group">
-                    <input type="text" ng-model="opctrl.original" class="form-control">
-                    <span class="input-group-addon">:</span>
-                    <input type="text" ng-model="opctrl.translated" class="form-control">
-                    <span class="input-group-btn">
-                      <button class="btn btn-danger" type="submit" ng-click="opctrl.saveTranslation()">Add</button>
-                    </span>
-                  </div>
-                </div>
-                <table class="table table-list">
-                  <thead>
-                    <tr>
-                      <th>Original</th>
-                      <th>Translated</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="translation in opctrl.savedTranslationList | startFrom : opctrl.savedTranslationPage*4 | limitTo : 4">
-                      <td>{{translation[0]}}</td>
-                      <td>{{translation[1]}}</td>
-                      <td>
-                        <span class="pull-right">
-                          <button class="btn btn-warning" ng-click="opctrl.removeSavedTranslation(translation[0])">
-                            <span class="glyphicon glyphicon-trash"></span>
-                          </button>
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="text-center">
-                  <ul class="pagination">
-                    <li ng-repeat="x in opctrl.range(opctrl.savedTranslationList.length) track by $index" class="pointer" ng-class="{'active': opctrl.savedTranslationPage === $index}">
-                      <a ng-click="opctrl.savedTranslationPage = $index">{{$index + 1}}</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-
         <div class="tab-pane" id="contribute">
           <div class="row">
             <div class="col-md-6">
