@@ -44,3 +44,23 @@ body {
   border-width: 0 0 1px 0;
   border-color: rgb(221, 221, 221);
 }
+
+.vertical-center-table {
+  margin-top: 118px;
+}
+
+.vertical-center-list {
+  margin-top: 108px;
+}
+
+.table-panel {
+  min-height: 400px;
+}
+
+.list-panel {
+  min-height: 376px;
+}
+
+.list-min-size {
+  min-height: 197px;
+}

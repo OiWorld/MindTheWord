@@ -142,7 +142,7 @@
         <div class="tab-pane" id="blacklisting">
           <div class="row">
             <div class="col-md-6">
-              <div class="panel panel-danger">
+              <div class="panel panel-danger list-panel">
                 <div class="panel-heading">Blacklist Websites</div>
                 <div class="panel-body">
                   <div class="input-group">
@@ -152,7 +152,10 @@
                     </span>
                   </div>
                 </div>
-                <ul class="list-group" style="min-height: 197px">
+                <div ng-show="opctrl.blacklistedWebsites.length === 0" class="text-center vertical-center-list">
+                  <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> No Blacklisted Websites</h5>
+                </div>
+                <ul class="list-group list-min-size" ng-hide="opctrl.blacklistedWebsites.length === 0">
                   <li class="list-group-item clearfix" ng-repeat="website in opctrl.blacklistedWebsites | startFrom : opctrl.blacklistWebsitePage*4 | limitTo : 4">{{website}}
                     <span class="pull-right">
                       <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWebsite(website)">
@@ -171,7 +174,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="panel panel-danger">
+              <div class="panel panel-danger list-panel">
                 <div class="panel-heading">Blacklist Words</div>
                 <div class="panel-body">
                   <div class="input-group">
@@ -181,7 +184,10 @@
                     </span>
                   </div>
                 </div>
-                <ul class="list-group" style="min-height: 197px">
+                <div ng-show="opctrl.blacklistedWords.length === 0" class="text-center vertical-center-list">
+                  <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> No Blacklisted Words</h5>
+                </div>
+                <ul class="list-group list-min-size" ng-hide="opctrl.blacklistedWords.length === 0">
                   <li class="list-group-item clearfix" ng-repeat="word in opctrl.blacklistedWords | startFrom : opctrl.blacklistWordPage*4 | limitTo : 4">{{word}}
                     <span class="pull-right">
                       <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWord(word)">
@@ -204,7 +210,7 @@
         <div class="tab-pane" id="learning">
           <div class="row">
             <div class="col-md-6">
-              <div class="panel panel-primary" style="min-height: 400px">
+              <div class="panel panel-primary table-panel">
                 <div class="panel-heading">
                   Saved Translations <span class="label label-primary" data-toggle="tooltip" data-placement="bottom" title="User can save translations using the context menu and can even limit the translations to this list only">?</span>
                 </div>
@@ -218,7 +224,10 @@
                     </span>
                   </div>
                 </div>
-                <table class="table table-list">
+                <div ng-show="opctrl.savedTranslationList.length === 0" class="text-center vertical-center-table">
+                  <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> No Saved Translations</h5>
+                </div>
+                <table class="table table-list" ng-hide="opctrl.savedTranslationList.length === 0">
                   <thead>
                     <tr>
                       <th>Original</th>
@@ -250,7 +259,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="panel panel-primary" style="min-height: 400px">
+              <div class="panel panel-primary table-panel">
                 <div class="panel-heading">Words In Difficulty Buckets</div>
                 <div class="panel-body">
                   <div class="input-group">
@@ -266,7 +275,10 @@
                     </span>
                   </div>
                 </div>
-                <table class="table table-list">
+                <div ng-show="opctrl.difficultyBucketsWords.length === 0" class="text-center vertical-center-table">
+                  <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> Empty Difficulty Buckets</h5>
+                </div>
+                <table class="table table-list" ng-hide="opctrl.difficultyBucketsWords.length === 0">
                   <thead>
                     <tr>
                       <th>Word</th>
@@ -304,7 +316,7 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <div class="panel panel-success">
+              <div class="panel panel-success list-panel">
                 <div class="panel-heading">
                   Learnt Words  <span class="label label-success" data-toggle="tooltip" data-placement="bottom" title="The user can mark the words he/she knows as learnt. These words won't be translated.">?</span>
                 </div>
@@ -316,7 +328,10 @@
                     </span>
                   </div>
                 </div>
-                <ul class="list-group" style="min-height: 197px">
+                <div ng-show="opctrl.learntWords.length === 0" class="text-center vertical-center-list">
+                  <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> No Words Learnt</h5>
+                </div>
+                <ul class="list-group list-min-size" ng-hide="opctrl.learntWords.length === 0">
                   <li class="list-group-item clearfix" ng-repeat="word in opctrl.learntWords | startFrom : opctrl.learntWordPage*4 | limitTo : 4">{{word}}
                     <span class="pull-right">
                       <button class="btn btn-warning" ng-click="opctrl.removeLearntWord(word)">
@@ -399,7 +414,7 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <div class="panel panel-primary" style="min-height: 400px">
+              <div class="panel panel-primary table-panel">
                 <div class="panel-heading">User Defined Translations</div>
                 <div class="panel-body">
                   <div class="input-group">
