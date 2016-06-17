@@ -143,7 +143,10 @@
           <div class="row">
             <div class="col-md-6">
               <div class="panel panel-danger list-panel">
-                <div class="panel-heading">Blacklist Websites</div>
+                <div class="panel-heading">
+                  <span>Blacklist Websites</span>
+                  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Content in these websites will not be translated"></span>
+                </div>
                 <div class="panel-body">
                   <div class="input-group">
                     <input type="text" class="form-control" ng-model="opctrl.newBlacklistWebsite" id="new-blacklist-word" placeholder="stackoverflow.com">
@@ -175,7 +178,10 @@
             </div>
             <div class="col-md-6">
               <div class="panel panel-danger list-panel">
-                <div class="panel-heading">Blacklist Words</div>
+                <div class="panel-heading">
+                  <span>Blacklist Words</span>
+                  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="These words will not be translated"></span>
+                </div>
                 <div class="panel-body">
                   <div class="input-group">
                     <input type="text" class="form-control" ng-model="opctrl.newBlacklistWord" id="new-blacklist-word" placeholder="and">
@@ -212,7 +218,8 @@
             <div class="col-md-6">
               <div class="panel panel-primary table-panel">
                 <div class="panel-heading">
-                  Saved Translations <span class="label label-primary" data-toggle="tooltip" data-placement="bottom" title="User can save translations using the context menu and can even limit the translations to this list only">?</span>
+                  <span>Saved Translations</span>
+                  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="User can save translations using the context menu and can even limit the translations to this list only"></span>
                 </div>
                 <div class="panel-body">
                   <div class="input-group">
@@ -260,7 +267,10 @@
             </div>
             <div class="col-md-6">
               <div class="panel panel-primary table-panel">
-                <div class="panel-heading">Words In Difficulty Buckets</div>
+                <div class="panel-heading">
+                  <span>Difficulty Buckets</span>
+                  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Mark the difficulty of words and they will be highlighted during translation."></span>
+                </div>
                 <div class="panel-body">
                   <div class="input-group">
                     <input type="text" ng-model="opctrl.newDifficultyBucketWord" class="form-control">
@@ -318,7 +328,8 @@
             <div class="col-md-6">
               <div class="panel panel-success list-panel">
                 <div class="panel-heading">
-                  Learnt Words  <span class="label label-success" data-toggle="tooltip" data-placement="bottom" title="The user can mark the words he/she knows as learnt. These words won't be translated.">?</span>
+                  <span>Learnt Words</span>
+                  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="The user can mark the words he/she knows as learnt. These words won't be translated."></span>
                 </div>
                 <div class="panel-body">
                   <div class="input-group">
@@ -355,7 +366,10 @@
           <div class="row">
             <div class="col-md-6">
               <div class="panel panel-primary">
-                <div class="panel-heading">Adjustments</div>
+                <div class="panel-heading">
+                  <span>Color Settings</span>
+                  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Set the color in which translations appear."></span>
+                </div>
                 <div class="panel-body" style="min-height: 216px">
                   <div class="input-group">
                     <span class="input-group-addon">Text Color</span>
@@ -388,7 +402,10 @@
             </div>
             <div class="col-md-6">
               <div class="panel panel-primary">
-                <div class="panel-heading">Word Configuration</div>
+                <div class="panel-heading">
+                  <span>Word Configuration</span>
+                  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Configure word length and set n-grams"></span>
+                </div>
                 <div class="panel-body" style="min-height: 216px">
                   <form class="form-inline">
                     <div class="form-group">
@@ -415,7 +432,10 @@
           <div class="row">
             <div class="col-md-6">
               <div class="panel panel-primary table-panel">
-                <div class="panel-heading">User Defined Translations</div>
+                <div class="panel-heading">
+                  <span>User Defined Translations</span>
+                  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Define translations for specific words. These words will override normal translations"></span>
+                </div>
                 <div class="panel-body">
                   <div class="input-group">
                     <input type="text" ng-model="opctrl.original" class="form-control">
@@ -459,7 +479,10 @@
             </div>
             <div class="col-md-6">
               <div class="panel panel-primary">
-                <div class="panel-heading">Playback Settings</div>
+                <div class="panel-heading">
+                  <span>Playback Settings</span>
+                  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Audio Settings for speaking translated words"></span>
+                </div>
                 <div class="panel-body">
                   <div class="input-group">
                     <span id="lang_engine" class="input-group-addon locale">Voice Name</span>
