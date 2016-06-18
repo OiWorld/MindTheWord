@@ -68,7 +68,15 @@
               </a>
             </div>
           </div>
-
+          <div class="row" style="padding: 0 15px 20px 15px">
+            <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Translations will be limited to user defined in Advanced Tab"></span>
+            <button type="button" ng-click="opctrl.toggleUserDefinedOnly()" ng-class="{'active': opctrl.userDefinedOnly}" class="btn btn-default pull-right" style="margin-right: 5px">
+              <span class="glyphicon glyphicon-user"></span> User Defined Only
+            </button>
+            <button type="button" ng-click="opctrl.toggleDoNotTranslate()" ng-class="{'active': opctrl.doNotTranslate}" class="btn btn-danger pull-right" style="margin-right: 5px">
+              <span class="glyphicon glyphicon-ban-circle"></span> Do Not Translate
+            </button>
+          </div>
           <div class="panel panel-primary">
             <div class="panel-heading">Create a New Pattern</div>
             <div class="panel-body">
