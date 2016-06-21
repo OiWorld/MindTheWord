@@ -539,7 +539,7 @@
                         Backup
                       </button>
                     </span>
-                    <h5 class="list-group-item-heading"><strong>Backup Complete Configuration</strong></h5>
+                    <h5 class="list-group-item-heading"><strong>Backup Configuration</strong></h5>
                     <p class="list-group-item-text">Backup all your settings and keys in a file.</p>
                   </li>
                   <li class="list-group-item">
@@ -562,11 +562,12 @@
                 <ul class="list-group">
                   <li class="list-group-item">
                     <span class="pull-right">
-                      <button class="btn btn-primary" ng-click="opctrl.backupAll()">
+                      <button class="btn btn-primary" ng-click="opctrl.restoreAll()">
                         Restore
                       </button>
                     </span>
-                    <h5 class="list-group-item-heading"><strong>RestoreConfiguration</strong></h5>
+                    <input type="file" id="config-file" style="display: none">
+                    <h5 class="list-group-item-heading"><strong>Restore Configuration</strong></h5>
                     <p class="list-group-item-text">Restore all your settings and keys from a file.</p>
                   </li>
                   <li class="list-group-item">
