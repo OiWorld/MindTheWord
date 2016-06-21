@@ -42,6 +42,9 @@
             <a href="#backup" data-toggle="tab">Backup</a>
           </li>
           <li>
+            <a href="#statistics" data-toggle="tab">Statistics</a>
+          </li>
+          <li>
             <a href="#contribute" data-toggle="tab">Contribute</a>
           </li>
         </ul>
@@ -52,7 +55,13 @@
       <div class="tab-content">
         <div class="tab-pane active" id="translation-settings">
           <div class="panel panel-primary">
-            <div class="panel-heading">Existing Patterns</div>
+            <div class="panel-heading">
+              Existing Patterns
+              <span class="pull-right">
+                <h4 style="display:inline"><span class="label label-info">number</span></h4>
+                of words translated
+              </span>
+            </div>
             <div class="list-group">
               <a href="#" ng-click="opctrl.activatePattern($index)" class="list-group-item" ng-class="{'active-list': pattern[3]}" ng-repeat="(index, pattern) in opctrl.patterns">
                 Use
@@ -64,6 +73,7 @@
                 words into
                 <span class="label label-info">{{pattern[1][1]}}</span>
                 <span class="pull-right">
+                  <h4 style="display:inline"><span class="label label-info">{{pattern[5]}}</span></h4>
                   <button class="btn btn-warning" ng-click="opctrl.deletePattern(index, $event)">
                     <span class="glyphicon glyphicon-trash"></span>
                   </button>
@@ -71,6 +81,7 @@
               </a>
             </div>
           </div>
+
           <div class="row" style="padding: 0 15px 20px 15px">
             <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Translations will be limited to user defined in Advanced Tab"></span>
             <button type="button" ng-click="opctrl.toggleUserDefinedOnly()" ng-class="{'active': opctrl.userDefinedOnly}" class="btn btn-default pull-right" style="margin-right: 5px">
@@ -148,6 +159,12 @@
 
               </small>
             </div>
+          </div>
+          <div class="row pull-right" style="padding: 0 15px 20px 15px">
+            <h3 style="display: inline;"><span style="padding: 8px 8px 8px 8px"class="label label-info">{{opctrl.stats.totalWordsTranslated}}</span> </h3> words translated so far!
+            <button type="button" ng-click="opctrl.resetTotalWordCount()" class="btn btn-danger" style="margin-right: 5px">
+              <span class="glyphicon glyphicon-ban-circle"></span> Reset Count
+            </button>
           </div>
         </div>
         <div class="tab-pane" id="blacklisting">
@@ -650,7 +667,61 @@
               </div>
             </div>
           </div>
-
+        </div>
+        <div class="tab-pane" id="statistics">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  Let's talk numbers!
+                </div>
+                <div class="list-group">
+                  <div class='list-group-item'>
+                    Number of translated words
+                    <span class="pull-right label label-info">
+                      <h4 style="display:inline;">{{opctrl.stats.totalWordsTranslated}}</h4>
+                    </span>
+                  </div>
+                  <div class='list-group-item'>
+                    Number of blacklisted websites
+                    <span class="pull-right label label-info">
+                      <h4 style="display:inline;">{{opctrl.blacklistedWebsites.length}}</h4>
+                    </span>
+                  </div>
+                  <div class='list-group-item'>
+                    Number of blacklisted words
+                    <span class="pull-right label label-info">
+                      <h4 style="display:inline;">{{opctrl.blacklistedWords.length}}</h4>
+                    </span>
+                  </div>
+                  <div class='list-group-item'>
+                    Number of saved translations
+                    <span class="pull-right label label-info">
+                      <h4 style="display:inline;">{{opctrl.savedTranslationList.length}}</h4>
+                    </span>
+                  </div>
+                  <div class='list-group-item'>
+                    Number of words in difficulty buckets
+                    <span class="pull-right label label-info">
+                      <h4 style="display:inline;">{{opctrl.difficultyBucketsWords.length}}</h4>
+                    </span>
+                  </div>
+                  <div class='list-group-item'>
+                    Number of words in learnt words
+                    <span class="pull-right label label-info">
+                      <h4 style="display:inline;">{{opctrl.learntWords.length}}</h4>
+                    </span>
+                  </div>
+                  <div class='list-group-item'>
+                    Number of user defined translations
+                    <span class="pull-right label label-info">
+                      <h4 style="display:inline;">{{opctrl.userDefinedTranslationList.length}}</h4>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="tab-pane" id="contribute">
           <div class="row">
