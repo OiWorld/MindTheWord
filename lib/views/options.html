@@ -687,38 +687,46 @@
                   Let's talk numbers!
                 </div>
                 <div class="list-group">
+                    <div ng-repeat="(currentMonth, serviceHash) in opctrl.stats['translatorWiseWordCount']">
+                      <div ng-repeat="(service, count) in serviceHash" class='list-group-item'>
+                        Number of words translated in <span class="label label-info">{{currentMonth}}</span> using <span class="label label-info">{{service}}</span>
+                        <span class="pull-right label label-info">
+                          <h4 style="display:inline;">{{count}}</h4>
+                        </span>
+                      </div>
+                    </div>
                   <div class='list-group-item'>
-                    Number of blacklisted websites
+                    Number of <span class="label label-info">blacklisted websites</span>
                     <span class="pull-right label label-info">
                       <h4 style="display:inline;">{{opctrl.blacklistedWebsites.length}}</h4>
                     </span>
                   </div>
                   <div class='list-group-item'>
-                    Number of blacklisted words
+                    Number of <span class="label label-info">blacklisted words</span>
                     <span class="pull-right label label-info">
                       <h4 style="display:inline;">{{opctrl.blacklistedWords.length}}</h4>
                     </span>
                   </div>
                   <div class='list-group-item'>
-                    Number of saved translations
+                    Number of <span class="label label-info">saved translations</span>
                     <span class="pull-right label label-info">
                       <h4 style="display:inline;">{{opctrl.savedTranslationList.length}}</h4>
                     </span>
                   </div>
                   <div class='list-group-item'>
-                    Number of words in difficulty buckets
+                    Number of words in <span class="label label-info">difficulty buckets</span>
                     <span class="pull-right label label-info">
                       <h4 style="display:inline;">{{opctrl.difficultyBucketsWords.length}}</h4>
                     </span>
                   </div>
                   <div class='list-group-item'>
-                    Number of words in learnt words
+                    Number of words in <span class="label label-info">learnt words</span>
                     <span class="pull-right label label-info">
                       <h4 style="display:inline;">{{opctrl.learntWords.length}}</h4>
                     </span>
                   </div>
                   <div class='list-group-item'>
-                    Number of user defined translations
+                    Number of <span class="label label-info">user defined translations</span>
                     <span class="pull-right label label-info">
                       <h4 style="display:inline;">{{opctrl.userDefinedTranslationList.length}}</h4>
                     </span>
