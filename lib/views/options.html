@@ -672,8 +672,11 @@
                 </div>
                 <div class="list-group">
                   <span class="list-group-item" ng-repeat="(index, pattern) in opctrl.patterns">
-                    <h4 style="display:inline;"><span class="label label-info">{{pattern[5]}}</span></h4>
-                    have been translated from
+                    <h4 style="display:inline;">
+                      <span class="label label-info" ng-if="pattern[5]">{{pattern[5]}}</span>
+                      <span class="label label-info" ng-if="!pattern[5]">0</span>
+                    </h4>
+                    words have been translated from
                     <span class="label label-info">{{pattern[0][1]}}</span>
                     into
                     <span class="label label-info">{{pattern[1][1]}}</span>
@@ -689,9 +692,9 @@
                 <div class="list-group">
                     <div ng-repeat="(currentMonth, serviceHash) in opctrl.stats['translatorWiseWordCount']">
                       <div ng-repeat="(service, count) in serviceHash" class='list-group-item'>
-                        Number of words translated in <span class="label label-info">{{currentMonth}}</span> using <span class="label label-info">{{service}}</span>
+                        Number of words and characters translated in <span class="label label-info">{{currentMonth}}</span> using <span class="label label-info">{{service}}</span>
                         <span class="pull-right label label-info">
-                          <h4 style="display:inline;">{{count}}</h4>
+                          <h4 style="display:inline;">{{count[0]}}, {{count[1]}}</h4>
                         </span>
                       </div>
                     </div>
