@@ -70,3 +70,27 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <span>Automatic Blacklisting</span>
+        <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Settings for automatic blacklisting of websites and words"></span>
+      </div>
+      <div class="panel-body">
+        <div class="input-group">
+          <span class="input-group-addon">Maximum Word Toggles</span>
+          <input type="number" ng-model="opctrl.wordToggles" ng-change="opctrl.updateWordToggles()" class="form-control">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Blacklist words toggled more than the number specified"></span></span>
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-addon">Maximum Activation Toggles</span>
+          <input type="number" ng-model="opctrl.activationToggles" ng-change="opctrl.updateActivationToggles()" class="form-control">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Blacklist websites on which activation is toggled more than the number specified"></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
