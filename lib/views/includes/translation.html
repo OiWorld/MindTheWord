@@ -1,0 +1,101 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Existing Patterns
+  </div>
+  <div class="list-group">
+    <a href="#" ng-click="opctrl.activatePattern($index)" class="list-group-item" ng-class="{'active-list': pattern[3]}" ng-repeat="(index, pattern) in opctrl.patterns">
+      Use
+      <span class="label label-info">{{pattern[4]}}</span>
+      to translate
+      <span class="label label-info">{{pattern[2]}}%</span>
+      of all
+      <span class="label label-info">{{pattern[0][1]}}</span>
+      words into
+      <span class="label label-info">{{pattern[1][1]}}</span>
+      <span class="pull-right">
+        <button class="btn btn-warning" ng-click="opctrl.deletePattern(index, $event)">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+      </span>
+    </a>
+  </div>
+</div>
+
+<div class="row" style="padding: 0 15px 20px 15px">
+  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Translations will be limited to user defined in Advanced Tab"></span>
+  <button type="button" ng-click="opctrl.toggleUserDefinedOnly()" ng-class="{'active': opctrl.userDefinedOnly}" class="btn btn-default pull-right" style="margin-right: 5px">
+    <span class="glyphicon glyphicon-user"></span> User Defined Only
+  </button>
+  <button type="button" ng-click="opctrl.toggleDoNotTranslate()" ng-class="{'active': opctrl.doNotTranslate}" class="btn btn-danger pull-right" style="margin-right: 5px">
+    <span class="glyphicon glyphicon-ban-circle"></span> Do Not Translate
+  </button>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">Create a New Pattern</div>
+  <div class="panel-body">
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        <label for="translator">Use
+        </label>
+        <select ng-model="opctrl.translator" ng-change="opctrl.changeTranslator()" class="form-control" id="translator">
+          <option>Google</option>
+          <option>Yandex</option>
+          <option>Bing</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="percentage">to translate
+        </label>
+        <select class="form-control" id="percentage" ng-model="opctrl.percentage">
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+          <option>25</option>
+          <option>30</option>
+          <option>35</option>
+          <option>40</option>
+          <option>45</option>
+          <option>50</option>
+          <option>55</option>
+          <option>60</option>
+          <option>65</option>
+          <option>70</option>
+          <option>75</option>
+          <option>80</option>
+          <option>85</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="srcLang">of all
+        </label>
+        <select class="form-control" id="srcLang" ng-model="opctrl.srcLang">
+          <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="targetLang">words into
+        </label>
+        <select class="form-control" id="targetLang" ng-model="opctrl.targetLang">
+          <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()">Create</button>
+    </form>
+    <div class="input-group">
+      <span class="input-group-addon" ng-if="opctrl.translator !== 'Bing'">{{opctrl.translator}} Key</span>
+      <span class="input-group-addon" ng-if="opctrl.translator === 'Bing'">Client Secret</span>
+      <input ng-model="opctrl.key" ng-blur="opctrl.changeApiKey()" type="text" id="key" class="form-control">
+    </div>
+    <br>
+    <div class="input-group" ng-if="opctrl.translator === 'Bing'">
+      <span class="input-group-addon">Client ID</span>
+      <input ng-model="opctrl.bingClientId" ng-blur="opctrl.changeApiKey()" type="text" class="form-control">
+    </div>
+    <br>
+    <small>
+      <span class="label label-danger">Note:</span>
+      Google Translate is not free. <a href="https://www.microsoft.com/en-us/translator/getstarted.aspx" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Get Bing client key and ID">Bing</a> is free for first 2 million characters. <a target="_blank" href="https://tech.yandex.com/keys/get/?service=trnsl" data-toggle="tooltip" data-placement="bottom" title="Get Yandex Key">Yandex</a> is recommended.
+
+    </small>
+  </div>
+</div>
