@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-danger list-panel">
+      <div class="panel-heading">
+        <span>Blacklist Websites</span>
+        <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Content in these websites will not be translated"></span>
+      </div>
+      <div class="panel-body">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="opctrl.newBlacklistWebsite" id="new-blacklist-word" placeholder="stackoverflow.com">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWebsite()">Add</button>
+          </span>
+        </div>
+      </div>
+      <div ng-show="opctrl.blacklistedWebsites.length === 0" class="text-center vertical-center-list">
+        <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> No Blacklisted Websites</h5>
+      </div>
+      <ul class="list-group list-min-size" ng-hide="opctrl.blacklistedWebsites.length === 0">
+        <li class="list-group-item clearfix" ng-repeat="website in opctrl.blacklistedWebsites | startFrom : opctrl.blacklistWebsitePage*4 | limitTo : 4">{{website}}
+          <span class="pull-right">
+            <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWebsite(website)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </span>
+        </li>
+      </ul>
+      <div class="text-center">
+        <ul class="pagination">
+          <li ng-repeat="x in opctrl.range(opctrl.blacklistedWebsites.length) track by $index" class="pointer" ng-class="{'active': opctrl.blacklistWebsitePage === $index}">
+            <a ng-click="opctrl.blacklistWebsitePage = $index">{{$index + 1}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-danger list-panel">
+      <div class="panel-heading">
+        <span>Blacklist Words</span>
+        <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="These words will not be translated"></span>
+      </div>
+      <div class="panel-body">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="opctrl.newBlacklistWord" id="new-blacklist-word" placeholder="and">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" type="submit" ng-click="opctrl.addBlackListedWord()">Add</button>
+          </span>
+        </div>
+      </div>
+      <div ng-show="opctrl.blacklistedWords.length === 0" class="text-center vertical-center-list">
+        <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> No Blacklisted Words</h5>
+      </div>
+      <ul class="list-group list-min-size" ng-hide="opctrl.blacklistedWords.length === 0">
+        <li class="list-group-item clearfix" ng-repeat="word in opctrl.blacklistedWords | startFrom : opctrl.blacklistWordPage*4 | limitTo : 4">{{word}}
+          <span class="pull-right">
+            <button class="btn btn-warning" ng-click="opctrl.removeBlackListedWord(word)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </span>
+        </li>
+      </ul>
+      <div class="text-center">
+        <ul class="pagination">
+          <li ng-repeat="x in opctrl.range(opctrl.blacklistedWords.length) track by $index" class="pointer" ng-class="{'active': opctrl.blacklistWordPage === $index}">
+            <a ng-click="opctrl.blacklistWordPage = $index">{{$index + 1}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
