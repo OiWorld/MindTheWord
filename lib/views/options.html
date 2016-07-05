@@ -45,6 +45,9 @@
             <a href="#statistics" data-toggle="tab">Statistics</a>
           </li>
           <li>
+            <a href="#quiz" data-toggle="tab">Quiz</a>
+          </li>
+          <li>
             <a href="#contribute" data-toggle="tab">Contribute</a>
           </li>
         </ul>
@@ -69,7 +72,10 @@
           <ng-include src="'includes/backup.html'" onload="opctrl.setup()"></ng-include>
         </div>
         <div class="tab-pane" id="statistics">
-          <ng-include src="'includes/stats.html'" onload="" onload="opctrl.setup()"></ng-include>
+          <ng-include src="'includes/stats.html'" onload="opctrl.setup()"></ng-include>
+        </div>
+        <div class="tab-pane" id="quiz">
+          <ng-include src="'includes/quiz.html'" onload="opctrl.setup()"></ng-include>
         </div>
         <div class="tab-pane" id="contribute">
           <ng-include src="'includes/contribute.html'" onload="opctrl.setup()"></ng-include>
