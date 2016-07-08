@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        Backup
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="pull-right">
+            <button class="btn btn-success" ng-click="opctrl.backupAll()">
+              Backup
+            </button>
+          </span>
+          <h5 class="list-group-item-heading"><strong>Backup Configuration</strong></h5>
+          <p class="list-group-item-text">Backup all your settings and keys in a file.</p>
+        </li>
+        <li class="list-group-item">
+          <span class="pull-right">
+            <button class="btn btn-success" ng-click="opctrl.backupKeys()">
+              Backup
+            </button>
+          </span>
+          <h5 class="list-group-item-heading"><strong>Backup Keys</strong></h5>
+          <p class="list-group-item-text">Backup all your keys in a file.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Restore
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="pull-right">
+            <button class="btn btn-primary" ng-click="opctrl.restoreAll()">
+              Restore
+            </button>
+          </span>
+          <input type="file" id="config-file" style="display: none">
+          <h5 class="list-group-item-heading"><strong>Restore Configuration</strong></h5>
+          <p class="list-group-item-text">Restore all your settings and keys from a file.</p>
+        </li>
+        <li class="list-group-item">
+          <span class="pull-right">
+            <button class="btn btn-primary" ng-click="opctrl.restoreKeys()">
+              Restore
+            </button>
+          </span>
+          <input type="file" id="keys-file" style="display: none">
+          <h5 class="list-group-item-heading"><strong>Restore Keys</strong></h5>
+          <p class="list-group-item-text">Restore all your keys from a file.</p>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <span>Danger Zone</span>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="pull-right">
+            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmConfig">
+              Reset
+            </button>
+          </span>
+          <h5 class="list-group-item-heading"><strong>Reset Configuration</strong></h5>
+          <p class="list-group-item-text">This action will reset all the options to default. You will lose all your settings, saved data and keys. This action is irreversible</p>
+        </li>
+        <li class="list-group-item">
+          <span class="pull-right">
+            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmKeys">
+              Delete
+            </button>
+          </span>
+          <h5 class="list-group-item-heading"><strong>Delete Keys</strong></h5>
+          <p class="list-group-item-text">This action will delete all you tranlsator keys. This is an irreversible action.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Modals -->
+<div class="modal fade" id="confirmConfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirm Reset</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to reset all the data. Please create a backup if you want to restore your data in the future.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="opctrl.resetConfig()" data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="confirmKeys" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to remove all the keys. Please create a backup if you want to restore your keys in the future.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="opctrl.deleteKeys()" data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
