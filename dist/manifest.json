@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
-  "version": "2.0.3",
+  "version": "2.0.4",
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://www.google.com https://ssl.google-analytics.com;",
+  "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://www.google.com;",
   "background" : {
     "scripts" : ["eventPage.js"],
     "persistent": false
@@ -41,6 +41,8 @@
     "tabs",
     "<all_urls>",
     "storage",
-    "contextMenus"
+    "contextMenus",
+    "tts",
+    "unlimitedStorage"
   ]
 }
