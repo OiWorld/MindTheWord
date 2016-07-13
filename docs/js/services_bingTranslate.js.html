@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/bingTranslate.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/bingTranslate.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { http } from '../utils/http';
+
+/** Class for Bing translate feature */
+export class BingTranslate {
+  /**
+   * Initialize options and credentials
+   * @constructor
+   * @param {Object} key - client_id and client_secret
+   * @param {string} srcLang - source languages
+   * @param {string} targetLang - target language
+   */
+  constructor(key, srcLang, targetLang) {
+    this.srcLang = srcLang;
+    this.targetLang = targetLang;
+    this.url = 'https://api.microsofttranslator.com/V2/Http.svc/TranslateArray';
+    this.authUrl = 'https://datamarket.accesscontrol.windows.net/v2/OAuth2-13';
+    this.authData = {
+      grant_type: 'client_credentials',
+      scope: 'http://api.microsofttranslator.com',
+      client_id: key.clientId,
+      client_secret: key.clientSecret
+    };
+  }
+
+  /**
+   * Obtains auth token, posts a request for translations
+   * and returns a promise.
+   * @param {Object} - list of words
+   * @returns {Promise} - On resolution gives the response
+   */
+  getTranslations(words) {
+    var promise = new Promise((resolve, reject) => {
+      var payload = this.formPayload(words);
+      let headers = {'content-type': 'application/x-www-form-urlencoded'};
+      http(this.authUrl)
+        .post(this.authData, headers)
+        .then((data) => {
+          headers = {
+            'Authorization': 'Bearer' + ' ' + JSON.parse(data).access_token,
+            'content-type': 'application/xml'
+          };
+          http(this.url)
+            .post(payload, headers)
+            .then((res) => {
+              let translations = this.filterTranslations(res),
+                tMap = this.mapTranslations(translations, words);
+              console.log(tMap);
+              resolve(tMap);
+            });
+        });
+    });
+    return promise;
+  }
+
+  /**
+   * Creates the XML payload for Bing
+   * @param {Object} words - words list
+   * @returns {Object} POST payload object
+   */
+  formPayload(words) {
+    let payload = '&lt;TranslateArrayRequest>'
+                +   '&lt;AppId>&lt;/AppId>'
+                +   '&lt;From>' + this.srcLang + '&lt;/From>'
+                +   '&lt;Texts>';
+    for (let word in words) {
+      payload += '&lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">' + word + '&lt;/string>';
+    }
+
+    payload += '&lt;/Texts>'
+            +  '&lt;To>' + this.targetLang + '&lt;/To>'
+            +  '&lt;/TranslateArrayRequest>';
+
+    return {'payload': payload, 'xml': true};
+  }
+
+  /**
+   * Returns an array of translations which is in order
+   * with the source words
+   * @param {string} res - response from Bing
+   * @param {Object} words - word list
+   * @returns {Array} translations - list of translated words
+   */
+  filterTranslations(res, words) {
+    // parse XML response to find response string and convert to lowercase
+    let xmlDoc = this.parseXML(res),
+      elements = xmlDoc.getElementsByTagName('TranslatedText'),
+      translations = [];
+
+    for (var i in elements) {
+      translations.push(elements[i].innerHTML);
+    }
+
+    return translations;
+  }
+
+  /**
+   * Parse string into XML
+   * Referred: http://stackoverflow.com/questions/7949752/cross-browser-javascript-xml-parsing
+   * @param {string} xmlStr - XML response
+   * @returns {Object} parsed XML
+   */
+  parseXML(xmlStr) {
+    return (new window.DOMParser()).parseFromString(xmlStr, 'text/xml');
+  }
+
+  /**
+   * Map source words to translations
+   * @param {Array} translations - list of translated words
+   * @param {Object} words - source words list
+   * @returns {Object} tMap - translation map
+   */
+  mapTranslations(translations, words) {
+    var tMap = {},
+      i = 0,
+      translatedWords = translations;
+
+    for (let word in words) {
+      // add a try catch block
+      tMap[word] = translatedWords[i];
+      i++;
+    }
+
+    return tMap;
+  }
+
+  /**
+   * Translate an entire input sentence
+   * @param {string} text - sentence
+   * @returns {Promise} promise - gives translated sentence on resolution
+   */
+  translateSentence(text) {
+    var promise = new Promise((resolve, reject) => {
+      this.url = 'http://api.microsofttranslator.com/V2/Http.svc/Translate';
+      this.url += '?appId';
+      this.url += '&amp;from=' + this.srcLang;
+      this.url += '&amp;to=' + this.targetLang;
+      this.url += '&amp;text=' + text;
+      let headers = {'content-type': 'application/x-www-form-urlencoded'};
+      http(this.authUrl)
+        .post(this.authData, headers)
+        .then((data) => {
+          headers = {
+            'Authorization': 'Bearer' + ' ' + JSON.parse(data).access_token
+          };
+          http(this.url)
+            .get({}, headers)
+            .then((res) => {
+              let xml = this.parseXML(res);
+              let sentence = xml.getElementsByTagName('string')[0].innerHTML;
+              resolve(sentence);
+            })
+            .catch((e) => {
+              reject(e);
+            });
+        });
+    });
+    return promise;
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="-_.html"></a></li><li><a href="BingTranslate.html">BingTranslate</a></li><li><a href="ContentScript.html">ContentScript</a></li><li><a href="GoogleTranslate.html">GoogleTranslate</a></li><li><a href="OptionCtrl.html">OptionCtrl</a></li><li><a href="PopupCtrl.html">PopupCtrl</a></li><li><a href="YandexTranslate.html">YandexTranslate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#checkActiveTabChange">checkActiveTabChange</a></li><li><a href="global.html#checkURLChange">checkURLChange</a></li><li><a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a></li><li><a href="global.html#disableContextMenus">disableContextMenus</a></li><li><a href="global.html#enableContextMenus">enableContextMenus</a></li><li><a href="global.html#initializeLocalStorage">initializeLocalStorage</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateContextMenu">updateContextMenu</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
