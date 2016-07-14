@@ -76,7 +76,7 @@ gulp.task('copy-dist', function () {
   gulp.src('./lib/assets/**/*').pipe(gulp.dest('./dist/assets/'));
   gulp.src('./lib/styles/**/*').pipe(gulp.dest('./dist/styles/'));
   gulp.src('./lib/views/**/*').pipe(gulp.dest('./dist/views/'));
-  return gulp.src('./lib/manifest.json').pipe(gulp.dest('./dist/'))
+  return gulp.src('./lib/manifest.json').pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('build', function() {

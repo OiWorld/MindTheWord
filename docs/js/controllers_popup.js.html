@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/popup.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/popup.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import angular from 'angular';
+import $ from 'jquery';
+import bootstrap from 'bootstrap';
+
+/** Class for popup angular controller */
+export class PopupCtrl {
+  /**
+   * Initialize activation data.
+   * @constructor
+   * @param {Object} $scope - Angular scope
+   * @param {Object} $timeout - Angular timeout
+   * @param {Object} $window - Angular window
+   */
+  constructor($scope, $timeout, $window) {
+    this.$timeout = $timeout;
+    this.$window = $window;
+    this.$scope = $scope;
+
+    chrome.storage.local.get(['activation', 'autoBlacklist', 'activationToggles'], (data) => {
+      this.activation = data.activation;
+      this.autoBlacklist = data.autoBlacklist;
+      this.activationToggles = data.activationToggles;
+      this.$timeout(() => {
+        this.$scope.$apply();
+      });
+    });
+  }
+
+  /**
+   * Store user activation data to chrome local storage
+   * @param {string} - activation value set by the user
+   */
+  setActivation(value) {
+    if (this.activation !== value) {
+      this.activation = value;
+      chrome.storage.local.set({activation: value});
+      chrome.tabs.getSelected(null, (tab) => {
+        this.autoBlacklistWebsite(tab.url);
+        var code = 'window.location.reload();';
+        chrome.tabs.executeScript(tab.id, {code: code});
+      });
+    }
+  }
+
+  /**
+   * Given a url, it checks whether a URL should be
+   * blacklisted or not.
+   * @param {string} - website URL
+   */
+  autoBlacklistWebsite(url) {
+    if (this.autoBlacklist) {
+      chrome.storage.local.get(['blacklist', 'activationFrequency'], (data) => {
+        let blacklistURLs = data.blacklist.slice(1, -1).split('|'),
+          activationFrequency = JSON.parse(data.activationFrequency),
+          re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im,
+          domainName = url.match(re)[0];
+        if (blacklistURLs.indexOf(domainName) > -1) {
+          return;
+        } else {
+          if (domainName in activationFrequency) {
+            if (activationFrequency[domainName] > this.activationToggles) {
+              blacklistURLs.push(domainName);
+              chrome.storage.local.set({
+                'blacklist': '(' + blacklistURLs.join('|') + ')',
+                'activationFrequency': JSON.stringify(activationFrequency)
+              });
+              delete activationFrequency[domainName];
+            } else {
+              activationFrequency[domainName] += 1;
+              chrome.storage.local.set({'activationFrequency': JSON.stringify(activationFrequency)});
+            }
+          } else {
+            activationFrequency[domainName] = 1;
+            chrome.storage.local.set({'activationFrequency': JSON.stringify(activationFrequency)});
+          }
+        }
+
+      });
+
+    }
+  }
+
+  /**
+   * Redirect user to options.html from popup
+   */
+  openOptions() {
+    this.$window.open('options.html');
+  }
+  
+  /**
+   * Toggle all translated words on active tab.
+   * Sends a message to the content script to run
+   * its toggle function on the tab.
+   */
+  toggleTranslations() {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {type: 'toggleAllElements'});
+    });
+  }
+
+}
+
+angular.module('MTWPopup', [])
+  .controller('PopupCtrl', PopupCtrl);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="-_.html"></a></li><li><a href="BingTranslate.html">BingTranslate</a></li><li><a href="ContentScript.html">ContentScript</a></li><li><a href="GoogleTranslate.html">GoogleTranslate</a></li><li><a href="OptionCtrl.html">OptionCtrl</a></li><li><a href="PopupCtrl.html">PopupCtrl</a></li><li><a href="YandexTranslate.html">YandexTranslate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#checkActiveTabChange">checkActiveTabChange</a></li><li><a href="global.html#checkURLChange">checkURLChange</a></li><li><a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a></li><li><a href="global.html#disableContextMenus">disableContextMenus</a></li><li><a href="global.html#enableContextMenus">enableContextMenus</a></li><li><a href="global.html#initializeLocalStorage">initializeLocalStorage</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateContextMenu">updateContextMenu</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
