@@ -99,3 +99,16 @@
     </small>
   </div>
 </div>
+<div class="alert alert-danger fade in" role="alert" ng-show="opctrl.keyAlert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4>Oh snap! You don't have a key!</h4>
+  <p>You don't have any key for the translator you have selected. For the extension to work you need a key (something like a password) for {{opctrl.translatorService}}.
+    Please get the keys by using the buttons below.</p>
+  <p>
+    <a class="btn btn-default" target="_blank" href="https://tech.yandex.com/keys/get/?service=trnsl">Get Yandex Key</a>
+    <a class="btn btn-default" target="_blank" href="https://cloud.google.com/translate/v2/quickstart">Get Google Key</a>
+    <a class="btn btn-default" target="_blank" href="https://www.microsoft.com/en-us/translator/getstarted.aspx">Get Bing Key</a>
+  </p>
+</div>
