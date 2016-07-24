@@ -16,6 +16,7 @@
   position: fixed;
   bottom: 70px;
   margin: auto;
+  z-index: 30;
 }
 
 .footer {
@@ -63,4 +64,9 @@ body {
 
 .list-min-size {
   min-height: 197px;
+}
+
+.disable-panel {
+  opacity: 0.5;
+  pointer-events: none;
 }
