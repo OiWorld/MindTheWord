@@ -16,7 +16,7 @@
             </td>
             <td>
               <select class="form-control ng-pristine ng-touched" ng-model="opctrl.quizAnswers[$index]" ng-change="opctrl.checkAnswer($index)">
-                 <option ng-repeat="(w, t) in opctrl.randomTranslatedWordsForQuiz">{{t}}</option>
+                 <option ng-repeat="opt in opctrl.quizOptions track by $index">{{opt}}</option>
               </select>
             </td>
             <td>
