@@ -1,4 +1,4 @@
-import { OptionCtrl } from '/lib/scripts/controllers/options'
+import { OptionCtrl } from '/lib/scripts/controllers/options';
 
 describe('options page testing', () => {
   var ctrl,
@@ -12,8 +12,8 @@ describe('options page testing', () => {
 
   describe('helper function tests', () => {
     it('should set data to default', () => {
-      expect(ctrl.percentage).toEqual('15')
-      expect(ctrl.translator).toEqual('Yandex')
+      expect(ctrl.percentage).toEqual('15');
+      expect(ctrl.translator).toEqual('');
       // check more
     });
 
@@ -21,7 +21,7 @@ describe('options page testing', () => {
       ctrl.save({data: 'check'}, 'message');
       expect(chrome.storage.local.set).toHaveBeenCalled();
     });
-  })
+  });
 
   describe('pattern functions tests', ()  => {
 
@@ -45,7 +45,7 @@ describe('options page testing', () => {
 
     });
 
-  })
+  });
 
   describe('blacklist functions tests', () => {
     it('should add a word to the blacklist', () => {
