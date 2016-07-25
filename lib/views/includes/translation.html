@@ -33,16 +33,6 @@
   </div>
 </div>
 
-<!-- <div class="row" style="padding: 0 15px 20px 15px">
-  <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Translations will be limited to user defined in Advanced Tab"></span>
-  <button type="button" ng-click="opctrl.toggleUserDefinedOnly()" ng-class="{'active': opctrl.userDefinedOnly}" class="btn btn-default pull-right" style="margin-right: 5px">
-    <span class="glyphicon glyphicon-user"></span> User Defined Only
-  </button>
-  <button type="button" ng-click="opctrl.toggleDoNotTranslate()" ng-class="{'active': opctrl.doNotTranslate}" class="btn btn-danger pull-right" style="margin-right: 5px">
-    <span class="glyphicon glyphicon-ban-circle"></span> Do Not Translate
-  </button>
-</div> -->
-
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-warning">
@@ -54,7 +44,7 @@
       <div class="panel-body">
         <p>
           <b>Yandex, Bing and Google require keys.</b> They use the keys to identify users, in order to limit the amount of translations that each user can request per month. If the limit is reached, they stop working temporarily. As the limit is high, it is unlikely to be reached.
-          <br> 
+          <br>
           <b> Please add keys for the translators you would like to use below.</b>
         </p>
         <div class="input-group">
@@ -111,7 +101,7 @@
       <div class="form-group">
         <label for="percentage">to translate
         </label>
-        <select class="form-control" id="percentage" ng-model="opctrl.percentage">
+        <select class="form-control" id="percentage" ng-model="opctrl.percentage" style="min-width: 75px">
           <option>10</option>
           <option>15</option>
           <option>20</option>
@@ -130,14 +120,14 @@
       <div class="form-group">
         <label for="srcLang"> percent of all
         </label>
-        <select class="form-control" id="srcLang" ng-model="opctrl.srcLang">
+        <select class="form-control" id="srcLang" ng-model="opctrl.srcLang" style="min-width: 176px">
           <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="targetLang">words into
         </label>
-        <select class="form-control" id="targetLang" ng-model="opctrl.targetLang">
+        <select class="form-control" id="targetLang" ng-model="opctrl.targetLang" style="min-width: 176px">
           <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
         </select>
       </div>
