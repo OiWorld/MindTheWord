@@ -47,8 +47,24 @@
           <br>
           <b> Please add keys for the translators you would like to use below.</b>
         </p>
+        <div ng-if="opctrl.yandexMonthlyLimit > 25.00" class="progress">
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {{opctrl.yandexMonthlyLimit}}%">
+            <span style="color:black;">{{opctrl.yandexMonthlyLimit}}% Monthly Yandex API Limit Reached</span>
+          </div>
+        </div>
+        <div ng-if="opctrl.yandexDailyLimit > 25.00" class="progress">
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {{opctrl.yandexDailyLimit}}%">
+            <span style="color:black;">{{opctrl.yandexDailyLimit}}% Daily Yandex API Limit Reached</span>
+          </div>
+        </div>
+        <p ng-if="opctrl.yandexDailyLimit >= 100.00">
+          <span  class="label label-danger">WARNING:</span> <b>Daily Yandex API limit reached.</b> Please wait until tomorrow or change API key
+        </p>
+        <p ng-if="opctrl.yandexMonthlyLimit >= 100.00">
+          <span class="label label-danger">WARNING:</span> <b>Monthly Yandex API limit reached.</b> Please wait until next month or change API key
+        </p>
         <div class="input-group">
-          <span class="input-group-addon">Yandex Key</span>
+          <span class="label-info input-group-addon">Yandex Key</span>
           <input ng-model="opctrl.yandexTranslatorApiKey" ng-blur="opctrl.changeApiKey('Yandex')" type="text" class="form-control">
           <span class="input-group-btn">
             <a class="btn btn-success" href="https://tech.yandex.com/keys/get/?service=trnsl" target="_blank">Get Free Yandex Key</a>
@@ -66,7 +82,7 @@
         </div>
         <br>
         <div class="input-group">
-          <span class="input-group-addon">Google Key</span>
+          <span class="label-warning input-group-addon">Google Key</span>
           <input ng-model="opctrl.googleTranslatorApiKey" ng-blur="opctrl.changeApiKey('Google')" type="text" class="form-control">
           <span class="input-group-btn">
             <a class="btn btn-success" href="https://cloud.google.com/translate/v2/quickstart" target="_blank">Get Paid Google Key</a>
