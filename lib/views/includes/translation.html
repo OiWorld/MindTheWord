@@ -8,6 +8,9 @@
     <button type="button" ng-click="opctrl.toggleDoNotTranslate()" ng-class="{'active': opctrl.doNotTranslate}" class="btn btn-danger pull-right btn-xs" style="margin-right: 5px">
       <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.doNotTranslate"></span> Do Not Translate
     </button>
+    <button type="button" ng-click="opctrl.toggleOneWordTranslation()" ng-class="{'active': opctrl.oneWordTranslation}" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
+      <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.oneWordTranslation"></span> One Word Per Sentence
+    </button>
   </div>
   <div ng-show="opctrl.patterns.length === 0" class="text-center">
     <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> Please insert the keys for the translation services that you would like to use and then create a new translation pattern below.</h5>
