@@ -31,11 +31,16 @@
         Let's talk numbers!
       </div>
       <div class="list-group">
-          <div ng-repeat="(currentMonth, serviceHash) in opctrl.stats['translatorWiseWordCount'][0]">
-            <div ng-repeat="(service, count) in serviceHash" class='list-group-item'>
-              <span class="label label-info">{{count[0]}}</span> words and <span class="label label-info">{{count[1]}}</span> characters have been translated with <span class="label label-info">{{service}}</span> during <span class="label label-info">{{currentMonth}} {{opctrl.date | date:'yyyy'}}</span>
-            </div>
+        <div ng-repeat="(currentMonth, serviceHash) in opctrl.stats['translatorWiseWordCount'][0]">
+          <div ng-repeat="(service, count) in serviceHash" ng-if="count[0]>0 && count[1]>0" class='list-group-item'>
+            <span class="label label-info">{{count[0]}}</span> words and <span class="label label-info">{{count[1]}}</span> characters have been translated with <span class="label label-info">{{service}}</span> during <span class="label label-info">{{currentMonth}} {{opctrl.date | date:'yyyy'}}</span>
           </div>
+        </div>
+        <div ng-repeat="(currentMonth, serviceHash) in opctrl.stats['translatorWiseWordCount'][1]">
+          <div ng-repeat="(service, count) in serviceHash" ng-if="count[0]>0 && count[1]>0" class='list-group-item'>
+            <span class="label label-info">{{count[0]}}</span> words and <span class="label label-info">{{count[1]}}</span> characters have been translated with <span class="label label-info">{{service}}</span> <span class="label label-info">Today</span>
+          </div>
+        </div>
         <div class='list-group-item'>
           Number of <span class="label label-info">blacklisted websites</span>
           <span class="pull-right label label-info">
