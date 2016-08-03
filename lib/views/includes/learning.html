@@ -4,6 +4,9 @@
       <div class="panel-heading">
         <span>Saved Translations</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="User can save translations using the context menu and can even limit the translations to this list only"></span>
+        <button type="button" data-toggle="modal" data-target="#savedTranslationsModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
+          Video Tutorial
+        </button>
       </div>
       <div class="panel-body">
         <div class="input-group">
@@ -53,7 +56,10 @@
     <div class="panel panel-primary table-panel">
       <div class="panel-heading">
         <span>Difficulty Buckets</span>
-        <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Mark the difficulty of words and they will be highlighted during translation."></span>
+        <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Mark the difficulty of words and they will be highlighted during translation."> </span>
+        <button type="button" data-toggle="modal" data-target="#difficultyBucketsModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
+          Video Tutorial
+        </button>
       </div>
       <div class="panel-body">
         <div class="input-group">
@@ -114,6 +120,9 @@
       <div class="panel-heading">
         <span>Learnt Words</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="The user can mark the words he/she knows as learnt. These words won't be translated."></span>
+        <button type="button" data-toggle="modal" data-target="#learntWordsModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
+          Video Tutorial
+        </button>
       </div>
       <div class="panel-body">
         <div class="input-group">
@@ -141,6 +150,47 @@
             <a ng-click="opctrl.learntWordPage = $index">{{$index + 1}}</a>
           </li>
         </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Youtube Video Modals-->
+
+<div id="difficultyBucketsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="80%" src="https://www.youtube.com/embed/dMCQRVOfcsk?autoplay=1"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="savedTranslationsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="80%" src="https://www.youtube.com/embed/Yl1LM4LiDxU?autoplay=1"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="learntWordsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="80%" src="https://www.youtube.com/embed/YwlqfnY_8a8?autoplay=1"></iframe>
       </div>
     </div>
   </div>
