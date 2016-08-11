@@ -2,11 +2,11 @@
   <div class="panel-heading">
     <span>Translation Patterns</span>
     <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Translations will be limited to user defined in Advanced Tab"></span>
-    <button type="button" ng-click="opctrl.toggleUserDefinedOnly()" ng-class="{'active': opctrl.userDefinedOnly}" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
-      <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.userDefinedOnly"></span> User Defined Only
-    </button>
     <button type="button" ng-click="opctrl.toggleDoNotTranslate()" ng-class="{'active': opctrl.doNotTranslate}" class="btn btn-danger pull-right btn-xs" style="margin-right: 5px">
       <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.doNotTranslate"></span> Do Not Translate
+    </button>
+    <button type="button" ng-click="opctrl.toggleUserDefinedOnly()" ng-class="{'active': opctrl.userDefinedOnly}" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
+      <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.userDefinedOnly"></span> User Defined Only
     </button>
     <button type="button" ng-click="opctrl.toggleOneWordTranslation()" ng-class="{'active': opctrl.oneWordTranslation}" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
       <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.oneWordTranslation"></span> One Word Per Sentence
