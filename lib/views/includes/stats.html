@@ -32,7 +32,7 @@
       </div>
       <div class="list-group">
         <div ng-repeat="(currentMonth, serviceHash) in opctrl.stats['translatorWiseWordCount'][0]">
-          <div ng-repeat="(service, count) in serviceHash" ng-if="count[0]>0 && count[1]>0" class='list-group-item'>
+          <div ng-repeat="(service, count) in serviceHash" ng-if="count[0]>0 && count[1]>0" class='nested-list-item'>
             <span class="label label-info">{{count[0]}}</span> words and <span class="label label-info">{{count[1]}}</span> characters have been translated with <span class="label label-info">{{service}}</span> during <span class="label label-info">{{currentMonth}} {{opctrl.date | date:'yyyy'}}</span>
           </div>
         </div>
