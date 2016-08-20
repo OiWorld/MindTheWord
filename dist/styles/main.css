@@ -70,3 +70,19 @@ body {
   opacity: 0.5;
   pointer-events: none;
 }
+
+.share_button:hover {
+  text-decoration: none;
+}
+
+.share_button:active {
+  text-decoration: none;
+}
+
+.share_button:link {
+  text-decoration: none;
+}
+
+.share_button:visited {
+  text-decoration: none;
+}
