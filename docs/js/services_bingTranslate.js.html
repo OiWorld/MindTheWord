@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: services/bingTranslate.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
+	<meta charset="utf-8">
+	<title>JSDoc: Source: services/bingTranslate.js</title>
+	<script src="scripts/prettify/prettify.js">
+	</script>
+	<script src="scripts/prettify/lang-css.js">
+	</script><!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+	<link href="styles/prettify-tomorrow.css" rel="stylesheet" type="text/css">
+	<link href="styles/jsdoc-default.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: services/bingTranslate.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { http } from '../utils/http';
+	<div id="main">
+		<h1 class="page-title">Source: services/bingTranslate.js</h1>
+		<section>
+			<article>
+				<pre class="prettyprint source linenums"><code>import { http } from '../utils/http';
 
 /** Class for Bing translate feature */
 export class BingTranslate {
@@ -57,19 +48,19 @@ export class BingTranslate {
    * @returns {Promise} - On resolution gives the response
    */
   getTranslations(words) {
-    var promise = new Promise((resolve, reject) => {
+    var promise = new Promise((resolve, reject) =&gt; {
       var payload = this.formPayload(words);
       let headers = {'content-type': 'application/x-www-form-urlencoded'};
       http(this.authUrl)
         .post(this.authData, headers)
-        .then((data) => {
+        .then((data) =&gt; {
           headers = {
             'Authorization': 'Bearer' + ' ' + JSON.parse(data).access_token,
             'content-type': 'application/xml'
           };
           http(this.url)
             .post(payload, headers)
-            .then((res) => {
+            .then((res) =&gt; {
               let translations = this.filterTranslations(res),
                 tMap = this.mapTranslations(translations, words);
               console.log(tMap);
@@ -86,17 +77,17 @@ export class BingTranslate {
    * @returns {Object} POST payload object
    */
   formPayload(words) {
-    let payload = '&lt;TranslateArrayRequest>'
-                +   '&lt;AppId>&lt;/AppId>'
-                +   '&lt;From>' + this.srcLang + '&lt;/From>'
-                +   '&lt;Texts>';
+    let payload = '&lt;TranslateArrayRequest&gt;'
+                +   '&lt;AppId&gt;&lt;/AppId&gt;'
+                +   '&lt;From&gt;' + this.srcLang + '&lt;/From&gt;'
+                +   '&lt;Texts&gt;';
     for (let word in words) {
-      payload += '&lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">' + word + '&lt;/string>';
+      payload += '&lt;string xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays"&gt;' + word + '&lt;/string&gt;';
     }
 
-    payload += '&lt;/Texts>'
-            +  '&lt;To>' + this.targetLang + '&lt;/To>'
-            +  '&lt;/TranslateArrayRequest>';
+    payload += '&lt;/Texts&gt;'
+            +  '&lt;To&gt;' + this.targetLang + '&lt;/To&gt;'
+            +  '&lt;/TranslateArrayRequest&gt;';
 
     return {'payload': payload, 'xml': true};
   }
@@ -157,7 +148,7 @@ export class BingTranslate {
    * @returns {Promise} promise - gives translated sentence on resolution
    */
   translateSentence(text) {
-    var promise = new Promise((resolve, reject) => {
+    var promise = new Promise((resolve, reject) =&gt; {
       this.url = 'http://api.microsofttranslator.com/V2/Http.svc/Translate';
       this.url += '?appId';
       this.url += '&amp;from=' + this.srcLang;
@@ -166,18 +157,18 @@ export class BingTranslate {
       let headers = {'content-type': 'application/x-www-form-urlencoded'};
       http(this.authUrl)
         .post(this.authData, headers)
-        .then((data) => {
+        .then((data) =&gt; {
           headers = {
             'Authorization': 'Bearer' + ' ' + JSON.parse(data).access_token
           };
           http(this.url)
             .get({}, headers)
-            .then((res) => {
+            .then((res) =&gt; {
               let xml = this.parseXML(res);
               let sentence = xml.getElementsByTagName('string')[0].innerHTML;
               resolve(sentence);
             })
-            .catch((e) => {
+            .catch((e) =&gt; {
               reject(e);
             });
         });
@@ -186,25 +177,70 @@ export class BingTranslate {
   }
 }
 </code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="-_.html"></a></li><li><a href="BingTranslate.html">BingTranslate</a></li><li><a href="ContentScript.html">ContentScript</a></li><li><a href="GoogleTranslate.html">GoogleTranslate</a></li><li><a href="OptionCtrl.html">OptionCtrl</a></li><li><a href="PopupCtrl.html">PopupCtrl</a></li><li><a href="YandexTranslate.html">YandexTranslate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#checkActiveTabChange">checkActiveTabChange</a></li><li><a href="global.html#checkURLChange">checkURLChange</a></li><li><a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a></li><li><a href="global.html#disableContextMenus">disableContextMenus</a></li><li><a href="global.html#enableContextMenus">enableContextMenus</a></li><li><a href="global.html#initializeLocalStorage">initializeLocalStorage</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateContextMenu">updateContextMenu</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+			</article>
+		</section>
+	</div>
+	<nav>
+		<h2><a href="index.html">Home</a></h2>
+		<h3>Classes</h3>
+		<ul>
+			<li>
+				<a href="-_.html"></a>
+			</li>
+			<li>
+				<a href="BingTranslate.html">BingTranslate</a>
+			</li>
+			<li>
+				<a href="ContentScript.html">ContentScript</a>
+			</li>
+			<li>
+				<a href="GoogleTranslate.html">GoogleTranslate</a>
+			</li>
+			<li>
+				<a href="OptionCtrl.html">OptionCtrl</a>
+			</li>
+			<li>
+				<a href="PopupCtrl.html">PopupCtrl</a>
+			</li>
+			<li>
+				<a href="YandexTranslate.html">YandexTranslate</a>
+			</li>
+		</ul>
+		<h3>Global</h3>
+		<ul>
+			<li>
+				<a href="global.html#checkActiveTabChange">checkActiveTabChange</a>
+			</li>
+			<li>
+				<a href="global.html#checkURLChange">checkURLChange</a>
+			</li>
+			<li>
+				<a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a>
+			</li>
+			<li>
+				<a href="global.html#disableContextMenus">disableContextMenus</a>
+			</li>
+			<li>
+				<a href="global.html#enableContextMenus">enableContextMenus</a>
+			</li>
+			<li>
+				<a href="global.html#initializeLocalStorage">initializeLocalStorage</a>
+			</li>
+			<li>
+				<a href="global.html#setup">setup</a>
+			</li>
+			<li>
+				<a href="global.html#updateContextMenu">updateContextMenu</a>
+			</li>
+		</ul>
+	</nav><br class="clear">
+	<footer>
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
+	</footer>
+	<script>
+	prettyPrint(); 
+	</script> 
+	<script src="scripts/linenumber.js">
+	</script>
 </body>
 </html>
