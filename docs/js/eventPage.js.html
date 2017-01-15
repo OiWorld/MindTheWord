@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>JSDoc: Source: eventPage.js</title>
-	<script src="scripts/prettify/prettify.js">
-	</script>
-	<script src="scripts/prettify/lang-css.js">
-	</script><!--[if lt IE 9]>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: eventPage.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-	<link href="styles/prettify-tomorrow.css" rel="stylesheet" type="text/css">
-	<link href="styles/jsdoc-default.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
+
 <body>
-	<div id="main">
-		<h1 class="page-title">Source: eventPage.js</h1>
-		<section>
-			<article>
-				<pre class="prettyprint source linenums"><code>import { ContextMenu } from './services/contextMenu';
+
+<div id="main">
+
+    <h1 class="page-title">Source: eventPage.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { ContextMenu } from './services/contextMenu';
 import { localData } from './utils/defaultStorage';
 
 var contextMenu = new ContextMenu(),
@@ -191,7 +200,7 @@ function enableContextMenus() {
  * @param {string} url - active tab URL
  */
 function updateContextMenu(url) {
-  chrome.storage.local.get(['activation', 'blacklist'], (result) =&gt; {
+  chrome.storage.local.get(['activation', 'blacklist'], (result) => {
     var blacklistWebsiteReg = new RegExp(result.blacklist),
       activation = result.activation;
     if (activation === false) {
@@ -229,7 +238,7 @@ function checkURLChange(tabId, changeInfo, tab) {
  * @param {Object} activeInfo - information about active tab
  */
 function checkActiveTabChange(activeInfo) {
-  chrome.tabs.get(activeInfo.tabId, (tab) =&gt; {
+  chrome.tabs.get(activeInfo.tabId, (tab) => {
     if (/chrome.*\:\/\//.test(tab.url) === false) {
       updateContextMenu(tab.url);
     } else {
@@ -248,7 +257,7 @@ function contextMenuClickHandler(info, tab) {
   chrome.tabs.query({
     currentWindow: true,
     active: true
-  }, (tabs) =&gt; {
+  }, (tabs) => {
     var tabURL = tabs[0].url;
     if (info.menuItemId === 'blacklistWebsite') {
       contextMenu.addUrlToBlacklist(tabURL);
@@ -269,8 +278,8 @@ function contextMenuClickHandler(info, tab) {
       chrome.tabs.query({
         active: true,
         currentWindow: true
-      }, (tabs) =&gt; {
-        chrome.tabs.sendMessage(tabs[0].id, {type: 'getTranslatedWords'}, (response) =&gt; {
+      }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {type: 'getTranslatedWords'}, (response) => {
           if (response) {
             contextMenu.addToDifficultyBucket(info.selectionText, 'e', response.translatedWords);
           }
@@ -281,7 +290,7 @@ function contextMenuClickHandler(info, tab) {
         active: true,
         currentWindow: true
       }, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {type: 'getTranslatedWords'}, (response) =&gt; {
+        chrome.tabs.sendMessage(tabs[0].id, {type: 'getTranslatedWords'}, (response) => {
           if (response) {
             contextMenu.addToDifficultyBucket(info.selectionText, 'n', response.translatedWords);
           }
@@ -291,8 +300,8 @@ function contextMenuClickHandler(info, tab) {
       chrome.tabs.query({
         active: true,
         currentWindow: true
-      }, (tabs) =&gt; {
-        chrome.tabs.sendMessage(tabs[0].id, {type: 'getTranslatedWords'}, (response) =&gt; {
+      }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {type: 'getTranslatedWords'}, (response) => {
           if (response) {
             contextMenu.addToDifficultyBucket(info.selectionText, 'h', response.translatedWords);
           }
@@ -315,20 +324,20 @@ function contextMenuClickHandler(info, tab) {
         });
       });
     } else if (info.menuItemId === 'translateSentence') {
-      chrome.tabs.query({active: true, currentWindow: true}, (tabs) =&gt; {
+      chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, {
           type: 'getTranslatedWords',
           action: 'storeSelection'
-        }, (response) =&gt; {
+        }, (response) => {
           if (response) {
             contextMenu.translateSentence(info.selectionText, response.translatedWords)
-              .then((translationData) =&gt; {
+              .then((translationData) => {
                 chrome.tabs.sendMessage(tabs[0].id, {
                   type: 'showTranslatedSentence',
                   data: translationData
                 });
               })
-              .catch((e) =&gt; {
+              .catch((e) => {
                 console.error('Error in obtaining translations', e);
               });
           }
@@ -336,11 +345,11 @@ function contextMenuClickHandler(info, tab) {
       });
     }
     else if (info.menuItemId === 'saveTranslationToDictionary'){
-      chrome.tabs.query({active: true, currentWindow: true}, (tabs) =&gt; {
+      chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, {
           type: 'getTranslatedWords',
           action: 'storeSelection'
-        }, (response) =&gt; {
+        }, (response) => {
           if (response) {
             contextMenu.saveTranslationToDictionary(info.selectionText, response.translatedWords);
           }
@@ -348,11 +357,11 @@ function contextMenuClickHandler(info, tab) {
       });
     }
     else if (info.menuItemId === 'visualHints'){
-      chrome.tabs.query({active: true, currentWindow: true}, (tabs) =&gt; {
+      chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, {
           type: 'getTranslatedWords',
           action: 'storeSelection'
-        }, (response) =&gt; {
+        }, (response) => {
           if (response) {
             contextMenu.showVisualHints(info.selectionText, response.translatedWords);
           }
@@ -374,70 +383,25 @@ chrome.tabs.onUpdated.addListener(checkURLChange);
 // update context menu if active tab is changed
 chrome.tabs.onActivated.addListener(checkActiveTabChange);
 </code></pre>
-			</article>
-		</section>
-	</div>
-	<nav>
-		<h2><a href="index.html">Home</a></h2>
-		<h3>Classes</h3>
-		<ul>
-			<li>
-				<a href="-_.html"></a>
-			</li>
-			<li>
-				<a href="BingTranslate.html">BingTranslate</a>
-			</li>
-			<li>
-				<a href="ContentScript.html">ContentScript</a>
-			</li>
-			<li>
-				<a href="GoogleTranslate.html">GoogleTranslate</a>
-			</li>
-			<li>
-				<a href="OptionCtrl.html">OptionCtrl</a>
-			</li>
-			<li>
-				<a href="PopupCtrl.html">PopupCtrl</a>
-			</li>
-			<li>
-				<a href="YandexTranslate.html">YandexTranslate</a>
-			</li>
-		</ul>
-		<h3>Global</h3>
-		<ul>
-			<li>
-				<a href="global.html#checkActiveTabChange">checkActiveTabChange</a>
-			</li>
-			<li>
-				<a href="global.html#checkURLChange">checkURLChange</a>
-			</li>
-			<li>
-				<a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a>
-			</li>
-			<li>
-				<a href="global.html#disableContextMenus">disableContextMenus</a>
-			</li>
-			<li>
-				<a href="global.html#enableContextMenus">enableContextMenus</a>
-			</li>
-			<li>
-				<a href="global.html#initializeLocalStorage">initializeLocalStorage</a>
-			</li>
-			<li>
-				<a href="global.html#setup">setup</a>
-			</li>
-			<li>
-				<a href="global.html#updateContextMenu">updateContextMenu</a>
-			</li>
-		</ul>
-	</nav><br class="clear">
-	<footer>
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
-	</footer>
-	<script>
-	prettyPrint(); 
-	</script> 
-	<script src="scripts/linenumber.js">
-	</script>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="-_.html"></a></li><li><a href="BingTranslate.html">BingTranslate</a></li><li><a href="ContentScript.html">ContentScript</a></li><li><a href="GoogleTranslate.html">GoogleTranslate</a></li><li><a href="OptionCtrl.html">OptionCtrl</a></li><li><a href="PopupCtrl.html">PopupCtrl</a></li><li><a href="YandexTranslate.html">YandexTranslate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#checkActiveTabChange">checkActiveTabChange</a></li><li><a href="global.html#checkURLChange">checkURLChange</a></li><li><a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a></li><li><a href="global.html#disableContextMenus">disableContextMenus</a></li><li><a href="global.html#enableContextMenus">enableContextMenus</a></li><li><a href="global.html#initializeLocalStorage">initializeLocalStorage</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateContextMenu">updateContextMenu</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>
