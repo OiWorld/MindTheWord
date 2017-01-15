@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: controllers/options.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
+	<meta charset="utf-8">
+	<title>JSDoc: Source: controllers/options.js</title>
+	<script src="scripts/prettify/prettify.js">
+	</script>
+	<script src="scripts/prettify/lang-css.js">
+	</script><!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+	<link href="styles/prettify-tomorrow.css" rel="stylesheet" type="text/css">
+	<link href="styles/jsdoc-default.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: controllers/options.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import angular from 'angular';
+	<div id="main">
+		<h1 class="page-title">Source: controllers/options.js</h1>
+		<section>
+			<article>
+				<pre class="prettyprint source linenums"><code>import angular from 'angular';
 import $ from 'jquery';
 import bootstrap from 'bootstrap';
 import bootstrapcolorpicker from '../../assets/js/bootstrap-colorpicker.min.js';
@@ -98,7 +89,7 @@ export class OptionCtrl {
   }
 
   getData() {
-    chrome.storage.local.get(null, (data) => {
+    chrome.storage.local.get(null, (data) =&gt; {
       console.log(data);
       this.patterns = JSON.parse(data.savedPatterns);
       this.key = data.yandexTranslatorApiKey;
@@ -139,17 +130,17 @@ export class OptionCtrl {
       this.randomTranslatedWordsForQuiz = this.randomlySelectTenWords(this.translatedWordsForQuiz);
       this.translatedWordsExist = Object.keys(this.randomTranslatedWordsForQuiz).length === 0 ? false : true;
       this.intializeStyleOptions();
-      this.$timeout(() => {
+      this.$timeout(() =&gt; {
         this.$scope.$apply();
       });
     });
   }
 
   setup() {
-    $('#text-colorpicker').colorpicker().on('changeColor', (data) => {
+    $('#text-colorpicker').colorpicker().on('changeColor', (data) =&gt; {
       this.setTextColor(data);
     });
-    $('#bg-colorpicker').colorpicker().on('changeColor', (data) => {
+    $('#bg-colorpicker').colorpicker().on('changeColor', (data) =&gt; {
       this.setBackgroundColor(data);
     });
     $(function () {
@@ -164,9 +155,9 @@ export class OptionCtrl {
       status.innerText = text;
       document.getElementById('status').appendChild(status);
 
-      setTimeout(() => {
+      setTimeout(() =&gt; {
         var opacity = 1,
-          ntrvl = setInterval(() => {
+          ntrvl = setInterval(() =&gt; {
             if (opacity &lt;= 0.01) {
               clearInterval(ntrvl);
               document.getElementById('status').removeChild(status);
@@ -179,7 +170,7 @@ export class OptionCtrl {
   }
 
   save(data, successMessage) {
-    chrome.storage.local.set(data, (error) => {
+    chrome.storage.local.set(data, (error) =&gt; {
       if (error) {
         this.status('Error Occurred. Please refresh.', 1000, 100, 'danger');
       } else {
@@ -206,7 +197,7 @@ export class OptionCtrl {
         result[randomKey] = translatedWords[randomKey];
       }
       let index = keys.indexOf(randomKey);
-      if (index > -1) {
+      if (index &gt; -1) {
         keys.splice(index, 1);
       }
     }
@@ -229,7 +220,7 @@ export class OptionCtrl {
       userDefinedOnly: false,
       doNotTranslate: false
     }, 'Activated Pattern');
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
   }
@@ -268,7 +259,7 @@ export class OptionCtrl {
           translator,
           0
         ]);
-        this.$timeout(() => {
+        this.$timeout(() =&gt; {
           this.$scope.$apply();
         });
         this.save({
@@ -290,7 +281,7 @@ export class OptionCtrl {
       this.deleteActivationData();
     }
     this.patterns.splice(index, 1);
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
     this.save({
@@ -326,7 +317,7 @@ export class OptionCtrl {
       default:
         this.key = '';
     }
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
   }
@@ -390,7 +381,7 @@ export class OptionCtrl {
       doNotTranslate: true,
       userDefinedOnly: false
     }, 'Turned off Translations');
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
   }
@@ -408,7 +399,7 @@ export class OptionCtrl {
       doNotTranslate: false,
       userDefinedOnly: true
     }, 'User Defined Transltions only');
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
   }
@@ -422,7 +413,7 @@ export class OptionCtrl {
       this.blacklistedWords.push(this.newBlacklistWord.trim());
       this.newBlacklistWord = '';
       this.blacklistWordPage = this.range(this.blacklistedWords.length).length - 1;
-      this.$timeout(() => {
+      this.$timeout(() =&gt; {
         this.$scope.$apply();
       });
       this.save({
@@ -437,7 +428,7 @@ export class OptionCtrl {
     if (this.blacklistedWords.length % 4 === 0) {
       this.blacklistWordPage -= 1;
     }
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
     this.save({
@@ -450,7 +441,7 @@ export class OptionCtrl {
       this.blacklistedWebsites.push(this.newBlacklistWebsite.trim());
       this.newBlacklistWebsite = '';
       this.blacklistWebsitePage = this.range(this.blacklistedWebsites.length).length - 1; //set to last page
-      this.$timeout(() => {
+      this.$timeout(() =&gt; {
         this.$scope.$apply();
       });
       this.save({
@@ -465,7 +456,7 @@ export class OptionCtrl {
     if (this.blacklistedWebsites.length % 4 === 0) {
       this.blacklistWebsitePage -= 1;
     }
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
     this.save({
@@ -512,7 +503,7 @@ export class OptionCtrl {
       this.newDifficultyBucketWordLevel = '';
       this.difficultyBucketsWords = Object.keys(this.difficultyBuckets);
       this.difficultyBucketsWordPage = this.range(this.difficultyBucketsWords.length).length - 1; //set to last page
-      this.$timeout(() => {
+      this.$timeout(() =&gt; {
         this.$scope.$apply();
       });
       this.save({
@@ -536,7 +527,7 @@ export class OptionCtrl {
       this.difficultyBucketsWordPage -= 1;
     }
 
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
     this.save({
@@ -562,7 +553,7 @@ export class OptionCtrl {
       this.userDefinedTranslationPage = this.range(this.userDefinedTranslationList.length).length - 1;
       this.original = '';
       this.translated = '';
-      this.$timeout(() => {
+      this.$timeout(() =&gt; {
         this.$scope.$apply();
       });
       this.save({
@@ -577,7 +568,7 @@ export class OptionCtrl {
     if (this.userDefinedTranslationList.length % 4 === 0) {
       this.userDefinedTranslationPage -= 1;
     }
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
     this.save({
@@ -592,7 +583,7 @@ export class OptionCtrl {
       this.savedTranslationPage = this.range(this.savedTranslationList.length).length - 1;
       this.original = '';
       this.translated = '';
-      this.$timeout(() => {
+      this.$timeout(() =&gt; {
         this.$scope.$apply();
       });
       this.save({
@@ -607,7 +598,7 @@ export class OptionCtrl {
     if (this.savedTranslationList.length % 4 === 0) {
       this.savedTranslationPage -= 1;
     }
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
     this.save({
@@ -624,7 +615,7 @@ export class OptionCtrl {
       this.learntWords.push(this.newLearntWord.trim());
       this.newLearntWord = '';
       this.learntWordPage = this.range(this.learntWords.length).length - 1;
-      this.$timeout(() => {
+      this.$timeout(() =&gt; {
         this.$scope.$apply();
       });
       this.save({
@@ -640,7 +631,7 @@ export class OptionCtrl {
     if (this.learntWords.length % 4 === 0) {
       this.learntWordPage -= 1;
     }
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
     this.save({
@@ -688,7 +679,7 @@ export class OptionCtrl {
   setTextColor(data) {
     this.cssOptions[1] = 'color:' + data.color.toHex();
     this.translatedWordStyle = this.cssOptions.join(';');
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
     // calling chrome.storage directly because we don't want success message
@@ -698,7 +689,7 @@ export class OptionCtrl {
   setBackgroundColor(data) {
     this.cssOptions[2] = 'background-color:' + data.color.toHex();
     this.translatedWordStyle = this.cssOptions.join(';');
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
     // calling chrome.storage directly because we don't want success message
@@ -724,19 +715,19 @@ export class OptionCtrl {
       googleTranslatorApiKey: '',
       bingTranslatorApiKey: ''
     }, 'Removed all API Keys');
-    this.$timeout(() => {
+    this.$timeout(() =&gt; {
       this.$scope.$apply();
     });
   }
 
   backupKeys() {
-    chrome.storage.local.get(['googleTranslatorApiKey', 'bingTranslatorApiKey', 'yandexTranslatorApiKey'], (data) => {
+    chrome.storage.local.get(['googleTranslatorApiKey', 'bingTranslatorApiKey', 'yandexTranslatorApiKey'], (data) =&gt; {
       saveFile(data, 'mtw_keys.txt');
     });
   }
 
   backupAll() {
-    chrome.storage.local.get(null, (data) => {
+    chrome.storage.local.get(null, (data) =&gt; {
       saveFile(data, 'mtw_config.txt');
     });
   }
@@ -752,20 +743,20 @@ export class OptionCtrl {
   restoreKeys() {
     let fileInput = document.getElementById('keys-file');
 
-    fileInput.addEventListener('change', (e) => {
+    fileInput.addEventListener('change', (e) =&gt; {
       let file = fileInput.files[0],
         textType = /text.*/;
 
       if (file.type.match(textType)) {
         let reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = (e) =&gt; {
           var keys = JSON.parse(reader.result);
           if (this.validateKeysFile(keys)) {
             this.googleTranslatorApiKey = keys.googleTranslatorApiKey;
             this.bingTranslatorApiKey = keys.bingTranslatorApiKey;
             this.yandexTranslatorApiKey = keys.yandexTranslatorApiKey;
             this.save(keys, 'Restored keys from file');
-            this.$timeout(() => {
+            this.$timeout(() =&gt; {
               this.$scope.$apply();
             });
           } else {
@@ -798,13 +789,13 @@ export class OptionCtrl {
   restoreAll() {
     let fileInput = document.getElementById('config-file');
 
-    fileInput.addEventListener('change', (e) => {
+    fileInput.addEventListener('change', (e) =&gt; {
       let file = fileInput.files[0],
         textType = /text.*/;
 
       if (file.type.match(textType)) {
         let reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = (e) =&gt; {
           var config = JSON.parse(reader.result);
           if (this.validateConfigFile(config)) {
             this.save(config, 'Restored configuration from file');
@@ -845,25 +836,70 @@ angular.module('MTWOptions', [])
   .controller('OptionCtrl', OptionCtrl)
   .filter('startFrom', startFrom);
 </code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="-_.html"></a></li><li><a href="BingTranslate.html">BingTranslate</a></li><li><a href="ContentScript.html">ContentScript</a></li><li><a href="GoogleTranslate.html">GoogleTranslate</a></li><li><a href="OptionCtrl.html">OptionCtrl</a></li><li><a href="PopupCtrl.html">PopupCtrl</a></li><li><a href="YandexTranslate.html">YandexTranslate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#checkActiveTabChange">checkActiveTabChange</a></li><li><a href="global.html#checkURLChange">checkURLChange</a></li><li><a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a></li><li><a href="global.html#disableContextMenus">disableContextMenus</a></li><li><a href="global.html#enableContextMenus">enableContextMenus</a></li><li><a href="global.html#initializeLocalStorage">initializeLocalStorage</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateContextMenu">updateContextMenu</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+			</article>
+		</section>
+	</div>
+	<nav>
+		<h2><a href="index.html">Home</a></h2>
+		<h3>Classes</h3>
+		<ul>
+			<li>
+				<a href="-_.html"></a>
+			</li>
+			<li>
+				<a href="BingTranslate.html">BingTranslate</a>
+			</li>
+			<li>
+				<a href="ContentScript.html">ContentScript</a>
+			</li>
+			<li>
+				<a href="GoogleTranslate.html">GoogleTranslate</a>
+			</li>
+			<li>
+				<a href="OptionCtrl.html">OptionCtrl</a>
+			</li>
+			<li>
+				<a href="PopupCtrl.html">PopupCtrl</a>
+			</li>
+			<li>
+				<a href="YandexTranslate.html">YandexTranslate</a>
+			</li>
+		</ul>
+		<h3>Global</h3>
+		<ul>
+			<li>
+				<a href="global.html#checkActiveTabChange">checkActiveTabChange</a>
+			</li>
+			<li>
+				<a href="global.html#checkURLChange">checkURLChange</a>
+			</li>
+			<li>
+				<a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a>
+			</li>
+			<li>
+				<a href="global.html#disableContextMenus">disableContextMenus</a>
+			</li>
+			<li>
+				<a href="global.html#enableContextMenus">enableContextMenus</a>
+			</li>
+			<li>
+				<a href="global.html#initializeLocalStorage">initializeLocalStorage</a>
+			</li>
+			<li>
+				<a href="global.html#setup">setup</a>
+			</li>
+			<li>
+				<a href="global.html#updateContextMenu">updateContextMenu</a>
+			</li>
+		</ul>
+	</nav><br class="clear">
+	<footer>
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
+	</footer>
+	<script>
+	prettyPrint(); 
+	</script> 
+	<script src="scripts/linenumber.js">
+	</script>
 </body>
 </html>
