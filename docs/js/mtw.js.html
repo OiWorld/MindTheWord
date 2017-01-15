@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>JSDoc: Source: mtw.js</title>
-	<script src="scripts/prettify/prettify.js">
-	</script>
-	<script src="scripts/prettify/lang-css.js">
-	</script><!--[if lt IE 9]>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: mtw.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-	<link href="styles/prettify-tomorrow.css" rel="stylesheet" type="text/css">
-	<link href="styles/jsdoc-default.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
+
 <body>
-	<div id="main">
-		<h1 class="page-title">Source: mtw.js</h1>
-		<section>
-			<article>
-				<pre class="prettyprint source linenums"><code>import { YandexTranslate } from './services/yandexTranslate';
+
+<div id="main">
+
+    <h1 class="page-title">Source: mtw.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { YandexTranslate } from './services/yandexTranslate';
 import { BingTranslate } from './services/bingTranslate';
 import { GoogleTranslate } from './services/googleTranslate';
 
@@ -43,7 +52,7 @@ export class ContentScript {
    * functions as per the settings.
    */
   translate() {
-    chrome.storage.local.get(null, (res) =&gt; {
+    chrome.storage.local.get(null, (res) => {
       if (res.activation === true) {
         this.ngramMin = res.ngramMin;
         this.ngramMax = res.ngramMax;
@@ -92,10 +101,10 @@ export class ContentScript {
               this.userBlacklistedWords);
             var translator = this.getTranslator();
             translator.getTranslations(filteredWords)
-              .then((tMap) =&gt; {
+              .then((tMap) => {
                 this.processTranslations(tMap, this.userDefinedTranslations);
               })
-              .catch((e) =&gt; {
+              .catch((e) => {
                 console.error('[MTW]', e);
               });
           }
@@ -178,10 +187,10 @@ export class ContentScript {
 
   filterToUserDefined(countedWords, translationProbability, userDefinedTranslations, userBlacklistedWords) {
     var blackListReg = new RegExp(userBlacklistedWords);
-    var a = this.toList(userDefinedTranslations, (word, count) =&gt; {
+    var a = this.toList(userDefinedTranslations, (word, count) => {
       return 1;
     });
-    var b = this.toList(countedWords, (word, count) =&gt; {
+    var b = this.toList(countedWords, (word, count) => {
       return 1;
     });
     var countedWordsList = this.intersect(a, b);
@@ -191,8 +200,8 @@ export class ContentScript {
   filter(countedWords, translationProbability, userDefinedTranslations, userBlacklistedWords) {
     var blackListReg = new RegExp(userBlacklistedWords);
     var punctuationReg = new RegExp(/[\.,\/#\!\$%\^&amp;\*;:{}=\\\_`~()\?@\d\+\-]/g);
-    var countedWordsList = this.shuffle(this.toList(countedWords, (word, count) =&gt; {
-      return !!word &amp;&amp; word.length &gt;= 2 &amp;&amp; // no words that are too short
+    var countedWordsList = this.shuffle(this.toList(countedWords, (word, count) => {
+      return !!word &amp;&amp; word.length >= 2 &amp;&amp; // no words that are too short
         word !== '' &amp;&amp; !/\d/.test(word) &amp;&amp; // no empty words
         word.charAt(0) !== word.charAt(0).toUpperCase() &amp;&amp; // no proper nouns
         !blackListReg.test(word.toLowerCase()) &amp;&amp; // no blacklisted words
@@ -225,7 +234,7 @@ export class ContentScript {
     }
 
     //filter out learnt words
-    if (this.learntWords.length &gt; 2) {
+    if (this.learntWords.length > 2) {
       let learntWordsReg = new RegExp(this.learntWords);
       Object.keys(filteredTMap).forEach(function(key) {
         if (learntWordsReg.test(filteredTMap[key].toLowerCase())){
@@ -254,7 +263,7 @@ export class ContentScript {
     let d = new Date();
     let currentMonth = month[d.getMonth()];
 
-    // [0] =&gt; number of words, [1] =&gt; number of characters
+    // [0] => number of words, [1] => number of characters
     if (!(currentMonth in this.stats['translatorWiseWordCount'])){
       this.stats['translatorWiseWordCount'] = {};
       this.stats['translatorWiseWordCount'][currentMonth] = {
@@ -289,7 +298,7 @@ export class ContentScript {
     // add event listener to each word for toggle
     var translatedWords = document.getElementsByClassName('mtwTranslatedWord');
     for (let i = 0; i &lt; translatedWords.length; i++) {
-      translatedWords[i].addEventListener('click', () =&gt; {
+      translatedWords[i].addEventListener('click', () => {
         this.toggleElement(event, this.wordToggles, this.autoBlacklist);
       }, false);
     }
@@ -308,12 +317,12 @@ export class ContentScript {
       original = target.dataset.original,
       newword = (word === target.dataset.translated) ? target.dataset.original : target.dataset.translated;
     if (autoBlacklist) {
-      chrome.storage.local.get('toggleFrequency', (data) =&gt; {
+      chrome.storage.local.get('toggleFrequency', (data) => {
         data = JSON.parse(data.toggleFrequency);
         if (original in data) {
-          if (data[original] &gt; wordToggles) {
+          if (data[original] > wordToggles) {
             // add word to blacklist
-            chrome.storage.local.get('userBlacklistedWords', (result) =&gt; {
+            chrome.storage.local.get('userBlacklistedWords', (result) => {
               let blacklistedWords = result.userBlacklistedWords.slice(1, -1).split('|');
               if (blacklistedWords.indexOf(original) === -1) {
                 blacklistedWords.push(original);
@@ -324,7 +333,7 @@ export class ContentScript {
           } else {
             data[original] += 1;
           }
-        } else if (Object.keys(data).length &gt;= 100) {
+        } else if (Object.keys(data).length >= 100) {
           // delete lowest freq word
           let min = Infinity,
             lowest = '';
@@ -378,15 +387,15 @@ export class ContentScript {
   replaceAll(text, translationMap) {
     var rExp = '';
     var sortedSourceWords = Object.keys(translationMap)
-      .sort((w1, w2) =&gt; {
+      .sort((w1, w2) => {
         return w2.length - w1.length;
       });
-    sortedSourceWords.forEach((sourceWord) =&gt; {
+    sortedSourceWords.forEach((sourceWord) => {
       rExp += '(\\s' + this.escapeRegExp(sourceWord) + '\\s)|';
     });
     rExp = rExp.substring(0, rExp.length - 1);
     var regExp = new RegExp(rExp, 'gm');
-    var newText = text.replace(regExp, (m) =&gt; {
+    var newText = text.replace(regExp, (m) => {
       if (translationMap[m.substring(1, m.length - 1)] !== null) {
         return ' ' + translationMap[m.substring(1, m.length - 1)] + ' ';
       } else {
@@ -422,8 +431,8 @@ export class ContentScript {
         iMap[map[e]] = iMap[map[e]] + '" class="mtwTranslatedWord"';
       }
       iMap[map[e]] = iMap[map[e]] +
-                    '&gt;' + map[e] +
-                    '&lt;/span&gt;';
+                    '>' + map[e] +
+                    '&lt;/span>';
     }
 
     return iMap;
@@ -558,70 +567,25 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   }
 });
 </code></pre>
-			</article>
-		</section>
-	</div>
-	<nav>
-		<h2><a href="index.html">Home</a></h2>
-		<h3>Classes</h3>
-		<ul>
-			<li>
-				<a href="-_.html"></a>
-			</li>
-			<li>
-				<a href="BingTranslate.html">BingTranslate</a>
-			</li>
-			<li>
-				<a href="ContentScript.html">ContentScript</a>
-			</li>
-			<li>
-				<a href="GoogleTranslate.html">GoogleTranslate</a>
-			</li>
-			<li>
-				<a href="OptionCtrl.html">OptionCtrl</a>
-			</li>
-			<li>
-				<a href="PopupCtrl.html">PopupCtrl</a>
-			</li>
-			<li>
-				<a href="YandexTranslate.html">YandexTranslate</a>
-			</li>
-		</ul>
-		<h3>Global</h3>
-		<ul>
-			<li>
-				<a href="global.html#checkActiveTabChange">checkActiveTabChange</a>
-			</li>
-			<li>
-				<a href="global.html#checkURLChange">checkURLChange</a>
-			</li>
-			<li>
-				<a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a>
-			</li>
-			<li>
-				<a href="global.html#disableContextMenus">disableContextMenus</a>
-			</li>
-			<li>
-				<a href="global.html#enableContextMenus">enableContextMenus</a>
-			</li>
-			<li>
-				<a href="global.html#initializeLocalStorage">initializeLocalStorage</a>
-			</li>
-			<li>
-				<a href="global.html#setup">setup</a>
-			</li>
-			<li>
-				<a href="global.html#updateContextMenu">updateContextMenu</a>
-			</li>
-		</ul>
-	</nav><br class="clear">
-	<footer>
-		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
-	</footer>
-	<script>
-	prettyPrint(); 
-	</script> 
-	<script src="scripts/linenumber.js">
-	</script>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="-_.html"></a></li><li><a href="BingTranslate.html">BingTranslate</a></li><li><a href="ContentScript.html">ContentScript</a></li><li><a href="GoogleTranslate.html">GoogleTranslate</a></li><li><a href="OptionCtrl.html">OptionCtrl</a></li><li><a href="PopupCtrl.html">PopupCtrl</a></li><li><a href="YandexTranslate.html">YandexTranslate</a></li></ul><h3>Global</h3><ul><li><a href="global.html#checkActiveTabChange">checkActiveTabChange</a></li><li><a href="global.html#checkURLChange">checkURLChange</a></li><li><a href="global.html#contextMenuClickHandler">contextMenuClickHandler</a></li><li><a href="global.html#disableContextMenus">disableContextMenus</a></li><li><a href="global.html#enableContextMenus">enableContextMenus</a></li><li><a href="global.html#initializeLocalStorage">initializeLocalStorage</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateContextMenu">updateContextMenu</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 13 2016 17:40:20 GMT+0530 (IST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>
