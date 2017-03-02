@@ -57,6 +57,8 @@ gulp.task('watch', ['bundle-options', 'bundle-popup', 'bundle-content', 'bundle-
   gulp.watch('./lib/scripts/mtw.js', ['bundle-content']);
   gulp.watch('./lib/scripts/eventPage.js', ['bundle-event']);
   gulp.watch('./lib/scripts/services/*.js', ['bundle-content', 'bundle-event']);
+  gulp.watch('./lib/scripts/utils/defaultStorage.js', ['bundle-options','bundle-event']);
+  
 });
 
 gulp.task('minify', function () {
@@ -83,4 +85,11 @@ gulp.task('build', function() {
   runSequence('clean',
     ['bundle-content', 'bundle-options', 'bundle-event',
     'bundle-popup'], 'minify', 'copy-dist');
+});
+
+
+gulp.task('local-build', function() {
+  runSequence('clean',
+    ['bundle-content', 'bundle-options', 'bundle-event',
+    'bundle-popup']);
 });
