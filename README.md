@@ -16,6 +16,9 @@ the context.
 Read more in
 [Description.md](Description.md).
 
+In order to get started with contribution, please refer:
+[Contribute.md](Contribute.md)(https://gitlab.com/aossie/MindTheWord/blob/master/CONTRIBUTE.md)
+
 Testing
 -------
 
