@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <span>__MSG_translationPatterns__</span>
+    <span data-translate="translationPatterns">Translation Patterns</span>
     <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Translations will be limited to user defined in Advanced Tab"></span>
     <button type="button" ng-click="opctrl.toggleDoNotTranslate()" ng-class="{'active': opctrl.doNotTranslate}" class="btn btn-danger pull-right btn-xs" style="margin-right: 5px">
       <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.doNotTranslate"></span> Do Not Translate
@@ -40,7 +40,7 @@
   <div class="col-md-12">
     <div class="panel panel-warning">
       <div class="panel-heading">
-        <span>__MSG_translatorKeys__</span>
+        <span data-translate="translatorKeys">Translator Keys</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Please put in your keys here. If you have a backup file, please use the restore button."></span>
         <button type="button" class="btn btn-default btn-xs pull-right" ng-click="opctrl.restoreKeys()" style="margin-right: 5px">Restore Keys</button>
         <button type="button" data-toggle="modal" data-target="#howToConfigureModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
@@ -70,7 +70,7 @@
           <span class="label label-danger">WARNING:</span> <b>Monthly Yandex API limit reached.</b> Please wait until next month or change API key
         </p>
         <div class="input-group">
-          <span class="label-info input-group-addon">__MSG_yandexKey__</span>
+          <span class="label-info input-group-addon" data-translate="yandexKey">Translator Keys</span>
           <input ng-model="opctrl.yandexTranslatorApiKey" ng-blur="opctrl.changeApiKey('Yandex')" type="text" class="form-control">
           <span class="input-group-btn">
             <a class="btn btn-success" href="https://tech.yandex.com/keys/get/?service=trnsl" target="_blank">Get Free Yandex Key</a>
@@ -78,9 +78,9 @@
         </div>
         <br>
         <div class="input-group">
-          <span class="input-group-addon">__MSG_bingClientID__</span>
+          <span class="input-group-addon" data-translate="bingClientID">Bing Client ID</span>
           <input ng-model="opctrl.bingTranslatorApiKey.clientId" ng-blur="opctrl.changeApiKey('Bing')" type="text" class="form-control">
-          <span class="input-group-addon">__MSG_bingClientSecret__</span>
+          <span class="input-group-addon" data-translate="bingClientSecret">Bing Client ID</span>
           <input ng-model="opctrl.bingTranslatorApiKey.clientSecret" ng-blur="opctrl.changeApiKey('Bing')" type="text" class="form-control">
           <span class="input-group-btn">
             <a class="btn btn-success" href="https://www.microsoft.com/en-us/translator/getstarted.aspx" target="_blank">Get Free Bing Key</a>
@@ -88,7 +88,7 @@
         </div>
         <br>
         <div class="input-group">
-          <span class="label-warning input-group-addon">__MSG_googleKey__</span>
+          <span class="label-warning input-group-addon" data-translate="googleKey">Google Key</span>
           <input ng-model="opctrl.googleTranslatorApiKey" ng-blur="opctrl.changeApiKey('Google')" type="text" class="form-control">
           <span class="input-group-btn">
             <a class="btn btn-success" href="https://cloud.google.com/translate/v2/quickstart" target="_blank">Get Paid Google Key</a>
@@ -106,7 +106,7 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <span>__MSG_createNewPattern__</span>
+    <span data-translate="createNewPattern">Create a New Pattern</span>
     <span class="label label-danger" ng-show="opctrl.noKeys()"><span class="glyphicon glyphicon-exclamation-sign"></span> Please insert a key</span>
   </div>
   <div class="panel-body" ng-class="{'disable-panel': opctrl.noKeys() === true}">
@@ -153,7 +153,7 @@
           <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()">__MSG_create__</button>
+      <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()" data-translate="create">Create</button>
     </form>
   </div>
 </div>
