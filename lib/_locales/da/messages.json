@@ -185,6 +185,10 @@
 
 	"quiz" : {	
 		"message": "Quiz"
+	},
+
+	"troubleshooting" : {
+		"message" : "Fejlfinding"
 	}
 }
 

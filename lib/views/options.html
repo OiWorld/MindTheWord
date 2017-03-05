@@ -50,6 +50,9 @@
           <li>
             <a href="#contribute" data-toggle="tab" data-translate="contribute">Contribute</a>
           </li>
+          <li>
+            <a href="#troubleshooting" data-toggle="tab" data-translate="troubleshooting">Troubleshooting</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -79,6 +82,9 @@
         </div>
         <div class="tab-pane" id="contribute">
           <ng-include src="'includes/contribute.html'" onload="opctrl.setup()"></ng-include>
+        </div>
+        <div class="tab-pane" id="troubleshooting">
+          <ng-include src="'includes/troubleshooting.html'" onload="opctrl.setup()"></ng-include>
         </div>
       </div>
       <div id="status" class="fixed-bottom"></div>
