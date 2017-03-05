@@ -1,6 +1,6 @@
 {
 	"appName" : {
-		"message" : "MindTheWord",
+		"message" : "Mind The Word",
 		"description": "The title of the application, displayed in the web store."
 	},
 	"appDesc" : {
@@ -44,6 +44,120 @@
 	}, 
 	"contributionsTab" : {
 		"message" : "Contributions"
+	}, 
+	"translationPatterns" : {
+		"message" : "Translation Patterns"
+	}, 
+	"translatorKeys" : {
+		"message" : "Translator Keys"
+	},
+	"createNewPattern" : {
+		"message" : "Create a New Pattern"
+	},
+	"yandexKey" : {
+		"message" : "Yandex Key"
+	},
+	"bingKey" : {
+		"message" : "Bing Key"
+	},
+	"bingClientID" : {
+		"message" : "Bing Client ID"
+	},
+	"bingClientSecret" : {
+		"message" : "Bing Client Secret"
+	},
+	"googleKey" : {
+		"message" : "Google Key"
+	},
+	"createNewPattern" : {
+		"message" : "Create a New Pattern"
+	},
+	"create" : {
+		"message" : "Create"
+	},
+	"add" : {	
+		"message" : "Add"
+	},
+	"blacklistWebsites" : {	
+		"message" : "Blacklist Websites"
+	},
+	"blacklistWords" : {	
+		"message" : "Blacklist Words"
+	},
+	"automaticBlacklisting" : {	
+		"message" : "Automatic Blacklisting"
+	},
+	"savedTranslations" : {	
+		"message" : "Saved Translations"
+	},
+	"learntWords" : {	
+		"message" : "Learnt Words"
+	},
+	"difficultyBuckets" : {	
+		"message" : "Difficulty Buckets"
+	},
+	"noSavedTranslations" : {	
+		"message" : "No Saved Translations"
+	},
+	"noWordsLearnt" : {	
+		"message" : "No Words Learnt"
+	},
+	"emptyDifficultyBuckets" : {	
+		"message" : "Empty Difficulty Buckets"
+	},
+	"colorSettings" : {	
+		"message" : "Color Settings"
+	},
+	"wordConfiguration" : {	
+		"message" : "Word Configuration"
+	},
+	"userDefinedTranslations" : {	
+		"message" : "User Defined Translations"
+	},
+	"playbackSettings" : {	
+		"message" : "Playback Settings"
+	},
+	"backup" : {	
+		"message" : "Backup"
+	},
+	"restore" : {	
+		"message" : "Restore"
+	},
+	"dangerZone" : {	
+		"message" : "Danger Zone"
+	},
+	"patternWiseStats" : {	
+		"message" : "Pattern wise stats"
+	},
+	"letsTalkNumbers" : {	
+		"message" : "Let's talk numbers!"
+	},
+	"chooseCorrectTranslations" : {	
+		"message" : "Choose The Correct Translations"
+	},
+	"contribute" : {	
+		"message" : "Contribute"
+	},
+	"support" : {	
+		"message" : "Support"
+	},
+	"translation" : {	
+		"message" : "Translation"
+	},
+	"blacklist" : {	
+		"message" : "Blacklist"
+	},
+	"learning" : {	
+		"message" : "Learning"
+	},
+	"advanced" : {	
+		"message" : "Advanced"
+	},
+	"statistics" : {	
+		"message" : "Statistics"
+	},
+	"quiz" : {	
+		"message" : "Quiz"
 	}
 }
 

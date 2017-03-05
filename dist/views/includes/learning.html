@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <div class="panel panel-primary table-panel">
       <div class="panel-heading">
-        <span>Saved Translations</span>
+        <span data-translate="savedTranslations">Saved Translations</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="User can save translations using the context menu and can even limit the translations to this list only"></span>
         <button type="button" data-toggle="modal" data-target="#savedTranslationsModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
           Video Tutorial
@@ -14,7 +14,7 @@
           <span class="input-group-addon">:</span>
           <input type="text" ng-model="opctrl.translated" class="form-control">
           <span class="input-group-btn">
-            <button class="btn btn-danger" type="submit" ng-click="opctrl.saveTranslation()">Add</button>
+            <button class="btn btn-danger" type="submit" ng-click="opctrl.saveTranslation()" data-translate="add">Add</button>
           </span>
         </div>
       </div>
@@ -55,7 +55,7 @@
   <div class="col-md-6">
     <div class="panel panel-primary table-panel">
       <div class="panel-heading">
-        <span>Difficulty Buckets</span>
+        <span data-translate="difficultyBuckets">Difficulty Buckets</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Mark the difficulty of words and they will be highlighted during translation."> </span>
         <button type="button" data-toggle="modal" data-target="#difficultyBucketsModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
           Video Tutorial
@@ -71,7 +71,7 @@
             <option>Hard</option>
           </select>
           <span class="input-group-btn">
-            <button class="btn btn-danger" type="submit" ng-click="opctrl.addWordToDifficultyBucket()">Add</button>
+            <button class="btn btn-danger" type="submit" ng-click="opctrl.addWordToDifficultyBucket()" data-translate="add">Add</button>
           </span>
         </div>
       </div>
@@ -118,7 +118,7 @@
   <div class="col-md-6">
     <div class="panel panel-success list-panel">
       <div class="panel-heading">
-        <span>Learnt Words</span>
+        <span data-translate="learntWords">Learnt Words</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="The user can mark the words he/she knows as learnt. These words won't be translated."></span>
         <button type="button" data-toggle="modal" data-target="#learntWordsModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
           Video Tutorial
@@ -128,7 +128,7 @@
         <div class="input-group">
           <input type="text" class="form-control" ng-model="opctrl.newLearntWord" id="new-learnt-word" placeholder="and">
           <span class="input-group-btn">
-            <button class="btn btn-danger" type="submit" ng-click="opctrl.addLearntWord()">Add</button>
+            <button class="btn btn-danger" type="submit" ng-click="opctrl.addLearntWord()" data-translate="add">Add</button>
           </span>
         </div>
       </div>
