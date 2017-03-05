@@ -158,6 +158,9 @@
 	},
 	"quiz" : {	
 		"message" : "Quiz"
+	},
+	"troubleshooting" : {
+		"message" : "Troubleshooting"
 	}
 }
 
