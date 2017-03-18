@@ -16,13 +16,13 @@ Read more in [Description.md](Description.md).
 
 ### or Load by Yourself
 1.  Install [node.js](https://nodejs.org)
-2. `npm install -g jspm gulp gulp-cli jsdoc karma-cli`
-3. `npm install` 
+2. `npm install -g jspm gulp`
+3. `npm install`
 4. `jspm install`
 5. `gulp build`
 6. Open Chrome and go to `chrome://chrome/extensions`
 7. Enable "Developer mode"
-8. Drag  "dist" folder into the browser 
+8. Drag  "dist" folder into the browser
 
 Testing
 -------
