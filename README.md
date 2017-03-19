@@ -15,14 +15,18 @@ Read more in [Description.md](Description.md).
 [![https://chrome.google.com/webstore/detail/mind-the-word/fabjlaokbhaoehejcoblhahcekmogbom](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_340x96.png)](https://chrome.google.com/webstore/detail/mind-the-word/fabjlaokbhaoehejcoblhahcekmogbom)
 
 ### or Load by Yourself
-1.  Install [node.js](https://nodejs.org)
-2. `npm install -g jspm gulp`
-3. `npm install`
-4. `jspm install`
-5. `gulp build`
-6. Open Chrome and go to `chrome://chrome/extensions`
-7. Enable "Developer mode"
-8. Drag  "dist" folder into the browser
+1. Install [node.js](https://nodejs.org), [git](https://git-scm.com)
+2. Clone the repository
+	`git clone https://gitlab.com/aossie/MindTheWord.git`
+3. Change directory to MindTheWord
+	`cd MindTheWord`
+4. `npm install -g jspm gulp`
+5. `npm install`
+6. `jspm install`
+7. `gulp build`
+8. Open Chrome and go to `chrome://extensions`
+9. Enable "Developer mode"
+10. Drag  "dist" folder into the browser or click "Load unpacked extension" and select the "dist" folder.
 
 Testing
 -------
