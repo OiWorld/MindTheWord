@@ -1,0 +1,166 @@
+{
+	"appName" : {
+		"message" : "Mind The Word",
+		"description": "The title of the application, displayed in the web store."
+	},
+	"appDesc" : {
+		"message": "इंटरनेट ब्राउझिंग करत असताना भाषा शिका!",
+		"description": "The description of the application, displayed in the web store."
+	},
+	"selectTranslationHeading" : {
+		"message": "भाषांतर संरचना निवडा", 
+		"description": "heading over list of translations"
+	},
+	"newTranslationHeading" : {
+		"message": "नवीन भाषांतर संरचना तयार करा", 
+		"description": "heading over new translation form"
+	},
+	"attentionMessage" : {
+		"message": "<bलक्ष:</b> Google Translate आहे <i>मोफत नाही</i>. Yandex आहे <i>शिफारस</i>!"
+	},
+	"translationSettings" : {
+		"message": "भाषांतर सेटिंग्ज"
+	},
+	"adjustmentsDescription" : {
+		"message": "खालील त्यानुसार अनुवादित शब्द स्वरूप <a href='http://lesliefranke.com/files/reference/csscheatsheet.html' target='_blank'>CSS </a>मालमत्ता-वॅ:"
+	}, 
+	"blacklistingWebsitesDescription" : {
+		"message" : "खालील वेबसाइट भाषांतरित करू नका: "
+	}, 
+	"blacklistingWordsDescription" : {
+		"message" : "खालील शब्द अनुवाद नाही: "
+	}, 
+	"userDefinedTranslations" : {
+		"message" : "खालील वापरकर्ता परिभाषित अनुवाद वापरा:"
+	},  
+	"userLimitedTranslationsCheckbox" : {
+		"message" : "या वापरकर्ता परिभाषित शब्दकोश प्रदान फक्त त्या अनुवाद मर्यादित करेल. शब्द नाही शब्दकोशात भाषांतरीत केला जाणार नाही."
+	}, 
+	"basicOptionsTab" : {
+		"message" : "मूलभूत पर्याय "
+	}, 
+	"advancedOptionsTab" : {
+		"message" : "प्रगत पर्याय "
+	}, 
+	"contributionsTab" : {
+		"message" : "योगदान"
+	}, 
+	"translationPatterns" : {
+		"message" : "भाषांतर नमुने"
+	}, 
+	"translatorKeys" : {
+		"message" : "अनुवादक की"
+	},
+	"createNewPattern" : {
+		"message" : "एक नवीन नमुना तयार करा"
+	},
+	"yandexKey" : {
+		"message" : "Yandex की"
+	},
+	"bingKey" : {
+		"message" : "Bing की"
+	},
+	"bingClientID" : {
+		"message" : "Bing क्लायंट ID"
+	},
+	"bingClientSecret" : {
+		"message" : "Bing क्लायंट गुपित"
+	},
+	"googleKey" : {
+		"message" : "Google की"
+	},
+	"createNewPattern" : {
+		"message" : "एक नवीन नमुना तयार करा"
+	},
+	"create" : {
+		"message" : "तयार करा"
+	},
+	"add" : {	
+		"message" : "जोडा"
+	},
+	"blacklistWebsites" : {	
+		"message" : "ब्लॅकलिस्ट वेबसाइट्स"
+	},
+	"blacklistWords" : {	
+		"message" : "ब्लॅकलिस्ट शब्द"
+	},
+	"automaticBlacklisting" : {	
+		"message" : "स्वयंचलित ब्लॅकलिस्टि करणे"
+	},
+	"savedTranslations" : {	
+		"message" : "जतन केलेले भाषांतर"
+	},
+	"learntWords" : {	
+		"message" : "शिकलो शब्द"
+	},
+	"difficultyBuckets" : {	
+		"message" : "अडचण बादल्या"
+	},
+	"noSavedTranslations" : {	
+		"message" : "कोणतेही जतन भाषांतरे"
+	},
+	"noWordsLearnt" : {	
+		"message" : "नाही शब्द शिकलो"
+	},
+	"emptyDifficultyBuckets" : {	
+		"message" : "रिक्त अवघड बादल्या"
+	},
+	"colorSettings" : {	
+		"message" : "रंग सेटिंग्ज"
+	},
+	"wordConfiguration" : {	
+		"message" : "शब्द संरचना"
+	},
+	"userDefinedTranslations" : {	
+		"message" : "वापरकर्ता परिभाषित भाषांतरे"
+	},
+	"playbackSettings" : {	
+		"message" : "प्लेबॅक सेटिंग्ज"
+	},
+	"backup" : {	
+		"message" : "बॅकअप"
+	},
+	"restore" : {	
+		"message" : "पुनर्संचयित करा"
+	},
+	"dangerZone" : {	
+		"message" : "धोकादायक क्षेत्र"
+	},
+	"patternWiseStats" : {	
+		"message" : "नमुना शहाणा आकडेवारी"
+	},
+	"letsTalkNumbers" : {	
+		"message" : "च्या संख्या चर्चा करू!"
+	},
+	"chooseCorrectTranslations" : {	
+		"message" : "बरोबर भाषांतरे निवडा"
+	},
+	"contribute" : {	
+		"message" : "योगदान"
+	},
+	"support" : {	
+		"message" : "समर्थन"
+	},
+	"translation" : {	
+		"message" : "भाषांतर"
+	},
+	"blacklist" : {	
+		"message" : "ब्लॅकलिस्ट"
+	},
+	"learning" : {	
+		"message" : "शिक्षण"
+	},
+	"advanced" : {	
+		"message" : "प्रगत"
+	},
+	"statistics" : {	
+		"message" : "आकडेवारी"
+	},
+	"quiz" : {	
+		"message" : "उत्तरे माहिती करून घ्या"
+	}
+}
+
+
+
+
