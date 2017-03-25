@@ -5,7 +5,7 @@
         <span data-translate="blacklistWebsites">Blacklist Websites</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Content in these websites will not be translated"></span>
         <button type="button" data-toggle="modal" data-target="#blacklistWebsitesModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
-          Video Tutorial
+          <span data-translate="videoTutorial">Video Tutorial</span>
         </button>
       </div>
       <div class="panel-body">
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div ng-show="opctrl.blacklistedWebsites.length === 0" class="text-center vertical-center-list">
-        <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> No Blacklisted Websites</h5>
+        <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> <span data-translate="noBlacklistedWebsites"> No Blacklisted Websites</span> </h5>
       </div>
       <ul class="list-group list-min-size" ng-hide="opctrl.blacklistedWebsites.length === 0">
         <li class="list-group-item clearfix" ng-repeat="website in opctrl.blacklistedWebsites | startFrom : opctrl.blacklistWebsitePage*4 | limitTo : 4">{{website}}
@@ -43,7 +43,7 @@
         <span data-translate="blacklistWords">Blacklist Words</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="These words will not be translated"></span>
         <button type="button" data-toggle="modal" data-target="#blacklistWordsModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
-          Video Tutorial
+          <span data-translate="videoTutorial">Video Tutorial</span>
         </button>
       </div>
       <div class="panel-body">
@@ -55,7 +55,7 @@
         </div>
       </div>
       <div ng-show="opctrl.blacklistedWords.length === 0" class="text-center vertical-center-list">
-        <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> No Blacklisted Words</h5>
+        <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> <span data-translate="noBlacklistedWords">No Blacklisted Words</span></h5>
       </div>
       <ul class="list-group list-min-size" ng-hide="opctrl.blacklistedWords.length === 0">
         <li class="list-group-item clearfix" ng-repeat="word in opctrl.blacklistedWords | startFrom : opctrl.blacklistWordPage*4 | limitTo : 4">{{word}}
@@ -88,19 +88,19 @@
           <div class="form-group">
             <label>Automatic Blacklisting&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <div class="btn-group right-block">
-              <button type="button" class="btn btn-default" ng-click="opctrl.setAutoBlacklist(true)" ng-class="{'active': opctrl.autoBlacklist === true}">On</button>
-              <button type="button" class="btn btn-default" ng-click="opctrl.setAutoBlacklist(false)" ng-class="{'active': opctrl.autoBlacklist === false}">Off</button>
+              <button type="button" class="btn btn-default" ng-click="opctrl.setAutoBlacklist(true)" ng-class="{'active': opctrl.autoBlacklist === true}"><span data-translate="on">On</span></button>
+              <button type="button" class="btn btn-default" ng-click="opctrl.setAutoBlacklist(false)" ng-class="{'active': opctrl.autoBlacklist === false}"><span data-translate="off">Off</span></button>
             </div>
           </div>
         </form>
         <div class="input-group">
-          <span class="input-group-addon">Maximum Word Toggles</span>
+          <span class="input-group-addon" data-translate="maxWordToggles">Maximum Word Toggles</span>
           <input type="number" ng-model="opctrl.wordToggles" ng-change="opctrl.updateWordToggles()" class="form-control">
           <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Blacklist words toggled more than the number specified"></span></span>
         </div>
         <br>
         <div class="input-group">
-          <span class="input-group-addon">Maximum Activation Toggles</span>
+          <span class="input-group-addon" data-translate="maxActivationsToggles">Maximum Activation Toggles</span>
           <input type="number" ng-model="opctrl.activationToggles" ng-change="opctrl.updateActivationToggles()" class="form-control">
           <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Blacklist websites on which activation is toggled more than the number specified"></span></span>
         </div>
