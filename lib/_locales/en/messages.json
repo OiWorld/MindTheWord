@@ -90,9 +90,6 @@
 	"savedTranslations" : {	
 		"message" : "Saved Translations"
 	},
-	"learntWords" : {	
-		"message" : "Learnt Words"
-	},
 	"difficultyBuckets" : {	
 		"message" : "Difficulty Buckets"
 	},
@@ -159,9 +156,267 @@
 	"quiz" : {	
 		"message" : "Quiz"
 	},
-	"troubleshooting" : {
-		"message" : "Troubleshooting"
-	}
+    "insertKeys": {
+        "message": "Please insert the keys for the translation services that you would like to use and then create a new translation pattern below."
+    },
+    "and": {
+        "message": "and"
+    },
+    "requireKeys": {
+        "message": "require keys"
+    },
+    "translationParagraph1": {
+        "message": "They use the keys to identify users, in order to limit the amount of translations that each user can request per month. If the limit is reached, they stop working temporarily. As the limit is high, it is unlikely to be reached."
+    },
+    "translationParagraph2": {
+        "message": "Please add keys for the translators you would like to use below."
+    },
+    "note": {
+        "message": "Note"
+    },
+    "needHelp1": {
+        "message": "If you need help with getting a key, watch the "
+    },
+    "needHelp2": {
+        "message": "on YouTube. You can watch other tutorials"
+    },
+    "needHelp3": {
+        "message": " here"
+    },
+    "use": {
+        "message": "Use"
+    },
+    "toTranslate": {
+        "message": "to translate"
+    },
+    "percentOfall": {
+        "message": "percent of all"
+    },
+    "wordsInto": {
+        "message": "words into"
+    },
+    "create": {
+        "message": "Create"
+    },
+    "oneWordPerSentence" : {
+        "message": "One Word Per Sentence"
+    },
+    "userDefinedOnly": {
+        "message": "User Defined Only"
+    },
+    "doNotTranslate": {
+        "message": "Do Not Translate"
+    },
+    "videoTutorial": {
+        "message": "Video Tutorial"
+    },
+    "restoreKeys": {
+        "message": "Restore Keys"
+    },
+    "getFreeYandexKey": {
+        "message": "Get Free Yandex Key"
+    },
+    "getFreeBingKey": {
+        "message": "Get Free Bing Key"
+    },
+    "getPaidGoogleKey": {
+        "message": "Get Paid Google Key"
+    },
+    "pleaseInsertkey": {
+        "message": "Please insert a key"
+    },
+    "contribute": {
+        "message": "Contribute"
+    },
+    "fixBugsPart1": {
+        "message": "Fix bugs and implement new features for this free open-source extension. Clone our"
+    },
+    "fixBugsPart2": {
+        "message": "scholarships"
+    },
+    "fixBugsPart3": {
+        "message": "are available."
+    },
+    "mail": {
+        "message": "You can also mail us at"
+    },
+    "donateToSupport": {
+        "message": "If you want to donate to support development of this and other free extensions."
+    },
+    "noTranslateWords": {
+        "message": "No Translated Words"
+    },
+    "translateWordstoQuiz": {
+        "message": "Translate words to take a quiz from"
+    },
+    "generateNewQuiz": {
+        "message": "Generate New Quiz"
+    },
+    "wordsTranslated": {
+        "message": " words translated so far!"
+    },
+    "resetCount": {
+        "message": " Reset Count"
+    },
+    "wordsTranslatedFrom": {
+        "message": "words have been translated from"
+    },
+    "translate": {
+        "message": "translation"
+    },
+    "wordsAnd": {
+        "message": "words and"
+    },
+    "charactersTranslateWith": {
+        "message": "characters have been translated with"
+    },
+    "during": {
+        "message": "during"
+    },
+    "numberOf": {
+        "message": "Number of "
+    },
+    "numberOfWordsIn": {
+        "message": "Number of words in "
+    },
+    "blacklistedWebsites": {
+        "message": "blacklisted websites"
+    },
+    "blacklistedWords": {
+        "message": "blacklisted words"
+    },
+    "difficultyBuckets": {
+        "message": "Difficulty buckets"
+    },
+    "learntWords": {
+        "message": "Learnt words"
+    },
+    "userDefinedTranslations": {
+        "message": "user defined translations"
+    },
+    "backupConfiguration": {
+        "message": "Backup Configuration"
+    },
+    "backupAll": {
+        "message": "Backup all your settings and keys in a file."
+    },
+    "backupButton": {
+        "message": "Backup"
+    },
+    "backupKeys": {
+        "message": "Backup Keys"
+    },
+    "backupAllKeysInAFile": {
+        "message": "Backup all your keys in a file."
+    },
+    "restoreAllKeysFromAFile": {
+        "message": "Restore all your keys from a file."
+    },
+    "resetConfiguration": {
+        "message": "Reset Configuration"
+    },
+    "resetConfigurationDescription": {
+        "message": "This action will reset all the options to default. You will lose all your settings, saved data and keys. This action is irreversible."
+    },
+    "delete": {
+        "message": "Delete"
+    },
+    "deleteKeys": {
+        "message": "Delete Keys"
+    },
+    "deleteDescription": {
+        "message": "This action will delete all you translator keys. This is an irreversible action."
+    },
+    "confirmReset": {
+        "message": "Confirm Reset"
+    },
+    "confirmResetBody": {
+        "message": "Are you sure you want to reset all the data. Please create a backup if you want to restore your data in the future."
+    },
+    "cancel": {
+        "message": "Cancel"
+    },
+    "yes": {
+        "message": "Yes"
+    },
+    "confirmDelete": {
+        "message": "Confirm Delete"
+    },
+    "confirmDeleteBody": {
+        "message": "Are you sure you want to remove all the keys. Please create a backup if you want to restore your keys in the future."
+    },
+    "textColor": {
+        "message": "Text Color"
+    },
+    "backgroundColor": {
+        "message": "Background Color"
+    },
+    "awesome": {
+        "message": "awesome"
+    },
+    "haveBeenReservedForWordsIn": {
+        "message": "have been reserved for words in"
+    },
+    "easy": {
+        "message": " easy"
+    },
+    "normal": {
+        "message": " normal"
+    },
+    "hard": {
+        "message": " hard "
+    },
+    "minimumWordLength": {
+        "message": "Minimum word length"
+    },
+    "translatedSeq": {
+        "message": "Translated sequences should have at least"
+    },
+    "andAtMost": {
+        "message": "and at most"
+    },
+    "words": {
+        "message": "words"
+    },
+    "original": {
+        "message": "Original"
+    },
+    "translated": {
+        "message": "Translated"
+    },
+    "videoTutorial": {
+        "message": "Video Tutorial"
+    },
+    "voiceName": {
+        "message": "Voice Name"
+    },
+    "defaultVolumeLevel": {
+        "message": "Default Volume Level"
+    },
+    "speechRate": {
+        "message": "Speech rate"
+    },
+    "pitch": {
+        "message": "Pitch"
+    },
+    "noBlacklistedWebsites": {
+        "message": " No Blacklisted Websites"
+    },
+    "noBlacklistedWords": {
+        "message": "No Blacklisted Words"
+    },
+    "on": {
+        "message": "On"
+    },
+    "off": {
+        "message": "Off"
+    },
+    "maxWordToggles": {
+        "message": "Maximum Word Toggles"
+    },
+    "maxActivationsToggles": {
+        "message": "Maximum Activation Toggles"
+    }
 }
 
 
