@@ -1,0 +1,433 @@
+{
+	"appName" : {
+		"message": "Mind The Word",
+		"description": "The title of the application, displayed in the web store."
+	},
+	"appDesc" : {
+		"message": "Apprendre les langues en naviguant sur Internet!",
+		"description": "The description of the application, displayed in the web store."
+	},
+	"selectTranslationHeading" : {
+		"message": "Sélectionner la configuration de traduction",
+		"description": "heading over list of translations"
+	},
+	"newTranslationHeading" : {
+		"message": "Créer une nouvelle configuration de traduction",
+		"description": "heading over new translation form"
+	},
+	"attentionMessage" : {
+		"message": "<b> Attention: </ b> Google Translate est <i> pas libre </ i>. Yandex est <i> recommandé </ i>!"
+	},
+	"translationSettings" : {
+		"message": "Paramètres de traduction"
+	},
+	"adjustmentsDescription" : {
+		"message": "Formatez les mots traduits selon les <a href='http://lesliefranke.com/files/reference/csscheatsheet.html' target='_blank'> CSS </a> paires valeur-propriété: "
+	}, 
+	"blacklistingWebsitesDescription" : {
+		"message": "Ne traduisez pas les sites Web suivants:"
+	}, 
+	"blacklistingWordsDescription" : {
+		"message": "Ne pas traduire les mots suivants:"
+	}, 
+	"userDefinedTranslations" : {
+		"message": "Utilisez les traductions définies par l'utilisateur suivantes:"
+	},  
+	"userLimitedTranslationsCheckbox" : {
+		"message": "Cela limitera les traductions à celles fournies dans le dictionnaire défini par l'utilisateur. Les mots qui ne sont pas dans le dictionnaire ne seront pas traduits."
+	}, 
+	"basicOptionsTab" : {
+		"message": "Options de base"
+	}, 
+	"advancedOptionsTab" : {
+		"message": "Options avancées"
+	}, 
+	"contributionsTab" : {
+		"message": "Contributions"
+	}, 
+	"translationPatterns" : {
+		"message": "Modèles de traduction"
+	}, 
+	"translatorKeys" : {
+		"message": "Clés de traducteur"
+	},
+	"createNewPattern" : {
+		"message": "Créer un nouveau motif"
+	},
+	"yandexKey" : {
+		"message": "Clé Yandex"
+	},
+	"bingKey" : {
+		"message": "Bing Key"
+	},
+	"bingClientID" : {
+		"message": "Bing Client ID"
+	},
+	"bingClientSecret" : {
+		"message": "Bing Client Secret"
+	},
+	"googleKey" : {
+		"message": "Clé Google"
+	},
+	"createNewPattern" : {
+		"message": "Créer un nouveau motif"
+	},
+	"create" : {
+		"message": "Créer"
+	},
+	"add" : {	
+		"message": "Ajouter"
+	},
+	"blacklistWebsites" : {	
+		"message": "Sites Web de liste noire"
+	},
+	"blacklistWords" : {	
+		"message": "Mots de liste noire"
+	},
+	"automaticBlacklisting" : {	
+		"message": "Liste noire automatique"
+	},
+	"savedTranslations" : {	
+		"message": "Traductions enregistrées"
+	},
+	"learntWords" : {	
+		"message": "Mots Appris"
+	},
+	"difficultyBuckets" : {	
+		"message": "Difficulté Buckets"
+	},
+	"noSavedTranslations" : {	
+		"message": "Aucune traduction enregistrée"
+	},
+	"noWordsLearnt" : {	
+		"message": "Pas de mots appris"
+	},
+	"emptyDifficultyBuckets" : {	
+		"message": "Seaux de difficulté vides"
+	},
+	"colorSettings" : {	
+		"message": "Paramètres de couleur"
+	},
+	"wordConfiguration" : {	
+		"message": "Configuration du mot"
+	},
+	"userDefinedTranslations" : {	
+		"message": "Traductions définies par l'utilisateur"
+	},
+	"playbackSettings" : {	
+		"message": "Paramètres de lecture"
+	},
+	"backup" : {	
+		"message": "Sauvegarde"
+	},
+	"restore" : {	
+		"message": "Restaurer"
+	},
+	"dangerZone" : {	
+		"message": "Zone de danger"
+	},
+	"patternWiseStats" : {	
+		"message": "Statistiques en forme de modèle"
+	},
+	"letsTalkNumbers" : {	
+		"message": "Parlons des numéros!"
+	},
+	"chooseCorrectTranslations" : {	
+		"message": "Choisir les traductions correctes"
+	},
+	"contribute" : {	
+		"message": "Contribuer"
+	},
+	"support" : {	
+		"message": "Soutien"
+	},
+	"translation" : {	
+		"message": "Traduction"
+	},
+	"blacklist" : {	
+		"message": "Liste noire"
+	},
+	"learning" : {	
+		"message": "Apprentissage"
+	},
+	"advanced" : {	
+		"message": "Avancé"
+	},
+	"statistics" : {	
+		"message": "Statistiques"
+	},
+	"quiz" : {	
+		"message": "Quiz"
+	},
+    "insertKeys": {
+        "message": "Veuillez insérer les clés des services de traduction que vous souhaitez utiliser, puis créer un nouveau modèle de traduction ci-dessous."
+    },
+    "and": {
+        "message": "et"
+    },
+    "requireKeys": {
+        "message": "Nécessitent des clés"
+    },
+    "translationParagraph1": {
+        "message": "Ils utilisent les clés pour identifier les utilisateurs, afin de limiter la quantité de traductions que chaque utilisateur peut demander par mois. Si la limite est atteinte, ils cessent de travailler temporairement. Comme la limite est élevée, il est peu probable qu'elle soit atteinte."
+    },
+    "translationParagraph2": {
+        "message": "Veuillez ajouter les clés pour les traducteurs que vous souhaitez utiliser ci-dessous."
+    },
+    "note": {
+        "message": "Remarque"
+    },
+    "needHelp1": {
+        "message": "Si vous avez besoin d'aide pour obtenir une clé"
+    },
+    "needHelp2": {
+        "message": "sur Youtube. Vous pouvez regarder d'autres tutoriels"
+    },
+    "needHelp3": {
+        "message": " ici"
+    },
+    "use": {
+        "message": "Utiliser "
+    },
+    "toTranslate": {
+        "message": "traduire"
+    },
+    "percentOfall": {
+        "message": "Pour cent de tous"
+    },
+    "wordsInto": {
+        "message": "Mots dans"
+    },
+    "create": {
+        "message": "Créer"
+    },
+    "oneWordPerSentence" : {
+        "message": "Un mot par phrase"
+    },
+    "userDefinedOnly": {
+        "message": "Défini par l'utilisateur uniquement"
+    },
+    "doNotTranslate": {
+        "message": "Ne pas traduire"
+    },
+    "videoTutorial": {
+        "message": "Didacticiel vidéo"
+    },
+    "restoreKeys": {
+        "message": "Touches de restauration"
+    },
+    "getFreeYandexKey": {
+        "message": "Obtenir la clé Yandex gratuite"
+    },
+    "getFreeBingKey": {
+        "message": "Obtenez la clé gratuite de Bing"
+    },
+    "getPaidGoogleKey": {
+        "message": "Obtenir une clé Google payante"
+    },
+    "pleaseInsertkey": {
+        "message": "Veuillez insérer une clé"
+    },
+    "contribute": {
+        "message": "Contribuer"
+    },
+    "fixBugsPart1": {
+        "message": "Corrigez les bogues et mettez en œuvre de nouvelles fonctionnalités pour cette extension open-source gratuite. Clone notre"
+    },
+    "fixBugsPart2": {
+        "message": "Bourses d'études"
+    },
+    "fixBugsPart3": {
+        "message": "sont disponibles."
+    },
+    "mail": {
+        "message": "Vous pouvez également nous écrire à"
+    },
+    "donateToSupport": {
+        "message": "Si vous souhaitez faire un don pour soutenir le développement de cette extension et d'autres extensions gratuites."
+    },
+    "noTranslateWords": {
+        "message": "Pas de mots traduits"
+    },
+    "translateWordstoQuiz": {
+        "message": "Traduire des mots pour répondre à un quiz de"
+    },
+    "generateNewQuiz": {
+        "message": "Générer un nouveau quiz"
+    },
+    "wordsTranslated": {
+        "message": " mots traduits jusqu'ici!"
+    },
+    "resetCount": {
+        "message": " Réinitialiser le compte"
+    },
+    "wordsTranslatedFrom": {
+        "message": "les mots ont été traduits de"
+    },
+    "translate": {
+        "message": "traduction"
+    },
+    "wordsAnd": {
+        "message": "mots et"
+    },
+    "charactersTranslateWith": {
+        "message": "caractères ont été traduits avec"
+    },
+    "during": {
+        "message": "pendant"
+    },
+    "numberOf": {
+        "message": "Nombre de "
+    },
+    "numberOfWordsIn": {
+        "message": "Nombre de mots dans "
+    },
+    "blacklistedWebsites": {
+        "message": "Sites inscrits sur la liste noire"
+    },
+    "blacklistedWords": {
+        "message": "Mots en liste noire"
+    },
+    "savedTranslations": {
+        "message": "Traductions sauvegardées"
+    },
+    "difficultyBuckets": {
+        "message": "Seaux de difficulté"
+    },
+    "userDefinedTranslations": {
+        "message": "Traductions définies par l'utilisateur"
+    },
+    "backupConfiguration": {
+        "message": "Configuration de sauvegarde"
+    },
+    "backupAll": {
+        "message": "Sauvegarder tous vos paramètres et clés dans un fichier."
+    },
+    "backupButton": {
+        "message": "Sauvegarde"
+    },
+    "backupKeys": {
+        "message": "Clés de sauvegarde"
+    },
+    "backupAllKeysInAFile": {
+        "message": "Sauvegarder toutes vos clés dans un fichier."
+    },
+    "restoreAllKeysFromAFile": {
+        "message": "Restaurer toutes vos clés à partir d'un fichier."
+    },
+    "resetConfiguration": {
+        "message": "Réinitialiser la configuration"
+    },
+    "resetConfigurationDescription": {
+        "message": "Cette action réinitialise toutes les options par défaut. Vous perdrez tous vos paramètres, données enregistrées et les clés. Cette action est irréversible."
+    },
+    "delete": {
+        "message": "Effacer"
+    },
+    "deleteKeys": {
+        "message": "Supprimer les clés"
+    },
+    "deleteDescription": {
+        "message": "Cette action supprimera toutes vos clés de traducteur. C'est une action irréversible."
+    },
+    "confirmReset": {
+        "message": "Confirmer Réinitialiser"
+    },
+    "confirmResetBody": {
+        "message": "Voulez-vous vraiment réinitialiser toutes les données. Veuillez créer une sauvegarde si vous souhaitez restaurer vos données à l'avenir."
+    },
+    "cancel": {
+        "message": "Annuler"
+    },
+    "yes": {
+        "message": "Oui"
+    },
+    "confirmDelete": {
+        "message": "Confirmation de la suppression"
+    },
+    "confirmDeleteBody": {
+        "message": "Voulez-vous vraiment supprimer toutes les clés. Veuillez créer une sauvegarde si vous souhaitez restaurer vos clés à l'avenir."
+    },
+    "textColor": {
+        "message": "Couleur du texte"
+    },
+    "backgroundColor": {
+        "message": "Couleur de fond"
+    },
+    "awesome": {
+        "message": "impressionnant"
+    },
+    "haveBeenReservedForWordsIn": {
+        "message": "ont été réservés aux mots dans"
+    },
+    "easy": {
+        "message": " facile"
+    },
+    "normal": {
+        "message": " normal"
+    },
+    "hard": {
+        "message": " difficile "
+    },
+    "minimumWordLength": {
+        "message": "Longueur minimale du mot"
+    },
+    "translatedSeq": {
+        "message": "Les séquences traduites doivent avoir au moins"
+    },
+    "andAtMost": {
+        "message": "et au plus"
+    },
+    "words": {
+        "message": "mots"
+    },
+    "original": {
+        "message": "Original"
+    },
+    "translated": {
+        "message": "Traduit"
+    },
+    "videoTutorial": {
+        "message": "Didacticiel vidéo"
+    },
+    "voiceName": {
+        "message": "Nom de la voix"
+    },
+    "defaultVolumeLevel": {
+        "message": "Niveau de volume par défaut"
+    },
+    "speechRate": {
+        "message": "Débit de parole"
+    },
+    "pitch": {
+        "message": "Pas"
+    },
+    "noBlacklistedWebsites": {
+        "message": " Pas de sites Web figurant sur la liste noire"
+    },
+    "noBlacklistedWords": {
+        "message": "Pas de mots en liste noire"
+    },
+    "on": {
+        "message": "Sur"
+    },
+    "off": {
+        "message": "De"
+    },
+    "maxWordToggles": {
+        "message": "Nombre maximal de mots"
+    },
+    "maxActivationsToggles": {
+        "message": "Activation maximale des commutateurs"
+    },
+    "restoreConfiguration": {
+        "message": "Restaurer la configuration"
+    },
+    "restoreAllYourSettings": {
+        "message": "Restaurer tous vos paramètres et clés à partir d'un fichier."
+    }
+}
+
+
+
+
