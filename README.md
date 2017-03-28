@@ -21,12 +21,13 @@ Read more in [Description.md](Description.md).
 3. Change directory to MindTheWord
 	`cd MindTheWord`
 4. `npm install -g jspm gulp`
-5. `npm install`
-6. `jspm install`
-7. `gulp build`
-8. Open Chrome and go to `chrome://extensions`
-9. Enable "Developer mode"
-10. Drag  "dist" folder into the browser or click "Load unpacked extension" and select the "dist" folder.
+5. `npm install -g minimatch@3.0.2`
+6. `npm install`
+7. `jspm install`
+8. `gulp build`
+9. Open Chrome and go to `chrome://extensions`
+10. Enable "Developer mode"
+11. Drag  "dist" folder into the browser or click "Load unpacked extension" and select the "dist" folder.
 
 Testing
 -------
