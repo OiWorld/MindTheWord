@@ -416,6 +416,12 @@
     },
     "maxActivationsToggles": {
         "message": "Maximum Activation Toggles"
+    },
+    "restoreConfiguration": {
+        "message": "Restore Configuration"
+    },
+    "restoreAllYourSettings": {
+        "message": "Restore all your settings and keys from a file."
     }
 }
 
