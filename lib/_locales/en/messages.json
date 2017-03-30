@@ -69,9 +69,6 @@
 	"googleKey" : {
 		"message" : "Google Key"
 	},
-	"createNewPattern" : {
-		"message" : "Create a New Pattern"
-	},
 	"create" : {
 		"message" : "Create"
 	},
@@ -107,9 +104,6 @@
 	},
 	"wordConfiguration" : {	
 		"message" : "Word Configuration"
-	},
-	"userDefinedTranslations" : {	
-		"message" : "User Defined Translations"
 	},
 	"playbackSettings" : {	
 		"message" : "Playback Settings"
@@ -195,9 +189,6 @@
     "wordsInto": {
         "message": "words into"
     },
-    "create": {
-        "message": "Create"
-    },
     "oneWordPerSentence" : {
         "message": "One Word Per Sentence"
     },
@@ -224,9 +215,6 @@
     },
     "pleaseInsertkey": {
         "message": "Please insert a key"
-    },
-    "contribute": {
-        "message": "Contribute"
     },
     "fixBugsPart1": {
         "message": "Fix bugs and implement new features for this free open-source extension. Clone our"
@@ -285,14 +273,8 @@
     "blacklistedWords": {
         "message": "blacklisted words"
     },
-    "difficultyBuckets": {
-        "message": "Difficulty buckets"
-    },
     "learntWords": {
         "message": "Learnt words"
-    },
-    "userDefinedTranslations": {
-        "message": "user defined translations"
     },
     "backupConfiguration": {
         "message": "Backup Configuration"
@@ -384,9 +366,6 @@
     "translated": {
         "message": "Translated"
     },
-    "videoTutorial": {
-        "message": "Video Tutorial"
-    },
     "voiceName": {
         "message": "Voice Name"
     },
@@ -424,7 +403,3 @@
         "message": "Restore all your settings and keys from a file."
     }
 }
-
-
-
-
