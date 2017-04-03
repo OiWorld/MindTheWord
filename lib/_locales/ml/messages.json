@@ -1,0 +1,405 @@
+{
+    "appName": {
+        "message": "Mind The Word",
+        "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+        "message": "ഇന്റർനെറ്റ്  ബ്രൗസിംഗ് ചെയുംബോൾ ഭാഷകൾ പഠിക്കാം!",
+        "description": "The description of the application, displayed in the web store."
+    },
+    "selectTranslationHeading": {
+        "message": "പരിഭാഷ കോൺഫിഗറേഷൻ തിരഞ്ഞെടുക്കുക",
+        "description": "heading over list of translations"
+    },
+    "newTranslationHeading": {
+        "message": "പുതിയ പരിഭാഷ കോൺഫിഗറേഷൻ സൃഷ്ടിക്കുക",
+        "description": "heading over new translation form"
+    },
+    "attentionMessage": {
+        "message": "<b>ശ്രദ്ധിക്കുക:</b> Google Translate <i>സൗജന്യമല്ല</i>. Yandex <i>ശുപാര്‍ശ ചെയുന്നു</i>!"
+    },
+    "translationSettings": {
+        "message": "പരിഭാഷ ക്രമീകരണങ്ങൾ"
+    },
+    "adjustmentsDescription": {
+        "message": "താഴത്തെ ഫോർമാറ്റ് പ്രകാരം വിവർത്തനം ചെയുക <a href='http://lesliefranke.com/files/reference/csscheatsheet.html' target='_blank'>CSS </a> പ്രോപ്പർട്ടി-വാല്യൂ ജോടികൾ:"
+    },
+    "blacklistingWebsitesDescription": {
+        "message": "ഇനിപ്പറയുന്ന വെബ്സൈറ്റുകളിൽ വിവർത്തനം ചെയ്യരുത്: "
+    },
+    "blacklistingWordsDescription": {
+        "message": "ഇനിപ്പറയുന്ന വാക്കുകൾ വിവർത്തനം ചെയ്യരുത്: "
+    },
+    "userDefinedTranslations": {
+        "message": "താഴെ യൂസർ-വിവർത്തനങ്ങൾ ഉപയോഗിക്കുക:"
+    },
+    "userLimitedTranslationsCheckbox": {
+        "message": "ഇത് ഉപയോക്താവ്ഉണ്ടാക്കിയ നിഘണ്ടു നൽകുന്ന മാത്രം വിവർത്തനങ്ങൾ പരിമിതപ്പെടുത്തു. അല്ലാതെ നിഘണ്ടുവിലെ എല്ലാ പദങ്ങൾ വിവർത്തനം ചെയ്യില്ല."
+    },
+    "basicOptionsTab": {
+        "message": "അടിസ്ഥാന ഓപ്ഷനുകൾ "
+    },
+    "advancedOptionsTab": {
+        "message": "വിപുലമായ ഓപ്ഷനുകൾ "
+    },
+    "contributionsTab": {
+        "message": "സംഭാവനകൾ"
+    },
+    "translationPatterns": {
+        "message": "പരിഭാഷ പാറ്റേണുകൾ"
+    },
+    "translatorKeys": {
+        "message": "പരിഭാഷകൻ കീകൾ"
+    },
+    "createNewPattern": {
+        "message": "ഒരു പുതിയ പാറ്റേൺ സൃഷ്ടിക്കുക"
+    },
+    "yandexKey": {
+        "message": "Yandex കീ"
+    },
+    "bingKey": {
+        "message": "Bing കീ"
+    },
+    "bingClientID": {
+        "message": "Bing ക്ലയന്റ് ഐഡി"
+    },
+    "bingClientSecret": {
+        "message": "Bing ക്ലയന്റ് രഹസ്യം"
+    },
+    "googleKey": {
+        "message": "Google കീ"
+    },
+    "create": {
+        "message": "സൃഷ്ടിക്കുക"
+    },
+    "add": {
+        "message": "ചേർക്കുക"
+    },
+    "blacklistWebsites": {
+        "message": "അനുമതിയില്ലാത്ത വെബ്‌സൈറ്റുകളുടേ ലിസ്റ്റ്"
+    },
+    "blacklistWords": {
+        "message": "അനുമതിയില്ലാത്ത വാക്കുകളുടെ ലിസ്റ്റ്"
+    },
+    "automaticBlacklisting": {
+        "message": "ഓട്ടോമാറ്റിക് അനുമതിയില്ലാത്ത ലിസ്റ്റിംഗ്"
+    },
+    "savedTranslations": {
+        "message": "സംരക്ഷിച്ച പരിഭാഷകൾ"
+    },
+    "difficultyBuckets": {
+        "message": "വൈഷമ്യം ബക്കറ്റ്"
+    },
+    "noSavedTranslations": {
+        "message": "സംരക്ഷിച്ച പരിഭാഷകൾ ഇല്ല"
+    },
+    "noWordsLearnt": {
+        "message": "വാക്കുകൾ പഠിച്ചട്ടില്ല"
+    },
+    "emptyDifficultyBuckets": {
+        "message": "ശൂന്യമായ വൈഷമ്യം ബക്കറ്റ്"
+    },
+    "colorSettings": {
+        "message": "വർണ്ണ ക്രമീകരണം"
+    },
+    "wordConfiguration": {
+        "message": "വാക്ക് ക്രമീകരണം"
+    },
+    "playbackSettings": {
+        "message": "പ്ലേബാക്ക് ക്രമീകരണങ്ങൾ"
+    },
+    "backup": {
+        "message": "ബാക്കപ്പ്"
+    },
+    "restore": {
+        "message": "വീണ്ടെടുക്കുക"
+    },
+    "dangerZone": {
+        "message": "അപകട മേഖല"
+    },
+    "patternWiseStats": {
+        "message": "പാറ്റേൺ ജ്ഞാനികൾ സ്ഥിതിവിവരക്കണക്കുകൾ"
+    },
+    "letsTalkNumbers": {
+        "message": "എണ്ണം സംസാരികാം!"
+    },
+    "chooseCorrectTranslations": {
+        "message": "ശരിയായ പരിഭാഷകൾ തിരഞ്ഞെടുക്കുക"
+    },
+    "contribute": {
+        "message": "സംഭാവന"
+    },
+    "support": {
+        "message": "പിന്തുണ"
+    },
+    "translation": {
+        "message": "വിവർത്തനം"
+    },
+    "blacklist": {
+        "message": "കരിമ്പട്ടിക"
+    },
+    "learning": {
+        "message": "പഠനം"
+    },
+    "advanced": {
+        "message": "വിപുലമായ"
+    },
+    "statistics": {
+        "message": "സ്ഥിതിവിവരക്കണക്കുകൾ"
+    },
+    "quiz": {
+        "message": "ക്വിസ്"
+    },
+    "insertKeys": {
+        "message": "നിങ്ങൾ ഉപയോഗിക്കുകയും താഴെ ഒരു പുതിയ വിവർത്തനം മാതൃക സൃഷ്ടിക്കാൻ ആഗ്രഹിക്കുന്നു ആ സേവനം വേണ്ടി കീകൾ ചേർക്കുക."
+    },
+    "and": {
+        "message": "കൂടെ"
+    },
+    "requireKeys": {
+        "message": "കീകൾ ആവശ്യമായ"
+    },
+    "translationParagraph1": {
+        "message": "അവർ ഓരോ ഉപയോക്താവിനും പ്രതിമാസം അഭ്യർത്ഥിക്കാൻ കഴിയും വിവർത്തനങ്ങൾ തുക പരിമിതപ്പെടുത്താൻ വേണ്ടി, ഉപയോക്താക്കളെ തിരിച്ചറിയണമെങ്കിൽ കീകൾ ഉപയോഗിക്കുക. പരിധിയിലെത്തി എങ്കിൽ, അവർ താൽക്കാലികമായി പ്രവർത്തനം നിർത്തും. പരിധി ഉയർന്ന പോലെ, അത് കൈവരിക്കാൻ സാധ്യതയില്ല."
+    },
+    "translationParagraph2": {
+        "message": "നിങ്ങൾ താഴെ ഉപയോഗിക്കാൻ ആഗ്രഹിക്കുന്നു പരിഭാഷകരുടെ വേണ്ടി കീകൾ ചേർക്കുക."
+    },
+    "note": {
+        "message": "കുറിപ്പ്"
+    },
+    "needHelp1": {
+        "message": "നിങ്ങൾ ഒരു കീ ലഭിക്കുന്നത് സഹായം ആവശ്യമെങ്കിൽ, കാണുക "
+    },
+    "needHelp2": {
+        "message": "YouTube- ൽ. നിങ്ങൾ മറ്റ് ട്യൂട്ടോറിയൽ കാണാൻ കഴിയും"
+    },
+    "needHelp3": {
+        "message": " ഇവിടെ"
+    },
+    "use": {
+        "message": "ഉപയോഗം"
+    },
+    "toTranslate": {
+        "message": "പരിഭാഷപ്പെടുത്തുക"
+    },
+    "percentOfall": {
+        "message": "എല്ലാ ശതമാനം"
+    },
+    "wordsInto": {
+        "message": "കടന്നു വാക്കുകൾ"
+    },
+    "oneWordPerSentence": {
+        "message": "ഒരു വാക്യത്തിലെ വാക്ക്"
+    },
+    "userDefinedOnly": {
+        "message": "ഉപയോക്താവ് മാത്രം നിര്വ്വചിച്ച"
+    },
+    "doNotTranslate": {
+        "message": "വിവർത്തനം ചെയ്യരുത്"
+    },
+    "videoTutorial": {
+        "message": "വീഡിയോ ട്യൂട്ടോറിയൽ"
+    },
+    "restoreKeys": {
+        "message": "കീ വീണ്ടെടുക്കുക"
+    },
+    "getFreeYandexKey": {
+        "message": "സൗജന്യ Yandex കീ നേടുക"
+    },
+    "getFreeBingKey": {
+        "message": "സൗജന്യ Bing കീ നേടുക"
+    },
+    "getPaidGoogleKey": {
+        "message": "പെയ്ഡ് Google കീ നേടുക"
+    },
+    "pleaseInsertkey": {
+        "message": "ഒരു കീ ചേർക്കുക"
+    },
+    "fixBugsPart1": {
+        "message": "ബഗുകൾ പരിഹരിക്കാനും, ഈ സ്വതന്ത്ര ഓപ്പൺ സോഴ്സ് വിപുലീകരണം പുതിയ സവിശേഷതകൾ നടപ്പിലാക്കുന്നതിന്. ക്ലോൺ "
+    },
+    "fixBugsPart2": {
+        "message": "സ്കോളർഷിപ്പ്"
+    },
+    "fixBugsPart3": {
+        "message": "ലഭ്യമാണ്."
+    },
+    "mail": {
+        "message": "പുറമേ നിങ്ങൾക്ക് ഞങ്ങളെ മെയില് ചെയാം"
+    },
+    "donateToSupport": {
+        "message": "ഈ മറ്റ് സ്വതന്ത്ര വിപുലീകരണങ്ങളുടെ വികസനം പിന്തുണയ്ക്കാൻ സംഭാവന ആഗ്രഹിക്കുന്നുവെങ്കിൽ."
+    },
+    "noTranslateWords": {
+        "message": "വിവർത്തനം ചെയ്ത വാക്കുകൾ ഇല്ല"
+    },
+    "translateWordstoQuiz": {
+        "message": "വാക്കുകൾ ഒരു ക്വിസ് എടുത്തു വിവർത്തനം ചെയാം"
+    },
+    "generateNewQuiz": {
+        "message": "പുതിയ ക്വിസ് സൃഷ്ടിക്കുക"
+    },
+    "wordsTranslated": {
+        "message": " ഇതുവരെ വിവർത്തനം ചെയ്‌ത വാക്കുകൾ!"
+    },
+    "resetCount": {
+        "message": " എണ്ണം റീസെറ്റ്"
+    },
+    "wordsTranslatedFrom": {
+        "message": "വാക്കുകൾ നിന്ന് വിവർത്തനം ചെയ്യപ്പെട്ടിട്ടുണ്ട്"
+    },
+    "translate": {
+        "message": "വിവർത്തനം"
+    },
+    "wordsAnd": {
+        "message": "പദങ്ങളും"
+    },
+    "charactersTranslateWith": {
+        "message": "അക്ഷരങ്ങൾ കൊണ്ട് വിവർത്തനം ചെയ്യപ്പെട്ടിട്ടുണ്ട്"
+    },
+    "during": {
+        "message": "സമയത്ത്"
+    },
+    "numberOf": {
+        "message": "എണ്ണം "
+    },
+    "numberOfWordsIn": {
+        "message": "പദങ്ങളുടെ എണ്ണം "
+    },
+    "blacklistedWebsites": {
+        "message": "കരിമ്പട്ടികയിൽ വെബ്സൈറ്റുകൾ"
+    },
+    "blacklistedWords": {
+        "message": "കരിമ്പട്ടികയിൽ വാക്കുകൾ"
+    },
+    "learntWords": {
+        "message": "മനസിലാക്കിയ വാക്കുകൾ"
+    },
+    "backupConfiguration": {
+        "message": "ബാക്കപ്പ് കോൺഫിഗറേഷൻ"
+    },
+    "backupAll": {
+        "message": "ഒരു ഫയലിൽ ബാക്കപ്പ് നിങ്ങളുടെ ക്രമീകരണങ്ങളും കീകൾ."
+    },
+    "backupButton": {
+        "message": "ബാക്കപ്പ്"
+    },
+    "backupKeys": {
+        "message": "ബാക്കപ്പ് കീകൾ"
+    },
+    "backupAllKeysInAFile": {
+        "message": "നിങ്ങളുടെ എല്ലാ കീകൾ ബാക്കപ്പ് ഒരു ഫയലിൽ."
+    },
+    "restoreAllKeysFromAFile": {
+        "message": "ഒരു ഫയലിൽ നിന്നും നിങ്ങളുടെ എല്ലാ കീകൾ പുനഃസ്ഥാപിക്കുക."
+    },
+    "resetConfiguration": {
+        "message": "കോൺഫിഗറേഷൻ റീസെറ്റ്"
+    },
+    "resetConfigurationDescription": {
+        "message": "ഈ പ്രവർത്തനം എല്ലാ ഓപ്ഷനുകളും സ്ഥിരസ്ഥിതി പുനഃക്രമീകരിക്കും. നിങ്ങളുടെ എല്ലാ ക്രമീകരണങ്ങളും നഷ്ടമാകും ഡാറ്റയും കീകൾ സംരക്ഷിച്ചു. ഈ പ്രവർത്തനം റദ്ദാക്കാനാകില്ല."
+    },
+    "delete": {
+        "message": "ഇല്ലാതാക്കുക"
+    },
+    "deleteKeys": {
+        "message": "കീകൾ ഇല്ലാതാക്കുക"
+    },
+    "deleteDescription": {
+        "message": "ഈ പ്രവർത്തനം എല്ലാ നിങ്ങൾ പരിഭാഷകൻ കീകൾ ഇല്ലാതാക്കും. ഈ ഒരു റദ്ദാക്കാനാകില്ല നടപടി ആണ്."
+    },
+    "confirmReset": {
+        "message": "റീസെറ്റ് സ്ഥിരീകരിക്കുക"
+    },
+    "confirmResetBody": {
+        "message": "നിങ്ങളുടെ എല്ലാ ഡാറ്റ പുനഃസജ്ജീകരിക്കാൻ താൽപ്പര്യമുണ്ടോ. നിങ്ങൾ ഭാവിയിൽ ഡാറ്റ പുനഃസ്ഥാപിക്കാൻ ചെയ്യണമെങ്കിൽ ഒരു ബാക്കപ്പ് സൃഷ്ടിക്കുക."
+    },
+    "cancel": {
+        "message": "റദ്ദാക്കുക"
+    },
+    "yes": {
+        "message": "സമ്മതം"
+    },
+    "confirmDelete": {
+        "message": "ഇല്ലാതാക്കൽ സ്ഥിരീകരിക്കുക"
+    },
+    "confirmDeleteBody": {
+        "message": "നിങ്ങളുടെ എല്ലാ കീകൾ നീക്കം ചെയ്യണമെന്ന് ഉറപ്പാണോ. നിങ്ങൾ ഭാവിയിൽ കീകൾ പുനഃസ്ഥാപിക്കുന്നതിന് ചെയ്യണമെങ്കിൽ ഒരു ബാക്കപ്പ് സൃഷ്ടിക്കുക."
+    },
+    "textColor": {
+        "message": "ടെക്സ്റ്റ് വർണ്ണം"
+    },
+    "backgroundColor": {
+        "message": "പശ്ചാത്തല നിറം"
+    },
+    "awesome": {
+        "message": "ആകർഷണീയമായ"
+    },
+    "haveBeenReservedForWordsIn": {
+        "message": "പദങ്ങൾ സംവരണം ചെയ്തിരിക്കുന്നു"
+    },
+    "easy": {
+        "message": " എളുപ്പമായ"
+    },
+    "normal": {
+        "message": " സാധാരണ"
+    },
+    "hard": {
+        "message": " ഹാർഡ് "
+    },
+    "minimumWordLength": {
+        "message": "മിനിമം പദം നീളം"
+    },
+    "translatedSeq": {
+        "message": "വിവർത്തനം ചെയ്ത സീക്വൻസുകൾ കുറഞ്ഞത് ഉണ്ടായിരിക്കണം"
+    },
+    "andAtMost": {
+        "message": "പരമാവധി"
+    },
+    "words": {
+        "message": "വാക്കുകൾ"
+    },
+    "original": {
+        "message": "യഥാർത്ഥ"
+    },
+    "translated": {
+        "message": "വിവർത്തനം ചെയ്ത"
+    },
+    "voiceName": {
+        "message": "വോയ്സ് പേര്"
+    },
+    "defaultVolumeLevel": {
+        "message": "സ്വതവേയുള്ള വോള്യം ലെവൽ"
+    },
+    "speechRate": {
+        "message": "സംഭാഷണ നിരക്ക്"
+    },
+    "pitch": {
+        "message": "പിച്ച്"
+    },
+    "noBlacklistedWebsites": {
+        "message": " കരിമ്പട്ടികയിൽ പെടുത്താതെ വെബ്സൈറ്റുകൾ"
+    },
+    "noBlacklistedWords": {
+        "message": "കരിമ്പട്ടികയിൽപ്പെടുത്തിയ വാക്കുകൾ ഇല്ല"
+    },
+    "on": {
+        "message": "ഓൺ"
+    },
+    "off": {
+        "message": "ഓഫ്"
+    },
+    "maxWordToggles": {
+        "message": "പരമാവധി വാക്ക് ടോഗിൾ"
+    },
+    "maxActivationsToggles": {
+        "message": "പരമാവധി സജീവമാക്കൽ ടോഗിൾ"
+    },
+    "restoreConfiguration": {
+        "message": "കോൺഫിഗറേഷൻ പുനഃസ്ഥാപിക്കുക"
+    },
+    "restoreAllYourSettings": {
+        "message": "ഒരു ഫയലിൽ നിന്നും എല്ലാ ക്രമീകരണങ്ങളും കീകൾ പുനഃസ്ഥാപിക്കുക."
+    }
+}
