@@ -7,9 +7,7 @@
   </div>
   <div class="col-lg-12">
     <div class="panel panel-primary">
-      <div class="panel-heading">
-        Pattern wise stats
-      </div>
+      <div class="panel-heading" data-translate="patternWiseStats">Pattern wise stats</div>
       <div class="list-group">
         <span class="list-group-item" ng-repeat="(index, pattern) in opctrl.patterns">
           <h4 style="display:inline;">
@@ -27,9 +25,7 @@
       </div>
     </div>
     <div class="panel panel-primary">
-      <div class="panel-heading">
-        Let's talk numbers!
-      </div>
+      <div class="panel-heading" data-translate="letsTalkNumbers">Let's talk numbers!</div>
       <div class="list-group">
         <div ng-repeat="(currentMonth, serviceHash) in opctrl.stats['translatorWiseWordCount'][0]">
           <div ng-repeat="(service, count) in serviceHash" ng-if="count[0]>0 && count[1]>0" class='nested-list-item'>

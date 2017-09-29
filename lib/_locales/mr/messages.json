@@ -1,0 +1,405 @@
+{
+    "appName": {
+        "message": "Mind The Word",
+        "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+        "message": "इंटरनेट ब्राउझिंग करत असताना भाषा शिका!",
+        "description": "The description of the application, displayed in the web store."
+    },
+    "selectTranslationHeading": {
+        "message": "भाषांतर संरचना निवडा",
+        "description": "heading over list of translations"
+    },
+    "newTranslationHeading": {
+        "message": "नवीन भाषांतर संरचना तयार करा",
+        "description": "heading over new translation form"
+    },
+    "attentionMessage": {
+        "message": "<b>लक्ष:</b> Google Translate आहे <i>not free</i>. Yandex आहे <i>शिफारस</i>!"
+    },
+    "translationSettings": {
+        "message": "भाषांतर सेटिंग्ज"
+    },
+    "adjustmentsDescription": {
+        "message": "खालील त्यानुसार अनुवादित शब्द स्वरूप <a href='http://lesliefranke.com/files/reference/csscheatsheet.html' target='_blank'>CSS </a>मालमत्ता-वॅ:"
+    },
+    "blacklistingWebsitesDescription": {
+        "message": "खालील वेबसाइट भाषांतरित करू नका: "
+    },
+    "blacklistingWordsDescription": {
+        "message": "खालील शब्द अनुवाद नाही: "
+    },
+    "userDefinedTranslations": {
+        "message": "खालील वापरकर्ता परिभाषित अनुवाद वापरा:"
+    },
+    "userLimitedTranslationsCheckbox": {
+        "message": "या वापरकर्ता परिभाषित शब्दकोश प्रदान फक्त त्या अनुवाद मर्यादित करेल. शब्दकोशात नाही शब्द भाषांतरीत केला जाणार नाही."
+    },
+    "basicOptionsTab": {
+        "message": "मूलभूत पर्याय "
+    },
+    "advancedOptionsTab": {
+        "message": "प्रगत पर्याय "
+    },
+    "contributionsTab": {
+        "message": "योगदान"
+    },
+    "translationPatterns": {
+        "message": "भाषांतर नमुने"
+    },
+    "translatorKeys": {
+        "message": "अनुवादक की"
+    },
+    "createNewPattern": {
+        "message": "एक नवीन नमुना तयार करा"
+    },
+    "yandexKey": {
+        "message": "Yandex कळ"
+    },
+    "bingKey": {
+        "message": "Bing कळ"
+    },
+    "bingClientID": {
+        "message": "Bing क्लायंट ID"
+    },
+    "bingClientSecret": {
+        "message": "Bing क्लायंट गुपित"
+    },
+    "googleKey": {
+        "message": "Google कळा"
+    },
+    "create": {
+        "message": "तयार करा"
+    },
+    "add": {
+        "message": "जोडा"
+    },
+    "blacklistWebsites": {
+        "message": "ब्लॅकलिस्ट वेबसाइट्स"
+    },
+    "blacklistWords": {
+        "message": "ब्लॅकलिस्ट शब्द"
+    },
+    "automaticBlacklisting": {
+        "message": "स्वयंचलित ब्लॅकलिस्टि करणे"
+    },
+    "savedTranslations": {
+        "message": "जतन केलेले भाषांतर"
+    },
+    "noSavedTranslations": {
+        "message": "कोणतेही जतन भाषांतरे"
+    },
+    "noWordsLearnt": {
+        "message": "नाही शब्द शिकलो"
+    },
+    "emptyDifficultyBuckets": {
+        "message": "रिक्त अवघड बादल्या"
+    },
+    "colorSettings": {
+        "message": "रंग सेटिंग्ज"
+    },
+    "wordConfiguration": {
+        "message": "शब्द संरचना"
+    },
+    "playbackSettings": {
+        "message": "प्लेबॅक सेटिंग्ज"
+    },
+    "backup": {
+        "message": "बॅकअप"
+    },
+    "restore": {
+        "message": "पुनर्संचयित करा"
+    },
+    "dangerZone": {
+        "message": "धोकादायक क्षेत्र"
+    },
+    "patternWiseStats": {
+        "message": "नमुना शहाणा आकडेवारी"
+    },
+    "letsTalkNumbers": {
+        "message": "संख्या चर्चा करू!"
+    },
+    "chooseCorrectTranslations": {
+        "message": "बरोबर भाषांतरे निवडा"
+    },
+    "support": {
+        "message": "समर्थन"
+    },
+    "translation": {
+        "message": "भाषांतर"
+    },
+    "blacklist": {
+        "message": "ब्लॅकलिस्ट"
+    },
+    "learning": {
+        "message": "शिक्षण"
+    },
+    "advanced": {
+        "message": "प्रगत"
+    },
+    "statistics": {
+        "message": "आकडेवारी"
+    },
+    "quiz": {
+        "message": "प्रश्नमंजुषा"
+    },
+    "insertKeys": {
+        "message": "वापर आणि नंतर खाली एक नवीन अनुवाद नमुना तयार करायचे कळा अनुवाद सेवा करण्यासाठी की समाविष्ट करा"
+    },
+    "and": {
+        "message": "आणि"
+    },
+    "requireKeys": {
+        "message": "कळा आवश्यक"
+    },
+    "translationParagraph1": {
+        "message": "ते प्रत्येक वापरकर्ता दरमहा विनंती करू शकता कळा अनुवाद रक्कम मर्यादित करण्यासाठी वापरकर्त्यांना ओळखण्याची कळा वापरा. मर्यादा गाठली आहे, तर, ते तात्पुरते कार्य करणे थांबवतील. मर्यादा उच्च आहे म्हणून, तो पर्यंत पोहचणे संभव आहे"
+    },
+    "translationParagraph2": {
+        "message": "कृपया खालील वापरू इच्छिता अनुवादकांची साठी कळा जोडा."
+    },
+    "note": {
+        "message": "टीप"
+    },
+    "needHelp1": {
+        "message": "आपण की मिळत मदत आवश्यक असल्यास, पहा "
+    },
+    "needHelp2": {
+        "message": "YouTube वर. आपण इतर शिकवण्या पाहू शकता"
+    },
+    "needHelp3": {
+        "message": " येथे"
+    },
+    "use": {
+        "message": "वापर"
+    },
+    "toTranslate": {
+        "message": "अनुवाद करण्यासाठी"
+    },
+    "percentOfall": {
+        "message": "सर्व टक्के"
+    },
+    "wordsInto": {
+        "message": "शब्द पासून"
+    },
+    "oneWordPerSentence": {
+        "message": "एक प्रति वाक्य शब्द"
+    },
+    "userDefinedOnly": {
+        "message": "वापरकर्ता फक्त परिभाषित"
+    },
+    "doNotTranslate": {
+        "message": "अनुवाद नाही"
+    },
+    "videoTutorial": {
+        "message": "व्हिडिओ ट्युटोरियल"
+    },
+    "restoreKeys": {
+        "message": "कळा पुनर्संचयित करा"
+    },
+    "getFreeYandexKey": {
+        "message": "मोफत Yandex कळा मिळवा"
+    },
+    "getFreeBingKey": {
+        "message": "मोफत Bing कळा मिळवा"
+    },
+    "getPaidGoogleKey": {
+        "message": "Google कळा खरेदी"
+    },
+    "pleaseInsertkey": {
+        "message": "एक कळ समाविष्ट करा"
+    },
+    "contribute": {
+        "message": "योगदान"
+    },
+    "fixBugsPart1": {
+        "message": "बग निराकरण आणि या मोफत मुक्त-स्रोत विस्तार नवीन वैशिष्ट्ये अंमलबजावणी. आमच्या क्लोन"
+    },
+    "fixBugsPart2": {
+        "message": "शिष्यवृत्ती"
+    },
+    "fixBugsPart3": {
+        "message": "उपलब्ध आहेत"
+    },
+    "mail": {
+        "message": "आपण आम्हाला मेल करू शकता"
+    },
+    "donateToSupport": {
+        "message": "या आणि इतर मुक्त विस्तार विकास करीता दान आपण इच्छुक असल्यास"
+    },
+    "noTranslateWords": {
+        "message": "नाही भाषांतरीत शब्द"
+    },
+    "translateWordstoQuiz": {
+        "message": "पासून क्विझ घेणे शब्द अनुवाद"
+    },
+    "generateNewQuiz": {
+        "message": "नवी उत्तरे माहिती करून घ्या निर्माण"
+    },
+    "wordsTranslated": {
+        "message": " शब्द आतापर्यंत अनुवादित!"
+    },
+    "resetCount": {
+        "message": " संख्या रीसेट करा"
+    },
+    "wordsTranslatedFrom": {
+        "message": "शब्द अनुवादित केले गेले आहेत"
+    },
+    "translate": {
+        "message": "अनुवाद"
+    },
+    "wordsAnd": {
+        "message": "शब्द आणि"
+    },
+    "charactersTranslateWith": {
+        "message": "वर्ण अनुवादित केले गेले आहेत"
+    },
+    "during": {
+        "message": "दरम्यान"
+    },
+    "numberOf": {
+        "message": "संख्या "
+    },
+    "numberOfWordsIn": {
+        "message": "शब्द संख्या "
+    },
+    "blacklistedWebsites": {
+        "message": "काळीसूचीबद्ध वेबसाइट"
+    },
+    "blacklistedWords": {
+        "message": "काळीसूचीबद्ध शब्द"
+    },
+    "difficultyBuckets": {
+        "message": "अडचण बादल्या"
+    },
+    "learntWords": {
+        "message": "शिकलो शब्द"
+    },
+    "backupConfiguration": {
+        "message": "बॅकअप संरचना"
+    },
+    "backupAll": {
+        "message": "बॅकअप आपले सर्व फाइल सेटिंग्ज आणि कळा"
+    },
+    "backupButton": {
+        "message": "बॅकअप"
+    },
+    "backupKeys": {
+        "message": "बॅबॅकअप कळा"
+    },
+    "backupAllKeysInAFile": {
+        "message": "फाइल मध्ये बॅकअप आपल्या सर्व कळा."
+    },
+    "restoreAllKeysFromAFile": {
+        "message": "फाइल आपल्या सर्व कळा पुनर्संचयित करा"
+    },
+    "resetConfiguration": {
+        "message": "संरचना रीसेट करा"
+    },
+    "resetConfigurationDescription": {
+        "message": "ही क्रिया डीफॉल्ट सर्व पर्याय रीसेट होईल. आपण आपली सर्व सेटिंग्ज गमवाल, जतन डेटा आणि कळा. ही क्रिया न करता येणारे आहे"
+    },
+    "delete": {
+        "message": "हटवा"
+    },
+    "deleteKeys": {
+        "message": "कळा हटवा"
+    },
+    "deleteDescription": {
+        "message": "ही क्रिया सर्व आपण भाषांतर की हटवेल. या एक न क्रिया आहे. की"
+    },
+    "confirmReset": {
+        "message": "रीसेट करा पुष्टि करा"
+    },
+    "confirmResetBody": {
+        "message": "खात्री आहे की आपण सर्व डेटा रीसेट करू इच्छिता. भविष्यात जर तुमचा डेटा पुनर्संचयित करण्यासाठी इच्छित असल्यास बॅकअप तयार करा"
+    },
+    "cancel": {
+        "message": "रद्द करा"
+    },
+    "yes": {
+        "message": "होय"
+    },
+    "confirmDelete": {
+        "message": "हटवण्याची पुष्टी करा"
+    },
+    "confirmDeleteBody": {
+        "message": "आपली खात्री आहे की आपण सर्व कळा काढू इच्छिता. आपण भविष्यात आपल्या की परत करू इच्छित असल्यास बॅकअप तयार करा"
+    },
+    "textColor": {
+        "message": "मजकूर रंग"
+    },
+    "backgroundColor": {
+        "message": "पार्श्वभूमी रंग"
+    },
+    "awesome": {
+        "message": "छान"
+    },
+    "haveBeenReservedForWordsIn": {
+        "message": "शब्द राखीव आहेत"
+    },
+    "easy": {
+        "message": " सोपे"
+    },
+    "normal": {
+        "message": " सामान्य"
+    },
+    "hard": {
+        "message": " कठीण "
+    },
+    "minimumWordLength": {
+        "message": "किमान शब्द लांबी"
+    },
+    "translatedSeq": {
+        "message": "अनुवादित क्रम किमान असणे आवश्यक आहे"
+    },
+    "andAtMost": {
+        "message": "आणि जास्तीत जास्त"
+    },
+    "words": {
+        "message": "शब्द"
+    },
+    "original": {
+        "message": "मूळ"
+    },
+    "translated": {
+        "message": "अनुवादित"
+    },
+    "voiceName": {
+        "message": "आवाज नाव"
+    },
+    "defaultVolumeLevel": {
+        "message": "मुलभूत आवाजाची पातळी"
+    },
+    "speechRate": {
+        "message": "उच्चार दर"
+    },
+    "pitch": {
+        "message": "खेळपट्टीवर"
+    },
+    "noBlacklistedWebsites": {
+        "message": " नाही काळ्या सूचीत वेबसाइट्स"
+    },
+    "noBlacklistedWords": {
+        "message": "नाही काळ्या सूचीत शब्द"
+    },
+    "on": {
+        "message": "चालू"
+    },
+    "off": {
+        "message": "बंद"
+    },
+    "maxWordToggles": {
+        "message": "जास्तीत जास्त शब्द टॉगल"
+    },
+    "maxActivationsToggles": {
+        "message": "जास्तीत जास्त सक्रियन टॉगल"
+    },
+    "restoreConfiguration": {
+        "message": "संरचना पुनर्संचयित करा"
+    },
+    "restoreAllYourSettings": {
+        "message": "फाइल आपल्या सर्व सेटिंग्ज आणि कळा पुनर्संचयित करा"
+    }
+}

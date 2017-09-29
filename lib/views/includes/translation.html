@@ -1,19 +1,19 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <span>Translation Patterns</span>
+    <span data-translate="translationPatterns">Translation Patterns</span>
     <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Translations will be limited to user defined in Advanced Tab"></span>
     <button type="button" ng-click="opctrl.toggleDoNotTranslate()" ng-class="{'active': opctrl.doNotTranslate}" class="btn btn-danger pull-right btn-xs" style="margin-right: 5px">
-      <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.doNotTranslate"></span> Do Not Translate
+      <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.doNotTranslate"></span> <span data-translate="doNotTranslate">Do Not Translate</span>
     </button>
     <button type="button" ng-click="opctrl.toggleUserDefinedOnly()" ng-class="{'active': opctrl.userDefinedOnly}" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
-      <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.userDefinedOnly"></span> User Defined Only
+      <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.userDefinedOnly"></span> <span data-translate="userDefinedOnly">User Defined Only</span>
     </button>
     <button type="button" ng-click="opctrl.toggleOneWordTranslation()" ng-class="{'active': opctrl.oneWordTranslation}" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
-      <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.oneWordTranslation"></span> One Word Per Sentence
+      <span class="glyphicon glyphicon-ok-sign" ng-show="opctrl.oneWordTranslation"></span> <span data-translate="oneWordPerSentence">One Word Per Sentence</span>
     </button>
   </div>
   <div ng-show="opctrl.patterns.length === 0" class="text-center">
-    <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> Please insert the keys for the translation services that you would like to use and then create a new translation pattern below.</h5>
+    <h5 class="text-muted"><span class="glyphicon glyphicon-exclamation-sign"></span> <span data-translate="insertKeys">Please insert the keys for the translation services that you would like to use and then create a new translation pattern below.</span></h5>
   </div>
   <div class="list-group" ng-show="opctrl.patterns.length > 0">
     <a href="#" ng-click="opctrl.activatePattern($index)" class="list-group-item" ng-class="{'active-list': pattern[3]}" ng-repeat="(index, pattern) in opctrl.patterns">
@@ -40,18 +40,18 @@
   <div class="col-md-12">
     <div class="panel panel-warning">
       <div class="panel-heading">
-        <span>Translator Keys</span>
+        <span data-translate="translatorKeys">Translator Keys</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Please put in your keys here. If you have a backup file, please use the restore button."></span>
-        <button type="button" class="btn btn-default btn-xs pull-right" ng-click="opctrl.restoreKeys()" style="margin-right: 5px">Restore Keys</button>
+        <button type="button" class="btn btn-default btn-xs pull-right" ng-click="opctrl.restoreKeys()" style="margin-right: 5px"><span data-translate="restoreKeys">Restore Keys</span></button>
         <button type="button" data-toggle="modal" data-target="#howToConfigureModal" class="btn btn-warning pull-right btn-xs" style="margin-right: 5px">
-          Video Tutorial
+          <span data-translate="videoTutorial">Video Tutorial</span>
         </button>
       </div>
       <div class="panel-body">
         <p>
-          <b>Yandex, Bing and Google require keys.</b> They use the keys to identify users, in order to limit the amount of translations that each user can request per month. If the limit is reached, they stop working temporarily. As the limit is high, it is unlikely to be reached.
+          <b>Yandex, Bing <span data-translate="and">and</span> Google <span data-translate="requireKeys">require keys</span>.</b> <span data-translate="translationParagraph1">They use the keys to identify users, in order to limit the amount of translations that each user can request per month. If the limit is reached, they stop working temporarily. As the limit is high, it is unlikely to be reached.
           <br>
-          <b> Please add keys for the translators you would like to use below.</b>
+          <b> <span data-translate="translationParagraph2">Please add keys for the translators you would like to use below.</span></b></span>
         </p>
         <div ng-if="opctrl.yandexMonthlyLimit > 25.00" class="progress">
           <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {{opctrl.yandexMonthlyLimit}}%">
@@ -70,34 +70,34 @@
           <span class="label label-danger">WARNING:</span> <b>Monthly Yandex API limit reached.</b> Please wait until next month or change API key
         </p>
         <div class="input-group">
-          <span class="label-info input-group-addon">Yandex Key</span>
+          <span class="label-info input-group-addon" data-translate="yandexKey">Translator Keys</span>
           <input ng-model="opctrl.yandexTranslatorApiKey" ng-blur="opctrl.changeApiKey('Yandex')" type="text" class="form-control">
           <span class="input-group-btn">
-            <a class="btn btn-success" href="https://tech.yandex.com/keys/get/?service=trnsl" target="_blank">Get Free Yandex Key</a>
+            <a class="btn btn-success" href="https://tech.yandex.com/keys/get/?service=trnsl" target="_blank"><span data-translate="getFreeYandexKey">Get Free Yandex Key</span></a>
           </span>
         </div>
         <br>
         <div class="input-group">
-          <span class="input-group-addon">Bing Client ID</span>
+          <span class="input-group-addon" data-translate="bingClientID">Bing Client ID</span>
           <input ng-model="opctrl.bingTranslatorApiKey.clientId" ng-blur="opctrl.changeApiKey('Bing')" type="text" class="form-control">
-          <span class="input-group-addon">Bing Client Secret</span>
+          <span class="input-group-addon" data-translate="bingClientSecret">Bing Client ID</span>
           <input ng-model="opctrl.bingTranslatorApiKey.clientSecret" ng-blur="opctrl.changeApiKey('Bing')" type="text" class="form-control">
           <span class="input-group-btn">
-            <a class="btn btn-success" href="https://www.microsoft.com/en-us/translator/getstarted.aspx" target="_blank">Get Free Bing Key</a>
+            <a class="btn btn-success" href="https://www.microsoft.com/en-us/translator/getstarted.aspx" target="_blank"><span data-translate="getFreeBingKey">Get Free Bing Key</span></a>
           </span>
         </div>
         <br>
         <div class="input-group">
-          <span class="label-warning input-group-addon">Google Key</span>
+          <span class="label-warning input-group-addon" data-translate="googleKey">Google Key</span>
           <input ng-model="opctrl.googleTranslatorApiKey" ng-blur="opctrl.changeApiKey('Google')" type="text" class="form-control">
           <span class="input-group-btn">
-            <a class="btn btn-success" href="https://cloud.google.com/translate/v2/quickstart" target="_blank">Get Paid Google Key</a>
+              <a class="btn btn-success" href="https://cloud.google.com/translate/v2/quickstart" target="_blank"><span data-translate="getPaidGoogleKey">Get Paid Google Key</span></a>
           </span>
         </div>
         <br>
         <small>
-          <span class="label label-danger">Note:</span>
-          If you need help with getting a key, watch the <a href="https://www.youtube.com/watch?v=VgpQ48YHGXs" target="_blank" data-toggle="tooltip" data-placement="bottom" title="How to Configure">Tutorial on How to Configure Mind the Word</a> on YouTube. You can watch other tutorials <a href="https://www.youtube.com/channel/UCBCIhZSb0cVw4xaF3SZbDvA" target="_blank">here</a>.
+          <span class="label label-danger"><span data-translate="note">Note</span>:</span>
+          <span data-translate="needHelp1">If you need help with getting a key, watch the </span><a href="https://www.youtube.com/watch?v=VgpQ48YHGXs" target="_blank" data-toggle="tooltip" data-placement="bottom" title="How to Configure">Tutorial on How to Configure Mind the Word</a> <span data-translate="needHelp2">on YouTube. You can watch other tutorials  </span><a href="https://www.youtube.com/channel/UCBCIhZSb0cVw4xaF3SZbDvA" target="_blank"><span data-translate="needHelp3">here</span></a>.
         </small>
       </div>
     </div>
@@ -106,13 +106,13 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <span>Create a New Pattern</span>
-    <span class="label label-danger" ng-show="opctrl.noKeys()"><span class="glyphicon glyphicon-exclamation-sign"></span> Please insert a key</span>
+    <span data-translate="createNewPattern">Create a New Pattern</span>
+    <span class="label label-danger" ng-show="opctrl.noKeys()"><span class="glyphicon glyphicon-exclamation-sign"></span> <span data-translate="pleaseInsertkey">Please insert a key</span></span>
   </div>
   <div class="panel-body" ng-class="{'disable-panel': opctrl.noKeys() === true}">
     <form class="form-inline" role="form">
       <div class="form-group">
-        <label for="translator">Use
+        <label for="translator"><span data-translate="use">Use</span>
         </label>
         <select ng-model="opctrl.translator" ng-change="opctrl.changeTranslator()" class="form-control" id="translator">
           <option ng-if="!opctrl.hasKey('Yandex')">Yandex</option>
@@ -121,7 +121,7 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="percentage">to translate
+        <label for="percentage"><span data-translate="toTranslate">to translate</span>
         </label>
         <select class="form-control" id="percentage" ng-model="opctrl.percentage" style="min-width: 75px">
           <option>10</option>
@@ -140,20 +140,20 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="srcLang"> percent of all
+          <label for="srcLang"><span data-translate="percentOfall">percent of all</span>
         </label>
         <select class="form-control" id="srcLang" ng-model="opctrl.srcLang" style="min-width: 176px">
           <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="targetLang">words into
+        <label for="targetLang"><span data-translate="wordsInto">words into</span>
         </label>
         <select class="form-control" id="targetLang" ng-model="opctrl.targetLang" style="min-width: 176px">
           <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()">Create</button>
+      <button type="submit" class="btn btn-success pull-right" ng-click="opctrl.createPattern()" data-translate="create">Create</button>
     </form>
   </div>
 </div>
@@ -179,7 +179,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <iframe width="100%" height="80%" src="https://www.youtube.com/embed/VgpQ48YHGXs"></iframe>
+        <iframe src="https://player.vimeo.com/video/209926760?byline=0" width="100%" height="80%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
     </div>
   </div>

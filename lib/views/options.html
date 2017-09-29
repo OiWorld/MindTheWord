@@ -22,33 +22,36 @@
             <img alt="Brand" src="../assets/img/22.png">
           </a>
           <b>
-            <a class="navbar-brand" href="#">Mind the Word</a>
+            <a class="navbar-brand" href="#" data-translate='appName'>Mind The Word</a>
           </b>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li class="active">
-            <a href="#translation-settings" data-toggle="tab">Translation</a>
+            <a href="#translation-settings" data-toggle="tab" data-translate="translation" data-translate="translation">Translation</a>
           </li>
           <li>
-            <a href="#blacklisting" data-toggle="tab">Blacklist</a>
+            <a href="#blacklisting" data-toggle="tab" data-translate="blacklist">Blacklist</a>
           </li>
           <li>
-            <a href="#learning" data-toggle="tab">Learning</a>
+            <a href="#learning" data-toggle="tab" data-translate="learning">Learning</a>
           </li>
           <li>
-            <a href="#advanced-settings" data-toggle="tab">Advanced</a>
+            <a href="#advanced-settings" data-toggle="tab" data-translate="advanced">Advanced</a>
           </li>
           <li>
-            <a href="#backup" data-toggle="tab">Backup</a>
+            <a href="#backup" data-toggle="tab" data-translate="backup">Backup</a>
           </li>
           <li>
-            <a href="#statistics" data-toggle="tab">Statistics</a>
+            <a href="#statistics" data-toggle="tab" data-translate="statistics">Statistics</a>
           </li>
           <li>
-            <a href="#quiz" data-toggle="tab">Quiz</a>
+            <a href="#quiz" data-toggle="tab" data-translate="quiz">Quiz</a>
           </li>
           <li>
-            <a href="#contribute" data-toggle="tab">Contribute</a>
+            <a href="#contribute" data-toggle="tab" data-translate="contribute">Contribute</a>
+          </li>
+          <li>
+            <a href="#troubleshooting" data-toggle="tab" data-translate="troubleshooting">Troubleshooting</a>
           </li>
         </ul>
       </div>
@@ -79,6 +82,9 @@
         </div>
         <div class="tab-pane" id="contribute">
           <ng-include src="'includes/contribute.html'" onload="opctrl.setup()"></ng-include>
+        </div>
+        <div class="tab-pane" id="troubleshooting">
+          <ng-include src="'includes/troubleshooting.html'" onload="opctrl.setup()"></ng-include>
         </div>
       </div>
       <div id="status" class="fixed-bottom"></div>

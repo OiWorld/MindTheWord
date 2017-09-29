@@ -1,0 +1,186 @@
+{
+    "appName": {
+        "message": "Mind The Word",
+        "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+        "message": "Lær sprog, mens du browser på internettet!",
+        "description": "The description of the application, displayed in the web store."
+    },
+    "selectTranslationHeading": {
+        "message": "Vælg Translation Configuration",
+        "description": "heading over list of translations"
+    },
+    "newTranslationHeading": {
+        "message": "Opret ny Translation Configuration",
+        "description": "heading over new translation form"
+    },
+    "attentionMessage": {
+        "message": "<b> Bemærk:.! </ B> Google Translate er <i> ikke gratis </ i> Yandex er <i> anbefalede </ i>"
+    },
+    "translationSettings": {
+        "message": "Oversættelse indstillinger"
+    },
+    "adjustmentsDescription": {
+        "message": "Format de oversatte ord i henhold til følgende <a href='http://lesliefranke.com/files/reference/csscheatsheet.html' target='_blank'> CSS </a> ejendom-værdi-par: "
+    },
+    "blacklistingWebsitesDescription": {
+        "message": "Du skal ikke oversætte følgende hjemmesider:"
+    },
+    "blacklistingWordsDescription": {
+        "message": "Du skal ikke oversætte følgende ord:"
+    },
+    "userDefinedTranslations": {
+        "message": "Brug følgende brugerdefinerede oversættelser:"
+    },
+    "userLimitedTranslationsCheckbox": {
+        "message": ". Dette vil begrænse oversættelser til kun dem, der i den brugerdefinerede ordbog Ord ikke i ordbogen, vil ikke blive oversat."
+    },
+    "basicOptionsTab": {
+        "message": "Grundlæggende indstillinger"
+    },
+    "advancedOptionsTab": {
+        "message": "avancerede indstillinger"
+    },
+    "contributionsTab": {
+        "message": "Bidrag"
+    },
+    "translationPatterns": {
+        "message": "Oversættelse Patterns"
+    },
+    "translatorKeys": {
+        "message": "Translator tasterne"
+    },
+    "createNewPattern": {
+        "message": "Opret et nyt mønster"
+    },
+    "yandexKey": {
+        "message": "Yandex Key"
+    },
+    "bingKey": {
+        "message": "Bing Key"
+    },
+    "bingClientID": {
+        "message": "Bing klient-id"
+    },
+    "bingClientSecret": {
+        "message": "Bing Client Secret"
+    },
+    "googleKey": {
+        "message": "Google Key"
+    },
+    "create": {
+        "message": "Opret"
+    },
+    "add": {
+        "message": "Tilføj"
+    },
+
+    "blacklistWebsites": {
+        "message": "Blacklist Websites"
+    },
+
+    "blacklistWords": {
+        "message": "Blacklist Words"
+    },
+
+    "automaticBlacklisting": {
+        "message": "Automatic Sortlistning"
+    },
+
+    "savedTranslations": {
+        "message": "Gemte Oversættelser"
+    },
+
+    "learntWords": {
+        "message": "Lært Words"
+    },
+
+    "difficultyBuckets": {
+        "message": "Sværhedsgrad Skovle"
+    },
+
+    "noSavedTranslations": {
+        "message": "Ingen gemte Translations"
+    },
+
+    "noWordsLearnt": {
+        "message": "Ingen ord Lært"
+    },
+
+    "emptyDifficultyBuckets": {
+        "message": "Tomme Sværhedsgrad Skovle"
+    },
+
+    "colorSettings": {
+        "message": "Color Settings"
+    },
+
+    "wordConfiguration": {
+        "message": "Word Configuration"
+    },
+
+    "playbackSettings": {
+        "message": "Playback Settings"
+    },
+
+    "backup": {
+        "message": "Backup"
+    },
+
+    "restore": {
+        "message": "Gendan"
+    },
+
+    "dangerZone": {
+        "message": "Danger Zone"
+    },
+
+    "patternWiseStats": {
+        "message": "Mønster kloge statistik"
+    },
+
+    "letsTalkNumbers": {
+        "message": "Lad os tale tal!"
+    },
+
+    "chooseCorrectTranslations": {
+        "message": "vælge den korrekte oversættelse"
+    },
+
+    "contribute": {
+        "message": "Contribute"
+    },
+
+    "support": {
+        "message": "Støt"
+    },
+
+    "translation": {
+        "message": "Oversættelse"
+    },
+
+    "blacklist": {
+        "message": "Blacklist"
+    },
+
+    "learning": {
+        "message": "Learning"
+    },
+
+    "advanced": {
+        "message": "Avanceret"
+    },
+
+    "statistics": {
+        "message": "Statistics"
+    },
+
+    "quiz": {
+        "message": "Quiz"
+    },
+
+    "troubleshooting": {
+        "message": "Fejlfinding"
+    }
+}

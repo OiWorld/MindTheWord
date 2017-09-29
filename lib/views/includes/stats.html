@@ -1,78 +1,74 @@
 <div class="row">
   <div class="text-center" style="padding: 0 15px 20px 15px">
-    <h3 style="display: inline;"><span style="padding: 8px 8px 8px 8px"class="label label-info">{{opctrl.stats.totalWordsTranslated}}</span> </h3> words translated so far!
-    <button type="button" ng-click="opctrl.resetTotalWordCount()" class="btn btn-danger" style="margin-right: 5px">
-      <span class="glyphicon glyphicon-ban-circle"></span> Reset Count
+    <h3 style="display: inline;"><span style="padding: 8px 8px 8px 8px"class="label label-info">{{opctrl.stats.totalWordsTranslated}}</span> </h3><span data-translate="wordsTranslated"> words translated so far!</span>
+    <button type="button" ng-click="opctrl.resetTotalWordCount()" class="btn btn-danger" style="margin-right: 5px;height:37px; margin-top:-5px">
+      <span class="glyphicon glyphicon-ban-circle"></span><span data-translate="resetCount"> Reset Count</span>
     </button>
   </div>
   <div class="col-lg-12">
     <div class="panel panel-primary">
-      <div class="panel-heading">
-        Pattern wise stats
-      </div>
+      <div class="panel-heading" data-translate="patternWiseStats">Pattern wise stats</div>
       <div class="list-group">
         <span class="list-group-item" ng-repeat="(index, pattern) in opctrl.patterns">
           <h4 style="display:inline;">
             <span class="label label-info" ng-if="pattern[5]">{{pattern[5]}}</span>
             <span class="label label-info" ng-if="!pattern[5]">0</span>
           </h4>
-          words have been translated from
+          <span data-translate="wordsTranslatedFrom">words have been translated from</span>
           <span class="label label-info">{{pattern[0][1]}}</span>
           into
           <span class="label label-info">{{pattern[1][1]}}</span>
           using
           <span class="label label-info">{{pattern[4]}}</span> |
-          <span class="label label-info"> {{pattern[2]}}% translation </span>
+          <span class="label label-info"> {{pattern[2]}}% <span data-translate="translate">translation</span> </span>
         </span>
       </div>
     </div>
     <div class="panel panel-primary">
-      <div class="panel-heading">
-        Let's talk numbers!
-      </div>
+      <div class="panel-heading" data-translate="letsTalkNumbers">Let's talk numbers!</div>
       <div class="list-group">
         <div ng-repeat="(currentMonth, serviceHash) in opctrl.stats['translatorWiseWordCount'][0]">
           <div ng-repeat="(service, count) in serviceHash" ng-if="count[0]>0 && count[1]>0" class='nested-list-item'>
-            <span class="label label-info">{{count[0]}}</span> words and <span class="label label-info">{{count[1]}}</span> characters have been translated with <span class="label label-info">{{service}}</span> during <span class="label label-info">{{currentMonth}} {{opctrl.date | date:'yyyy'}}</span>
+              <span class="label label-info">{{count[0]}}</span> <span data-translate="wordsAnd">words and</span> <span class="label label-info">{{count[1]}}</span> <span data-translate="charactersTranslateWith">characters have been translated with</span> <span class="label label-info">{{service}}</span> <span data-translate="during">during</span> <span class="label label-info">{{currentMonth}} {{opctrl.date | date:'yyyy'}}</span>
           </div>
         </div>
         <div ng-repeat="(currentMonth, serviceHash) in opctrl.stats['translatorWiseWordCount'][1]">
           <div ng-repeat="(service, count) in serviceHash" ng-if="count[0]>0 && count[1]>0" class='list-group-item'>
-            <span class="label label-info">{{count[0]}}</span> words and <span class="label label-info">{{count[1]}}</span> characters have been translated with <span class="label label-info">{{service}}</span> <span class="label label-info">Today</span>
+            <span class="label label-info">{{count[0]}}</span> <span data-translate="wordsAnd">words and</span> <span class="label label-info">{{count[1]}}</span><span data-translate="charactersTranslatedWith"> characters have been translated with</span> <span class="label label-info">{{service}}</span> <span class="label label-info" data-translate="today">Today</span>
           </div>
         </div>
         <div class='list-group-item'>
-          Number of <span class="label label-info">blacklisted websites</span>
+          <span data-translate="numberOf">Number of </span> <span class="label label-info" data-translate="blacklistedWebsites">blacklisted websites</span>
           <span class="pull-right label label-info">
             <h4 style="display:inline;">{{opctrl.blacklistedWebsites.length}}</h4>
           </span>
         </div>
         <div class='list-group-item'>
-          Number of <span class="label label-info">blacklisted words</span>
+          <span data-translate="numberOf">Number of </span> <span class="label label-info" data-translate="blacklistedWords">blacklisted words</span>
           <span class="pull-right label label-info">
             <h4 style="display:inline;">{{opctrl.blacklistedWords.length}}</h4>
           </span>
         </div>
         <div class='list-group-item'>
-          Number of <span class="label label-info">saved translations</span>
+          <span data-translate="numberOf">Number of </span> <span class="label label-info" data-translate="savedTranslations">saved translations</span>
           <span class="pull-right label label-info">
             <h4 style="display:inline;">{{opctrl.savedTranslationList.length}}</h4>
           </span>
         </div>
         <div class='list-group-item'>
-          Number of words in <span class="label label-info">difficulty buckets</span>
+          <span data-translate="numberOfWordsIn">Number of words in </span><span class="label label-info" data-translate="difficultyBuckets">difficulty buckets</span>
           <span class="pull-right label label-info">
             <h4 style="display:inline;">{{opctrl.difficultyBucketsWords.length}}</h4>
           </span>
         </div>
         <div class='list-group-item'>
-          Number of words in <span class="label label-info">learnt words</span>
+          <span data-translate="numberOfWordsIn">Number of words in </span><span class="label label-info" data-translate="learntWords">learnt words</span>
           <span class="pull-right label label-info">
             <h4 style="display:inline;">{{opctrl.learntWords.length}}</h4>
           </span>
         </div>
         <div class='list-group-item'>
-          Number of <span class="label label-info">user defined translations</span>
+          <span data-translate="numberOf">Number of </span> <span class="label label-info" data-translate="userDefinedTranslations">user defined translations</span>
           <span class="pull-right label label-info">
             <h4 style="display:inline;">{{opctrl.userDefinedTranslationList.length}}</h4>
           </span>

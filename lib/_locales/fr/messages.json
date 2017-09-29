@@ -1,0 +1,160 @@
+{
+    "appName": {
+        "message": "Mind The Word",
+        "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+        "message": "Apprendre les langues en naviguant sur Internet!",
+        "description": "The description of the application, displayed in the web store."
+    },
+    "selectTranslationHeading": {
+        "message": "Sélectionner la configuration de traduction",
+        "description": "heading over list of translations"
+    },
+    "newTranslationHeading": {
+        "message": "Créer une nouvelle configuration de traduction",
+        "description": "heading over new translation form"
+    },
+    "attentionMessage": {
+        "message": "<b> Attention: </ b> Google Translate est <i> pas libre </ i>. Yandex est <i> recommandé </ i>!"
+    },
+    "translationSettings": {
+        "message": "Paramètres de traduction"
+    },
+    "adjustmentsDescription": {
+        "message": "Formatez les mots traduits selon les <a href='http://lesliefranke.com/files/reference/csscheatsheet.html' target='_blank'> CSS </a> paires valeur-propriété: "
+    },
+    "blacklistingWebsitesDescription": {
+        "message": "Ne traduisez pas les sites Web suivants:"
+    },
+    "blacklistingWordsDescription": {
+        "message": "Ne pas traduire les mots suivants:"
+    },
+    "userDefinedTranslations": {
+        "message": "Utilisez les traductions définies par l'utilisateur suivantes:"
+    },
+    "userLimitedTranslationsCheckbox": {
+        "message": "Cela limitera les traductions à celles fournies dans le dictionnaire défini par l'utilisateur. Les mots qui ne sont pas dans le dictionnaire ne seront pas traduits."
+    },
+    "basicOptionsTab": {
+        "message": "Options de base"
+    },
+    "advancedOptionsTab": {
+        "message": "Options avancées"
+    },
+    "contributionsTab": {
+        "message": "Contributions"
+    },
+    "translationPatterns": {
+        "message": "Modèles de traduction"
+    },
+    "translatorKeys": {
+        "message": "Clés de traducteur"
+    },
+    "createNewPattern": {
+        "message": "Créer un nouveau motif"
+    },
+    "yandexKey": {
+        "message": "Clé Yandex"
+    },
+    "bingKey": {
+        "message": "Bing Key"
+    },
+    "bingClientID": {
+        "message": "Bing Client ID"
+    },
+    "bingClientSecret": {
+        "message": "Bing Client Secret"
+    },
+    "googleKey": {
+        "message": "Clé Google"
+    },
+    "create": {
+        "message": "Créer"
+    },
+    "add": {
+        "message": "Ajouter"
+    },
+    "blacklistWebsites": {
+        "message": "Sites Web de liste noire"
+    },
+    "blacklistWords": {
+        "message": "Mots de liste noire"
+    },
+    "automaticBlacklisting": {
+        "message": "Liste noire automatique"
+    },
+    "savedTranslations": {
+        "message": "Traductions enregistrées"
+    },
+    "learntWords": {
+        "message": "Mots Appris"
+    },
+    "difficultyBuckets": {
+        "message": "Difficulté Buckets"
+    },
+    "noSavedTranslations": {
+        "message": "No Saved Translations"
+    },
+    "noWordsLearnt": {
+        "message": "Pas de mots appris"
+    },
+    "emptyDifficultyBuckets": {
+        "message": "Seaux de difficulté vides"
+    },
+    "colorSettings": {
+        "message": "Paramètres de couleur"
+    },
+    "wordConfiguration": {
+        "message": "Configuration du mot"
+    },
+    "playbackSettings": {
+        "message": "Paramètres de lecture"
+    },
+    "backup": {
+        "message": "Sauvegarde"
+    },
+    "restore": {
+        "message": "Restaurer"
+    },
+    "dangerZone": {
+        "message": "Zone de danger"
+    },
+    "patternWiseStats": {
+        "message": "Statistiques en forme de modèle"
+    },
+    "letsTalkNumbers": {
+        "message": "Parlons des numéros!"
+    },
+    "chooseCorrectTranslations": {
+        "message": "Choisir les traductions correctes"
+    },
+    "contribute": {
+        "message": "Contribuer"
+    },
+    "support": {
+        "message": "Support"
+    },
+    "translation": {
+        "message": "Traduction"
+    },
+    "blacklist": {
+        "message": "Liste noire"
+    },
+    "learning": {
+        "message": "Apprentissage"
+    },
+    "advanced": {
+        "message": "Avancé"
+    },
+    "statistics": {
+        "message": "Statistiques"
+    },
+    "quiz": {
+        "message": "Quiz"
+    },
+    "troubleshooting": {
+        "message": "Dépannage"
+    }
+
+}

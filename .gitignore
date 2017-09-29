@@ -5,3 +5,4 @@ build.js.map
 lib/*.js
 videos/
 misc/
+.DS_Store
