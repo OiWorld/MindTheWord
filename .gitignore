@@ -4,3 +4,4 @@ build.js
 build.js.map
 lib/*.js
 videos/
+misc/
