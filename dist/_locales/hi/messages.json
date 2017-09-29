@@ -1,0 +1,405 @@
+{
+    "appName": {
+        "message": "Mind The Word",
+        "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+        "message": "इंटरनेट ब्राउज़िंग करते समय भाषाओं को जानें!",
+        "description": "The description of the application, displayed in the web store."
+    },
+    "selectTranslationHeading": {
+        "message": "अनुवाद विन्यास का चयन करें",
+        "description": "heading over list of translations"
+    },
+    "newTranslationHeading": {
+        "message": "नया अनुवाद कॉन्फ़िगरेशन बनाएं",
+        "description": "heading over new translation form"
+    },
+    "attentionMessage": {
+        "message": "<b>ध्यान:</b> Google Translate है <i>मुफ्त में नहीं</i>. Yandex <i>की सिफारिश की</i>!"
+    },
+    "translationSettings": {
+        "message": "अनुवाद सेटिंग्स"
+    },
+    "adjustmentsDescription": {
+        "message": "निम्नलिखित के अनुसार अनुवादित शब्द प्रारूपित करें <a href='http://lesliefranke.com/files/reference/csscheatsheet.html' target='_blank'>CSS </a>गुण-मान जोड़े:"
+    },
+    "blacklistingWebsitesDescription": {
+        "message": "निम्नलिखित वेबसाइटों का अनुवाद न करें: "
+    },
+    "blacklistingWordsDescription": {
+        "message": "निम्नलिखित शब्दों का अनुवाद न करें: "
+    },
+    "userDefinedTranslations": {
+        "message": "निम्न उपयोगकर्ता परिभाषित अनुवादों का उपयोग करें:"
+    },
+    "userLimitedTranslationsCheckbox": {
+        "message": "यह केवल उपयोगकर्ता परिभाषित शब्दकोष में दिए गए अनुवादों को सीमित कर देगा। शब्दकोष के शब्दों में अनुवाद नहीं किया जाएगा."
+    },
+    "basicOptionsTab": {
+        "message": "बुनियादी विकल्प "
+    },
+    "advancedOptionsTab": {
+        "message": "उन्नत विकल्प "
+    },
+    "contributionsTab": {
+        "message": "योगदान"
+    },
+    "translationPatterns": {
+        "message": "अनुवाद पैटर्न"
+    },
+    "translatorKeys": {
+        "message": "ट्रांसलेटर कुंजी"
+    },
+    "createNewPattern": {
+        "message": "एक नया पैटर्न बनाएँ"
+    },
+    "yandexKey": {
+        "message": "Yandex कुंजी"
+    },
+    "bingKey": {
+        "message": "Bing कुंजी"
+    },
+    "bingClientID": {
+        "message": "Bing क्लाइंट ID"
+    },
+    "bingClientSecret": {
+        "message": "Bing क्लाइंट सीक्रेट"
+    },
+    "googleKey": {
+        "message": "Google कुंजी"
+    },
+    "create": {
+        "message": "सर्जन करना"
+    },
+    "add": {
+        "message": "जोड़ें"
+    },
+    "blacklistWebsites": {
+        "message": "ब्लैकलिस्ट वेबसाइट्स"
+    },
+    "blacklistWords": {
+        "message": "ब्लैकलिस्ट शब्द"
+    },
+    "automaticBlacklisting": {
+        "message": "स्वचालित ब्लैकलिस्टिंग"
+    },
+    "savedTranslations": {
+        "message": "सहेजे गए अनुवाद"
+    },
+    "noSavedTranslations": {
+        "message": "कोई सहेजे गए अनुवाद नहीं"
+    },
+    "noWordsLearnt": {
+        "message": "कोई शब्द नहीं सीखा"
+    },
+    "emptyDifficultyBuckets": {
+        "message": "खाली कठिनाई बाल्टियाँ"
+    },
+    "colorSettings": {
+        "message": "रंग सेटिंग्स"
+    },
+    "wordConfiguration": {
+        "message": "वर्ड कॉन्फ़िगरेशन"
+    },
+    "playbackSettings": {
+        "message": "प्लेबैक सेटिंग्स"
+    },
+    "backup": {
+        "message": "बैकअप"
+    },
+    "restore": {
+        "message": "पुनर्स्थापित करें"
+    },
+    "dangerZone": {
+        "message": "खतरनाक क्षेत्र"
+    },
+    "patternWiseStats": {
+        "message": "पैटर्न के अनुसार आँकड़े"
+    },
+    "letsTalkNumbers": {
+        "message": "चलो नंबर की बात करते हैं!"
+    },
+    "chooseCorrectTranslations": {
+        "message": "सही अनुवाद चुनें"
+    },
+    "support": {
+        "message": "समर्थन"
+    },
+    "translation": {
+        "message": "अनुवाद"
+    },
+    "blacklist": {
+        "message": "ब्लैकलिस्ट"
+    },
+    "learning": {
+        "message": "सीख रहा हूँ"
+    },
+    "advanced": {
+        "message": "उन्नत"
+    },
+    "statistics": {
+        "message": "सांख्यिकी"
+    },
+    "quiz": {
+        "message": "प्रश्नोत्तरी"
+    },
+    "insertKeys": {
+        "message": "कृपया उन अनुवाद सेवाओं के लिए कुंजी डालें जिनमें आप उपयोग करना चाहते हैं और फिर नीचे एक नया अनुवाद पैटर्न बना सकते हैं।"
+    },
+    "and": {
+        "message": "और"
+    },
+    "requireKeys": {
+        "message": "कुंजी की आवश्यकता है"
+    },
+    "translationParagraph1": {
+        "message": "वे उपयोगकर्ता की पहचान करने के लिए कुंजी का उपयोग करते हैं, ताकि प्रत्येक उपयोगकर्ता प्रति माह अनुरोध कर सकते हैं। अगर सीमा पार हो गई है, तो वे अस्थायी रूप से काम करना बंद कर देते हैं। चूंकि सीमा अधिक है, यह संभवतः पहुंचने की संभावना नहीं है।"
+    },
+    "translationParagraph2": {
+        "message": "कृपया उन अनुवादकों के लिए कुंजी जोड़ें जिन्हें आप नीचे प्रयोग करना चाहते हैं।"
+    },
+    "note": {
+        "message": "ध्यान दें"
+    },
+    "needHelp1": {
+        "message": "यदि आपको एक कुंजी प्राप्त करने में सहायता की आवश्यकता है, तो देखें"
+    },
+    "needHelp2": {
+        "message": "यूट्यूब पर। आप अन्य ट्यूटोरियल देख सकते हैं"
+    },
+    "needHelp3": {
+        "message": " यहाँ"
+    },
+    "use": {
+        "message": "उपयोग"
+    },
+    "toTranslate": {
+        "message": "अनुवाद करना"
+    },
+    "percentOfall": {
+        "message": "सभी का प्रतिशत"
+    },
+    "wordsInto": {
+        "message": "शब्दों में"
+    },
+    "oneWordPerSentence": {
+        "message": "वाक्य के प्रति एक शब्द"
+    },
+    "userDefinedOnly": {
+        "message": "उपयोगकर्ता केवल निर्धारित"
+    },
+    "doNotTranslate": {
+        "message": "अनुवाद न करें"
+    },
+    "videoTutorial": {
+        "message": "वीडियो ट्यूटोरियल"
+    },
+    "restoreKeys": {
+        "message": "कुंजी को पुनर्स्थापित करें"
+    },
+    "getFreeYandexKey": {
+        "message": "निशुल्क Yandex कुंजी प्राप्त करें"
+    },
+    "getFreeBingKey": {
+        "message": "निशुल्क Bing कुंजी प्राप्त करें"
+    },
+    "getPaidGoogleKey": {
+        "message": "भुगतान की गई Google कुंजी प्राप्त करें"
+    },
+    "pleaseInsertkey": {
+        "message": "कृपया एक कुंजी डालें"
+    },
+    "contribute": {
+        "message": "योगदान"
+    },
+    "fixBugsPart1": {
+        "message": "इस मुक्त ओपन-सोर्स एक्सटेंशन के लिए बग्स को ठीक करें और नई सुविधाओं को लागू करें। हमारे क्लोन"
+    },
+    "fixBugsPart2": {
+        "message": "छात्रवृत्ति"
+    },
+    "fixBugsPart3": {
+        "message": "उपलब्ध हैं।"
+    },
+    "mail": {
+        "message": "आप हमें यहां मेल कर सकते हैं"
+    },
+    "donateToSupport": {
+        "message": "यदि आप इस और अन्य निशुल्क एक्सटेंशन के विकास का समर्थन करने के लिए दान करना चाहते हैं"
+    },
+    "noTranslateWords": {
+        "message": "कोई भी अनुवादित शब्द नहीं"
+    },
+    "translateWordstoQuiz": {
+        "message": "प्रश्नोत्तरी लेने के लिए शब्दों का अनुवाद करें"
+    },
+    "generateNewQuiz": {
+        "message": "नया प्रश्नोत्तरी उत्पन्न करें"
+    },
+    "wordsTranslated": {
+        "message": " अभी तक अनुवादित शब्द!"
+    },
+    "resetCount": {
+        "message": " गणना रीसेट करें"
+    },
+    "wordsTranslatedFrom": {
+        "message": "शब्दों से अनुवाद किया गया है"
+    },
+    "translate": {
+        "message": "अनुवाद"
+    },
+    "wordsAnd": {
+        "message": "शब्द और"
+    },
+    "charactersTranslateWith": {
+        "message": "वर्ण के साथ अनुवाद किया गया है"
+    },
+    "during": {
+        "message": "दौरान"
+    },
+    "numberOf": {
+        "message": "संख्या"
+    },
+    "numberOfWordsIn": {
+        "message": "शब्दों की संख्या "
+    },
+    "blacklistedWebsites": {
+        "message": "ब्लैकलिस्टेड वेबसाइटें"
+    },
+    "blacklistedWords": {
+        "message": "ब्लैकलिस्ट किए गए शब्द"
+    },
+    "difficultyBuckets": {
+        "message": "कठिनाई बाल्टी"
+    },
+    "learntWords": {
+        "message": "सीखा शब्द"
+    },
+    "backupConfiguration": {
+        "message": "बैकअप कॉन्फ़िगरेशन"
+    },
+    "backupAll": {
+        "message": "किसी फ़ाइल में आपकी सभी सेटिंग्स और कुंजियां बैकअप करें"
+    },
+    "backupButton": {
+        "message": "बैकअप"
+    },
+    "backupKeys": {
+        "message": "बैकअप कुंजी"
+    },
+    "backupAllKeysInAFile": {
+        "message": "एक फ़ाइल में अपनी सभी कुंजीयाँ बैकअप लें"
+    },
+    "restoreAllKeysFromAFile": {
+        "message": "एक फ़ाइल से अपनी सभी कुंजीयाँ पुनर्स्थापित करें"
+    },
+    "resetConfiguration": {
+        "message": "कॉन्फ़िगरेशन रीसेट करें"
+    },
+    "resetConfigurationDescription": {
+        "message": "यह क्रिया सभी विकल्पों को डिफ़ॉल्ट पर रीसेट कर देगा। आप अपनी सभी सेटिंग, सहेजे गए डेटा और कुंजियां खो देंगे। यह क्रिया अपरिवर्तनीय है।"
+    },
+    "delete": {
+        "message": "हटाएं"
+    },
+    "deleteKeys": {
+        "message": "कुंजीयाँ हटाएं"
+    },
+    "deleteDescription": {
+        "message": "यह क्रिया आपके सभी अनुवादक कुंजियों को हटा देगा। यह एक अपरिवर्तनीय कार्य है"
+    },
+    "confirmReset": {
+        "message": "रीसेट की पुष्टि करें"
+    },
+    "confirmResetBody": {
+        "message": "क्या आप वाकई सभी डेटा रीसेट करना चाहते हैं? यदि आप भविष्य में अपने डेटा को पुनर्स्थापित करना चाहते हैं, तो कृपया एक बैकअप बनाएं।"
+    },
+    "cancel": {
+        "message": "रद्द करना"
+    },
+    "yes": {
+        "message": "हाँ"
+    },
+    "confirmDelete": {
+        "message": "हटाने की पुष्टि करें"
+    },
+    "confirmDeleteBody": {
+        "message": "क्या आप वाकई सभी कुंजीयाँ निकालना चाहते हैं यदि आप भविष्य में अपनी चाबियाँ पुनर्स्थापित करना चाहते हैं, तो कृपया एक बैकअप बनाएं।"
+    },
+    "textColor": {
+        "message": "लिखावट का रंग"
+    },
+    "backgroundColor": {
+        "message": "पीछे का रंग"
+    },
+    "awesome": {
+        "message": "बहुत बढ़िया"
+    },
+    "haveBeenReservedForWordsIn": {
+        "message": "में शब्दों के लिए आरक्षित किया गया है"
+    },
+    "easy": {
+        "message": " आसान"
+    },
+    "normal": {
+        "message": " सामान्य"
+    },
+    "hard": {
+        "message": " कठिन "
+    },
+    "minimumWordLength": {
+        "message": "न्यूनतम शब्द लंबाई"
+    },
+    "translatedSeq": {
+        "message": "अनुवादित अनुक्रमों में कम से कम होना चाहिए"
+    },
+    "andAtMost": {
+        "message": "और अधिकतर"
+    },
+    "words": {
+        "message": "शब्द"
+    },
+    "original": {
+        "message": "मूल"
+    },
+    "translated": {
+        "message": "अनुवादित"
+    },
+    "voiceName": {
+        "message": "आवाज़ का नाम"
+    },
+    "defaultVolumeLevel": {
+        "message": "डिफ़ॉल्ट वॉल्यूम स्तर"
+    },
+    "speechRate": {
+        "message": "भाषण दर"
+    },
+    "pitch": {
+        "message": "पिच"
+    },
+    "noBlacklistedWebsites": {
+        "message": " कोई ब्लैकलिस्टेड वेबसाइट नहीं"
+    },
+    "noBlacklistedWords": {
+        "message": "कोई ब्लैकलिस्टेड शब्द नहीं"
+    },
+    "on": {
+        "message": "चालू "
+    },
+    "off": {
+        "message": "बंद"
+    },
+    "maxWordToggles": {
+        "message": "अधिकतम वर्ड टॉगल"
+    },
+    "maxActivationsToggles": {
+        "message": "अधिकतम सक्रियण टॉगल"
+    },
+    "restoreConfiguration": {
+        "message": "पुनर्स्थापना कॉन्फ़िगरेशन"
+    },
+    "restoreAllYourSettings": {
+        "message": "किसी फ़ाइल से आपकी सभी सेटिंग्स और कुंजियां पुनर्स्थापित करें"
+    }
+}

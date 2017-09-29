@@ -1,0 +1,159 @@
+{
+    "appName": {
+        "message": "Mind The Word",
+        "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+        "message": "ఇంటర్నెట్ బ్రౌజింగ్ చేస్తున్నప్పుడు భాషలు తెలుసుకోండి",
+        "description": "అప్లికేషన్ యొక్క వివరణ, వెబ్ స్టోర్లో ప్రదర్శించబడుతుంది."
+    },
+    "selectTranslationHeading": {
+        "message": "అనువాద ఆకృతీకరణ ఎంచుకోండి",
+        "description": "అనువాదాల జాబితా పై శీర్షిక"
+    },
+    "newTranslationHeading": {
+        "message": "సృష్టించు న్యూ అనువాదం ఆకృతీకరణ",
+        "description": "నూతన అనువాద రూపం పైగా శీర్షిక"
+    },
+    "attentionMessage": {
+        "message": "<b>Attention:</b> Google Translate ఉంది <i>ఉచిత కాదు</i>. Yandex ఉంది <i>సిఫార్సు</i>!"
+    },
+    "translationSettings": {
+        "message": "అనువాదం సెట్టింగులు"
+    },
+    "adjustmentsDescription": {
+        "message": "కింది ప్రకారం అనువాదం పదాలు ఫార్మాట్ <a href='http://lesliefranke.com/files/reference/csscheatsheet.html' target='_blank'>CSS </a>ఆస్తి విలువ జతలను:"
+    },
+    "blacklistingWebsitesDescription": {
+        "message": "క్రింది వెబ్సైట్ల అనువదించవద్దు: "
+    },
+    "blacklistingWordsDescription": {
+        "message": "క్రింది పదాలను అనువదించడానికి లేదు: "
+    },
+    "userDefinedTranslations": {
+        "message": "క్రింది వినియోగదారు నిర్వచించిన అనువాదాలు ఉపయోగించండి:"
+    },
+    "userLimitedTranslationsCheckbox": {
+        "message": "ఈ వినియోగదారు నిర్వచించిన నిఘంటువులో అందించి వారికి అనువాదాలు పరిమితం చేస్తుంది. నిఘంటువు పదాలు కాదు అనువాదం కాదు."
+    },
+    "basicOptionsTab": {
+        "message": "బేసిక్ ఐచ్ఛికాలు"
+    },
+    "advancedOptionsTab": {
+        "message": "అధునాతన ఎంపికలు "
+    },
+    "contributionsTab": {
+        "message": "కంట్రిబ్యూషన్స్"
+    },
+    "translationPatterns": {
+        "message": "అనువాదం పద్ధతులు"
+    },
+    "translatorKeys": {
+        "message": "అనువాదకుడు కీస్"
+    },
+    "createNewPattern": {
+        "message": "ఒక కొత్త నమూనా సృష్టించడానికి"
+    },
+    "yandexKey": {
+        "message": "Yandex కీ"
+    },
+    "bingKey": {
+        "message": "Bing కీ"
+    },
+    "bingClientID": {
+        "message": "Bing క్లయింట్ ID"
+    },
+    "bingClientSecret": {
+        "message": "Bing క్లయింట్ సీక్రెట్"
+    },
+    "googleKey": {
+        "message": "Google కీ"
+    },
+    "create": {
+        "message": "సృష్టించు"
+    },
+    "add": {
+        "message": "జోడించు"
+    },
+    "blacklistWebsites": {
+        "message": "బ్లాక్లిస్ట్ వెబ్ సైట్లు"
+    },
+    "blacklistWords": {
+        "message": "బ్లాక్లిస్ట్ వర్డ్స్"
+    },
+    "automaticBlacklisting": {
+        "message": "స్వయంచాలక బ్లాక్లిస్టు చేయుట"
+    },
+    "savedTranslations": {
+        "message": "సేవ్ అనువాదాలు"
+    },
+    "learntWords": {
+        "message": "లెర్న్డ్ వర్డ్స్"
+    },
+    "difficultyBuckets": {
+        "message": "కఠినత బకెట్ల"
+    },
+    "noSavedTranslations": {
+        "message": "నో సేవ్డ్ అనువాదాలు"
+    },
+    "noWordsLearnt": {
+        "message": "నో వర్డ్స్ లెర్న్డ్"
+    },
+    "emptyDifficultyBuckets": {
+        "message": "ఖాళీ కఠినత బకెట్ల"
+    },
+    "colorSettings": {
+        "message": "రంగు సెట్టింగులు"
+    },
+    "wordConfiguration": {
+        "message": "పద ఆకృతీకరణ"
+    },
+    "playbackSettings": {
+        "message": "ప్లేబ్యాక్ సెట్టింగ్లు"
+    },
+    "backup": {
+        "message": "బ్యాకప్"
+    },
+    "restore": {
+        "message": "పునరుద్ధరించడానికి"
+    },
+    "dangerZone": {
+        "message": "ప్రమాద స్థలము"
+    },
+    "patternWiseStats": {
+        "message": "నమూనా వారీగా గణాంకాలు"
+    },
+    "letsTalkNumbers": {
+        "message": "యొక్క సంఖ్యలు మాట్లాడటానికి లెట్!"
+    },
+    "chooseCorrectTranslations": {
+        "message": "కరెక్ట్ అనువాదాలు ఎంచుకోండి"
+    },
+    "contribute": {
+        "message": "దోహదం"
+    },
+    "support": {
+        "message": "మద్దతు"
+    },
+    "translation": {
+        "message": "అనువాదం"
+    },
+    "blacklist": {
+        "message": "ఆమోదంకానిజాబితా"
+    },
+    "learning": {
+        "message": "తెలుసుకోవడానికి"
+    },
+    "advanced": {
+        "message": "ఆధునిక"
+    },
+    "statistics": {
+        "message": "గణాంకాలు"
+    },
+    "quiz": {
+        "message": "క్విజ్"
+    },
+    "troubleshooting": {
+        "message": "సమస్య పరిష్కరించు"
+    }
+}
