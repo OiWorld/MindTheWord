@@ -1,7 +1,8 @@
 {
   "manifest_version": 2,
-  "version": "3.1",
+  "version": "3.2.0",
   "name": "__MSG_appName__",
+  "short_name": "MindTheWord", 
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "content_security_policy": "media-src 'self'; object-src 'self'; script-src 'self' https://www.google.com https://ssl.google-analytics.com;",
