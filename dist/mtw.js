@@ -75,7 +75,9 @@
                             for (var i = 0; i < d.dependencies.length; ++i) d.dependencies[i] === t && d.setters[i](n)
                     }
                     return t.locked = !1, r
-                }, r.name);
+                }, {
+                    id: r.name
+                });
             t.setters = o.setters, t.execute = o.execute;
             for (var a = 0, i = r.normalizedDeps.length; i > a; a++) {
                 var l, s = r.normalizedDeps[a],
@@ -89,7 +91,7 @@
     function i(e) {
         var r, t = v[e];
         if (t) t.declarative ? f(e, []) : t.evaluated || l(t), r = t.module.exports;
-        else if (r = p(e), !r) throw new Error("Unable to load dependency " + e + ".");
+        else if (!(r = p(e))) throw new Error("Unable to load dependency " + e + ".");
         return (!t || t.declarative) && r && r.__useDefault ? r.default : r
     }
 
@@ -112,7 +114,7 @@
                     if (r.deps[t] == e) return i(r.normalizedDeps[t]);
                 throw new TypeError("Module " + e + " not declared as a dependency.")
             }, t, n);
-            c && (n.exports = c), t = n.exports, t && t.__esModule ? r.esModule = t : r.esModule = s(t)
+            void 0 !== c && (n.exports = c), t = n.exports, t && t.__esModule ? r.esModule = t : r.esModule = s(t)
         }
     }
 
@@ -152,7 +154,7 @@
 
     function p(e) {
         if (I[e]) return I[e];
-        if ("@node/" == e.substr(0, 6)) return D(e.substr(6));
+        if ("@node/" == e.substr(0, 6)) return I[e] = s(D(e.substr(6)));
         var r = v[e];
         if (!r) throw "Module " + e + " not present.";
         return a(e), f(e, []), v[e] = void 0, r.declarative && x(r.module.exports, "__esModule", {
@@ -186,7 +188,7 @@
         }
     }();
     var y = {},
-        D = "undefined" != typeof System && System._nodeRequire || "undefined" != typeof require && require.resolve && "undefined" != typeof process && require,
+        D = "undefined" != typeof System && System._nodeRequire || "undefined" != typeof require && void 0 !== require.resolve && "undefined" != typeof process && process.platform && require,
         I = {
             "@empty": {}
         };
@@ -204,9 +206,9 @@
                         newModule: function(e) {
                             return e
                         }
-                    }, i = 0; i < n.length; i++)(function(e, r) {
+                    }, i = 0; i < n.length; i++) ! function(e, r) {
                     r && r.__esModule ? I[e] = r : I[e] = s(r)
-                })(n[i], arguments[i]);
+                }(n[i], arguments[i]);
                 a(d);
                 var l = p(e[0]);
                 if (e.length > 1)
@@ -218,35 +220,37 @@
 }("undefined" != typeof self ? self : global)(["1"], [], !1, function($__System) {
     this.require, this.exports, this.module;
     $__System.registerDynamic("2", ["3"], !0, function($__require, exports, module) {
-        var defined = $__require("3");
-        return module.exports = function(it) {
+        var defined = (this || self, $__require("3"));
+        module.exports = function(it) {
             return Object(defined(it))
-        }, module.exports
+        }
     }), $__System.registerDynamic("4", ["5", "6", "7"], !0, function($__require, exports, module) {
-        var $export = $__require("5"),
+        var $export = (this || self, $__require("5")),
             core = $__require("6"),
             fails = $__require("7");
-        return module.exports = function(KEY, exec) {
+        module.exports = function(KEY, exec) {
             var fn = (core.Object || {})[KEY] || Object[KEY],
                 exp = {};
             exp[KEY] = exec(fn), $export($export.S + $export.F * fails(function() {
                 fn(1)
             }), "Object", exp)
-        }, module.exports
+        }
     }), $__System.registerDynamic("8", ["2", "4"], !0, function($__require, exports, module) {
-        var toObject = $__require("2");
-        return $__require("4")("keys", function($keys) {
+        var toObject = (this || self, $__require("2"));
+        $__require("4")("keys", function($keys) {
             return function(it) {
                 return $keys(toObject(it))
             }
-        }), module.exports
+        })
     }), $__System.registerDynamic("9", ["8", "6"], !0, function($__require, exports, module) {
-        return $__require("8"), module.exports = $__require("6").Object.keys, module.exports
+        this || self;
+        $__require("8"), module.exports = $__require("6").Object.keys
     }), $__System.registerDynamic("a", ["9"], !0, function($__require, exports, module) {
-        return module.exports = {
+        this || self;
+        module.exports = {
             default: $__require("9"),
             __esModule: !0
-        }, module.exports
+        }
     }), $__System.register("b", ["d", "e", "f", "c"], function(_export) {
         var _createClass, _classCallCheck, _Promise, http, YandexTranslate;
         return {
@@ -268,18 +272,17 @@
                     return _createClass(YandexTranslate, [{
                         key: "getTranslations",
                         value: function(words) {
-                            var _this = this,
-                                promise = new _Promise(function(resolve, reject) {
-                                    var promises = [];
-                                    words = _this.toList(words), promises = _this.getPromises(words), _Promise.all(promises).then(function(responses) {
-                                        var translations = _this.combineTranslations(responses),
-                                            tMap = _this.mapTranslations(translations, words);
-                                        resolve(tMap)
-                                    }).catch(function(e) {
-                                        reject(e)
-                                    })
-                                });
-                            return promise
+                            var _this = this;
+                            return new _Promise(function(resolve, reject) {
+                                var promises = [];
+                                words = _this.toList(words), promises = _this.getPromises(words), _Promise.all(promises).then(function(responses) {
+                                    var translations = _this.combineTranslations(responses),
+                                        tMap = _this.mapTranslations(translations, words);
+                                    resolve(tMap)
+                                }).catch(function(e) {
+                                    reject(e)
+                                })
+                            })
                         }
                     }, {
                         key: "toList",
@@ -298,6 +301,7 @@
                             for (this.url += "&lang=" + this.srcLang + "-" + this.targetLang; i < words.length;) {
                                 url = this.url, limitedWords = words.slice(i, i + 500);
                                 for (var j in limitedWords){
+
                                 	try{
                                 		var buff = encodeURI(limitedWords[j]);
                                 		url += "&text=" + limitedWords[j];
@@ -305,7 +309,8 @@
                                 	}catch(e){
                                 		;
                                 	}
-                                } 
+
+                                }
                                 url = encodeURI(url), promises.push(http(url).get()), i += 500
                             }
                             return promises
@@ -327,15 +332,14 @@
                     }, {
                         key: "translateSentence",
                         value: function(text) {
-                            var _this2 = this,
-                                promise = new _Promise(function(resolve, reject) {
-                                    _this2.url += "&lang=" + _this2.srcLang + "-" + _this2.targetLang, _this2.url += "&text=" + text, http(_this2.url).get().then(function(data) {
-                                        resolve(JSON.parse(data).text[0])
-                                    }).catch(function(e) {
-                                        reject(e)
-                                    })
-                                });
-                            return promise
+                            var _this2 = this;
+                            return new _Promise(function(resolve, reject) {
+                                _this2.url += "&lang=" + _this2.srcLang + "-" + _this2.targetLang, _this2.url += "&text=" + text, http(_this2.url).get().then(function(data) {
+                                    resolve(JSON.parse(data).text[0])
+                                }).catch(function(e) {
+                                    reject(e)
+                                })
+                            })
                         }
                     }]), YandexTranslate
                 }(), _export("YandexTranslate", YandexTranslate)
@@ -367,28 +371,27 @@
                     return _createClass(BingTranslate, [{
                         key: "getTranslations",
                         value: function(words) {
-                            var _this = this,
-                                promise = new _Promise(function(resolve, reject) {
-                                    var payload = _this.formPayload(words),
-                                        headers = {
-                                            "content-type": "application/x-www-form-urlencoded"
-                                        };
-                                    http(_this.authUrl).post(_this.authData, headers).then(function(data) {
-                                        headers = {
-                                            Authorization: "Bearer " + JSON.parse(data).access_token,
-                                            "content-type": "application/xml"
-                                        }, http(_this.url).post(payload, headers).then(function(res) {
-                                            var translations = _this.filterTranslations(res),
-                                                tMap = _this.mapTranslations(translations, words);
-                                            resolve(tMap)
-                                        }).catch(function(e) {
-                                            reject(e)
-                                        })
+                            var _this = this;
+                            return new _Promise(function(resolve, reject) {
+                                var payload = _this.formPayload(words),
+                                    headers = {
+                                        "content-type": "application/x-www-form-urlencoded"
+                                    };
+                                http(_this.authUrl).post(_this.authData, headers).then(function(data) {
+                                    headers = {
+                                        Authorization: "Bearer " + JSON.parse(data).access_token,
+                                        "content-type": "application/xml"
+                                    }, http(_this.url).post(payload, headers).then(function(res) {
+                                        var translations = _this.filterTranslations(res),
+                                            tMap = _this.mapTranslations(translations, words);
+                                        resolve(tMap)
                                     }).catch(function(e) {
                                         reject(e)
                                     })
-                                });
-                            return promise
+                                }).catch(function(e) {
+                                    reject(e)
+                                })
+                            })
                         }
                     }, {
                         key: "formPayload",
@@ -426,44 +429,44 @@
                     }, {
                         key: "translateSentence",
                         value: function(text) {
-                            var _this2 = this,
-                                promise = new _Promise(function(resolve, reject) {
-                                    _this2.url = "http://api.microsofttranslator.com/V2/Http.svc/Translate", _this2.url += "?appId", _this2.url += "&from=" + _this2.srcLang, _this2.url += "&to=" + _this2.targetLang, _this2.url += "&text=" + text;
-                                    var headers = {
-                                        "content-type": "application/x-www-form-urlencoded"
-                                    };
-                                    http(_this2.authUrl).post(_this2.authData, headers).then(function(data) {
-                                        headers = {
-                                            Authorization: "Bearer " + JSON.parse(data).access_token
-                                        }, http(_this2.url).get({}, headers).then(function(res) {
-                                            var xml = _this2.parseXML(res),
-                                                sentence = xml.getElementsByTagName("string")[0].innerHTML;
-                                            resolve(sentence)
-                                        }).catch(function(e) {
-                                            reject(e)
-                                        })
+                            var _this2 = this;
+                            return new _Promise(function(resolve, reject) {
+                                _this2.url = "http://api.microsofttranslator.com/V2/Http.svc/Translate", _this2.url += "?appId", _this2.url += "&from=" + _this2.srcLang, _this2.url += "&to=" + _this2.targetLang, _this2.url += "&text=" + text;
+                                var headers = {
+                                    "content-type": "application/x-www-form-urlencoded"
+                                };
+                                http(_this2.authUrl).post(_this2.authData, headers).then(function(data) {
+                                    headers = {
+                                        Authorization: "Bearer " + JSON.parse(data).access_token
+                                    }, http(_this2.url).get({}, headers).then(function(res) {
+                                        var xml = _this2.parseXML(res),
+                                            sentence = xml.getElementsByTagName("string")[0].innerHTML;
+                                        resolve(sentence)
+                                    }).catch(function(e) {
+                                        reject(e)
                                     })
-                                });
-                            return promise
+                                })
+                            })
                         }
                     }]), BingTranslate
                 }(), _export("BingTranslate", BingTranslate)
             }
         }
     }), $__System.registerDynamic("11", ["12"], !0, function($__require, exports, module) {
-        var $ = $__require("12");
-        return module.exports = function(it, key, desc) {
+        var $ = (this || self, $__require("12"));
+        module.exports = function(it, key, desc) {
             return $.setDesc(it, key, desc)
-        }, module.exports
+        }
     }), $__System.registerDynamic("13", ["11"], !0, function($__require, exports, module) {
-        return module.exports = {
+        this || self;
+        module.exports = {
             default: $__require("11"),
             __esModule: !0
-        }, module.exports
+        }
     }), $__System.registerDynamic("d", ["13"], !0, function($__require, exports, module) {
         "use strict";
-        var _Object$defineProperty = $__require("13").default;
-        return exports.default = function() {
+        var _Object$defineProperty = (this || self, $__require("13").default);
+        exports.default = function() {
             function defineProperties(target, props) {
                 for (var i = 0; i < props.length; i++) {
                     var descriptor = props[i];
@@ -473,29 +476,31 @@
             return function(Constructor, protoProps, staticProps) {
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), Constructor
             }
-        }(), exports.__esModule = !0, module.exports
+        }(), exports.__esModule = !0
     }), $__System.registerDynamic("e", [], !0, function($__require, exports, module) {
         "use strict";
-        return exports.default = function(instance, Constructor) {
+        this || self;
+        exports.default = function(instance, Constructor) {
             if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function")
-        }, exports.__esModule = !0, module.exports
+        }, exports.__esModule = !0
     }), $__System.registerDynamic("14", [], !0, function($__require, exports, module) {
-        return module.exports
+        "format cjs";
+        this || self
     }), $__System.registerDynamic("15", ["16", "3"], !0, function($__require, exports, module) {
-        var toInteger = $__require("16"),
+        var toInteger = (this || self, $__require("16")),
             defined = $__require("3");
-        return module.exports = function(TO_STRING) {
+        module.exports = function(TO_STRING) {
             return function(that, pos) {
                 var a, b, s = String(defined(that)),
                     i = toInteger(pos),
                     l = s.length;
-                return i < 0 || i >= l ? TO_STRING ? "" : void 0 : (a = s.charCodeAt(i), a < 55296 || a > 56319 || i + 1 === l || (b = s.charCodeAt(i + 1)) < 56320 || b > 57343 ? TO_STRING ? s.charAt(i) : a : TO_STRING ? s.slice(i, i + 2) : (a - 55296 << 10) + (b - 56320) + 65536)
+                return i < 0 || i >= l ? TO_STRING ? "" : void 0 : (a = s.charCodeAt(i), a < 55296 || a > 56319 || i + 1 === l || (b = s.charCodeAt(i + 1)) < 56320 || b > 57343 ? TO_STRING ? s.charAt(i) : a : TO_STRING ? s.slice(i, i + 2) : b - 56320 + (a - 55296 << 10) + 65536)
             }
-        }, module.exports
+        }
     }), $__System.registerDynamic("17", ["15", "18"], !0, function($__require, exports, module) {
         "use strict";
-        var $at = $__require("15")(!0);
-        return $__require("18")(String, "String", function(iterated) {
+        var $at = (this || self, $__require("15")(!0));
+        $__require("18")(String, "String", function(iterated) {
             this._t = String(iterated), this._i = 0
         }, function() {
             var point, O = this._t,
@@ -507,48 +512,51 @@
                 value: point,
                 done: !1
             })
-        }), module.exports
+        })
     }), $__System.registerDynamic("19", [], !0, function($__require, exports, module) {
-        return module.exports = function() {}, module.exports
+        this || self;
+        module.exports = function() {}
     }), $__System.registerDynamic("1a", [], !0, function($__require, exports, module) {
-        return module.exports = function(done, value) {
+        this || self;
+        module.exports = function(done, value) {
             return {
                 value: value,
                 done: !!done
             }
-        }, module.exports
+        }
     }), $__System.registerDynamic("1b", ["1c"], !0, function($__require, exports, module) {
-        var cof = $__require("1c");
-        return module.exports = Object("z").propertyIsEnumerable(0) ? Object : function(it) {
+        var cof = (this || self, $__require("1c"));
+        module.exports = Object("z").propertyIsEnumerable(0) ? Object : function(it) {
             return "String" == cof(it) ? it.split("") : Object(it)
-        }, module.exports
+        }
     }), $__System.registerDynamic("3", [], !0, function($__require, exports, module) {
-        return module.exports = function(it) {
+        this || self;
+        module.exports = function(it) {
             if (void 0 == it) throw TypeError("Can't call method on  " + it);
             return it
-        }, module.exports
+        }
     }), $__System.registerDynamic("1d", ["1b", "3"], !0, function($__require, exports, module) {
-        var IObject = $__require("1b"),
+        var IObject = (this || self, $__require("1b")),
             defined = $__require("3");
-        return module.exports = function(it) {
+        module.exports = function(it) {
             return IObject(defined(it))
-        }, module.exports
+        }
     }), $__System.registerDynamic("1e", ["12", "1f", "20", "21", "22"], !0, function($__require, exports, module) {
         "use strict";
-        var $ = $__require("12"),
+        var $ = (this || self, $__require("12")),
             descriptor = $__require("1f"),
             setToStringTag = $__require("20"),
             IteratorPrototype = {};
-        return $__require("21")(IteratorPrototype, $__require("22")("iterator"), function() {
+        $__require("21")(IteratorPrototype, $__require("22")("iterator"), function() {
             return this
         }), module.exports = function(Constructor, NAME, next) {
             Constructor.prototype = $.create(IteratorPrototype, {
                 next: descriptor(1, next)
             }), setToStringTag(Constructor, NAME + " Iterator")
-        }, module.exports
+        }
     }), $__System.registerDynamic("18", ["23", "5", "24", "21", "25", "26", "1e", "20", "12", "22"], !0, function($__require, exports, module) {
         "use strict";
-        var LIBRARY = $__require("23"),
+        var LIBRARY = (this || self, $__require("23")),
             $export = $__require("5"),
             redefine = $__require("24"),
             hide = $__require("21"),
@@ -559,22 +567,16 @@
             getProto = $__require("12").getProto,
             ITERATOR = $__require("22")("iterator"),
             BUGGY = !([].keys && "next" in [].keys()),
-            FF_ITERATOR = "@@iterator",
-            KEYS = "keys",
-            VALUES = "values",
             returnThis = function() {
                 return this
             };
-        return module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+        module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
             $iterCreate(Constructor, NAME, next);
             var methods, key, getMethod = function(kind) {
                     if (!BUGGY && kind in proto) return proto[kind];
                     switch (kind) {
-                        case KEYS:
-                            return function() {
-                                return new Constructor(this, kind)
-                            };
-                        case VALUES:
+                        case "keys":
+                        case "values":
                             return function() {
                                 return new Constructor(this, kind)
                             }
@@ -584,53 +586,54 @@
                     }
                 },
                 TAG = NAME + " Iterator",
-                DEF_VALUES = DEFAULT == VALUES,
+                DEF_VALUES = "values" == DEFAULT,
                 VALUES_BUG = !1,
                 proto = Base.prototype,
-                $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT],
+                $native = proto[ITERATOR] || proto["@@iterator"] || DEFAULT && proto[DEFAULT],
                 $default = $native || getMethod(DEFAULT);
             if ($native) {
                 var IteratorPrototype = getProto($default.call(new Base));
-                setToStringTag(IteratorPrototype, TAG, !0), !LIBRARY && has(proto, FF_ITERATOR) && hide(IteratorPrototype, ITERATOR, returnThis), DEF_VALUES && $native.name !== VALUES && (VALUES_BUG = !0, $default = function() {
+                setToStringTag(IteratorPrototype, TAG, !0), !LIBRARY && has(proto, "@@iterator") && hide(IteratorPrototype, ITERATOR, returnThis), DEF_VALUES && "values" !== $native.name && (VALUES_BUG = !0, $default = function() {
                     return $native.call(this)
                 })
             }
             if (LIBRARY && !FORCED || !BUGGY && !VALUES_BUG && proto[ITERATOR] || hide(proto, ITERATOR, $default), Iterators[NAME] = $default, Iterators[TAG] = returnThis, DEFAULT)
                 if (methods = {
-                        values: DEF_VALUES ? $default : getMethod(VALUES),
-                        keys: IS_SET ? $default : getMethod(KEYS),
+                        values: DEF_VALUES ? $default : getMethod("values"),
+                        keys: IS_SET ? $default : getMethod("keys"),
                         entries: DEF_VALUES ? getMethod("entries") : $default
                     }, FORCED)
                     for (key in methods) key in proto || redefine(proto, key, methods[key]);
                 else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
             return methods
-        }, module.exports
+        }
     }), $__System.registerDynamic("27", ["19", "1a", "26", "1d", "18"], !0, function($__require, exports, module) {
         "use strict";
-        var addToUnscopables = $__require("19"),
+        var addToUnscopables = (this || self, $__require("19")),
             step = $__require("1a"),
             Iterators = $__require("26"),
             toIObject = $__require("1d");
-        return module.exports = $__require("18")(Array, "Array", function(iterated, kind) {
+        module.exports = $__require("18")(Array, "Array", function(iterated, kind) {
             this._t = toIObject(iterated), this._i = 0, this._k = kind
         }, function() {
             var O = this._t,
                 kind = this._k,
                 index = this._i++;
             return !O || index >= O.length ? (this._t = void 0, step(1)) : "keys" == kind ? step(0, index) : "values" == kind ? step(0, O[index]) : step(0, [index, O[index]])
-        }, "values"), Iterators.Arguments = Iterators.Array, addToUnscopables("keys"), addToUnscopables("values"), addToUnscopables("entries"), module.exports
+        }, "values"), Iterators.Arguments = Iterators.Array, addToUnscopables("keys"), addToUnscopables("values"), addToUnscopables("entries")
     }), $__System.registerDynamic("28", ["27", "26"], !0, function($__require, exports, module) {
+        this || self;
         $__require("27");
         var Iterators = $__require("26");
-        return Iterators.NodeList = Iterators.HTMLCollection = Iterators.Array, module.exports
+        Iterators.NodeList = Iterators.HTMLCollection = Iterators.Array
     }), $__System.registerDynamic("23", [], !0, function($__require, exports, module) {
-        return module.exports = !0, module.exports
+        this || self;
+        module.exports = !0
     }), $__System.registerDynamic("5", ["29", "6", "2a"], !0, function($__require, exports, module) {
-        var global = this,
+        var global = this || self,
             global = $__require("29"),
             core = $__require("6"),
             ctx = $__require("2a"),
-            PROTOTYPE = "prototype",
             $export = function(type, name, source) {
                 var key, own, out, IS_FORCED = type & $export.F,
                     IS_GLOBAL = type & $export.G,
@@ -639,77 +642,79 @@
                     IS_BIND = type & $export.B,
                     IS_WRAP = type & $export.W,
                     exports = IS_GLOBAL ? core : core[name] || (core[name] = {}),
-                    target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+                    target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {}).prototype;
                 IS_GLOBAL && (source = name);
-                for (key in source) own = !IS_FORCED && target && key in target, own && key in exports || (out = own ? target[key] : source[key], exports[key] = IS_GLOBAL && "function" != typeof target[key] ? source[key] : IS_BIND && own ? ctx(out, global) : IS_WRAP && target[key] == out ? function(C) {
+                for (key in source)(own = !IS_FORCED && target && key in target) && key in exports || (out = own ? target[key] : source[key], exports[key] = IS_GLOBAL && "function" != typeof target[key] ? source[key] : IS_BIND && own ? ctx(out, global) : IS_WRAP && target[key] == out ? function(C) {
                     var F = function(param) {
                         return this instanceof C ? new C(param) : C(param)
                     };
-                    return F[PROTOTYPE] = C[PROTOTYPE], F
-                }(out) : IS_PROTO && "function" == typeof out ? ctx(Function.call, out) : out, IS_PROTO && ((exports[PROTOTYPE] || (exports[PROTOTYPE] = {}))[key] = out))
+                    return F.prototype = C.prototype, F
+                }(out) : IS_PROTO && "function" == typeof out ? ctx(Function.call, out) : out, IS_PROTO && ((exports.prototype || (exports.prototype = {}))[key] = out))
             };
-        return $export.F = 1, $export.G = 2, $export.S = 4, $export.P = 8, $export.B = 16, $export.W = 32, module.exports = $export, module.exports
+        $export.F = 1, $export.G = 2, $export.S = 4, $export.P = 8, $export.B = 16, $export.W = 32, module.exports = $export
     }), $__System.registerDynamic("2b", [], !0, function($__require, exports, module) {
-        return module.exports = function(it, Constructor, name) {
+        this || self;
+        module.exports = function(it, Constructor, name) {
             if (!(it instanceof Constructor)) throw TypeError(name + ": use the 'new' operator!");
             return it
-        }, module.exports
+        }
     }), $__System.registerDynamic("2c", ["2d"], !0, function($__require, exports, module) {
-        var anObject = $__require("2d");
-        return module.exports = function(iterator, fn, value, entries) {
+        var anObject = (this || self, $__require("2d"));
+        module.exports = function(iterator, fn, value, entries) {
             try {
                 return entries ? fn(anObject(value)[0], value[1]) : fn(value)
             } catch (e) {
                 var ret = iterator.return;
                 throw void 0 !== ret && anObject(ret.call(iterator)), e
             }
-        }, module.exports
+        }
     }), $__System.registerDynamic("2e", ["26", "22"], !0, function($__require, exports, module) {
-        var Iterators = $__require("26"),
+        var Iterators = (this || self, $__require("26")),
             ITERATOR = $__require("22")("iterator"),
             ArrayProto = Array.prototype;
-        return module.exports = function(it) {
+        module.exports = function(it) {
             return void 0 !== it && (Iterators.Array === it || ArrayProto[ITERATOR] === it)
-        }, module.exports
+        }
     }), $__System.registerDynamic("16", [], !0, function($__require, exports, module) {
-        var ceil = Math.ceil,
+        var ceil = (this || self, Math.ceil),
             floor = Math.floor;
-        return module.exports = function(it) {
+        module.exports = function(it) {
             return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it)
-        }, module.exports
+        }
     }), $__System.registerDynamic("2f", ["16"], !0, function($__require, exports, module) {
-        var toInteger = $__require("16"),
+        var toInteger = (this || self, $__require("16")),
             min = Math.min;
-        return module.exports = function(it) {
+        module.exports = function(it) {
             return it > 0 ? min(toInteger(it), 9007199254740991) : 0
-        }, module.exports
+        }
     }), $__System.registerDynamic("30", ["1c", "22"], !0, function($__require, exports, module) {
-        var cof = $__require("1c"),
+        var cof = (this || self, $__require("1c")),
             TAG = $__require("22")("toStringTag"),
             ARG = "Arguments" == cof(function() {
                 return arguments
             }());
-        return module.exports = function(it) {
+        module.exports = function(it) {
             var O, T, B;
             return void 0 === it ? "Undefined" : null === it ? "Null" : "string" == typeof(T = (O = Object(it))[TAG]) ? T : ARG ? cof(O) : "Object" == (B = cof(O)) && "function" == typeof O.callee ? "Arguments" : B
-        }, module.exports
+        }
     }), $__System.registerDynamic("26", [], !0, function($__require, exports, module) {
-        return module.exports = {}, module.exports
+        this || self;
+        module.exports = {}
     }), $__System.registerDynamic("31", ["30", "22", "26", "6"], !0, function($__require, exports, module) {
-        var classof = $__require("30"),
+        var classof = (this || self, $__require("30")),
             ITERATOR = $__require("22")("iterator"),
             Iterators = $__require("26");
-        return module.exports = $__require("6").getIteratorMethod = function(it) {
+        module.exports = $__require("6").getIteratorMethod = function(it) {
             if (void 0 != it) return it[ITERATOR] || it["@@iterator"] || Iterators[classof(it)]
-        }, module.exports
+        }
     }), $__System.registerDynamic("32", ["2a", "2c", "2e", "2d", "2f", "31"], !0, function($__require, exports, module) {
-        var ctx = $__require("2a"),
+        var ctx = (this || self, $__require("2a")),
             call = $__require("2c"),
             isArrayIter = $__require("2e"),
             anObject = $__require("2d"),
             toLength = $__require("2f"),
             getIterFn = $__require("31");
-        return module.exports = function(iterable, entries, fn, that) {
+        module.exports = function(iterable, entries, fn, that) {
             var length, step, iterator, iterFn = getIterFn(iterable),
                 f = ctx(fn, that, entries ? 2 : 1),
                 index = 0;
@@ -718,15 +723,15 @@
                 for (length = toLength(iterable.length); length > index; index++) entries ? f(anObject(step = iterable[index])[0], step[1]) : f(iterable[index]);
             else
                 for (iterator = iterFn.call(iterable); !(step = iterator.next()).done;) call(iterator, f, step.value, entries)
-        }, module.exports
+        }
     }), $__System.registerDynamic("33", ["12", "34", "2d", "2a"], !0, function($__require, exports, module) {
-        var getDesc = $__require("12").getDesc,
+        var getDesc = (this || self, $__require("12").getDesc),
             isObject = $__require("34"),
             anObject = $__require("2d"),
             check = function(O, proto) {
                 if (anObject(O), !isObject(proto) && null !== proto) throw TypeError(proto + ": can't set as prototype!")
             };
-        return module.exports = {
+        module.exports = {
             set: Object.setPrototypeOf || ("__proto__" in {} ? function(test, buggy, set) {
                 try {
                     set = $__require("2a")(Function.call, getDesc(Object.prototype, "__proto__").set, 2), set(test, []), buggy = !(test instanceof Array)
@@ -738,33 +743,35 @@
                 }
             }({}, !1) : void 0),
             check: check
-        }, module.exports
+        }
     }), $__System.registerDynamic("35", [], !0, function($__require, exports, module) {
-        return module.exports = Object.is || function(x, y) {
-            return x === y ? 0 !== x || 1 / x === 1 / y : x != x && y != y
-        }, module.exports
+        this || self;
+        module.exports = Object.is || function(x, y) {
+            return x === y ? 0 !== x || 1 / x == 1 / y : x != x && y != y
+        }
     }), $__System.registerDynamic("2d", ["34"], !0, function($__require, exports, module) {
-        var isObject = $__require("34");
-        return module.exports = function(it) {
+        var isObject = (this || self, $__require("34"));
+        module.exports = function(it) {
             if (!isObject(it)) throw TypeError(it + " is not an object!");
             return it
-        }, module.exports
+        }
     }), $__System.registerDynamic("36", ["2d", "37", "22"], !0, function($__require, exports, module) {
-        var anObject = $__require("2d"),
+        var anObject = (this || self, $__require("2d")),
             aFunction = $__require("37"),
             SPECIES = $__require("22")("species");
-        return module.exports = function(O, D) {
+        module.exports = function(O, D) {
             var S, C = anObject(O).constructor;
             return void 0 === C || void 0 == (S = anObject(C)[SPECIES]) ? D : aFunction(S)
-        }, module.exports
+        }
     }), $__System.registerDynamic("37", [], !0, function($__require, exports, module) {
-        return module.exports = function(it) {
+        this || self;
+        module.exports = function(it) {
             if ("function" != typeof it) throw TypeError(it + " is not a function!");
             return it
-        }, module.exports
+        }
     }), $__System.registerDynamic("2a", ["37"], !0, function($__require, exports, module) {
-        var aFunction = $__require("37");
-        return module.exports = function(fn, that, length) {
+        var aFunction = (this || self, $__require("37"));
+        module.exports = function(fn, that, length) {
             if (aFunction(fn), void 0 === that) return fn;
             switch (length) {
                 case 1:
@@ -783,9 +790,10 @@
             return function() {
                 return fn.apply(that, arguments)
             }
-        }, module.exports
+        }
     }), $__System.registerDynamic("38", [], !0, function($__require, exports, module) {
-        return module.exports = function(fn, args, that) {
+        this || self;
+        module.exports = function(fn, args, that) {
             var un = void 0 === that;
             switch (args.length) {
                 case 0:
@@ -800,22 +808,25 @@
                     return un ? fn(args[0], args[1], args[2], args[3]) : fn.call(that, args[0], args[1], args[2], args[3])
             }
             return fn.apply(that, args)
-        }, module.exports
+        }
     }), $__System.registerDynamic("39", ["29"], !0, function($__require, exports, module) {
-        return module.exports = $__require("29").document && document.documentElement, module.exports
+        this || self;
+        module.exports = $__require("29").document && document.documentElement
     }), $__System.registerDynamic("34", [], !0, function($__require, exports, module) {
-        return module.exports = function(it) {
+        this || self;
+        module.exports = function(it) {
             return "object" == typeof it ? null !== it : "function" == typeof it
-        }, module.exports
+        }
     }), $__System.registerDynamic("3a", ["34", "29"], !0, function($__require, exports, module) {
-        var isObject = $__require("34"),
+        var isObject = (this || self, $__require("34")),
             document = $__require("29").document,
             is = isObject(document) && isObject(document.createElement);
-        return module.exports = function(it) {
+        module.exports = function(it) {
             return is ? document.createElement(it) : {}
-        }, module.exports
+        }
     }), $__System.registerDynamic("3b", ["2a", "38", "39", "3a", "29", "1c", "3c"], !0, function($__require, exports, module) {
-        return function(process) {
+        this || self;
+        ! function(process) {
             var defer, channel, port, ctx = $__require("2a"),
                 invoke = $__require("38"),
                 html = $__require("39"),
@@ -827,7 +838,6 @@
                 MessageChannel = global.MessageChannel,
                 counter = 0,
                 queue = {},
-                ONREADYSTATECHANGE = "onreadystatechange",
                 run = function() {
                     var id = +this;
                     if (queue.hasOwnProperty(id)) {
@@ -849,8 +859,8 @@
                 process.nextTick(ctx(run, id, 1))
             } : MessageChannel ? (channel = new MessageChannel, port = channel.port2, channel.port1.onmessage = listner, defer = ctx(port.postMessage, port, 1)) : global.addEventListener && "function" == typeof postMessage && !global.importScripts ? (defer = function(id) {
                 global.postMessage(id + "", "*")
-            }, global.addEventListener("message", listner, !1)) : defer = ONREADYSTATECHANGE in cel("script") ? function(id) {
-                html.appendChild(cel("script"))[ONREADYSTATECHANGE] = function() {
+            }, global.addEventListener("message", listner, !1)) : defer = "onreadystatechange" in cel("script") ? function(id) {
+                html.appendChild(cel("script")).onreadystatechange = function() {
                     html.removeChild(this), run.call(id)
                 }
             } : function(id) {
@@ -859,14 +869,15 @@
                 set: setTask,
                 clear: clearTask
             }
-        }($__require("3c")), module.exports
+        }($__require("3c"))
     }), $__System.registerDynamic("1c", [], !0, function($__require, exports, module) {
-        var toString = {}.toString;
-        return module.exports = function(it) {
+        var toString = (this || self, {}.toString);
+        module.exports = function(it) {
             return toString.call(it).slice(8, -1)
-        }, module.exports
+        }
     }), $__System.registerDynamic("3d", ["29", "3b", "1c", "3c"], !0, function($__require, exports, module) {
-        return function(process) {
+        this || self;
+        ! function(process) {
             var head, last, notify, global = $__require("29"),
                 macrotask = $__require("3b").set,
                 Observer = global.MutationObserver || global.WebKitMutationObserver,
@@ -902,50 +913,52 @@
                 };
                 last && (last.next = task), head || (head = task, notify()), last = task
             }
-        }($__require("3c")), module.exports
+        }($__require("3c"))
     }), $__System.registerDynamic("1f", [], !0, function($__require, exports, module) {
-        return module.exports = function(bitmap, value) {
+        this || self;
+        module.exports = function(bitmap, value) {
             return {
                 enumerable: !(1 & bitmap),
                 configurable: !(2 & bitmap),
                 writable: !(4 & bitmap),
                 value: value
             }
-        }, module.exports
+        }
     }), $__System.registerDynamic("21", ["12", "1f", "3e"], !0, function($__require, exports, module) {
-        var $ = $__require("12"),
+        var $ = (this || self, $__require("12")),
             createDesc = $__require("1f");
-        return module.exports = $__require("3e") ? function(object, key, value) {
+        module.exports = $__require("3e") ? function(object, key, value) {
             return $.setDesc(object, key, createDesc(1, value))
         } : function(object, key, value) {
             return object[key] = value, object
-        }, module.exports
+        }
     }), $__System.registerDynamic("24", ["21"], !0, function($__require, exports, module) {
-        return module.exports = $__require("21"), module.exports
+        this || self;
+        module.exports = $__require("21")
     }), $__System.registerDynamic("3f", ["24"], !0, function($__require, exports, module) {
-        var redefine = $__require("24");
-        return module.exports = function(target, src) {
+        var redefine = (this || self, $__require("24"));
+        module.exports = function(target, src) {
             for (var key in src) redefine(target, key, src[key]);
             return target
-        }, module.exports
+        }
     }), $__System.registerDynamic("25", [], !0, function($__require, exports, module) {
-        var hasOwnProperty = {}.hasOwnProperty;
-        return module.exports = function(it, key) {
+        var hasOwnProperty = (this || self, {}.hasOwnProperty);
+        module.exports = function(it, key) {
             return hasOwnProperty.call(it, key)
-        }, module.exports
+        }
     }), $__System.registerDynamic("20", ["12", "25", "22"], !0, function($__require, exports, module) {
-        var def = $__require("12").setDesc,
+        var def = (this || self, $__require("12").setDesc),
             has = $__require("25"),
             TAG = $__require("22")("toStringTag");
-        return module.exports = function(it, tag, stat) {
+        module.exports = function(it, tag, stat) {
             it && !has(it = stat ? it : it.prototype, TAG) && def(it, TAG, {
                 configurable: !0,
                 value: tag
             })
-        }, module.exports
+        }
     }), $__System.registerDynamic("12", [], !0, function($__require, exports, module) {
-        var $Object = Object;
-        return module.exports = {
+        var $Object = (this || self, Object);
+        module.exports = {
             create: $Object.create,
             getProto: $Object.getPrototypeOf,
             isEnum: {}.propertyIsEnumerable,
@@ -956,30 +969,32 @@
             getNames: $Object.getOwnPropertyNames,
             getSymbols: $Object.getOwnPropertySymbols,
             each: [].forEach
-        }, module.exports
+        }
     }), $__System.registerDynamic("7", [], !0, function($__require, exports, module) {
-        return module.exports = function(exec) {
+        this || self;
+        module.exports = function(exec) {
             try {
                 return !!exec()
             } catch (e) {
                 return !0
             }
-        }, module.exports
+        }
     }), $__System.registerDynamic("3e", ["7"], !0, function($__require, exports, module) {
-        return module.exports = !$__require("7")(function() {
+        this || self;
+        module.exports = !$__require("7")(function() {
             return 7 != Object.defineProperty({}, "a", {
                 get: function() {
                     return 7
                 }
             }).a
-        }), module.exports
+        })
     }), $__System.registerDynamic("40", ["6", "12", "3e", "22"], !0, function($__require, exports, module) {
         "use strict";
-        var core = $__require("6"),
+        var core = (this || self, $__require("6")),
             $ = $__require("12"),
             DESCRIPTORS = $__require("3e"),
             SPECIES = $__require("22")("species");
-        return module.exports = function(KEY) {
+        module.exports = function(KEY) {
             var C = core[KEY];
             DESCRIPTORS && C && !C[SPECIES] && $.setDesc(C, SPECIES, {
                 configurable: !0,
@@ -987,34 +1002,33 @@
                     return this
                 }
             })
-        }, module.exports
+        }
     }), $__System.registerDynamic("41", ["29"], !0, function($__require, exports, module) {
-        var global = this,
+        var global = this || self,
             global = $__require("29"),
-            SHARED = "__core-js_shared__",
-            store = global[SHARED] || (global[SHARED] = {});
-        return module.exports = function(key) {
+            store = global["__core-js_shared__"] || (global["__core-js_shared__"] = {});
+        module.exports = function(key) {
             return store[key] || (store[key] = {})
-        }, module.exports
+        }
     }), $__System.registerDynamic("42", [], !0, function($__require, exports, module) {
-        var id = 0,
+        var id = (this || self, 0),
             px = Math.random();
-        return module.exports = function(key) {
+        module.exports = function(key) {
             return "Symbol(".concat(void 0 === key ? "" : key, ")_", (++id + px).toString(36))
-        }, module.exports
+        }
     }), $__System.registerDynamic("29", [], !0, function($__require, exports, module) {
-        var global = this,
+        var global = this || self,
             global = module.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();
-        return "number" == typeof __g && (__g = global), module.exports
+        "number" == typeof __g && (__g = global)
     }), $__System.registerDynamic("22", ["41", "42", "29"], !0, function($__require, exports, module) {
-        var store = $__require("41")("wks"),
+        var store = (this || self, $__require("41")("wks")),
             uid = $__require("42"),
             Symbol = $__require("29").Symbol;
-        return module.exports = function(name) {
+        module.exports = function(name) {
             return store[name] || (store[name] = Symbol && Symbol[name] || (Symbol || uid)("Symbol." + name))
-        }, module.exports
+        }
     }), $__System.registerDynamic("43", ["22"], !0, function($__require, exports, module) {
-        var ITERATOR = $__require("22")("iterator"),
+        var ITERATOR = (this || self, $__require("22")("iterator")),
             SAFE_CLOSING = !1;
         try {
             var riter = [7][ITERATOR]();
@@ -1024,7 +1038,7 @@
                 throw 2
             })
         } catch (e) {}
-        return module.exports = function(exec, skipClosing) {
+        module.exports = function(exec, skipClosing) {
             if (!skipClosing && !SAFE_CLOSING) return !1;
             var safe = !1;
             try {
@@ -1037,7 +1051,7 @@
                 }, exec(arr)
             } catch (e) {}
             return safe
-        }, module.exports
+        }
     }), $__System.registerDynamic("44", [], !0, function($__require, exports, module) {
         function cleanUpNextTick() {
             draining && currentQueue && (draining = !1, currentQueue.length ? queue = currentQueue.concat(queue) : queueIndex = -1, queue.length && drainQueue())
@@ -1049,8 +1063,7 @@
                 draining = !0;
                 for (var len = queue.length; len;) {
                     for (currentQueue = queue, queue = []; ++queueIndex < len;) currentQueue && currentQueue[queueIndex].run();
-                    queueIndex = -1,
-                        len = queue.length
+                    queueIndex = -1, len = queue.length
                 }
                 currentQueue = null, draining = !1, clearTimeout(timeout)
             }
@@ -1061,34 +1074,39 @@
         }
 
         function noop() {}
-        var currentQueue, process = module.exports = {},
+        var currentQueue, process = (this || self, module.exports = {}),
             queue = [],
             draining = !1,
             queueIndex = -1;
-        return process.nextTick = function(fun) {
-            var args = new Array(arguments.length - 1);
-            if (arguments.length > 1)
-                for (var i = 1; i < arguments.length; i++) args[i - 1] = arguments[i];
-            queue.push(new Item(fun, args)), 1 !== queue.length || draining || setTimeout(drainQueue, 0)
-        }, Item.prototype.run = function() {
-            this.fun.apply(null, this.array)
-        }, process.title = "browser", process.browser = !0, process.env = {}, process.argv = [], process.version = "", process.versions = {}, process.on = noop, process.addListener = noop, process.once = noop, process.off = noop, process.removeListener = noop, process.removeAllListeners = noop, process.emit = noop, process.binding = function(name) {
-            throw new Error("process.binding is not supported")
-        }, process.cwd = function() {
-            return "/"
-        }, process.chdir = function(dir) {
-            throw new Error("process.chdir is not supported")
-        }, process.umask = function() {
-            return 0
-        }, module.exports
+        process.nextTick = function(fun) {
+                var args = new Array(arguments.length - 1);
+                if (arguments.length > 1)
+                    for (var i = 1; i < arguments.length; i++) args[i - 1] = arguments[i];
+                queue.push(new Item(fun, args)), 1 !== queue.length || draining || setTimeout(drainQueue, 0)
+            }, Item.prototype.run = function() {
+                this.fun.apply(null, this.array)
+            }, process.title = "browser", process.browser = !0, process.env = {}, process.argv = [], process.version = "", process.versions = {}, process.on = noop, process.addListener = noop, process.once = noop, process.off = noop, process.removeListener = noop,
+            process.removeAllListeners = noop, process.emit = noop, process.binding = function(name) {
+                throw new Error("process.binding is not supported")
+            }, process.cwd = function() {
+                return "/"
+            }, process.chdir = function(dir) {
+                throw new Error("process.chdir is not supported")
+            }, process.umask = function() {
+                return 0
+            }
     }), $__System.registerDynamic("45", ["44"], !0, function($__require, exports, module) {
-        return module.exports = $__require("44"), module.exports
+        this || self;
+        module.exports = $__require("44")
     }), $__System.registerDynamic("46", ["45"], !0, function($__require, exports, module) {
-        return module.exports = $__System._nodeRequire ? process : $__require("45"), module.exports
+        this || self;
+        module.exports = $__System._nodeRequire ? process : $__require("45")
     }), $__System.registerDynamic("3c", ["46"], !0, function($__require, exports, module) {
-        return module.exports = $__require("46"), module.exports
+        this || self;
+        module.exports = $__require("46")
     }), $__System.registerDynamic("47", ["12", "23", "29", "2a", "30", "5", "34", "2d", "37", "2b", "32", "33", "35", "22", "36", "3d", "3e", "3f", "20", "40", "6", "43", "3c"], !0, function($__require, exports, module) {
-        return function(process) {
+        this || self;
+        ! function(process) {
             "use strict";
             var Wrapper, $ = $__require("12"),
                 LIBRARY = $__require("23"),
@@ -1106,10 +1124,9 @@
                 SPECIES = $__require("22")("species"),
                 speciesConstructor = $__require("36"),
                 asap = $__require("3d"),
-                PROMISE = "Promise",
                 process = global.process,
                 isNode = "process" == classof(process),
-                P = global[PROMISE],
+                P = global.Promise,
                 testResolve = function(sub) {
                     var test = new P(function() {});
                     return sub && (test.constructor = Object), P.resolve(test) === test
@@ -1170,16 +1187,16 @@
                         record.n = !0;
                         var chain = record.c;
                         asap(function() {
-                            for (var value = record.v, ok = 1 == record.s, i = 0, run = function(reaction) {
-                                    var result, then, handler = ok ? reaction.ok : reaction.fail,
-                                        resolve = reaction.resolve,
-                                        reject = reaction.reject;
-                                    try {
-                                        handler ? (ok || (record.h = !0), result = handler === !0 ? value : handler(value), result === reaction.promise ? reject(TypeError("Promise-chain cycle")) : (then = isThenable(result)) ? then.call(result, resolve, reject) : resolve(result)) : reject(value)
-                                    } catch (e) {
-                                        reject(e)
-                                    }
-                                }; chain.length > i;) run(chain[i++]);
+                            for (var value = record.v, ok = 1 == record.s, i = 0; chain.length > i;) ! function(reaction) {
+                                var result, then, handler = ok ? reaction.ok : reaction.fail,
+                                    resolve = reaction.resolve,
+                                    reject = reaction.reject;
+                                try {
+                                    handler ? (ok || (record.h = !0), result = !0 === handler ? value : handler(value), result === reaction.promise ? reject(TypeError("Promise-chain cycle")) : (then = isThenable(result)) ? then.call(result, resolve, reject) : resolve(result)) : reject(value)
+                                } catch (e) {
+                                    reject(e)
+                                }
+                            }(chain[i++]);
                             chain.length = 0, record.n = !1, isReject && setTimeout(function() {
                                 var handler, console, promise = record.p;
                                 isUnhandled(promise) && (isNode ? process.emit("unhandledRejection", value, promise) : (handler = global.onunhandledrejection) ? handler({
@@ -1231,7 +1248,7 @@
             USE_NATIVE || (P = function(executor) {
                 aFunction(executor);
                 var record = this._d = {
-                    p: strictNew(this, P, PROMISE),
+                    p: strictNew(this, P, "Promise"),
                     c: [],
                     a: void 0,
                     s: 0,
@@ -1257,22 +1274,20 @@
                 }
             })), $export($export.G + $export.W + $export.F * !USE_NATIVE, {
                 Promise: P
-            }), $__require("20")(P, PROMISE), $__require("40")(PROMISE), Wrapper = $__require("6")[PROMISE], $export($export.S + $export.F * !USE_NATIVE, PROMISE, {
+            }), $__require("20")(P, "Promise"), $__require("40")("Promise"), Wrapper = $__require("6").Promise, $export($export.S + $export.F * !USE_NATIVE, "Promise", {
                 reject: function(r) {
-                    var capability = new PromiseCapability(this),
-                        $$reject = capability.reject;
-                    return $$reject(r), capability.promise
+                    var capability = new PromiseCapability(this);
+                    return (0, capability.reject)(r), capability.promise
                 }
-            }), $export($export.S + $export.F * (!USE_NATIVE || testResolve(!0)), PROMISE, {
+            }), $export($export.S + $export.F * (!USE_NATIVE || testResolve(!0)), "Promise", {
                 resolve: function(x) {
                     if (x instanceof P && sameConstructor(x.constructor, this)) return x;
-                    var capability = new PromiseCapability(this),
-                        $$resolve = capability.resolve;
-                    return $$resolve(x), capability.promise
+                    var capability = new PromiseCapability(this);
+                    return (0, capability.resolve)(x), capability.promise
                 }
             }), $export($export.S + $export.F * !(USE_NATIVE && $__require("43")(function(iter) {
                 P.all(iter).catch(function() {})
-            })), PROMISE, {
+            })), "Promise", {
                 all: function(iterable) {
                     var C = getConstructor(this),
                         capability = new PromiseCapability(C),
@@ -1304,24 +1319,26 @@
                     return abrupt && reject(abrupt.error), capability.promise
                 }
             })
-        }($__require("3c")), module.exports
+        }($__require("3c"))
     }), $__System.registerDynamic("6", [], !0, function($__require, exports, module) {
-        var core = module.exports = {
+        var core = (this || self, module.exports = {
             version: "1.2.6"
-        };
-        return "number" == typeof __e && (__e = core), module.exports
+        });
+        "number" == typeof __e && (__e = core)
     }), $__System.registerDynamic("48", ["14", "17", "28", "47", "6"], !0, function($__require, exports, module) {
-        return $__require("14"), $__require("17"), $__require("28"), $__require("47"), module.exports = $__require("6").Promise, module.exports
+        this || self;
+        $__require("14"), $__require("17"), $__require("28"), $__require("47"), module.exports = $__require("6").Promise
     }), $__System.registerDynamic("f", ["48"], !0, function($__require, exports, module) {
-        return module.exports = {
+        this || self;
+        module.exports = {
             default: $__require("48"),
             __esModule: !0
-        }, module.exports
+        }
     }), $__System.register("c", ["f"], function(_export) {
         function http(url) {
             var core = {
                 ajax: function(method, url, args, headers) {
-                    var promise = new _Promise(function(resolve, reject) {
+                    return new _Promise(function(resolve, reject) {
                         var client = new XMLHttpRequest,
                             uri = "";
                         if (args && args.xml) uri = args.payload;
@@ -1336,8 +1353,7 @@
                         }, client.onerror = function() {
                             reject(this.statusText)
                         }
-                    });
-                    return promise
+                    })
                 }
             };
             return {
@@ -1386,18 +1402,17 @@
                     return _createClass(GoogleTranslate, [{
                         key: "getTranslations",
                         value: function(words) {
-                            var _this = this,
-                                promise = new _Promise(function(resolve, reject) {
-                                    var promises = [];
-                                    _this.url += "&source=" + _this.srcLang + "&target=" + _this.targetLang, words = _this.toList(words), promises = _this.getPromises(words), _Promise.all(promises).then(function(responses) {
-                                        var translations = _this.combineTranslations(responses),
-                                            tMap = _this.mapTranslations(translations, words);
-                                        resolve(tMap)
-                                    }).catch(function(e) {
-                                        reject(e)
-                                    })
-                                });
-                            return promise
+                            var _this = this;
+                            return new _Promise(function(resolve, reject) {
+                                var promises = [];
+                                _this.url += "&source=" + _this.srcLang + "&target=" + _this.targetLang, words = _this.toList(words), promises = _this.getPromises(words), _Promise.all(promises).then(function(responses) {
+                                    var translations = _this.combineTranslations(responses),
+                                        tMap = _this.mapTranslations(translations, words);
+                                    resolve(tMap)
+                                }).catch(function(e) {
+                                    reject(e)
+                                })
+                            })
                         }
                     }, {
                         key: "toList",
@@ -1435,15 +1450,14 @@
                     }, {
                         key: "translateSentence",
                         value: function(text) {
-                            var _this2 = this,
-                                promise = new _Promise(function(resolve, reject) {
-                                    _this2.url += "&source=" + _this2.srcLang + "&target=" + _this2.targetLang, _this2.url += "&q=" + text, http(_this2.url).get().then(function(data) {
-                                        resolve(JSON.parse(data).data.translations[0].translatedText)
-                                    }).catch(function(e) {
-                                        reject(e)
-                                    })
-                                });
-                            return promise
+                            var _this2 = this;
+                            return new _Promise(function(resolve, reject) {
+                                _this2.url += "&source=" + _this2.srcLang + "&target=" + _this2.targetLang, _this2.url += "&q=" + text, http(_this2.url).get().then(function(data) {
+                                    resolve(JSON.parse(data).data.translations[0].translatedText)
+                                }).catch(function(e) {
+                                    reject(e)
+                                })
+                            })
                         }
                     }]), GoogleTranslate
                 }(), _export("GoogleTranslate", GoogleTranslate)
@@ -1453,23 +1467,20 @@
         "use strict";
 
         function getCurrentMonth() {
-            var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                d = new Date;
-            return month[d.getMonth()]
+            return ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][(new Date).getMonth()]
         }
 
         function getCurrentDay() {
-            var month = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                d = new Date;
-            return month[d.getDay() - 1]
+            return ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][(new Date).getDay() - 1]
         }
         return _export("getCurrentMonth", getCurrentMonth), _export("getCurrentDay", getCurrentDay), {
             setters: [],
             execute: function() {}
         }
     }), $__System.registerDynamic("4b", ["@empty"], !0, function($__require, exports, module) {
-        var define, global = this;
-        return function(Buffer, process) {
+        "format cjs";
+        var global = this || self;
+        ! function(Buffer, process) {
             (function() {
                 function addMapEntry(map, pair) {
                     return map.set(pair[0], pair[1]), map
@@ -1502,12 +1513,12 @@
                 }
 
                 function arrayEach(array, iteratee) {
-                    for (var index = -1, length = array ? array.length : 0; ++index < length && iteratee(array[index], index, array) !== !1;);
+                    for (var index = -1, length = array ? array.length : 0; ++index < length && !1 !== iteratee(array[index], index, array););
                     return array
                 }
 
                 function arrayEachRight(array, iteratee) {
-                    for (var length = array ? array.length : 0; length-- && iteratee(array[length], length, array) !== !1;);
+                    for (var length = array ? array.length : 0; length-- && !1 !== iteratee(array[length], length, array););
                     return array
                 }
 
@@ -1526,8 +1537,7 @@
                 }
 
                 function arrayIncludes(array, value) {
-                    var length = array ? array.length : 0;
-                    return !!length && baseIndexOf(array, value, 0) > -1
+                    return !!(array ? array.length : 0) && baseIndexOf(array, value, 0) > -1
                 }
 
                 function arrayIncludesWith(array, value, comparator) {
@@ -1842,8 +1852,7 @@
                     }
 
                     function hashSet(key, value) {
-                        var data = this.__data__;
-                        return data[key] = nativeCreate && value === undefined ? HASH_UNDEFINED : value, this
+                        return this.__data__[key] = nativeCreate && value === undefined ? HASH_UNDEFINED : value, this
                     }
 
                     function ListCache(entries) {
@@ -1862,9 +1871,7 @@
                     function listCacheDelete(key) {
                         var data = this.__data__,
                             index = assocIndexOf(data, key);
-                        if (index < 0) return !1;
-                        var lastIndex = data.length - 1;
-                        return index == lastIndex ? data.pop() : splice.call(data, index, 1), !0
+                        return !(index < 0) && (index == data.length - 1 ? data.pop() : splice.call(data, index, 1), !0)
                     }
 
                     function listCacheGet(key) {
@@ -2260,9 +2267,7 @@
                     }
 
                     function baseIsNative(value) {
-                        if (!isObject(value) || isMasked(value)) return !1;
-                        var pattern = isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor;
-                        return pattern.test(toSource(value))
+                        return !(!isObject(value) || isMasked(value)) && (isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor).test(toSource(value))
                     }
 
                     function baseIsRegExp(value) {
@@ -2344,18 +2349,15 @@
 
                     function baseOrderBy(collection, iteratees, orders) {
                         var index = -1;
-                        iteratees = arrayMap(iteratees.length ? iteratees : [identity], baseUnary(getIteratee()));
-                        var result = baseMap(collection, function(value, key, collection) {
-                            var criteria = arrayMap(iteratees, function(iteratee) {
-                                return iteratee(value)
-                            });
+                        return iteratees = arrayMap(iteratees.length ? iteratees : [identity], baseUnary(getIteratee())), baseSortBy(baseMap(collection, function(value, key, collection) {
                             return {
-                                criteria: criteria,
+                                criteria: arrayMap(iteratees, function(iteratee) {
+                                    return iteratee(value)
+                                }),
                                 index: ++index,
                                 value: value
                             }
-                        });
-                        return baseSortBy(result, function(object, other) {
+                        }), function(object, other) {
                             return compareMultiple(object, other, orders)
                         })
                     }
@@ -2421,7 +2423,9 @@
                     function baseRepeat(string, n) {
                         var result = "";
                         if (!string || n < 1 || n > MAX_SAFE_INTEGER) return result;
-                        do n % 2 && (result += string), n = nativeFloor(n / 2), n && (string += string); while (n);
+                        do {
+                            n % 2 && (result += string), (n = nativeFloor(n / 2)) && (string += string)
+                        } while (n);
                         return result
                     }
 
@@ -2463,7 +2467,7 @@
                     function baseSome(collection, predicate) {
                         var result;
                         return baseEach(collection, function(value, index, collection) {
-                            return result = predicate(value, index, collection), !result
+                            return !(result = predicate(value, index, collection))
                         }), !!result
                     }
 
@@ -2615,8 +2619,7 @@
                     }
 
                     function cloneMap(map, isDeep, cloneFunc) {
-                        var array = isDeep ? cloneFunc(mapToArray(map), !0) : mapToArray(map);
-                        return arrayReduce(array, addMapEntry, new map.constructor)
+                        return arrayReduce(isDeep ? cloneFunc(mapToArray(map), !0) : mapToArray(map), addMapEntry, new map.constructor)
                     }
 
                     function cloneRegExp(regexp) {
@@ -2625,8 +2628,7 @@
                     }
 
                     function cloneSet(set, isDeep, cloneFunc) {
-                        var array = isDeep ? cloneFunc(setToArray(set), !0) : setToArray(set);
-                        return arrayReduce(array, addSetEntry, new set.constructor)
+                        return arrayReduce(isDeep ? cloneFunc(setToArray(set), !0) : setToArray(set), addSetEntry, new set.constructor)
                     }
 
                     function cloneSymbol(symbol) {
@@ -2659,8 +2661,7 @@
                             var result = compareAscending(objCriteria[index], othCriteria[index]);
                             if (result) {
                                 if (index >= ordersLength) return result;
-                                var order = orders[index];
-                                return result * ("desc" == order ? -1 : 1)
+                                return result * ("desc" == orders[index] ? -1 : 1)
                             }
                         }
                         return object.index - other.index
@@ -2728,7 +2729,7 @@
                             if (null == collection) return collection;
                             if (!isArrayLike(collection)) return eachFunc(collection, iteratee);
                             for (var length = collection.length, index = fromRight ? length : -1, iterable = Object(collection);
-                                (fromRight ? index-- : ++index < length) && iteratee(iterable[index], index, iterable) !== !1;);
+                                (fromRight ? index-- : ++index < length) && !1 !== iteratee(iterable[index], index, iterable););
                             return collection
                         }
                     }
@@ -2737,7 +2738,7 @@
                         return function(object, iteratee, keysFunc) {
                             for (var index = -1, iterable = Object(object), props = keysFunc(object), length = props.length; length--;) {
                                 var key = props[fromRight ? length : ++index];
-                                if (iteratee(iterable[key], key, iterable) === !1) break
+                                if (!1 === iteratee(iterable[key], key, iterable)) break
                             }
                             return object
                         }
@@ -2745,8 +2746,7 @@
 
                     function createBind(func, bitmask, thisArg) {
                         function wrapper() {
-                            var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
-                            return fn.apply(isBind ? thisArg : this, arguments)
+                            return (this && this !== root && this instanceof wrapper ? Ctor : func).apply(isBind ? thisArg : this, arguments)
                         }
                         var isBind = bitmask & BIND_FLAG,
                             Ctor = createCtor(func);
@@ -2800,9 +2800,7 @@
                         function wrapper() {
                             for (var length = arguments.length, args = Array(length), index = length, placeholder = getHolder(wrapper); index--;) args[index] = arguments[index];
                             var holders = length < 3 && args[0] !== placeholder && args[length - 1] !== placeholder ? [] : replaceHolders(args, placeholder);
-                            if (length -= holders.length, length < arity) return createRecurry(func, bitmask, createHybrid, wrapper.placeholder, undefined, args, holders, undefined, undefined, arity - length);
-                            var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
-                            return apply(fn, this, args)
+                            return (length -= holders.length) < arity ? createRecurry(func, bitmask, createHybrid, wrapper.placeholder, undefined, args, holders, undefined, undefined, arity - length) : apply(this && this !== root && this instanceof wrapper ? Ctor : func, this, args)
                         }
                         var Ctor = createCtor(func);
                         return wrapper
@@ -2831,7 +2829,7 @@
                             for (fromRight && funcs.reverse(); index--;) {
                                 var func = funcs[index];
                                 if ("function" != typeof func) throw new TypeError(FUNC_ERROR_TEXT);
-                                if (prereq && !wrapper && "wrapper" == getFuncName(func)) var wrapper = new LodashWrapper([], (!0))
+                                if (prereq && !wrapper && "wrapper" == getFuncName(func)) var wrapper = new LodashWrapper([], !0)
                             }
                             for (index = wrapper ? index : length; ++index < length;) {
                                 func = funcs[index];
@@ -2937,7 +2935,7 @@
                             newHoldersRight = isCurry ? undefined : holders,
                             newPartials = isCurry ? partials : undefined,
                             newPartialsRight = isCurry ? undefined : partials;
-                        bitmask |= isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG, bitmask &= ~(isCurry ? PARTIAL_RIGHT_FLAG : PARTIAL_FLAG), bitmask & CURRY_BOUND_FLAG || (bitmask &= ~(BIND_FLAG | BIND_KEY_FLAG));
+                        bitmask |= isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG, (bitmask &= ~(isCurry ? PARTIAL_RIGHT_FLAG : PARTIAL_FLAG)) & CURRY_BOUND_FLAG || (bitmask &= ~(BIND_FLAG | BIND_KEY_FLAG));
                         var newData = [func, bitmask, thisArg, newPartials, newHolders, newPartialsRight, newHoldersRight, argPos, ary, arity],
                             result = wrapFunc.apply(undefined, newData);
                         return isLaziable(func) && setData(result, newData), result.placeholder = placeholder, setWrapToString(result, func, bitmask)
@@ -2947,9 +2945,8 @@
                         var func = Math[methodName];
                         return function(number, precision) {
                             if (number = toNumber(number), precision = nativeMin(toInteger(precision), 292)) {
-                                var pair = (toString(number) + "e").split("e"),
-                                    value = func(pair[0] + "e" + (+pair[1] + precision));
-                                return pair = (toString(value) + "e").split("e"), +(pair[0] + "e" + (+pair[1] - precision))
+                                var pair = (toString(number) + "e").split("e");
+                                return pair = (toString(func(pair[0] + "e" + (+pair[1] + precision))) + "e").split("e"), +(pair[0] + "e" + (+pair[1] - precision))
                             }
                             return func(number)
                         }
@@ -2975,8 +2972,7 @@
                             newData = [func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity];
                         if (data && mergeData(newData, data), func = newData[0], bitmask = newData[1], thisArg = newData[2], partials = newData[3], holders = newData[4], arity = newData[9] = null == newData[9] ? isBindKey ? 0 : func.length : nativeMax(newData[9] - length, 0), !arity && bitmask & (CURRY_FLAG | CURRY_RIGHT_FLAG) && (bitmask &= ~(CURRY_FLAG | CURRY_RIGHT_FLAG)), bitmask && bitmask != BIND_FLAG) result = bitmask == CURRY_FLAG || bitmask == CURRY_RIGHT_FLAG ? createCurry(func, bitmask, arity) : bitmask != PARTIAL_FLAG && bitmask != (BIND_FLAG | PARTIAL_FLAG) || holders.length ? createHybrid.apply(undefined, newData) : createPartial(func, bitmask, thisArg, partials);
                         else var result = createBind(func, bitmask, thisArg);
-                        var setter = data ? baseSetData : setData;
-                        return setWrapToString(setter(result, newData), func, bitmask)
+                        return setWrapToString((data ? baseSetData : setData)(result, newData), func, bitmask)
                     }
 
                     function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
@@ -3048,10 +3044,8 @@
                     function equalObjects(object, other, equalFunc, customizer, bitmask, stack) {
                         var isPartial = bitmask & PARTIAL_COMPARE_FLAG,
                             objProps = keys(object),
-                            objLength = objProps.length,
-                            othProps = keys(other),
-                            othLength = othProps.length;
-                        if (objLength != othLength && !isPartial) return !1;
+                            objLength = objProps.length;
+                        if (objLength != keys(other).length && !isPartial) return !1;
                         for (var index = objLength; index--;) {
                             var key = objProps[index];
                             if (!(isPartial ? key in other : baseHas(other, key))) return !1
@@ -3097,8 +3091,7 @@
                     }
 
                     function getHolder(func) {
-                        var object = hasOwnProperty.call(lodash, "placeholder") ? lodash : func;
-                        return object.placeholder
+                        return (hasOwnProperty.call(lodash, "placeholder") ? lodash : func).placeholder
                     }
 
                     function getIteratee() {
@@ -3183,7 +3176,7 @@
                                 return cloneArrayBuffer(object);
                             case boolTag:
                             case dateTag:
-                                return new Ctor((+object));
+                                return new Ctor(+object);
                             case dataViewTag:
                                 return cloneDataView(object, isDeep);
                             case float32Tag:
@@ -3226,7 +3219,7 @@
                     }
 
                     function isIndex(value, length) {
-                        return length = null == length ? MAX_SAFE_INTEGER : length, !!length && ("number" == typeof value || reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length
+                        return !!(length = null == length ? MAX_SAFE_INTEGER : length) && ("number" == typeof value || reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length
                     }
 
                     function isIterateeCall(value, index, object) {
@@ -3260,9 +3253,8 @@
                     }
 
                     function isPrototype(value) {
-                        var Ctor = value && value.constructor,
-                            proto = "function" == typeof Ctor && Ctor.prototype || objectProto;
-                        return value === proto
+                        var Ctor = value && value.constructor;
+                        return value === ("function" == typeof Ctor && Ctor.prototype || objectProto)
                     }
 
                     function isStrictComparable(value) {
@@ -3397,18 +3389,15 @@
                     }
 
                     function flatten(array) {
-                        var length = array ? array.length : 0;
-                        return length ? baseFlatten(array, 1) : []
+                        return (array ? array.length : 0) ? baseFlatten(array, 1) : []
                     }
 
                     function flattenDeep(array) {
-                        var length = array ? array.length : 0;
-                        return length ? baseFlatten(array, INFINITY) : []
+                        return (array ? array.length : 0) ? baseFlatten(array, INFINITY) : []
                     }
 
                     function flattenDepth(array, depth) {
-                        var length = array ? array.length : 0;
-                        return length ? (depth = depth === undefined ? 1 : toInteger(depth), baseFlatten(array, depth)) : []
+                        return (array ? array.length : 0) ? (depth = depth === undefined ? 1 : toInteger(depth), baseFlatten(array, depth)) : []
                     }
 
                     function fromPairs(pairs) {
@@ -3517,8 +3506,7 @@
                     }
 
                     function sortedLastIndexOf(array, value) {
-                        var length = array ? array.length : 0;
-                        if (length) {
+                        if (array ? array.length : 0) {
                             var index = baseSortedIndex(array, value, !0) - 1;
                             if (eq(array[index], value)) return index
                         }
@@ -3615,11 +3603,10 @@
 
                     function wrapperNext() {
                         this.__values__ === undefined && (this.__values__ = toArray(this.value()));
-                        var done = this.__index__ >= this.__values__.length,
-                            value = done ? undefined : this.__values__[this.__index__++];
+                        var done = this.__index__ >= this.__values__.length;
                         return {
                             done: done,
-                            value: value
+                            value: done ? undefined : this.__values__[this.__index__++]
                         }
                     }
 
@@ -3660,8 +3647,7 @@
                     }
 
                     function filter(collection, predicate) {
-                        var func = isArray(collection) ? arrayFilter : baseFilter;
-                        return func(collection, getIteratee(predicate, 3))
+                        return (isArray(collection) ? arrayFilter : baseFilter)(collection, getIteratee(predicate, 3))
                     }
 
                     function flatMap(collection, iteratee) {
@@ -3677,13 +3663,11 @@
                     }
 
                     function forEach(collection, iteratee) {
-                        var func = isArray(collection) ? arrayEach : baseEach;
-                        return func(collection, getIteratee(iteratee, 3))
+                        return (isArray(collection) ? arrayEach : baseEach)(collection, getIteratee(iteratee, 3))
                     }
 
                     function forEachRight(collection, iteratee) {
-                        var func = isArray(collection) ? arrayEachRight : baseEachRight;
-                        return func(collection, getIteratee(iteratee, 3))
+                        return (isArray(collection) ? arrayEachRight : baseEachRight)(collection, getIteratee(iteratee, 3))
                     }
 
                     function includes(collection, value, fromIndex, guard) {
@@ -3693,8 +3677,7 @@
                     }
 
                     function map(collection, iteratee) {
-                        var func = isArray(collection) ? arrayMap : baseMap;
-                        return func(collection, getIteratee(iteratee, 3))
+                        return (isArray(collection) ? arrayMap : baseMap)(collection, getIteratee(iteratee, 3))
                     }
 
                     function orderBy(collection, iteratees, orders, guard) {
@@ -3714,8 +3697,7 @@
                     }
 
                     function reject(collection, predicate) {
-                        var func = isArray(collection) ? arrayFilter : baseFilter;
-                        return func(collection, negate(getIteratee(predicate, 3)))
+                        return (isArray(collection) ? arrayFilter : baseFilter)(collection, negate(getIteratee(predicate, 3)))
                     }
 
                     function sample(collection) {
@@ -3822,7 +3804,8 @@
 
                         function timerExpired() {
                             var time = now();
-                            return shouldInvoke(time) ? trailingEdge(time) : void(timerId = setTimeout(timerExpired, remainingWait(time)))
+                            if (shouldInvoke(time)) return trailingEdge(time);
+                            timerId = setTimeout(timerExpired, remainingWait(time))
                         }
 
                         function trailingEdge(time) {
@@ -3969,7 +3952,7 @@
                     }
 
                     function isBoolean(value) {
-                        return value === !0 || value === !1 || isObjectLike(value) && objectToString.call(value) == boolTag
+                        return !0 === value || !1 === value || isObjectLike(value) && objectToString.call(value) == boolTag
                     }
 
                     function isElement(value) {
@@ -4092,16 +4075,14 @@
                         if (!value) return [];
                         if (isArrayLike(value)) return isString(value) ? stringToArray(value) : copyArray(value);
                         if (iteratorSymbol && value[iteratorSymbol]) return iteratorToArray(value[iteratorSymbol]());
-                        var tag = getTag(value),
-                            func = tag == mapTag ? mapToArray : tag == setTag ? setToArray : values;
-                        return func(value)
+                        var tag = getTag(value);
+                        return (tag == mapTag ? mapToArray : tag == setTag ? setToArray : values)(value)
                     }
 
                     function toFinite(value) {
                         if (!value) return 0 === value ? value : 0;
-                        if (value = toNumber(value), value === INFINITY || value === -INFINITY) {
-                            var sign = value < 0 ? -1 : 1;
-                            return sign * MAX_INTEGER
+                        if ((value = toNumber(value)) === INFINITY || value === -INFINITY) {
+                            return (value < 0 ? -1 : 1) * MAX_INTEGER
                         }
                         return value === value ? value : 0
                     }
@@ -4292,7 +4273,8 @@
                     }
 
                     function random(lower, upper, floating) {
-                        if (floating && "boolean" != typeof floating && isIterateeCall(lower, upper, floating) && (upper = floating = undefined), floating === undefined && ("boolean" == typeof upper ? (floating = upper, upper = undefined) : "boolean" == typeof lower && (floating = lower, lower = undefined)), lower === undefined && upper === undefined ? (lower = 0, upper = 1) : (lower = toNumber(lower) || 0, upper === undefined ? (upper = lower, lower = 0) : upper = toNumber(upper) || 0), lower > upper) {
+                        if (floating && "boolean" != typeof floating && isIterateeCall(lower, upper, floating) && (upper = floating = undefined), floating === undefined && ("boolean" == typeof upper ? (floating = upper, upper = undefined) : "boolean" == typeof lower && (floating = lower,
+                                lower = undefined)), lower === undefined && upper === undefined ? (lower = 0, upper = 1) : (lower = toNumber(lower) || 0, upper === undefined ? (upper = lower, lower = 0) : upper = toNumber(upper) || 0), lower > upper) {
                             var temp = lower;
                             lower = upper, upper = temp
                         }
@@ -4308,7 +4290,7 @@
                     }
 
                     function deburr(string) {
-                        return string = toString(string), string && string.replace(reLatin1, deburrLetter).replace(reComboMark, "")
+                        return (string = toString(string)) && string.replace(reLatin1, deburrLetter).replace(reComboMark, "")
                     }
 
                     function endsWith(string, target, position) {
@@ -4316,7 +4298,7 @@
                         var length = string.length;
                         position = position === undefined ? length : baseClamp(toInteger(position), 0, length);
                         var end = position;
-                        return position -= target.length, position >= 0 && string.slice(position, end) == target
+                        return (position -= target.length) >= 0 && string.slice(position, end) == target
                     }
 
                     function escape(string) {
@@ -4362,7 +4344,7 @@
                     }
 
                     function split(string, separator, limit) {
-                        return limit && "number" != typeof limit && isIterateeCall(string, separator, limit) && (separator = limit = undefined), (limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0) ? (string = toString(string), string && ("string" == typeof separator || null != separator && !isRegExp(separator)) && (separator = baseToString(separator), "" == separator && reHasComplexSymbol.test(string)) ? castSlice(stringToArray(string), 0, limit) : nativeSplit.call(string, separator, limit)) : []
+                        return limit && "number" != typeof limit && isIterateeCall(string, separator, limit) && (separator = limit = undefined), (limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0) ? (string = toString(string), string && ("string" == typeof separator || null != separator && !isRegExp(separator)) && "" == (separator = baseToString(separator)) && reHasComplexSymbol.test(string) ? castSlice(stringToArray(string), 0, limit) : nativeSplit.call(string, separator, limit)) : []
                     }
 
                     function startsWith(string, target, position) {
@@ -4401,29 +4383,25 @@
                     }
 
                     function trim(string, chars, guard) {
-                        if (string = toString(string), string && (guard || chars === undefined)) return string.replace(reTrim, "");
+                        if ((string = toString(string)) && (guard || chars === undefined)) return string.replace(reTrim, "");
                         if (!string || !(chars = baseToString(chars))) return string;
                         var strSymbols = stringToArray(string),
-                            chrSymbols = stringToArray(chars),
-                            start = charsStartIndex(strSymbols, chrSymbols),
-                            end = charsEndIndex(strSymbols, chrSymbols) + 1;
-                        return castSlice(strSymbols, start, end).join("")
+                            chrSymbols = stringToArray(chars);
+                        return castSlice(strSymbols, charsStartIndex(strSymbols, chrSymbols), charsEndIndex(strSymbols, chrSymbols) + 1).join("")
                     }
 
                     function trimEnd(string, chars, guard) {
-                        if (string = toString(string), string && (guard || chars === undefined)) return string.replace(reTrimEnd, "");
+                        if ((string = toString(string)) && (guard || chars === undefined)) return string.replace(reTrimEnd, "");
                         if (!string || !(chars = baseToString(chars))) return string;
-                        var strSymbols = stringToArray(string),
-                            end = charsEndIndex(strSymbols, stringToArray(chars)) + 1;
-                        return castSlice(strSymbols, 0, end).join("")
+                        var strSymbols = stringToArray(string);
+                        return castSlice(strSymbols, 0, charsEndIndex(strSymbols, stringToArray(chars)) + 1).join("")
                     }
 
                     function trimStart(string, chars, guard) {
-                        if (string = toString(string), string && (guard || chars === undefined)) return string.replace(reTrimStart, "");
+                        if ((string = toString(string)) && (guard || chars === undefined)) return string.replace(reTrimStart, "");
                         if (!string || !(chars = baseToString(chars))) return string;
-                        var strSymbols = stringToArray(string),
-                            start = charsStartIndex(strSymbols, stringToArray(chars));
-                        return castSlice(strSymbols, start).join("")
+                        var strSymbols = stringToArray(string);
+                        return castSlice(strSymbols, charsStartIndex(strSymbols, stringToArray(chars))).join("")
                     }
 
                     function truncate(string, options) {
@@ -4520,9 +4498,8 @@
                             object[methodName] = func, isFunc && (object.prototype[methodName] = function() {
                                 var chainAll = this.__chain__;
                                 if (chain || chainAll) {
-                                    var result = object(this.__wrapped__),
-                                        actions = result.__actions__ = copyArray(this.__actions__);
-                                    return actions.push({
+                                    var result = object(this.__wrapped__);
+                                    return (result.__actions__ = copyArray(this.__actions__)).push({
                                         func: func,
                                         args: arguments,
                                         thisArg: object
@@ -4576,7 +4553,7 @@
                     }
 
                     function times(n, iteratee) {
-                        if (n = toInteger(n), n < 1 || n > MAX_SAFE_INTEGER) return [];
+                        if ((n = toInteger(n)) < 1 || n > MAX_SAFE_INTEGER) return [];
                         var index = MAX_ARRAY_LENGTH,
                             length = nativeMin(n, MAX_ARRAY_LENGTH);
                         iteratee = getIteratee(iteratee), n -= MAX_ARRAY_LENGTH;
@@ -5063,8 +5040,8 @@
                         subtract = createMathOperation(function(minuend, subtrahend) {
                             return minuend - subtrahend
                         }, 0);
-                    return lodash.after = after, lodash.ary = ary, lodash.assign = assign, lodash.assignIn = assignIn, lodash.assignInWith = assignInWith, lodash.assignWith = assignWith, lodash.at = at, lodash.before = before, lodash.bind = bind, lodash.bindAll = bindAll, lodash.bindKey = bindKey, lodash.castArray = castArray, lodash.chain = chain, lodash.chunk = chunk, lodash.compact = compact, lodash.concat = concat, lodash.cond = cond, lodash.conforms = conforms, lodash.constant = constant, lodash.countBy = countBy, lodash.create = create, lodash.curry = curry, lodash.curryRight = curryRight, lodash.debounce = debounce, lodash.defaults = defaults, lodash.defaultsDeep = defaultsDeep, lodash.defer = defer, lodash.delay = delay, lodash.difference = difference, lodash.differenceBy = differenceBy, lodash.differenceWith = differenceWith, lodash.drop = drop, lodash.dropRight = dropRight, lodash.dropRightWhile = dropRightWhile, lodash.dropWhile = dropWhile, lodash.fill = fill, lodash.filter = filter, lodash.flatMap = flatMap, lodash.flatMapDeep = flatMapDeep, lodash.flatMapDepth = flatMapDepth, lodash.flatten = flatten, lodash.flattenDeep = flattenDeep, lodash.flattenDepth = flattenDepth, lodash.flip = flip, lodash.flow = flow, lodash.flowRight = flowRight, lodash.fromPairs = fromPairs, lodash.functions = functions, lodash.functionsIn = functionsIn, lodash.groupBy = groupBy, lodash.initial = initial, lodash.intersection = intersection, lodash.intersectionBy = intersectionBy, lodash.intersectionWith = intersectionWith, lodash.invert = invert, lodash.invertBy = invertBy, lodash.invokeMap = invokeMap, lodash.iteratee = iteratee, lodash.keyBy = keyBy, lodash.keys = keys, lodash.keysIn = keysIn, lodash.map = map, lodash.mapKeys = mapKeys, lodash.mapValues = mapValues, lodash.matches = matches, lodash.matchesProperty = matchesProperty, lodash.memoize = memoize, lodash.merge = merge, lodash.mergeWith = mergeWith, lodash.method = method, lodash.methodOf = methodOf, lodash.mixin = mixin, lodash.negate = negate, lodash.nthArg = nthArg, lodash.omit = omit, lodash.omitBy = omitBy, lodash.once = once, lodash.orderBy = orderBy, lodash.over = over, lodash.overArgs = overArgs, lodash.overEvery = overEvery, lodash.overSome = overSome, lodash.partial = partial, lodash.partialRight = partialRight, lodash.partition = partition, lodash.pick = pick, lodash.pickBy = pickBy, lodash.property = property, lodash.propertyOf = propertyOf, lodash.pull = pull, lodash.pullAll = pullAll, lodash.pullAllBy = pullAllBy, lodash.pullAllWith = pullAllWith, lodash.pullAt = pullAt, lodash.range = range, lodash.rangeRight = rangeRight, lodash.rearg = rearg, lodash.reject = reject, lodash.remove = remove, lodash.rest = rest, lodash.reverse = reverse, lodash.sampleSize = sampleSize, lodash.set = set, lodash.setWith = setWith, lodash.shuffle = shuffle, lodash.slice = slice, lodash.sortBy = sortBy, lodash.sortedUniq = sortedUniq, lodash.sortedUniqBy = sortedUniqBy, lodash.split = split, lodash.spread = spread, lodash.tail = tail, lodash.take = take, lodash.takeRight = takeRight, lodash.takeRightWhile = takeRightWhile, lodash.takeWhile = takeWhile, lodash.tap = tap, lodash.throttle = throttle, lodash.thru = thru,
-                        lodash.toArray = toArray, lodash.toPairs = toPairs, lodash.toPairsIn = toPairsIn, lodash.toPath = toPath, lodash.toPlainObject = toPlainObject, lodash.transform = transform, lodash.unary = unary, lodash.union = union, lodash.unionBy = unionBy, lodash.unionWith = unionWith, lodash.uniq = uniq, lodash.uniqBy = uniqBy, lodash.uniqWith = uniqWith, lodash.unset = unset, lodash.unzip = unzip, lodash.unzipWith = unzipWith, lodash.update = update, lodash.updateWith = updateWith, lodash.values = values, lodash.valuesIn = valuesIn, lodash.without = without, lodash.words = words, lodash.wrap = wrap, lodash.xor = xor, lodash.xorBy = xorBy, lodash.xorWith = xorWith, lodash.zip = zip, lodash.zipObject = zipObject, lodash.zipObjectDeep = zipObjectDeep, lodash.zipWith = zipWith, lodash.entries = toPairs, lodash.entriesIn = toPairsIn, lodash.extend = assignIn, lodash.extendWith = assignInWith, mixin(lodash, lodash), lodash.add = add, lodash.attempt = attempt, lodash.camelCase = camelCase, lodash.capitalize = capitalize, lodash.ceil = ceil, lodash.clamp = clamp, lodash.clone = clone, lodash.cloneDeep = cloneDeep, lodash.cloneDeepWith = cloneDeepWith, lodash.cloneWith = cloneWith, lodash.conformsTo = conformsTo, lodash.deburr = deburr, lodash.defaultTo = defaultTo, lodash.divide = divide, lodash.endsWith = endsWith, lodash.eq = eq, lodash.escape = escape, lodash.escapeRegExp = escapeRegExp, lodash.every = every, lodash.find = find, lodash.findIndex = findIndex, lodash.findKey = findKey, lodash.findLast = findLast, lodash.findLastIndex = findLastIndex, lodash.findLastKey = findLastKey, lodash.floor = floor, lodash.forEach = forEach, lodash.forEachRight = forEachRight, lodash.forIn = forIn, lodash.forInRight = forInRight, lodash.forOwn = forOwn, lodash.forOwnRight = forOwnRight, lodash.get = get, lodash.gt = gt, lodash.gte = gte, lodash.has = has, lodash.hasIn = hasIn, lodash.head = head, lodash.identity = identity, lodash.includes = includes, lodash.indexOf = indexOf, lodash.inRange = inRange, lodash.invoke = invoke, lodash.isArguments = isArguments, lodash.isArray = isArray, lodash.isArrayBuffer = isArrayBuffer, lodash.isArrayLike = isArrayLike, lodash.isArrayLikeObject = isArrayLikeObject, lodash.isBoolean = isBoolean, lodash.isBuffer = isBuffer, lodash.isDate = isDate, lodash.isElement = isElement, lodash.isEmpty = isEmpty, lodash.isEqual = isEqual, lodash.isEqualWith = isEqualWith, lodash.isError = isError, lodash.isFinite = isFinite, lodash.isFunction = isFunction, lodash.isInteger = isInteger, lodash.isLength = isLength, lodash.isMap = isMap, lodash.isMatch = isMatch, lodash.isMatchWith = isMatchWith, lodash.isNaN = isNaN, lodash.isNative = isNative, lodash.isNil = isNil, lodash.isNull = isNull, lodash.isNumber = isNumber, lodash.isObject = isObject, lodash.isObjectLike = isObjectLike, lodash.isPlainObject = isPlainObject, lodash.isRegExp = isRegExp, lodash.isSafeInteger = isSafeInteger, lodash.isSet = isSet, lodash.isString = isString, lodash.isSymbol = isSymbol, lodash.isTypedArray = isTypedArray, lodash.isUndefined = isUndefined, lodash.isWeakMap = isWeakMap, lodash.isWeakSet = isWeakSet, lodash.join = join, lodash.kebabCase = kebabCase, lodash.last = last, lodash.lastIndexOf = lastIndexOf, lodash.lowerCase = lowerCase, lodash.lowerFirst = lowerFirst, lodash.lt = lt, lodash.lte = lte, lodash.max = max, lodash.maxBy = maxBy, lodash.mean = mean, lodash.meanBy = meanBy, lodash.min = min, lodash.minBy = minBy, lodash.stubArray = stubArray, lodash.stubFalse = stubFalse, lodash.stubObject = stubObject, lodash.stubString = stubString, lodash.stubTrue = stubTrue, lodash.multiply = multiply, lodash.nth = nth, lodash.noConflict = noConflict, lodash.noop = noop, lodash.now = now, lodash.pad = pad, lodash.padEnd = padEnd, lodash.padStart = padStart, lodash.parseInt = parseInt, lodash.random = random, lodash.reduce = reduce, lodash.reduceRight = reduceRight, lodash.repeat = repeat, lodash.replace = replace, lodash.result = result, lodash.round = round, lodash.runInContext = runInContext, lodash.sample = sample, lodash.size = size, lodash.snakeCase = snakeCase, lodash.some = some, lodash.sortedIndex = sortedIndex, lodash.sortedIndexBy = sortedIndexBy, lodash.sortedIndexOf = sortedIndexOf, lodash.sortedLastIndex = sortedLastIndex, lodash.sortedLastIndexBy = sortedLastIndexBy, lodash.sortedLastIndexOf = sortedLastIndexOf, lodash.startCase = startCase, lodash.startsWith = startsWith, lodash.subtract = subtract, lodash.sum = sum, lodash.sumBy = sumBy, lodash.template = template, lodash.times = times, lodash.toFinite = toFinite, lodash.toInteger = toInteger, lodash.toLength = toLength, lodash.toLower = toLower, lodash.toNumber = toNumber, lodash.toSafeInteger = toSafeInteger, lodash.toString = toString, lodash.toUpper = toUpper, lodash.trim = trim, lodash.trimEnd = trimEnd, lodash.trimStart = trimStart, lodash.truncate = truncate, lodash.unescape = unescape, lodash.uniqueId = uniqueId, lodash.upperCase = upperCase, lodash.upperFirst = upperFirst, lodash.each = forEach, lodash.eachRight = forEachRight, lodash.first = head, mixin(lodash, function() {
+                    return lodash.after = after, lodash.ary = ary, lodash.assign = assign, lodash.assignIn = assignIn, lodash.assignInWith = assignInWith, lodash.assignWith = assignWith, lodash.at = at, lodash.before = before, lodash.bind = bind, lodash.bindAll = bindAll, lodash.bindKey = bindKey, lodash.castArray = castArray, lodash.chain = chain, lodash.chunk = chunk, lodash.compact = compact, lodash.concat = concat, lodash.cond = cond, lodash.conforms = conforms, lodash.constant = constant, lodash.countBy = countBy, lodash.create = create, lodash.curry = curry, lodash.curryRight = curryRight, lodash.debounce = debounce, lodash.defaults = defaults, lodash.defaultsDeep = defaultsDeep, lodash.defer = defer, lodash.delay = delay, lodash.difference = difference, lodash.differenceBy = differenceBy, lodash.differenceWith = differenceWith, lodash.drop = drop, lodash.dropRight = dropRight, lodash.dropRightWhile = dropRightWhile, lodash.dropWhile = dropWhile, lodash.fill = fill, lodash.filter = filter, lodash.flatMap = flatMap, lodash.flatMapDeep = flatMapDeep, lodash.flatMapDepth = flatMapDepth, lodash.flatten = flatten, lodash.flattenDeep = flattenDeep, lodash.flattenDepth = flattenDepth, lodash.flip = flip, lodash.flow = flow, lodash.flowRight = flowRight, lodash.fromPairs = fromPairs, lodash.functions = functions, lodash.functionsIn = functionsIn, lodash.groupBy = groupBy, lodash.initial = initial, lodash.intersection = intersection, lodash.intersectionBy = intersectionBy, lodash.intersectionWith = intersectionWith, lodash.invert = invert, lodash.invertBy = invertBy, lodash.invokeMap = invokeMap, lodash.iteratee = iteratee, lodash.keyBy = keyBy, lodash.keys = keys, lodash.keysIn = keysIn, lodash.map = map, lodash.mapKeys = mapKeys, lodash.mapValues = mapValues, lodash.matches = matches, lodash.matchesProperty = matchesProperty, lodash.memoize = memoize, lodash.merge = merge, lodash.mergeWith = mergeWith, lodash.method = method, lodash.methodOf = methodOf, lodash.mixin = mixin, lodash.negate = negate, lodash.nthArg = nthArg, lodash.omit = omit, lodash.omitBy = omitBy, lodash.once = once, lodash.orderBy = orderBy, lodash.over = over, lodash.overArgs = overArgs, lodash.overEvery = overEvery, lodash.overSome = overSome, lodash.partial = partial, lodash.partialRight = partialRight, lodash.partition = partition, lodash.pick = pick, lodash.pickBy = pickBy, lodash.property = property, lodash.propertyOf = propertyOf, lodash.pull = pull, lodash.pullAll = pullAll, lodash.pullAllBy = pullAllBy, lodash.pullAllWith = pullAllWith, lodash.pullAt = pullAt, lodash.range = range, lodash.rangeRight = rangeRight, lodash.rearg = rearg, lodash.reject = reject, lodash.remove = remove, lodash.rest = rest, lodash.reverse = reverse, lodash.sampleSize = sampleSize, lodash.set = set, lodash.setWith = setWith, lodash.shuffle = shuffle, lodash.slice = slice, lodash.sortBy = sortBy, lodash.sortedUniq = sortedUniq, lodash.sortedUniqBy = sortedUniqBy, lodash.split = split, lodash.spread = spread, lodash.tail = tail, lodash.take = take, lodash.takeRight = takeRight, lodash.takeRightWhile = takeRightWhile, lodash.takeWhile = takeWhile, lodash.tap = tap, lodash.throttle = throttle, lodash.thru = thru, lodash.toArray = toArray, lodash.toPairs = toPairs, lodash.toPairsIn = toPairsIn, lodash.toPath = toPath, lodash.toPlainObject = toPlainObject, lodash.transform = transform, lodash.unary = unary, lodash.union = union, lodash.unionBy = unionBy, lodash.unionWith = unionWith, lodash.uniq = uniq, lodash.uniqBy = uniqBy, lodash.uniqWith = uniqWith, lodash.unset = unset, lodash.unzip = unzip, lodash.unzipWith = unzipWith, lodash.update = update, lodash.updateWith = updateWith, lodash.values = values, lodash.valuesIn = valuesIn, lodash.without = without, lodash.words = words, lodash.wrap = wrap, lodash.xor = xor, lodash.xorBy = xorBy, lodash.xorWith = xorWith, lodash.zip = zip, lodash.zipObject = zipObject, lodash.zipObjectDeep = zipObjectDeep, lodash.zipWith = zipWith, lodash.entries = toPairs, lodash.entriesIn = toPairsIn, lodash.extend = assignIn, lodash.extendWith = assignInWith, mixin(lodash, lodash), lodash.add = add, lodash.attempt = attempt, lodash.camelCase = camelCase, lodash.capitalize = capitalize, lodash.ceil = ceil, lodash.clamp = clamp, lodash.clone = clone, lodash.cloneDeep = cloneDeep, lodash.cloneDeepWith = cloneDeepWith, lodash.cloneWith = cloneWith, lodash.conformsTo = conformsTo, lodash.deburr = deburr, lodash.defaultTo = defaultTo, lodash.divide = divide, lodash.endsWith = endsWith, lodash.eq = eq, lodash.escape = escape, lodash.escapeRegExp = escapeRegExp, lodash.every = every, lodash.find = find, lodash.findIndex = findIndex, lodash.findKey = findKey, lodash.findLast = findLast, lodash.findLastIndex = findLastIndex, lodash.findLastKey = findLastKey, lodash.floor = floor, lodash.forEach = forEach,
+                        lodash.forEachRight = forEachRight, lodash.forIn = forIn, lodash.forInRight = forInRight, lodash.forOwn = forOwn, lodash.forOwnRight = forOwnRight, lodash.get = get, lodash.gt = gt, lodash.gte = gte, lodash.has = has, lodash.hasIn = hasIn, lodash.head = head, lodash.identity = identity, lodash.includes = includes, lodash.indexOf = indexOf, lodash.inRange = inRange, lodash.invoke = invoke, lodash.isArguments = isArguments, lodash.isArray = isArray, lodash.isArrayBuffer = isArrayBuffer, lodash.isArrayLike = isArrayLike, lodash.isArrayLikeObject = isArrayLikeObject, lodash.isBoolean = isBoolean, lodash.isBuffer = isBuffer, lodash.isDate = isDate, lodash.isElement = isElement, lodash.isEmpty = isEmpty, lodash.isEqual = isEqual, lodash.isEqualWith = isEqualWith, lodash.isError = isError, lodash.isFinite = isFinite, lodash.isFunction = isFunction, lodash.isInteger = isInteger, lodash.isLength = isLength, lodash.isMap = isMap, lodash.isMatch = isMatch, lodash.isMatchWith = isMatchWith, lodash.isNaN = isNaN, lodash.isNative = isNative, lodash.isNil = isNil, lodash.isNull = isNull, lodash.isNumber = isNumber, lodash.isObject = isObject, lodash.isObjectLike = isObjectLike, lodash.isPlainObject = isPlainObject, lodash.isRegExp = isRegExp, lodash.isSafeInteger = isSafeInteger, lodash.isSet = isSet, lodash.isString = isString, lodash.isSymbol = isSymbol, lodash.isTypedArray = isTypedArray, lodash.isUndefined = isUndefined, lodash.isWeakMap = isWeakMap, lodash.isWeakSet = isWeakSet, lodash.join = join, lodash.kebabCase = kebabCase, lodash.last = last, lodash.lastIndexOf = lastIndexOf, lodash.lowerCase = lowerCase, lodash.lowerFirst = lowerFirst, lodash.lt = lt, lodash.lte = lte, lodash.max = max, lodash.maxBy = maxBy, lodash.mean = mean, lodash.meanBy = meanBy, lodash.min = min, lodash.minBy = minBy, lodash.stubArray = stubArray, lodash.stubFalse = stubFalse, lodash.stubObject = stubObject, lodash.stubString = stubString, lodash.stubTrue = stubTrue, lodash.multiply = multiply, lodash.nth = nth, lodash.noConflict = noConflict, lodash.noop = noop, lodash.now = now, lodash.pad = pad, lodash.padEnd = padEnd, lodash.padStart = padStart, lodash.parseInt = parseInt, lodash.random = random, lodash.reduce = reduce, lodash.reduceRight = reduceRight, lodash.repeat = repeat, lodash.replace = replace, lodash.result = result, lodash.round = round, lodash.runInContext = runInContext, lodash.sample = sample, lodash.size = size, lodash.snakeCase = snakeCase, lodash.some = some, lodash.sortedIndex = sortedIndex, lodash.sortedIndexBy = sortedIndexBy, lodash.sortedIndexOf = sortedIndexOf, lodash.sortedLastIndex = sortedLastIndex, lodash.sortedLastIndexBy = sortedLastIndexBy, lodash.sortedLastIndexOf = sortedLastIndexOf, lodash.startCase = startCase, lodash.startsWith = startsWith, lodash.subtract = subtract, lodash.sum = sum, lodash.sumBy = sumBy, lodash.template = template, lodash.times = times, lodash.toFinite = toFinite, lodash.toInteger = toInteger, lodash.toLength = toLength, lodash.toLower = toLower, lodash.toNumber = toNumber, lodash.toSafeInteger = toSafeInteger, lodash.toString = toString, lodash.toUpper = toUpper, lodash.trim = trim, lodash.trimEnd = trimEnd, lodash.trimStart = trimStart, lodash.truncate = truncate, lodash.unescape = unescape, lodash.uniqueId = uniqueId, lodash.upperCase = upperCase, lodash.upperFirst = upperFirst, lodash.each = forEach, lodash.eachRight = forEachRight, lodash.first = head, mixin(lodash, function() {
                             var source = {};
                             return baseForOwn(lodash, function(func, methodName) {
                                 hasOwnProperty.call(lodash.prototype, methodName) || (source[methodName] = func)
@@ -5174,9 +5151,8 @@
                         }), baseForOwn(LazyWrapper.prototype, function(func, methodName) {
                             var lodashFunc = lodash[methodName];
                             if (lodashFunc) {
-                                var key = lodashFunc.name + "",
-                                    names = realNames[key] || (realNames[key] = []);
-                                names.push({
+                                var key = lodashFunc.name + "";
+                                (realNames[key] || (realNames[key] = [])).push({
                                     name: methodName,
                                     func: lodashFunc
                                 })
@@ -5290,48 +5266,26 @@
                     reLatin1 = /[\xc0-\xd6\xd8-\xde\xdf-\xf6\xf8-\xff]/g,
                     reNoMatch = /($^)/,
                     reUnescapedString = /['\n\r\u2028\u2029\\]/g,
-                    rsAstralRange = "\\ud800-\\udfff",
-                    rsComboMarksRange = "\\u0300-\\u036f\\ufe20-\\ufe23",
-                    rsComboSymbolsRange = "\\u20d0-\\u20f0",
-                    rsDingbatRange = "\\u2700-\\u27bf",
-                    rsLowerRange = "a-z\\xdf-\\xf6\\xf8-\\xff",
-                    rsMathOpRange = "\\xac\\xb1\\xd7\\xf7",
-                    rsNonCharRange = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf",
-                    rsPunctuationRange = "\\u2000-\\u206f",
-                    rsSpaceRange = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000",
-                    rsUpperRange = "A-Z\\xc0-\\xd6\\xd8-\\xde",
-                    rsVarRange = "\\ufe0e\\ufe0f",
-                    rsBreakRange = rsMathOpRange + rsNonCharRange + rsPunctuationRange + rsSpaceRange,
-                    rsApos = "['’]",
-                    rsAstral = "[" + rsAstralRange + "]",
+                    rsBreakRange = "\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000",
                     rsBreak = "[" + rsBreakRange + "]",
-                    rsCombo = "[" + rsComboMarksRange + rsComboSymbolsRange + "]",
-                    rsDigits = "\\d+",
-                    rsDingbat = "[" + rsDingbatRange + "]",
-                    rsLower = "[" + rsLowerRange + "]",
-                    rsMisc = "[^" + rsAstralRange + rsBreakRange + rsDigits + rsDingbatRange + rsLowerRange + rsUpperRange + "]",
+                    rsCombo = "[\\u0300-\\u036f\\ufe20-\\ufe23\\u20d0-\\u20f0]",
+                    rsLower = "[a-z\\xdf-\\xf6\\xf8-\\xff]",
+                    rsMisc = "[^\\ud800-\\udfff" + rsBreakRange + "\\d+\\u2700-\\u27bfa-z\\xdf-\\xf6\\xf8-\\xffA-Z\\xc0-\\xd6\\xd8-\\xde]",
                     rsFitz = "\\ud83c[\\udffb-\\udfff]",
-                    rsModifier = "(?:" + rsCombo + "|" + rsFitz + ")",
-                    rsNonAstral = "[^" + rsAstralRange + "]",
                     rsRegional = "(?:\\ud83c[\\udde6-\\uddff]){2}",
                     rsSurrPair = "[\\ud800-\\udbff][\\udc00-\\udfff]",
-                    rsUpper = "[" + rsUpperRange + "]",
-                    rsZWJ = "\\u200d",
+                    rsUpper = "[A-Z\\xc0-\\xd6\\xd8-\\xde]",
                     rsLowerMisc = "(?:" + rsLower + "|" + rsMisc + ")",
-                    rsUpperMisc = "(?:" + rsUpper + "|" + rsMisc + ")",
-                    rsOptLowerContr = "(?:" + rsApos + "(?:d|ll|m|re|s|t|ve))?",
-                    rsOptUpperContr = "(?:" + rsApos + "(?:D|LL|M|RE|S|T|VE))?",
-                    reOptMod = rsModifier + "?",
-                    rsOptVar = "[" + rsVarRange + "]?",
-                    rsOptJoin = "(?:" + rsZWJ + "(?:" + [rsNonAstral, rsRegional, rsSurrPair].join("|") + ")" + rsOptVar + reOptMod + ")*",
-                    rsSeq = rsOptVar + reOptMod + rsOptJoin,
-                    rsEmoji = "(?:" + [rsDingbat, rsRegional, rsSurrPair].join("|") + ")" + rsSeq,
-                    rsSymbol = "(?:" + [rsNonAstral + rsCombo + "?", rsCombo, rsRegional, rsSurrPair, rsAstral].join("|") + ")",
-                    reApos = RegExp(rsApos, "g"),
+                    reOptMod = "(?:[\\u0300-\\u036f\\ufe20-\\ufe23\\u20d0-\\u20f0]|\\ud83c[\\udffb-\\udfff])?",
+                    rsOptJoin = "(?:\\u200d(?:" + ["[^\\ud800-\\udfff]", rsRegional, rsSurrPair].join("|") + ")[\\ufe0e\\ufe0f]?" + reOptMod + ")*",
+                    rsSeq = "[\\ufe0e\\ufe0f]?" + reOptMod + rsOptJoin,
+                    rsEmoji = "(?:" + ["[\\u2700-\\u27bf]", rsRegional, rsSurrPair].join("|") + ")" + rsSeq,
+                    rsSymbol = "(?:" + ["[^\\ud800-\\udfff]" + rsCombo + "?", rsCombo, rsRegional, rsSurrPair, "[\\ud800-\\udfff]"].join("|") + ")",
+                    reApos = RegExp("['’]", "g"),
                     reComboMark = RegExp(rsCombo, "g"),
                     reComplexSymbol = RegExp(rsFitz + "(?=" + rsFitz + ")|" + rsSymbol + rsSeq, "g"),
-                    reComplexWord = RegExp([rsUpper + "?" + rsLower + "+" + rsOptLowerContr + "(?=" + [rsBreak, rsUpper, "$"].join("|") + ")", rsUpperMisc + "+" + rsOptUpperContr + "(?=" + [rsBreak, rsUpper + rsLowerMisc, "$"].join("|") + ")", rsUpper + "?" + rsLowerMisc + "+" + rsOptLowerContr, rsUpper + "+" + rsOptUpperContr, rsDigits, rsEmoji].join("|"), "g"),
-                    reHasComplexSymbol = RegExp("[" + rsZWJ + rsAstralRange + rsComboMarksRange + rsComboSymbolsRange + rsVarRange + "]"),
+                    reComplexWord = RegExp([rsUpper + "?" + rsLower + "+(?:['’](?:d|ll|m|re|s|t|ve))?(?=" + [rsBreak, rsUpper, "$"].join("|") + ")", "(?:[A-Z\\xc0-\\xd6\\xd8-\\xde]|[^\\ud800-\\udfff\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000\\d+\\u2700-\\u27bfa-z\\xdf-\\xf6\\xf8-\\xffA-Z\\xc0-\\xd6\\xd8-\\xde])+(?:['’](?:D|LL|M|RE|S|T|VE))?(?=" + [rsBreak, rsUpper + rsLowerMisc, "$"].join("|") + ")", rsUpper + "?" + rsLowerMisc + "+(?:['’](?:d|ll|m|re|s|t|ve))?", rsUpper + "+(?:['’](?:D|LL|M|RE|S|T|VE))?", "\\d+", rsEmoji].join("|"), "g"),
+                    reHasComplexSymbol = RegExp("[\\u200d\\ud800-\\udfff\\u0300-\\u036f\\ufe20-\\ufe23\\u20d0-\\u20f0\\ufe0e\\ufe0f]"),
                     reHasComplexWord = /[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/,
                     contextProps = ["Array", "Buffer", "DataView", "Date", "Error", "Float32Array", "Float64Array", "Function", "Int8Array", "Int16Array", "Int32Array", "Map", "Math", "Object", "Promise", "Reflect", "RegExp", "Set", "String", "Symbol", "TypeError", "Uint8Array", "Uint8ClampedArray", "Uint16Array", "Uint32Array", "WeakMap", "_", "clearTimeout", "isFinite", "parseInt", "setTimeout"],
                     templateCounter = -1,
@@ -5451,13 +5405,14 @@
                     escapeHtmlChar = basePropertyOf(htmlEscapes),
                     unescapeHtmlChar = basePropertyOf(htmlUnescapes),
                     _ = runInContext();
-                "function" == typeof define && "object" == typeof define.amd && define.amd ? (root._ = _, define(function() {
+                "function" == typeof undefined && "object" == typeof define.amd && define.amd ? (root._ = _, define(function() {
                     return _
                 })) : freeModule ? ((freeModule.exports = _)._ = _, freeExports._ = _) : root._ = _
             }).call(this)
-        }($__require("@empty").Buffer, $__require("@empty")), module.exports
+        }($__require("@empty").Buffer, $__require("@empty"))
     }), $__System.registerDynamic("4c", ["4b"], !0, function($__require, exports, module) {
-        return module.exports = $__require("4b"), module.exports
+        this || self;
+        module.exports = $__require("4b")
     }), $__System.register("1", ["10", "49", "d", "e", "a", "b", "4a", "4c"], function(_export) {
         function notify(message, url) {
             var extensionID = window.localStorage.getItem("extensionID"),
@@ -5493,14 +5448,14 @@
                 mtwReconnect = document.getElementById("mtw-reconnect-now");
             if ("success" == status) mtwConnectionHead && mtwConnectionHead.parentNode.removeChild(mtwConnectionHead);
             else if (mtwConnectionHead) clearInterval(timer), "fail" == status ? timer = setInterval(function() {
-                return 0 == tempTime ? (mtwReconnectTime.innerHTML = "Connecting", mtwReconnect.style.display = "none", testConnection(url), void clearInterval(timer)) : (mtwReconnectTime.innerHTML = "Could not connect to Translator Service Reconnecting in " + tempTime + "s  &nbsp;....&nbsp;", mtwReconnect.style.display = "inline", void tempTime--)
+                if (0 == tempTime) return mtwReconnectTime.innerHTML = "Connecting", mtwReconnect.style.display = "none", testConnection(url), void clearInterval(timer);
+                mtwReconnectTime.innerHTML = "Could not connect to Translator Service Reconnecting in " + tempTime + "s  &nbsp;....&nbsp;", mtwReconnect.style.display = "inline", tempTime--
             }, 1e3) : (mtwReconnectTime.innerHTML = "Connection Successful", mtwReconnect.style.display = "none", mtwConnectionHead.style.background = "green", setTimeout(function() {
                 mtwConnectionHead.parentNode.removeChild(mtwConnectionHead)
             }, 500));
             else {
                 mtwConnectionHead = document.createElement("div");
-                var styleConnectionHead = "position: fixed; top:0;width: 100%; display: flex; justify-content: center; align-items: center; background: red; padding: 0.5em 0; color: white !important; font-size: 0.9em; z-index: 1000;";
-                mtwConnectionHead.setAttribute("id", "mtw-connection-head"), mtwConnectionHead.setAttribute("style", styleConnectionHead), mtwConnectionHead.innerHTML = '<div><strong>MTW:</strong>  <span id="mtw-reconnect-time">Could not connect to Translator Service Reconnecting in ' + tempTime + 's  &nbsp;....&nbsp;</span><span id="mtw-reconnect-now"  style="cursor:pointer;"><strong>Reconnect Now</strong></span> </div> <span id="mtw-connection-cross" style="position: absolute; right: 1em; font-size: 1.2em;cursor:pointer;">✕</span> </div>', "fail" == status && document.querySelector("body").appendChild(mtwConnectionHead), mtwReconnectTime = document.getElementById("mtw-reconnect-time"), mtwReconnect = document.getElementById("mtw-reconnect-now"), mtwConnectCross = document.getElementById("mtw-connection-cross");
+                mtwConnectionHead.setAttribute("id", "mtw-connection-head"), mtwConnectionHead.setAttribute("style", "position: fixed; top:0;width: 100%; display: flex; justify-content: center; align-items: center; background: red; padding: 0.5em 0; color: white !important; font-size: 0.9em; z-index: 1000;"), mtwConnectionHead.innerHTML = '<div><strong>MTW:</strong>  <span id="mtw-reconnect-time">Could not connect to Translator Service Reconnecting in ' + tempTime + 's  &nbsp;....&nbsp;</span><span id="mtw-reconnect-now"  style="cursor:pointer;"><strong>Reconnect Now</strong></span> </div> <span id="mtw-connection-cross" style="position: absolute; right: 1em; font-size: 1.2em;cursor:pointer;">✕</span> </div>', "fail" == status && document.querySelector("body").appendChild(mtwConnectionHead), mtwReconnectTime = document.getElementById("mtw-reconnect-time"), mtwReconnect = document.getElementById("mtw-reconnect-now"), mtwConnectCross = document.getElementById("mtw-connection-cross");
                 try {
                     mtwReconnect.addEventListener("click", function() {
                         attempts = 1, mtwReconnectTime.innerHTML = "Connecting", mtwReconnect.style.display = "none", testConnection(url)
@@ -5543,15 +5498,14 @@
                         value: function() {
                             var _this = this;
                             chrome.storage.local.get(null, function(res) {
-                                if (window.localStorage.setItem("extensionID", res.extensionID), res.activation === !0) {
+                                if (window.localStorage.setItem("extensionID", res.extensionID), !0 === res.activation) {
                                     _this.ngramMin = res.ngramMin, _this.ngramMax = res.ngramMax, _this.srcLang = res.sourceLanguage, _this.targetLanguage = res.targetLanguage, _this.userDefinedTranslations = JSON.parse(res.userDefinedTranslations), _this.translationProbability = res.translationProbability, _this.userBlacklistedWords = res.userBlacklistedWords, _this.translator = res.translatorService, _this.yandexTranslatorApiKey = res.yandexTranslatorApiKey, _this.bingTranslatorApiKey = res.bingTranslatorApiKey, _this.googleTranslatorApiKey = res.googleTranslatorApiKey, _this.translated = !0, _this.difficultyBuckets = res.difficultyBuckets, _this.learntWords = res.learntWords, _this.userDefinedOnly = res.userDefinedOnly, _this.stats = res.stats, _this.wordToggles = res.wordToggles, _this.autoBlacklist = res.autoBlacklist, _this.oneWordTranslation = res.oneWordTranslation;
-                                    var blacklistWebsiteReg = new RegExp(res.blacklist);
-                                    if (blacklistWebsiteReg.test(document.URL) && "()" !== res.blacklist) console.log("[MTW] Blacklisted website");
-                                    else if (res.doNotTranslate === !0) console.log("[MTW] Do Not Translate selected.");
-                                    else if ("" !== _this.srcLang && "" !== _this.targetLanguage || _this.userDefinedOnly !== !1) {
+                                    if (new RegExp(res.blacklist).test(document.URL) && "()" !== res.blacklist) console.log("[MTW] Blacklisted website");
+                                    else if (!0 === res.doNotTranslate) console.log("[MTW] Do Not Translate selected.");
+                                    else if ("" !== _this.srcLang && "" !== _this.targetLanguage || !1 !== _this.userDefinedOnly) {
                                         _this.injectCSS(res.translatedWordStyle);
                                         var filteredWords, countedWords = _this.getAllWords(_this.ngramMin, _this.ngramMax);
-                                        if (_this.userDefinedOnly === !0) {
+                                        if (!0 === _this.userDefinedOnly) {
                                             filteredWords = _this.filterToUserDefined(countedWords, _this.translationProbability, _this.userDefinedTranslations, _this.userBlacklistedWords);
                                             var tMap = {};
                                             for (var word in filteredWords) tMap[word] = _this.userDefinedTranslations[word];
@@ -5655,7 +5609,7 @@
                                 filteredTMap = {};
                             for (var w in translationMap) w === translationMap[w] || "" === translationMap[w] || userDefinedTMap[w] || this.containsIllegalCharacters(translationMap[w]) || (filteredTMap[w] = translationMap[w]);
                             for (w in userDefinedTMap) w !== userDefinedTMap[w] && (filteredTMap[w] = userDefinedTMap[w]);
-                            this.learntWords.length > 2 && ! function() {
+                            this.learntWords.length > 2 && function() {
                                 var learntWordsReg = new RegExp(_this3.learntWords);
                                 _Object$keys(filteredTMap).forEach(function(key) {
                                     learntWordsReg.test(filteredTMap[key].toLowerCase()) && delete filteredTMap[key]
@@ -5728,8 +5682,7 @@
                                 newword = word === target.dataset.translated ? target.dataset.original : target.dataset.translated;
                             autoBlacklist && chrome.storage.local.get("toggleFrequency", function(data) {
                                 if (data = JSON.parse(data.toggleFrequency), original in data) data[original] > wordToggles ? (chrome.storage.local.get("userBlacklistedWords", function(result) {
-                                    var blacklistedWords = result.userBlacklistedWords.slice(1, -1).split("|");
-                                    blacklistedWords.indexOf(original) === -1 && (blacklistedWords.push(original), chrome.storage.local.set({
+                                    var blacklistedWords = result.userBlacklistedWords.slice(1, -1).split("|"); - 1 === blacklistedWords.indexOf(original) && (blacklistedWords.push(original), chrome.storage.local.set({
                                         userBlacklistedWords: "(" + blacklistedWords.join("|") + ")"
                                     }))
                                 }), delete data.original) : data[original] += 1;
@@ -5750,7 +5703,7 @@
                             var badTags = ["TEXTAREA", "INPUT", "SCRIPT", "CODE", "SPAN"];
                             if (node.nodeType === Node.TEXT_NODE) {
                                 var newNodeValue;
-                                if (newNodeValue = "zh" == this.targetLanguage ? this.replaceAll(node.nodeValue, tMap) : this.clkTest(node.nodeValue) ? this.replaceAllClk(node.nodeValue, tMap) : this.replaceAll(node.nodeValue, tMap), newNodeValue !== node.nodeValue) {
+                                if ((newNodeValue = "zh" == this.targetLanguage ? this.replaceAll(node.nodeValue, tMap) : this.clkTest(node.nodeValue) ? this.replaceAllClk(node.nodeValue, tMap) : this.replaceAll(node.nodeValue, tMap)) !== node.nodeValue) {
                                     node.nodeValue = newNodeValue;
                                     var parent = node.parentNode;
                                     "zh" == this.targetLanguage ? parent.innerHTML = this.replaceAll(parent.innerHTML, iTMap) : this.clkTest(node.nodeValue) ? parent.innerHTML = this.replaceAllClk(parent.innerHTML, iTMap) : parent.innerHTML = this.replaceAll(parent.innerHTML, iTMap)
@@ -5763,11 +5716,10 @@
                         value: function(text, translationMap) {
                             var _this4 = this;
                             if (text.includes('class="mtwTranslatedWord"') || text.includes("<span") || text.includes("<a")) return text;
-                            var rExp = "",
-                                sortedSourceWords = _Object$keys(translationMap).sort(function(w1, w2) {
-                                    return w2.length - w1.length
-                                });
-                            sortedSourceWords.forEach(function(sourceWord) {
+                            var rExp = "";
+                            _Object$keys(translationMap).sort(function(w1, w2) {
+                                return w2.length - w1.length
+                            }).forEach(function(sourceWord) {
                                 rExp += "(\\s" + _this4.escapeRegExp(sourceWord) + "\\s)|"
                             }), rExp = rExp.substring(0, rExp.length - 1);
                             var regExp = new RegExp(rExp, "gm"),
@@ -5781,11 +5733,10 @@
                         value: function(text, translationMap) {
                             var _this5 = this;
                             if (text.includes('class="mtwTranslatedWord"') || text.includes("<span") || text.includes("<a")) return text;
-                            var rExp = "",
-                                sortedSourceWords = _Object$keys(translationMap).sort(function(w1, w2) {
-                                    return w2.length - w1.length
-                                });
-                            sortedSourceWords.forEach(function(sourceWord) {
+                            var rExp = "";
+                            _Object$keys(translationMap).sort(function(w1, w2) {
+                                return w2.length - w1.length
+                            }).forEach(function(sourceWord) {
                                 rExp += "(" + _this5.escapeRegExp(sourceWord) + ")|"
                             }), rExp = rExp.substring(0, rExp.length - 1);
                             var regExp = new RegExp(rExp, "gm"),
@@ -5846,7 +5797,7 @@
                         value: function() {
                             var i, shortest, nShortest, n, len, nOthers, ret = [],
                                 obj = {};
-                            for (nOthers = arguments.length - 1, nShortest = arguments[0].length, shortest = 0, i = 0; i <= nOthers; i++) n = arguments[i].length, n < nShortest && (shortest = i, nShortest = n);
+                            for (nOthers = arguments.length - 1, nShortest = arguments[0].length, shortest = 0, i = 0; i <= nOthers; i++)(n = arguments[i].length) < nShortest && (shortest = i, nShortest = n);
                             for (i = 0; i <= nOthers; i++) {
                                 n = i === shortest ? 0 : i || shortest, len = arguments[n].length;
                                 for (var j = 0; j < len; j++) {
@@ -5886,7 +5837,7 @@
                 }(), _export("ContentScript", ContentScript), MTWTranslator = new ContentScript, MTWTranslator.translate(), chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                     "toggleAllElements" === request.type ? MTWTranslator.toggleAllElements() : "getTranslatedWords" === request.type ? ("storeSelection" === request.action && (MTWTranslator.selectedRegion = window.getSelection().getRangeAt(0)), sendResponse({
                         translatedWords: MTWTranslator.filteredTMap
-                    })) : (request.type = "showTranslatedSentence") && ! function() {
+                    })) : (request.type = "showTranslatedSentence") && function() {
                         var handler = function handler(e) {
                                 this.removeEventListener("click", handler), anchor.parentNode.removeChild(anchor)
                             },
