@@ -43,6 +43,7 @@
     "<all_urls>",
     "storage",
     "contextMenus",
+    "notifications",
     "tts",
     "unlimitedStorage"
   ]
