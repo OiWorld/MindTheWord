@@ -11,6 +11,13 @@ npm install
 jspm install
 ```
 
+**If above commands throw an exception, then** 
+
+LINUX/UNIX : Run the commands as 'super user'/'root'
+
+WINDOWS : Run cmd prompt as Administrator
+
+
 Install the extension in Chrome as an unpacked extension. Install the folder which has `manifest.json`
 
 **To start the chrome application**, run
