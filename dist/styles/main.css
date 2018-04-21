@@ -91,3 +91,8 @@ body {
   padding: 10px 15px;
   border: 1px solid #ddd;
 }
+
+/* navbar */
+.navbar-default .navbar-brand {
+  font-weight: bold
+}
