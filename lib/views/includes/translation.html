@@ -123,7 +123,7 @@
       <div class="form-group">
         <label for="percentage"><span data-translate="toTranslate">to translate</span>
         </label>
-        <select class="form-control" id="percentage" ng-model="opctrl.percentage" style="min-width: 75px">
+        <select class="form-control" id="percentage" ng-model="opctrl.percentage" style="min-width: 70px">
           <option>10</option>
           <option>15</option>
           <option>20</option>
@@ -142,14 +142,14 @@
       <div class="form-group">
           <label for="srcLang"><span data-translate="percentOfall">percent of all</span>
         </label>
-        <select class="form-control" id="srcLang" ng-model="opctrl.srcLang" style="min-width: 176px">
+        <select class="form-control" id="srcLang" ng-model="opctrl.srcLang" style="min-width: 160px">
           <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="targetLang"><span data-translate="wordsInto">words into</span>
         </label>
-        <select class="form-control" id="targetLang" ng-model="opctrl.targetLang" style="min-width: 176px">
+        <select class="form-control" id="targetLang" ng-model="opctrl.targetLang" style="min-width: 160px">
           <option ng-repeat="(language, code) in opctrl.languages" ng-value="code">{{language}}</option>
         </select>
       </div>
