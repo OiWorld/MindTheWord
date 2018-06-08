@@ -230,17 +230,6 @@ gallese, yiddish, yoruba.
 
 Vi auguriamo buono studio!
 
-
-
-Bielorussian
-------------
-
-Translated by: Tatsiana Pasherstnik
-
-ToDo
-
-
-
 Portuguese (pt)
 ---------------
 
@@ -592,6 +581,74 @@ MindTheWord допомагає поринути у мову, яку вивчає
 
 Бажаємо Вам отримати задоволення від вивчення іноземних мов!
 
+Belarusian
+-----------
+
+Translated by: Sushma Kukkadapu
+
+(Short: Вывучайце мовы пры працы ў Інтэрнэце!)
+
+MindTheWord забяспечвае моўная апусканне пры праглядзе Інтэрнэту.
+
+На кожнай старонцы наведвальнай, ён выпадковым чынам перакладае некалькі слоў у мэтавай мова, пазначаны Вамі. Паколькі перакладзеныя словы захоўваюцца у кантэксце, лёгка вывесці і запомніць іх значэнне. Такім чынам, Вы лёгка даведацца новыя словы і палепшыць свае моўныя навыкі.
+
+У наладах вы можаце наладзіць:
+* колькі павінна быць пераведзена;
+* як перакладзеныя словы або сімвалы павінны быць вылучаныя;
+* уласны слоўнік наканаваных перакладаў;
+* колькі паслядоўных словы або сімвалы павінны быць пераведзены;
+* чорны спіс сайтаў, якія не павінны быць пераведзены;
+* і многае іншае ...
+
+Якасць перакладу залежыць ад GOOGLETRANSLATE. Наступныя мовы падтрымліваюцца да гэтага часу: Афрыкаанс, албанская, Амхарскі, арабская, армянскі, азербайджанскі, баскская, Беларуская, бенгальская, бходжпури, балгарскую, Бірманская, брэтонская, каталонская, Cherokee, кітайскі, кітайскі (спрошчаны), кітайскі (традыцыйны), Карсіканец, харвацкая, чэшскі, дацкі, Мальдыўскія, галандскі, англійская, эсперанта, Эстоніі, Фарэрскія выспы, тагальская, фінскі, французскі, фрызская, Галіцкая, грузінскі, Нямецкі, грэцкі, гуяраці, гаіцянскі, іўрыт, хіндзі, венгерскі, ісландскі, Інданезійская, Inuktitut, ірландскі, італьянскі, японскі, яванскі, каннада, Казахскі, кхмерскія, карэйская, курдская, кіргізы, Лао, Лаоскай, лацінская, латышская, Літоўскі, Люксембургскі, македонскай, малайская, малаялам, мальтыйская, Маоры, Маратхі, мангольская, непальская, нарвежская, Occitan, ория, пушту, фарсі, Польскі, партугальская, Пенджаб, кечуа, румынская, руская, санскрыт, Шатландцы - гэльская, сербская, Sindhi, Sinhalese, славацкая, славенская, іспанскі, Суданскі, суахілі, шведскі, сірыйскі, таджыкскі, тамільская, Тагалог, татарын, Тэлугу, тайская, тыбецкі, Тангійская, турэцкі, украінскі, урду, узбекскі, уйгурская, В'етнамская, валійская, ідыш, ёруба.
+
+Няхай ваш мову навучання прынясе вам радасць і бегласць!
+
+Irish
+------
+
+Translated by: Sushma Kukkadapu
+
+(Gearr: Foghlaim teangacha agus tú ag brabhsáil ar an Idirlíon!)
+
+Cuireann MindTheWord tumoideachas teanga ar fáil agus tú ag brabhsáil an idirlín.
+
+I ngach leathanach gréasáin a thugtar cuairt air, aistríonn sé go randamach cúpla focal isteach sa sprioctheanga a shonraíonn tú. Toisc go gcoimeádtar na focail aistrithe i gcomhthéacs, is furasta a chur in iúl agus a gciallna a ghlanmheabhair. Dá bhrí sin, bíonn tú ag foghlaim foclóra nua gan iarracht agus do scileanna teanga a fheabhsú.
+
+Sna roghanna, is féidir leat a chumrú:
+* cé mhéad ba chóir a aistriú;
+* ba chóir aird a thabhairt ar na focail nó na carachtair a aistríodh;
+* do theanga féin d'aistrithe réamhshainithe;
+* cé mhéad focal nó carachtair as a chéile a aistriú;
+* liosta dubh de láithreáin ghréasáin nár chóir a aistriú;
+* agus i bhfad níos mó ...
+
+Braitheann caighdeán aistriúcháin ar GoogleTranslate. Tacaítear leis na teangacha seo a leanas go dtí seo: Afracáinis, Albáinis, Amarais, Araibis, Airméinis, Asarbaiseáinis, Bascais, Bealarúisis, Beangáilis, Bhojpuri, Bulgáiris, Burmais, Briotáinis, Catalóinis, Cherokee, Sínis, Sínis (simplithe), Sínis (traidisiúnta), Corsaic, Cróitis, Seice, Danmhairgis, Dhivehi, Ollainnis, Béarla, Esperanto, Eastóinis, Faróis, Tagálaigis, Fionlainnis, Fraincis, Freaslainnis, Gailísis, Seoirsis, Gearmáinis, Gréigis, Gúisearáitis, Haitian, Eabhrais, Hiondúis, Ungáiris, Íoslainnis, Indinéisis, Ionúitis, Gaeilge, Iodáilis, Seapáinis, Iávais, Cannadais, Caisiceach, Cambóidis, Cóiréis, Coirdis, Cirgéis, Lao, Laotian, Laidin, Laitvis, Liotuáinis, Leitseabuirgis, Macadóinis, Malaeis, Mailéalaimis, Maltais, Maorais, Maraitis, Mongóilis, Neipealais, Ioruais, Ocatáinis, Oraisis, Paistis, Peirsis, Polainnis, Portaingéilis, Puinseáibis, Ceatsuais, Rómáinis, Rúisis, Sanscrait, Scots - Gaelic, Seirbis, Sindis, Siolóinis, Slóvaicis, Slóivéinis, Spáinnis, Sundais, Svahaílis, Sualainnis, Syriac, Tajik, Tamailis, Tagálaigis, Tatarais, Teileagúis, Téalainnis, Tibéidis, Tonga, Tuircis, Úcráinis, Urdais, Úisbéiceastach, Uighur, Vítneamais, Breatnais, Giúdais, Yoruba.
+
+Má thugann do fhoghlaim teanga tú áthas agus líofacht duit!
+
+Thai
+------
+
+Translated by: Sushma Kukkadapu
+
+(ย่อ: เรียนรู้ภาษาขณะเรียกดูอินเทอร์เน็ต!)
+
+MindTheWord ให้การแช่ภาษาในขณะที่คุณเรียกดูอินเทอร์เน็ต
+
+ในทุกเว็บเพจที่เข้าชมจะสุ่มแปลคำไม่กี่คำลงใน ภาษาเป้าหมายที่คุณระบุ เนื่องจากคำที่แปลแล้วจะถูกเก็บไว้ ในบริบทมันเป็นเรื่องง่ายที่จะอนุมานและจดจำความหมายของพวกเขา ดังนั้น, คุณเรียนรู้คำศัพท์ใหม่ ๆ ได้อย่างง่ายดายและพัฒนาทักษะทางภาษาของคุณ
+
+ในตัวเลือกคุณสามารถกำหนดค่า:
+* ควรแปลอย่างไร
+* คำหรือตัวอักษรที่แปลควรเน้น;
+* พจนานุกรมของคุณเองสำหรับคำแปลที่กำหนดไว้ล่วงหน้า
+* ต้องมีการแปลคำหรือตัวอักษรติดต่อกันหลายคำ
+* บัญชีดำของเว็บไซต์ที่ไม่ควรแปล;
+* และอีกมากมาย ...
+
+คุณภาพการแปลขึ้นอยู่กับ GoogleTranslate. สนับสนุนภาษาต่อไปนี้: แอฟริกัน, แอลเบเนีย, อัมฮาริก, อารบิก, อาร์เมเนีย, อาเซอร์ไบจัน, บาสก์, เบลารุส, เบงกอล, Bhojpuri, บัลแกเรีย, พม่า, เบรตัน, คาตาลัน, Cherokee, จีน, จีน (ประยุกต์), จีน (ดั้งเดิม), คอร์ซิกา, โครเอเชีย, เช็ก, เดนมาร์ก, Dhivehi, ดัตช์, อังกฤษ, Esperanto, เอสโตเนีย, แฟโร, ฟิลิปปินส์, ฟินแลนด์, ฝรั่งเศส, Frisian, กาลิเซีย, จอร์เจีย, เยอรมัน, กรีก, คุชราติ, ไฮติ, ฮิบรู, ฮินดู, ฮังการี, ไอซ์แลนด์, Indonesian, Inuktitut, ไอริช, อิตาลี, ญี่ปุ่น, ชวา, กั ณ ณาท, คาซัค, เขมร, เกาหลี, ดิช, คีร์กีซ, ลาว, ลาว, ลาติน, ลัตเวีย, ลิทัวเนีย, ลักเซมเบิร์ก, มาซิโดเนีย, มาเลย์, มาลาลัม, มอลตา, เมารี, Marathi, มองโกเลีย, เนปาล, นอร์เวย์, อ็อกซิกัน, โอริยา, พาสโต, เปอร์เซีย, โปแลนด์, โปรตุเกส, ปัญจาบ, ชัว, โรมาเนีย, รัสเซีย, สันสกฤต, สกอต - ภาษาเกลิค, เซอร์เบีย, ซินดิ, สิงหล, สโลวัก, สโลเวเนียน, สเปน, ภาษาซามัน, ภาษาสวาฮิลี, ภาษาสวีเดน, ภาษาซีเรีย, ภาษาทาจิกิสถาน, ภาษาทมิฬ, ภาษาตากาล็อก, ตาตาร์, เตลูกู, ตริวัน, ติมอร์, ตุรกี, ยูเครน, อูรดู, อุซเบก, อูกur, เวียตนามภาษาเวลส์ภาษายิดดิช Yoruba
+
+การเรียนภาษาของคุณอาจทำให้คุณมีความสุขและคล่องแคล่ว!
 
 Tamil (ta)
 ------------
