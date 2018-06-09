@@ -12,6 +12,8 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/reset.css"> <!-- CSS reset -->
     <link rel="stylesheet" href="../styles/style.css"> <!-- Resource style -->
@@ -44,23 +46,23 @@
      <nav class="cd-side-nav">
         <ul>
           <li class="active">
-            <a href="#translation-settings" data-toggle="tab" data-translate="translation" data-translate="translation">Translation</a>
+            <a href="#translation-settings" data-toggle="tab" data-translate="translation" data-placement="right" title="Language Translation Services">Translation</a>
           </li>
           <li>
-            <a href="#blacklisting" data-toggle="tab" data-translate="blacklist">Blacklist</a>
+            <a href="#blacklisting" data-toggle="tab" data-translate="blacklist" data-placement="right" title="Blacklist Websites, Blacklist Words, Automatic Blacklisting">Blacklist</a>
           </li>
           <li>
-            <a href="#learning" data-toggle="tab" data-translate="learning">Learning</a>
+            <a href="#learning" data-toggle="tab" data-translate="learning" data-placement="right" title="Saved Translations, Difficulty Buckets, Learnt words">Learning</a>
           </li>
           <li>
-            <a href="#advanced-settings" data-toggle="tab" data-translate="advanced">Advanced</a>
+            <a href="#advanced-settings" data-toggle="tab" data-translate="advanced" data-placement="right" title="Color settings, Word configuration, Playback settings">Advanced</a>
           </li>
           <li>
-            <a href="#backup" data-toggle="tab" data-translate="backup">Backup</a>
+            <a href="#backup" data-toggle="tab" data-translate="backup" data-placement="right" title="Backup & Restore">Backup</a>
           </li>
           
           <li>
-            <a href="#quiz" data-toggle="tab" data-translate="quiz">Quiz</a>
+            <a href="#quiz" data-toggle="tab" data-translate="quiz" data-placement="right" title="Quiz that tests knowledge of learnt new language words so far!">Quiz</a>
           </li>
           
           <li>
@@ -105,7 +107,11 @@
     </main>
     
   <ng-include src="'includes/footer.html'"></ng-include>
-   
+  <script>
+   $(document).ready(function(){
+      $('[data-toggle="tab"]').tooltip();   
+   });
+  </script>
   <script src="../assets/js/jquery-2.1.4.js"></script>
   <script src="../assets/js/jquery.menu-aim.js"></script>
   <script src="../assets/js/main.js"></script>
