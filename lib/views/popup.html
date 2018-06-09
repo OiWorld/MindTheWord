@@ -12,8 +12,8 @@
       <div class="form-group">
         <label>Activation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <div class="btn-group right-block">
-          <button type="button" class="btn btn-default" ng-click="pctrl.setActivation(true)" ng-class="{'active': pctrl.activation === true}">On</button>
-          <button type="button" class="btn btn-default" ng-click="pctrl.setActivation(false)" ng-class="{'active': pctrl.activation === false}">Off</button>
+          <button id = "mtw_Toggle_On" type="button" class="btn btn-default" ng-click="pctrl.setActivation(true)" ng-class="{'active': pctrl.activation === true}">On</button>
+          <button id = "mtw_Toggle_Off" type="button" class="btn btn-default" ng-click="pctrl.setActivation(false)" ng-class="{'active': pctrl.activation === false}">Off</button>
         </div>
       </div>
     </form>
@@ -26,6 +26,8 @@
       <span class="glyphicon glyphicon-cog"></span>
       Options
     </button>
+    <div id="mtw_data_display">
+      <h3>Statistics</h3>
+    </div>
   </body>
-
 </html>
