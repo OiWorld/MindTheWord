@@ -24,7 +24,9 @@
         "https://*/*"
       ],
       "js" : [
-        "mtw.js"
+        "mtw.js",
+        "assets/js/jquery-3.3.1.min.js",
+        "assets/js/jquery.hovercard.min.js"
       ],
       "run_at" : "document_end",
       "all_frames" : false
