@@ -53,7 +53,7 @@ Main Page Content
 .cd-main-content .content-wrapper h1 {
   text-align: center;
   padding: 3em 0;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 .cd-main-content::before {
   /* never visible - used to check MQ in jQuery */
@@ -346,7 +346,7 @@ Top Navigation
   }
   .cd-top-nav a {
     display: block;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: #ffffff;
   }
   .cd-top-nav > li {
@@ -419,13 +419,13 @@ Sidebar
   text-transform: uppercase;
   font-weight: bold;
   color: #646a6f;
-  font-size: 1rem;
+  font-size: 1.2rem;
   letter-spacing: .1em;
 }
 .cd-side-nav a {
   position: relative;
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 .cd-side-nav ul.cd-top-nav > li:last-of-type > a {
   border-bottom: none;
@@ -469,7 +469,7 @@ Sidebar
   border-radius: .25em;
   color: #ffffff;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-align: center;
 }
 
@@ -503,7 +503,7 @@ Sidebar
     display: none;
   }
   .cd-side-nav a {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-align: center;
   }
   .cd-side-nav > ul > li > a {
