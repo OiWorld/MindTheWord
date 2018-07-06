@@ -22,6 +22,25 @@
     right: 8px;
 }
 
+.mtwMarkAsLearnt {
+    opacity: 0.5;
+    margin-top: 5px;
+    left: 0%;
+}
+
+.mtwMarkAsLearnt:hover {
+    opacity: 1.0;
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    -ms-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+
+.hc-details {
+    background-color: black;
+}
+
 .mtwSpeak:hover {
     opacity: 1.0;
     -webkit-transition: all 0.7s ease;
