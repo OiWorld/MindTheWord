@@ -37,6 +37,20 @@
     transition: all 0.7s ease;
 }
 
+.mtwVisualHint {
+    opacity: 0.5;
+    margin-top: 5px;
+}
+
+.mtwVisualHint:hover {
+    opacity: 1.0;
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    -ms-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+
 .hc-details {
     background-color: black;
 }
