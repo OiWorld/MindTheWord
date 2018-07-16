@@ -16,33 +16,19 @@
 }
 
 .mtwSpeak {
-    opacity: 0.5;
+    opacity: 0.7;
     position: absolute;
     top: 8px;
     right: 8px;
 }
 
-.mtwMarkAsLearnt {
-    opacity: 0.5;
+.mtwHovercardBelow {
+    opacity: 0.7;
     margin-top: 5px;
-    left: 0%;
+    margin-right: 5px;
 }
 
-.mtwMarkAsLearnt:hover {
-    opacity: 1.0;
-    -webkit-transition: all 0.7s ease;
-    -moz-transition: all 0.7s ease;
-    -o-transition: all 0.7s ease;
-    -ms-transition: all 0.7s ease;
-    transition: all 0.7s ease;
-}
-
-.mtwVisualHint {
-    opacity: 0.5;
-    margin-top: 5px;
-}
-
-.mtwVisualHint:hover {
+.mtwHovercardBelow:hover {
     opacity: 1.0;
     -webkit-transition: all 0.7s ease;
     -moz-transition: all 0.7s ease;
