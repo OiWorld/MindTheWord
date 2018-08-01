@@ -77,6 +77,7 @@ gulp.task('copy-dist', function () {
   gulp.src('./lib/_locales/**/*').pipe(gulp.dest('./dist/_locales/'));
   gulp.src('./lib/assets/**/*').pipe(gulp.dest('./dist/assets/'));
   gulp.src('./lib/styles/**/*').pipe(gulp.dest('./dist/styles/'));
+  gulp.src('./lib/common/*').pipe(gulp.dest('./dist/common/'));
   gulp.src('./lib/views/**/*').pipe(gulp.dest('./dist/views/'));
   return gulp.src('./lib/manifest.json').pipe(gulp.dest('./dist/'));
 });
