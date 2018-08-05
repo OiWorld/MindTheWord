@@ -1,0 +1,12 @@
+.slow .toggle-group { transition: left 0.7s; -webkit-transition: left 0.7s; }
+.toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+
+#mtw-Activation-Container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.popupHeader{
+    background-color: blue;
+}
