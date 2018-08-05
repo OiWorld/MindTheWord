@@ -17,14 +17,14 @@
     <br>
     <br>
     <div class="btn-group">
-      <button class="mtwPopButtons" ng-click="pctrl.openOptions()">
+      <button title="Options" class="mtwPopButtons" ng-click="pctrl.openOptions()">
         <img src="../assets/img/options.png" class="mtwPopIcons">
       </button>
-      <button id = "mtwPopToggle" class="mtwPopButtons" ng-disabled="pctrl.activation === false" ng-click="pctrl.toggleTranslations()">
+      <button title="Toggle Translations" id = "mtwPopToggle" class="mtwPopButtons" ng-disabled="pctrl.activation === false" ng-click="pctrl.toggleTranslations()">
         <img  src="../assets/img/toggle.png" class="mtwPopIcons">
       </button>
-      <button id = "mtwPopBlacklist" class="mtwPopButtons" ng-click="pctrl.blacklistFunc()" ng-disabled="pctrl.activation === false">
-        <img class="mtwPopIcons" src="../assets/img/blacklistWebsite.png">
+      <button title="Blacklist/Whitlist Website" id = "mtwPopBlacklist" class="mtwPopButtons" ng-click="pctrl.blacklistFunc()" ng-disabled="pctrl.activation === false">
+        <img class="mtwPopIcons" id = "mtwPopBlacklistImage" src="../assets/img/blacklistWebsite.png">
       </button>
     </div>
     
