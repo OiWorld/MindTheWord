@@ -16,9 +16,18 @@
     <br>
     <br>
     <br>
-    <img src="../assets/img/toggle.png" ng-disabled="pctrl.activation === false" ng-click="pctrl.toggleTranslations()">
-    <img src="../assets/img/options.png" ng-click="pctrl.openOptions()">
-    <img id = "mtwPopBlackList" src="../assets/img/blacklistWebsite.png" ng-click="pctrl.blacklistFunc()">
+    <div class="btn-group">
+      <button class="mtwPopButtons" ng-click="pctrl.openOptions()">
+        <img src="../assets/img/options.png" class="mtwPopIcons">
+      </button>
+      <button id = "mtwPopToggle" class="mtwPopButtons" ng-disabled="pctrl.activation === false" ng-click="pctrl.toggleTranslations()">
+        <img  src="../assets/img/toggle.png" class="mtwPopIcons">
+      </button>
+      <button id = "mtwPopBlacklist" class="mtwPopButtons" ng-click="pctrl.blacklistFunc()" ng-disabled="pctrl.activation === false">
+        <img class="mtwPopIcons" src="../assets/img/blacklistWebsite.png">
+      </button>
+    </div>
+    
     <div id="mtw_data_display">
       <h3>Statistics</h3>
     </div>
