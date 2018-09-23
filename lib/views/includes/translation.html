@@ -120,7 +120,6 @@ p.big {
         <label for="translator"><span data-translate="use">Use</span>
         </label>
         <select ng-model="opctrl.translator" ng-change="opctrl.changeTranslator()" class="form-control" id="translator">
-          <option>Free</option>
           <option ng-if="!opctrl.hasKey('Yandex')">Yandex</option>
           <option ng-if="!opctrl.hasKey('Google')">Google</option>
           <option ng-if="!opctrl.hasKey('Bing')">Bing</option>

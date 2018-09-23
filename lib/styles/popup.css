@@ -1,0 +1,35 @@
+.slow .toggle-group { transition: left 0.7s; -webkit-transition: left 0.7s; }
+.toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+
+#mtw-Activation-Container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.mtwPopButtons{
+    border-radius: 50%;
+    opacity: 0.7;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    padding: 0px;
+}
+
+.mtwPopButtons:focus{
+    outline:0;
+}
+
+.mtwPopButtons:hover {
+    opacity: 1.0;
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    -ms-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+
+.mtwPopIcons{
+    max-width: 90%;
+    height: auto;
+}
