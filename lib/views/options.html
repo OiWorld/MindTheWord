@@ -12,8 +12,9 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/bootstrap-colorpicker.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap-tour.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bootstrap-tour.min.js"></script>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/reset.css"> <!-- CSS reset -->
     <link rel="stylesheet" href="../styles/style.css"> <!-- Resource style -->
@@ -31,13 +32,15 @@
 
        <nav class="cd-nav">
         <ul class="cd-top-nav">
-           <li>
-             <a href="#statistics" data-toggle="tab" data-translate="statistics">Statistics</a>
-           </li>
-           <li>
-             <a href="#contribute" data-toggle="tab" data-translate="contribute">Contribute</a>
-           </li>
-          
+            <li>
+                <a id="statistics-nav" href="#statistics" data-toggle="tab" data-translate="statistics">Statistics</a>
+            </li>
+            <li>
+                <a id="contribute-nav" href="#contribute" data-toggle="tab" data-translate="contribute">Contribute</a>
+            </li>
+            <li>
+                <a id = "mtwTakeTour" href="#">Take Tour</a>
+            </li>          
         </ul>
        </nav>
       </header>
@@ -46,25 +49,23 @@
      <nav class="cd-side-nav">
         <ul>
           <li class="active">
-            <a href="#translation-settings" data-toggle="tab" data-translate="translation" data-placement="right" title="Language Translation Services">Translation</a>
+            <a id="translation-settings-nav" href="#translation-settings" data-toggle="tab" data-translate="translation" data-placement="right" title="Language Translation Services">Translation</a>
           </li>
           <li>
-            <a href="#blacklisting" data-toggle="tab" data-translate="blacklist" data-placement="right" title="Blacklist Websites, Blacklist Words, Automatic Blacklisting">Blacklist</a>
+            <a id="blacklisting-nav" href="#blacklisting" data-toggle="tab" data-translate="blacklist" data-placement="right" title="Blacklist Websites, Blacklist Words, Automatic Blacklisting">Blacklist</a>
           </li>
           <li>
-            <a href="#learning" data-toggle="tab" data-translate="learning" data-placement="right" title="Saved Translations, Difficulty Buckets, Learnt words">Learning</a>
+            <a id="learning-nav" href="#learning" data-toggle="tab" data-translate="learning" data-placement="right" title="Saved Translations, Difficulty Buckets, Learnt words">Learning</a>
           </li>
           <li>
-            <a href="#advanced-settings" data-toggle="tab" data-translate="advanced" data-placement="right" title="Color settings, Word configuration, Playback settings">Advanced</a>
+            <a id="advanced-settings-nav" href="#advanced-settings" data-toggle="tab" data-translate="advanced" data-placement="right" title="Color settings, Word configuration, Playback settings">Advanced</a>
           </li>
           <li>
-            <a href="#backup" data-toggle="tab" data-translate="backup" data-placement="right" title="Backup & Restore">Backup</a>
+            <a id="backup-nav" href="#backup" data-toggle="tab" data-translate="backup" data-placement="right" title="Backup & Restore">Backup</a>
           </li>
-          
           <li>
-            <a href="#quiz" data-toggle="tab" data-translate="quiz" data-placement="right" title="Quiz that tests knowledge of learnt new language words so far!">Quiz</a>
+            <a id="quiz-nav" href="#quiz" data-toggle="tab" data-translate="quiz" data-placement="right" title="Quiz that tests knowledge of learnt new language words so far!">Quiz</a>
           </li>
-          
         </ul>
       </nav>
 
@@ -109,8 +110,8 @@
       $('[data-toggle="tab"]').tooltip();   
    });
   </script>
-  <script src="../assets/js/jquery-2.1.4.js"></script>
   <script src="../assets/js/jquery.menu-aim.js"></script>
   <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/tour.js"></script>
   </body>
 </html>
