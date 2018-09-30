@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6">
-    <div class="panel panel-danger list-panel">
+    <div id="blacklist-website" class="panel panel-danger list-panel">
       <div class="panel-heading">
         <span data-translate="blacklistWebsites">Blacklist Websites</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Content in these websites will not be translated"></span>
@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="col-md-6">
-    <div class="panel panel-danger list-panel">
+    <div id="blacklist-words" class="panel panel-danger list-panel">
       <div class="panel-heading">
         <span data-translate="blacklistWords">Blacklist Words</span>
         <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="These words will not be translated"></span>
@@ -76,39 +76,6 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <span data-translate="automaticBlacklisting">Automatic Blacklisting</span>
-        <span class="glyphicon glyphicon-question-sign pull-right" data-toggle="tooltip" data-placement="bottom" title="Settings for automatic blacklisting of websites and words"></span>
-      </div>
-      <div class="panel-body">
-        <form class="form-inline">
-          <div class="form-group">
-            <label data-translate="automaticBlacklisting">Automatic Blacklisting&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <div class="btn-group right-block">
-              <button type="button" class="btn btn-default" ng-click="opctrl.setAutoBlacklist(true)" ng-class="{'active': opctrl.autoBlacklist === true}"><span data-translate="on">On</span></button>
-              <button type="button" class="btn btn-default" ng-click="opctrl.setAutoBlacklist(false)" ng-class="{'active': opctrl.autoBlacklist === false}"><span data-translate="off">Off</span></button>
-            </div>
-          </div>
-        </form>
-        <div class="input-group">
-          <span class="input-group-addon" data-translate="maxWordToggles">Maximum Word Toggles</span>
-          <input type="number" ng-model="opctrl.wordToggles" ng-change="opctrl.updateWordToggles()" class="form-control">
-          <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Blacklist words toggled more than the number specified"></span></span>
-        </div>
-        <br>
-        <div class="input-group">
-          <span class="input-group-addon" data-translate="maxActivationsToggles">Maximum Activation Toggles</span>
-          <input type="number" ng-model="opctrl.activationToggles" ng-change="opctrl.updateActivationToggles()" class="form-control">
-          <span class="input-group-addon"><span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="Blacklist websites on which activation is toggled more than the number specified"></span></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Youtube Video Modals -->
 
 <div id="blacklistWebsitesModal" class="modal fade" role="dialog">
