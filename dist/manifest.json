@@ -24,13 +24,15 @@
         "https://*/*"
       ],
       "js" : [
-        "mtw.js"
+        "mtw.js",
+        "assets/js/jquery-3.3.1.min.js",
+        "assets/js/jquery.hovercard.min.js"
       ],
       "run_at" : "document_end",
       "all_frames" : false
     }
   ],
-  "web_accessible_resources" : ["assets/css/*", "assets/fonts/*", "assets/js/*","assets/img/*","views/options.html*"],
+  "web_accessible_resources" : ["assets/css/*", "assets/fonts/*", "assets/js/*","assets/img/*","common/*","views/options.html*"],
   "icons" : {
     "22" : "assets/img/22.png",
     "24" : "assets/img/24.png",
@@ -43,6 +45,7 @@
     "<all_urls>",
     "storage",
     "contextMenus",
+    "notifications",
     "tts",
     "unlimitedStorage"
   ]

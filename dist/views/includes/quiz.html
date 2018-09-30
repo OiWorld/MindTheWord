@@ -1,11 +1,11 @@
-<div class="row">
-  <div class="text-center" style="padding: 0 15px 20px 15px">
+<div class="panel panel-success">
+  <div class="panel-heading">
     <h3 style="display: inline;" data-translate="chooseCorrectTranslations">Choose The Correct Translations</h3>
   </div>
-  <div class="col-lg-12">
+  <div class="panel-body">
     <div ng-hide="opctrl.translatedWordsExist" style="width: 50%; margin: 0 auto;">
-      <center><h3 data-translate="noTranslateWords">No Translated Words</h3></center>
-      <center><h4 data-translate="translateWordstoQuiz">Translate words to take a quiz from</h4></center>
+      <h3 class="centertext"  data-translate="noTranslateWords">No Translated Words</h3>
+      <h4 class="centertext" data-translate="translateWordstoQuiz">Translate words to take a quiz from</h4>
     </div>
     <form>
       <table class="table table-list" border="0">
@@ -27,6 +27,6 @@
         </tbody>
       </table>
     </form>
-    <button style="display:block;margin: 0 auto;" ng-show="opctrl.translatedWordsExist" class="btn btn-info btn-lg" ng-click="opctrl.generateNewQuiz()" data-translate="generateNewQuiz">Generate New Quiz</button>
+    <button style="display:block;margin: 0 auto;" ng-show="opctrl.translatedWordsExist" class="btn btn-primary" ng-click="opctrl.generateNewQuiz()" data-translate="generateNewQuiz">Generate New Quiz</button>
   </div>
 </div>

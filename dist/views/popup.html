@@ -1,31 +1,35 @@
 <!doctype html>
-<html style="height: 125px" ng-app="MTWPopup">
+<html style="height: 150px" ng-app="MTWPopup">
 
   <head>
     <script src="../popup.js"></script>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/toggle.css">
+    <link rel="stylesheet" href="../styles/popup.css">
+    <script src="../assets/js/toggle.js"></script>
   </head>
 
-  <body style="width: 225px; padding:20px" ng-controller="PopupCtrl as pctrl">
-
-    <form class="form-inline">
-      <div class="form-group">
-        <label>Activation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <div class="btn-group right-block">
-          <button type="button" class="btn btn-default" ng-click="pctrl.setActivation(true)" ng-class="{'active': pctrl.activation === true}">On</button>
-          <button type="button" class="btn btn-default" ng-click="pctrl.setActivation(false)" ng-class="{'active': pctrl.activation === false}">Off</button>
-        </div>
-      </div>
-    </form>
-
-    <button class="btn btn-primary" ng-disabled="pctrl.activation === false" ng-click="pctrl.toggleTranslations()">
-      <span class="glyphicon glyphicon-retweet"></span>
-      Toggle
-    </button>
-    <button class="btn btn-warning" ng-click="pctrl.openOptions()">
-      <span class="glyphicon glyphicon-cog"></span>
-      Options
-    </button>
+  <body style="width: 250px; padding:20px" ng-controller="PopupCtrl as pctrl">
+    <div id="mtw-Activation-Container">
+        <input id="mtw-Activation" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-style="slow ios" data-size="large">
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="btn-group">
+      <button title="Options" class="mtwPopButtons" ng-click="pctrl.openOptions()">
+        <img src="../assets/img/options.png" class="mtwPopIcons">
+      </button>
+      <button title="Toggle Translations" id = "mtwPopToggle" class="mtwPopButtons" ng-disabled="pctrl.activation === false" ng-click="pctrl.toggleTranslations()">
+        <img  src="../assets/img/toggle.png" class="mtwPopIcons">
+      </button>
+      <button title="Blacklist/Whitlist Website" id = "mtwPopBlacklist" class="mtwPopButtons" ng-click="pctrl.blacklistFunc()" ng-disabled="pctrl.activation === false">
+        <img class="mtwPopIcons" id = "mtwPopBlacklistImage" src="../assets/img/blacklistWebsite.png">
+      </button>
+    </div>
+    
+    <div id="mtw_data_display">
+      <h3>Statistics</h3>
+    </div>
   </body>
-
 </html>
